@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Aura">
+    <style>
+        body{
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;  /* Firefox */
+        }
+        body::-webkit-scrollbar { 
+            display: none;  /* Safari and Chrome */
+        }
+    </style>
+    
+    <title>
+        
+            leetcode |
+        
+        Aura Space
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#f39c12","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.svg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep learning, Keep Coding.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"center","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Aura Space
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    
+<div class="fade-in-down-animation">
+    <div class="page-template-container">
+        
+        
+        <div class="page-template-content keep-markdown-body">
+            
+                <h1 id="2023-x2F-07-x2F-02"><a href="#2023-x2F-07-x2F-02" class="headerlink" title="2023&#x2F;07&#x2F;02"></a>2023&#x2F;07&#x2F;02</h1><ul>
+<li>1232. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/check-if-it-is-a-straight-line/" >Check If It Is a Straight Line<i class="fas fa-external-link-alt"></i></a></li>
+<li>1071. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/greatest-common-divisor-of-strings/" >Greatest Common Divisor of Strings<i class="fas fa-external-link-alt"></i></a></li>
+<li>1160. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/" >Find Words That Can Be Formed by Characters<i class="fas fa-external-link-alt"></i></a></li>
+<li>1323. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-69-number/" >Maximum 69 Number<i class="fas fa-external-link-alt"></i></a></li>
+<li>_858. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/mirror-reflection/" >Mirror Reflection<i class="fas fa-external-link-alt"></i></a></li>
+<li>_946. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/validate-stack-sequences/" >Validate Stack Sequences<i class="fas fa-external-link-alt"></i></a></li>
+<li>2748. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-beautiful-pairs/" >Number of Beautiful Pairs<i class="fas fa-external-link-alt"></i></a></li>
+<li>2749. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-operations-to-make-the-integer-zero/" >Minimum Operations to Make the Integer Zero<i class="fas fa-external-link-alt"></i></a></li>
+<li>2750. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/ways-to-split-array-into-good-subarrays/" >Ways to Split Array Into Good Subarrays<i class="fas fa-external-link-alt"></i></a></li>
+<li>2751. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/robot-collisions/" >Robot Collisions<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="2023-x2F-06-x2F-25"><a href="#2023-x2F-06-x2F-25" class="headerlink" title="2023&#x2F;06&#x2F;25"></a>2023&#x2F;06&#x2F;25</h1><ul>
+<li>_242. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/valid-anagram/" >Valid Anagram<i class="fas fa-external-link-alt"></i></a></li>
+<li>_541. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-string-ii/" >Reverse String II<i class="fas fa-external-link-alt"></i></a></li>
+<li>_485. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/max-consecutive-ones/" >Max Consecutive Ones<i class="fas fa-external-link-alt"></i></a></li>
+<li>_414. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/third-maximum-number/" >Third Maximum Number<i class="fas fa-external-link-alt"></i></a></li>
+<li>2244. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-rounds-to-complete-all-tasks/" >Minimum Rounds to Complete All Tasks<i class="fas fa-external-link-alt"></i></a></li>
+<li>2275. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/" >Largest Combination With Bitwise AND Greater Than Zero<i class="fas fa-external-link-alt"></i></a></li>
+<li>2739. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/total-distance-traveled/" >Total Distance Traveled<i class="fas fa-external-link-alt"></i></a></li>
+<li>2740. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-value-of-the-partition/" >Find the Value of the Partition<i class="fas fa-external-link-alt"></i></a></li>
+<li>2741. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/special-permutations/" >Special Permutations<i class="fas fa-external-link-alt"></i></a></li>
+<li>2742. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/painting-the-walls/" >Painting the Walls<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="2023-x2F-06-x2F-18"><a href="#2023-x2F-06-x2F-18" class="headerlink" title="2023&#x2F;06&#x2F;18"></a>2023&#x2F;06&#x2F;18</h1><ul>
+<li>1365. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/" >How Many Numbers Are Smaller Than the Current Number<i class="fas fa-external-link-alt"></i></a></li>
+<li>1184. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/distance-between-bus-stops/" >Distance Between Bus Stops<i class="fas fa-external-link-alt"></i></a></li>
+<li>1399. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-largest-group/" >Count Largest Group<i class="fas fa-external-link-alt"></i></a></li>
+<li>1566. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/" >Detect Pattern of Length M Repeated K or More Times<i class="fas fa-external-link-alt"></i></a></li>
+<li>_235. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" >Lowest Common Ancestor of a Binary Search Tree<i class="fas fa-external-link-alt"></i></a></li>
+<li>_406. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/queue-reconstruction-by-height/" >Queue Reconstruction by Height<i class="fas fa-external-link-alt"></i></a></li>
+<li>2733. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/neither-minimum-nor-maximum/" >Neither Minimum nor Maximum<i class="fas fa-external-link-alt"></i></a></li>
+<li>2734. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/lexicographically-smallest-string-after-substring-operation/" >Lexicographically Smallest String After Substring Operation<i class="fas fa-external-link-alt"></i></a></li>
+<li>2735. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/collecting-chocolates/" >Collecting Chocolates<i class="fas fa-external-link-alt"></i></a></li>
+<li>2736. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-sum-queries/" >Maximum Sum Queries<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="2023-x2F-06-x2F-11"><a href="#2023-x2F-06-x2F-11" class="headerlink" title="2023&#x2F;06&#x2F;11"></a>2023&#x2F;06&#x2F;11</h1><ul>
+<li>_925.  <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/long-pressed-name/" >Long Pressed Name<i class="fas fa-external-link-alt"></i></a></li>
+<li>_859.  <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/buddy-strings/" >Buddy Strings<i class="fas fa-external-link-alt"></i></a></li>
+<li>_717.  <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/1-bit-and-2-bit-characters/" >1-bit and 2-bit Characters<i class="fas fa-external-link-alt"></i></a></li>
+<li>_506.  <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/relative-ranks/" >Relative Ranks<i class="fas fa-external-link-alt"></i></a></li>
+<li>2716. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimize-string-length/" >Minimize String Length<i class="fas fa-external-link-alt"></i></a></li>
+<li>2717. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/semi-ordered-permutation/" >Semi-Ordered Permutation<i class="fas fa-external-link-alt"></i></a></li>
+<li>2718. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-matrix-after-queries/" >Sum of Matrix After Queries<i class="fas fa-external-link-alt"></i></a></li>
+<li>2719. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-of-integers/" >Count of Integers<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="2023-x2F-06-x2F-04"><a href="#2023-x2F-06-x2F-04" class="headerlink" title="2023&#x2F;06&#x2F;04"></a>2023&#x2F;06&#x2F;04</h1><ul>
+<li>2529. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/" >Maximum Count of Positive Integer and Negative Integer<i class="fas fa-external-link-alt"></i></a></li>
+<li>1582. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/special-positions-in-a-binary-matrix/" >Special Positions in a Binary Matrix<i class="fas fa-external-link-alt"></i></a></li>
+<li>2133. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/check-if-every-row-and-column-contains-all-numbers/" >Check if Every Row and Column Contains All Numbers<i class="fas fa-external-link-alt"></i></a></li>
+<li>_283.  <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/move-zeroes/" >Move Zeroes<i class="fas fa-external-link-alt"></i></a></li>
+<li>1347. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/" >Minimum Number of Steps to Make Two Strings Anagram<i class="fas fa-external-link-alt"></i></a></li>
+<li>_210.  <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/course-schedule-ii/" >Course Schedule II<i class="fas fa-external-link-alt"></i></a></li>
+<li>2710. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-trailing-zeros-from-a-string/" >Remove Trailing Zeros From a String<i class="fas fa-external-link-alt"></i></a></li>
+<li>2711. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/difference-of-number-of-distinct-values-on-diagonals/" >Difference of Number of Distinct Values on Diagonals<i class="fas fa-external-link-alt"></i></a></li>
+<li>2712. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-cost-to-make-all-characters-equal/" >Minimum Cost to Make All Characters Equal<i class="fas fa-external-link-alt"></i></a></li>
+<li>2713. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix/" >Maximum Strictly Increasing Cells in a Matrix<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="2023-x2F-05-x2F-28"><a href="#2023-x2F-05-x2F-28" class="headerlink" title="2023&#x2F;05&#x2F;28"></a>2023&#x2F;05&#x2F;28</h1><ul>
+<li>_832. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/flipping-an-image/" >Flipping an Image<i class="fas fa-external-link-alt"></i></a></li>
+<li>_507. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/perfect-number/" >Perfect Number<i class="fas fa-external-link-alt"></i></a></li>
+<li>1694. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reformat-phone-number/" >Reformat Phone Number<i class="fas fa-external-link-alt"></i></a></li>
+<li>_405. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-a-number-to-hexadecimal/" >Convert a Number to Hexadecimal<i class="fas fa-external-link-alt"></i></a></li>
+<li>1208. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/get-equal-substrings-within-budget/" >Get Equal Substrings Within Budget<i class="fas fa-external-link-alt"></i></a></li>
+<li>_567. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/permutation-in-string/" >Permutation in String<i class="fas fa-external-link-alt"></i></a></li>
+<li>2696. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-string-length-after-removing-substrings/" >Minimum String Length After Removing Substrings<i class="fas fa-external-link-alt"></i></a></li>
+<li>2697. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/lexicographically-smallest-palindrome/" >Lexicographically Smallest Palindrome<i class="fas fa-external-link-alt"></i></a></li>
+<li>2698. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-punishment-number-of-an-integer/" >Find the Punishment Number of an Integer<i class="fas fa-external-link-alt"></i></a></li>
+<li>2699. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/modify-graph-edge-weights/" >Modify Graph Edge Weights<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="2023-x2F-05-x2F-21"><a href="#2023-x2F-05-x2F-21" class="headerlink" title="2023&#x2F;05&#x2F;21"></a>2023&#x2F;05&#x2F;21</h1><ul>
+<li>1408. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/string-matching-in-an-array/" >String Matching in an Array<i class="fas fa-external-link-alt"></i></a></li>
+<li>__83. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/" >Remove Duplicates from Sorted List<i class="fas fa-external-link-alt"></i></a></li>
+<li>1152. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/" >Cells with Odd Values in a Matrix<i class="fas fa-external-link-alt"></i></a></li>
+<li>_897. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/increasing-order-search-tree/" >Increasing Order Search Tree<i class="fas fa-external-link-alt"></i></a></li>
+<li>2191. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sort-the-jumbled-numbers/" >Sort the Jumbled Numbers<i class="fas fa-external-link-alt"></i></a></li>
+<li>1915. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-wonderful-substrings/" >Number of Wonderful Substrings<i class="fas fa-external-link-alt"></i></a></li>
+<li>2682. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-losers-of-the-circular-game/" >Find the Losers of the Circular Game<i class="fas fa-external-link-alt"></i></a></li>
+<li>2683. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/neighboring-bitwise-xor/" >Neighboring Bitwise XOR<i class="fas fa-external-link-alt"></i></a></li>
+<li>2684. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-number-of-moves-in-a-grid/" >Maximum Number of Moves in a Grid<i class="fas fa-external-link-alt"></i></a></li>
+<li>2685. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-the-number-of-complete-components/" >Count the Number of Complete Components<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="2023-x2F-05-x2F-14"><a href="#2023-x2F-05-x2F-14" class="headerlink" title="2023&#x2F;05&#x2F;14"></a>2023&#x2F;05&#x2F;14</h1><ul>
+<li>2496. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-value-of-a-string-in-an-array/" >Maximum Value of a String in an Array<i class="fas fa-external-link-alt"></i></a></li>
+<li>1512. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-good-pairs/" >Number of Good Pairs<i class="fas fa-external-link-alt"></i></a></li>
+<li>_812. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-triangle-area/" >Largest Triangle Area<i class="fas fa-external-link-alt"></i></a></li>
+<li>2303. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/calculate-amount-paid-in-taxes/" >Calculate Amount Paid in Taxes<i class="fas fa-external-link-alt"></i></a></li>
+<li>2400. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps/" >Number of Ways to Reach a Position After Exactly k Steps<i class="fas fa-external-link-alt"></i></a></li>
+<li>1138. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/alphabet-board-path/" >Alphabet Board Path<i class="fas fa-external-link-alt"></i></a></li>
+<li>2670. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-distinct-difference-array/" >Find the Distinct Difference Array<i class="fas fa-external-link-alt"></i></a></li>
+<li>2671. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/frequency-tracker/" >Frequency Tracker<i class="fas fa-external-link-alt"></i></a></li>
+<li>2672. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-adjacent-elements-with-the-same-color/" >Number of Adjacent Elements With the Same Color<i class="fas fa-external-link-alt"></i></a></li>
+<li>2673. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/make-costs-of-paths-equal-in-a-binary-tree/" >Make Costs of Paths Equal in a Binary Tree<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="2023-x2F-05-x2F-07"><a href="#2023-x2F-05-x2F-07" class="headerlink" title="2023&#x2F;05&#x2F;07"></a>2023&#x2F;05&#x2F;07</h1><ul>
+<li>__55. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/jump-game/" >Jump Game<i class="fas fa-external-link-alt"></i></a></li>
+<li>_133. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/clone-graph/" >Clone Graph<i class="fas fa-external-link-alt"></i></a></li>
+<li>_200. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-islands/" >Number of Islands<i class="fas fa-external-link-alt"></i></a></li>
+<li>_207. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/course-schedule/" >Course Schedule<i class="fas fa-external-link-alt"></i></a></li>
+<li>_417. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/pacific-atlantic-water-flow/" >Pacific Atlantic Water Flow<i class="fas fa-external-link-alt"></i></a></li>
+<li>2660. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/determine-the-winner-of-a-bowling-game/" >Determine the Winner of a Bowling Game<i class="fas fa-external-link-alt"></i></a></li>
+<li>2661. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/first-completely-painted-row-or-column/" >First Completely Painted Row or Column<i class="fas fa-external-link-alt"></i></a></li>
+<li>2662. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-cost-of-a-path-with-special-roads/" >Minimum Cost of a Path With Special Roads<i class="fas fa-external-link-alt"></i></a></li>
+<li>2663. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/lexicographically-smallest-beautiful-string/" >Lexicographically Smallest Beautiful String<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="2023-x2F-04-x2F-30"><a href="#2023-x2F-04-x2F-30" class="headerlink" title="2023&#x2F;04&#x2F;30"></a>2023&#x2F;04&#x2F;30</h1><ul>
+<li>__62. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/unique-paths/" >Unique Paths<i class="fas fa-external-link-alt"></i></a></li>
+<li>__91. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/decode-ways/" >Decode Ways<i class="fas fa-external-link-alt"></i></a></li>
+<li>_198. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/house-robber/" >House Robber<i class="fas fa-external-link-alt"></i></a></li>
+<li>_213. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/house-robber-ii/" >House Robber II<i class="fas fa-external-link-alt"></i></a></li>
+<li>_377. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/combination-sum-iv/" >Combination Sum IV<i class="fas fa-external-link-alt"></i></a></li>
+<li>2651. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/calculate-delayed-arrival-time/" >Calculate Delayed Arrival Time<i class="fas fa-external-link-alt"></i></a></li>
+<li>2652. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-multiples/" >Sum Multiples<i class="fas fa-external-link-alt"></i></a></li>
+<li>2653. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sliding-subarray-beauty/" >Sliding Subarray Beauty<i class="fas fa-external-link-alt"></i></a></li>
+<li>2654. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/" >Minimum Number of Operations to Make All Array Elements Equal to 1<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="2023-x2F-04-x2F-23"><a href="#2023-x2F-04-x2F-23" class="headerlink" title="2023&#x2F;04&#x2F;23"></a>2023&#x2F;04&#x2F;23</h1><ul>
+<li>__70. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/climbing-stairs/" >Climbing Stairs<i class="fas fa-external-link-alt"></i></a></li>
+<li>_139. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/word-break/" >Word Break<i class="fas fa-external-link-alt"></i></a></li>
+<li>_300. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-increasing-subsequence/" >Longest Increasing Subsequence<i class="fas fa-external-link-alt"></i></a></li>
+<li>_322. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/coin-change/" >Coin Change<i class="fas fa-external-link-alt"></i></a></li>
+<li>1143. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-common-subsequence/" >Longest Common Subsequence<i class="fas fa-external-link-alt"></i></a></li>
+<li>2643. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/row-with-maximum-ones/" >Row With Maximum Ones<i class="fas fa-external-link-alt"></i></a></li>
+<li>2644. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-maximum-divisibility-score/" >Find the Maximum Divisibility Score<i class="fas fa-external-link-alt"></i></a></li>
+<li>2645. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-additions-to-make-valid-string/" >Minimum Additions to Make Valid String<i class="fas fa-external-link-alt"></i></a></li>
+<li>2646. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimize-the-total-price-of-the-trips/" >Minimize the Total Price of the Trips<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="2023-x2F-04-x2F-16"><a href="#2023-x2F-04-x2F-16" class="headerlink" title="2023&#x2F;04&#x2F;16"></a>2023&#x2F;04&#x2F;16</h1><ul>
+<li>_190. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-bits/" >Reverse Bits<i class="fas fa-external-link-alt"></i></a></li>
+<li>_191. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-1-bits/" >Number of 1 Bits<i class="fas fa-external-link-alt"></i></a></li>
+<li>_268. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/missing-number/" >Missing Number<i class="fas fa-external-link-alt"></i></a></li>
+<li>_338. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/counting-bits/" >Counting Bits<i class="fas fa-external-link-alt"></i></a></li>
+<li>_371. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-two-integers/" >Sum of Two Integers<i class="fas fa-external-link-alt"></i></a></li>
+<li>2609. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-longest-balanced-substring-of-a-binary-string/" >Find the Longest Balanced Substring of a Binary String<i class="fas fa-external-link-alt"></i></a></li>
+<li>2610. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-an-array-into-a-2d-array-with-conditions/" >Convert an Array Into a 2D Array With Conditions<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="2023-x2F-04-x2F-09"><a href="#2023-x2F-04-x2F-09" class="headerlink" title="2023&#x2F;04&#x2F;09"></a>2023&#x2F;04&#x2F;09</h1><ul>
+<li>__11. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/" >Container With Most Water<i class="fas fa-external-link-alt"></i></a></li>
+<li>__15. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/3sum/" >3Sum<i class="fas fa-external-link-alt"></i></a></li>
+<li>__33. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/search-in-rotated-sorted-array/" >Search in Rotated Sorted Array<i class="fas fa-external-link-alt"></i></a></li>
+<li>_152. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-product-subarray/" >Maximum Product Subarray<i class="fas fa-external-link-alt"></i></a></li>
+<li>_153. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" >Find Minimum in Rotated Sorted Array<i class="fas fa-external-link-alt"></i></a></li>
+<li>2600. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/k-items-with-the-maximum-sum/" >K Items With the Maximum Sum<i class="fas fa-external-link-alt"></i></a></li>
+<li>2601. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/prime-subtraction-operation/" >Prime Subtraction Operation<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="2023-x2F-03-x2F-26"><a href="#2023-x2F-03-x2F-26" class="headerlink" title="2023&#x2F;03&#x2F;26"></a>2023&#x2F;03&#x2F;26</h1><ul>
+<li>___1. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/two-sum/" >Two Sum<i class="fas fa-external-link-alt"></i></a></li>
+<li>__53. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-subarray/" >Maximum Subarray<i class="fas fa-external-link-alt"></i></a></li>
+<li>_121. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" >Best Time to Buy and Sell Stock<i class="fas fa-external-link-alt"></i></a></li>
+<li>_217. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/contains-duplicate/" >Contains Duplicate<i class="fas fa-external-link-alt"></i></a></li>
+<li>_238. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/product-of-array-except-self/" >Product of Array Except Self<i class="fas fa-external-link-alt"></i></a></li>
+<li>2595. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-even-and-odd-bits/" >Number of Even and Odd Bits<i class="fas fa-external-link-alt"></i></a></li>
+<li>2596. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/check-knight-tour-configuration/" >Check Knight Tour Configuration<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+            
+        </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                <!-- &nbsp;<i class="fas fa-heart icon-animate"></i> -->
+                &nbsp;<a href="/">Aura</a>
+            
+        </div>
+        
+        <!-- <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div> -->
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>
