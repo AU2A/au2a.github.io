@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Aura">
+    <style>
+        body{
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;  /* Firefox */
+        }
+        body::-webkit-scrollbar { 
+            display: none;  /* Safari and Chrome */
+        }
+    </style>
+    
+    <title>
+        
+            Openai Whisper Fine-Tuning - Hakka |
+        
+        Aura Space
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#f39c12","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.svg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep learning, Keep Coding.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"center","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Aura Space
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Openai Whisper Fine-Tuning - Hakka</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Aura</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-07-04 09:42:49</span>
+        <span class="mobile">2023-07-04 09:42</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-07-08 13:48:32</span>
+    </span>
+    
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h1 id="專案結構"><a href="#專案結構" class="headerlink" title="專案結構"></a>專案結構</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">whisper_hakka</span><br><span class="line"> ┗┳━ audio</span><br><span class="line">  ┃   ┣━ test</span><br><span class="line">  ┃   ┃   ┗━ test語料存放區</span><br><span class="line">  ┃   ┣━ train</span><br><span class="line">  ┃   ┃   ┗━ train語料存放區</span><br><span class="line">  ┃   ┗━ metadata.csv 檔案路徑與文本內容</span><br><span class="line">  ┣━ model</span><br><span class="line">  ┃   ┗━ 模型存放區</span><br><span class="line">  ┣━ original_audio</span><br><span class="line">  ┃   ┗━ 原始音檔，有0.9, 1.0, 1.1倍速三組</span><br><span class="line">  ┣━ text</span><br><span class="line">  ┃   ┣━ nameAndText.txt 文本</span><br><span class="line">  ┃   ┗━ 文本相關檔案</span><br><span class="line">  ┣━ fine_tune.ipynb jupyter訓練腳本(建議用這個)</span><br><span class="line">  ┗━ run.py 訓練腳本</span><br></pre></td></tr></table></figure>
+
+<h1 id="程式碼說明"><a href="#程式碼說明" class="headerlink" title="程式碼說明"></a>程式碼說明</h1><h4 id="建立模型名稱"><a href="#建立模型名稱" class="headerlink" title="建立模型名稱"></a>建立模型名稱</h4><p>請輸入檔案名稱</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model_name=<span class="string">&#x27;file_name&#x27;</span></span><br></pre></td></tr></table></figure>
+<h4 id="登入hugging-face"><a href="#登入hugging-face" class="headerlink" title="登入hugging face"></a>登入hugging face</h4><p>將訓練完成的模型上傳到存放在huggingface，可以減少本地端空間占用。<br><code>Token</code>請自行去huggingface申請</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> huggingface_hub.hf_api <span class="keyword">import</span> HfFolder</span><br><span class="line">HfFolder.save_token(<span class="string">&quot;Token from huggingface&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>print(common_voice[‘train’][0])</p>
+<h4 id="載入音檔資料"><a href="#載入音檔資料" class="headerlink" title="載入音檔資料"></a>載入音檔資料</h4><p>會從<code>data_dir</code>底下拉語料進行使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datasets <span class="keyword">import</span> load_dataset</span><br><span class="line">common_voice = load_dataset(<span class="string">&quot;./&quot;</span>, data_dir=<span class="string">&quot;audio&quot;</span>,use_auth_token=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 可以使用以下程式碼查看dataset結構</span></span><br><span class="line"><span class="built_in">print</span>(common_voice)</span><br></pre></td></tr></table></figure>
+<h4 id="載入Openai建立好的模型"><a href="#載入Openai建立好的模型" class="headerlink" title="載入Openai建立好的模型"></a>載入Openai建立好的模型</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> WhisperFeatureExtractor, WhisperTokenizer, WhisperProcessor</span><br><span class="line">feature_extractor = WhisperFeatureExtractor.from_pretrained(<span class="string">&quot;openai/whisper-base&quot;</span>)</span><br><span class="line">tokenizer = WhisperTokenizer.from_pretrained(<span class="string">&quot;openai/whisper-base&quot;</span>, language=<span class="string">&quot;zh&quot;</span>, task=<span class="string">&quot;transcribe&quot;</span>)</span><br><span class="line">processor = WhisperProcessor.from_pretrained(<span class="string">&quot;openai/whisper-base&quot;</span>, language=<span class="string">&quot;zh&quot;</span>, task=<span class="string">&quot;transcribe&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="語料轉換取樣率"><a href="#語料轉換取樣率" class="headerlink" title="語料轉換取樣率"></a>語料轉換取樣率</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datasets <span class="keyword">import</span> Audio</span><br><span class="line">common_voice = common_voice.cast_column(<span class="string">&quot;audio&quot;</span>, Audio(sampling_rate=<span class="number">16000</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">prepare_dataset</span>(<span class="params">batch</span>):</span><br><span class="line">    audio = batch[<span class="string">&quot;audio&quot;</span>]</span><br><span class="line">    batch[<span class="string">&quot;input_features&quot;</span>] = feature_extractor(audio[<span class="string">&quot;array&quot;</span>], sampling_rate=audio[<span class="string">&quot;sampling_rate&quot;</span>]).input_features[<span class="number">0</span>]</span><br><span class="line">    batch[<span class="string">&quot;labels&quot;</span>] = tokenizer(batch[<span class="string">&quot;sentence&quot;</span>]).input_ids</span><br><span class="line">    <span class="keyword">return</span> batch</span><br><span class="line"></span><br><span class="line">common_voice = common_voice.<span class="built_in">map</span>(prepare_dataset, remove_columns=common_voice.column_names[<span class="string">&quot;train&quot;</span>], num_proc=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="data-collator"><a href="#data-collator" class="headerlink" title="data_collator"></a>data_collator</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> dataclasses <span class="keyword">import</span> dataclass</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Any</span>, <span class="type">Dict</span>, <span class="type">List</span>, <span class="type">Union</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@dataclass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DataCollatorSpeechSeq2SeqWithPadding</span>:</span><br><span class="line">    processor: <span class="type">Any</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self, features: <span class="type">List</span>[<span class="type">Dict</span>[<span class="built_in">str</span>, <span class="type">Union</span>[<span class="type">List</span>[<span class="built_in">int</span>], torch.Tensor]]]</span>) -&gt; <span class="type">Dict</span>[<span class="built_in">str</span>, torch.Tensor]:</span><br><span class="line">        <span class="comment"># split inputs and labels since they have to be of different lengths and need different padding methods</span></span><br><span class="line">        <span class="comment"># first treat the audio inputs by simply returning torch tensors</span></span><br><span class="line">        input_features = [&#123;<span class="string">&quot;input_features&quot;</span>: feature[<span class="string">&quot;input_features&quot;</span>]&#125; <span class="keyword">for</span> feature <span class="keyword">in</span> features]</span><br><span class="line">        batch = self.processor.feature_extractor.pad(input_features, return_tensors=<span class="string">&quot;pt&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># get the tokenized label sequences</span></span><br><span class="line">        label_features = [&#123;<span class="string">&quot;input_ids&quot;</span>: feature[<span class="string">&quot;labels&quot;</span>]&#125; <span class="keyword">for</span> feature <span class="keyword">in</span> features]</span><br><span class="line">        <span class="comment"># pad the labels to max length</span></span><br><span class="line">        labels_batch = self.processor.tokenizer.pad(label_features, return_tensors=<span class="string">&quot;pt&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># replace padding with -100 to ignore loss correctly</span></span><br><span class="line">        labels = labels_batch[<span class="string">&quot;input_ids&quot;</span>].masked_fill(labels_batch.attention_mask.ne(<span class="number">1</span>), -<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># if bos token is appended in previous tokenization step,</span></span><br><span class="line">        <span class="comment"># cut bos token here as it&#x27;s append later anyways</span></span><br><span class="line">        <span class="keyword">if</span> (labels[:, <span class="number">0</span>] == self.processor.tokenizer.bos_token_id).<span class="built_in">all</span>().cpu().item():</span><br><span class="line">            labels = labels[:, <span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">        batch[<span class="string">&quot;labels&quot;</span>] = labels</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> batch</span><br><span class="line"></span><br><span class="line">data_collator = DataCollatorSpeechSeq2SeqWithPadding(processor=processor)</span><br></pre></td></tr></table></figure>
+<h4 id="compute-metrics"><a href="#compute-metrics" class="headerlink" title="compute_metrics"></a>compute_metrics</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> evaluate</span><br><span class="line"></span><br><span class="line">metric = evaluate.load(<span class="string">&quot;wer&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">compute_metrics</span>(<span class="params">pred</span>):</span><br><span class="line">    pred_ids = pred.predictions</span><br><span class="line">    label_ids = pred.label_ids</span><br><span class="line"></span><br><span class="line">    <span class="comment"># replace -100 with the pad_token_id</span></span><br><span class="line">    label_ids[label_ids == -<span class="number">100</span>] = tokenizer.pad_token_id</span><br><span class="line"></span><br><span class="line">    <span class="comment"># we do not want to group tokens when computing the metrics</span></span><br><span class="line">    pred_str = tokenizer.batch_decode(pred_ids, skip_special_tokens=<span class="literal">True</span>)</span><br><span class="line">    label_str = tokenizer.batch_decode(label_ids, skip_special_tokens=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    wer = <span class="number">100</span> * metric.compute(predictions=pred_str, references=label_str)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;wer&quot;</span>: wer&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="model"><a href="#model" class="headerlink" title="model"></a>model</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> WhisperForConditionalGeneration</span><br><span class="line"></span><br><span class="line">model = WhisperForConditionalGeneration.from_pretrained(<span class="string">&quot;openai/whisper-base&quot;</span>)</span><br><span class="line">model.config.forced_decoder_ids = <span class="literal">None</span></span><br><span class="line">model.config.suppress_tokens = []</span><br></pre></td></tr></table></figure>
+<h4 id="training-args"><a href="#training-args" class="headerlink" title="training_args"></a>training_args</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> Seq2SeqTrainingArguments</span><br><span class="line"></span><br><span class="line">training_args = Seq2SeqTrainingArguments(</span><br><span class="line">    output_dir=<span class="string">&quot;./model_name&quot;</span>, <span class="comment"># 模型名稱，你需要更改</span></span><br><span class="line">    per_device_train_batch_size=<span class="number">16</span>, <span class="comment"># 批次大小，你可能會需要調整</span></span><br><span class="line">    gradient_accumulation_steps=<span class="number">1</span>,</span><br><span class="line">    learning_rate=<span class="number">1e-5</span>, <span class="comment"># 學習率，你可能會需要調整</span></span><br><span class="line">    warmup_steps=<span class="number">500</span>,</span><br><span class="line">    max_steps=<span class="number">4000</span>, <span class="comment"># 訓練次數，你可能會需要調整</span></span><br><span class="line">    gradient_checkpointing=<span class="literal">True</span>,</span><br><span class="line">    fp16=<span class="literal">True</span>,</span><br><span class="line">    evaluation_strategy=<span class="string">&quot;steps&quot;</span>,</span><br><span class="line">    per_device_eval_batch_size=<span class="number">8</span>,</span><br><span class="line">    predict_with_generate=<span class="literal">True</span>,</span><br><span class="line">    generation_max_length=<span class="number">225</span>,</span><br><span class="line">    save_steps=<span class="number">1000</span>,</span><br><span class="line">    eval_steps=<span class="number">1000</span>,</span><br><span class="line">    logging_steps=<span class="number">25</span>,</span><br><span class="line">    report_to=[<span class="string">&quot;tensorboard&quot;</span>],</span><br><span class="line">    load_best_model_at_end=<span class="literal">True</span>,</span><br><span class="line">    metric_for_best_model=<span class="string">&quot;wer&quot;</span>,</span><br><span class="line">    greater_is_better=<span class="literal">False</span>,</span><br><span class="line">    push_to_hub=<span class="literal">True</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="trainer"><a href="#trainer" class="headerlink" title="trainer"></a>trainer</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> Seq2SeqTrainer</span><br><span class="line"></span><br><span class="line">trainer = Seq2SeqTrainer(</span><br><span class="line">    args=training_args,</span><br><span class="line">    model=model,</span><br><span class="line">    train_dataset=common_voice[<span class="string">&quot;train&quot;</span>],</span><br><span class="line">    eval_dataset=common_voice[<span class="string">&quot;test&quot;</span>],</span><br><span class="line">    data_collator=data_collator,</span><br><span class="line">    compute_metrics=compute_metrics,</span><br><span class="line">    tokenizer=processor.feature_extractor,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">processor.save_pretrained(training_args.output_dir)</span><br></pre></td></tr></table></figure>
+<h4 id="開始訓練"><a href="#開始訓練" class="headerlink" title="開始訓練"></a>開始訓練</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trainer.train()</span><br></pre></td></tr></table></figure>
+<h4 id="從本地上傳模型到HuggingFace"><a href="#從本地上傳模型到HuggingFace" class="headerlink" title="從本地上傳模型到HuggingFace"></a>從本地上傳模型到HuggingFace</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">kwargs = &#123;</span><br><span class="line">    <span class="string">&quot;dataset_tags&quot;</span>: <span class="string">&quot;-&quot;</span>,</span><br><span class="line">    <span class="string">&quot;dataset&quot;</span>: <span class="string">&quot;some hakka audio&quot;</span>,  <span class="comment"># 輸入資料及名稱</span></span><br><span class="line">    <span class="string">&quot;dataset_args&quot;</span>: <span class="string">&quot;config: zh, split: test&quot;</span>,</span><br><span class="line">    <span class="string">&quot;language&quot;</span>: <span class="string">&quot;zh&quot;</span>, </span><br><span class="line">    <span class="string">&quot;model_name&quot;</span>: <span class="string">&quot;a name&quot;</span>,  <span class="comment"># 輸入模型名稱</span></span><br><span class="line">    <span class="string">&quot;finetuned_from&quot;</span>: <span class="string">&quot;openai/whisper-base&quot;</span>, <span class="comment"># 基礎模型</span></span><br><span class="line">    <span class="string">&quot;tasks&quot;</span>: <span class="string">&quot;automatic-speech-recognition&quot;</span>,</span><br><span class="line">    <span class="string">&quot;tags&quot;</span>: <span class="string">&quot;whisper&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">trainer.push_to_hub(**kwargs)</span><br></pre></td></tr></table></figure>
+<h4 id="從HuggingFace下載模型"><a href="#從HuggingFace下載模型" class="headerlink" title="從HuggingFace下載模型"></a>從HuggingFace下載模型</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiple_datasets.hub_default_utils <span class="keyword">import</span> convert_hf_whisper</span><br><span class="line"></span><br><span class="line"><span class="comment"># 你需要更改要下載model的位置與存放位置</span></span><br><span class="line"><span class="comment"># Ex.</span></span><br><span class="line">model_name_or_path = <span class="string">&#x27;model_name_on_hugging_face&#x27;</span></span><br><span class="line">whisper_checkpoint_path = <span class="string">&#x27;save_model_path&#x27;</span></span><br><span class="line"></span><br><span class="line">convert_hf_whisper(model_name_or_path, whisper_checkpoint_path)</span><br></pre></td></tr></table></figure>
+
+<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h1><p><a class="link"   target="_blank" rel="noopener" href="https://colab.research.google.com/github/sanchit-gandhi/notebooks/blob/main/fine_tune_whisper.ipynb#scrollTo=810ced54-7187-4a06-b2fe-ba6dcca94dc3" >https://colab.research.google.com/github/sanchit-gandhi/notebooks/blob/main/fine_tune_whisper.ipynb#scrollTo=810ced54-7187-4a06-b2fe-ba6dcca94dc3<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://colab.research.google.com/drive/1RkboArXsuXIEDTE5OHfJe-0Gn7v3gXI1?usp=sharing#scrollTo=-hxbi4vVPpoy" >https://colab.research.google.com/drive/1RkboArXsuXIEDTE5OHfJe-0Gn7v3gXI1?usp=sharing#scrollTo=-hxbi4vVPpoy<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://wandb.ai/parambharat/whisper_finetuning/reports/Fine-tuning-Whisper-ASR-models---VmlldzozMTEzNDE5" >https://wandb.ai/parambharat/whisper_finetuning/reports/Fine-tuning-Whisper-ASR-models---VmlldzozMTEzNDE5<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://huggingface.co/jlondonobo/whisper-medium-pt" >https://huggingface.co/jlondonobo/whisper-medium-pt<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://github.com/bayartsogt-ya/whisper-multiple-hf-datasets" >https://github.com/bayartsogt-ya/whisper-multiple-hf-datasets<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://github.com/luigisaetta/whisper-app/blob/main/match_layers.ipynb" >https://github.com/luigisaetta/whisper-app/blob/main/match_layers.ipynb<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://www.mlq.ai/openai-whisper-gpt-3-fine-tuning-youtube-video/" >https://www.mlq.ai/openai-whisper-gpt-3-fine-tuning-youtube-video/<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://stackoverflow.com/questions/71561761/how-to-load-a-fine-tuned-pytorch-huggingface-bert-model-from-a-checkpoint-file" >https://stackoverflow.com/questions/71561761/how-to-load-a-fine-tuned-pytorch-huggingface-bert-model-from-a-checkpoint-file<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://colab.research.google.com/drive/1P4ClLkPmfsaKn2tBbRp0nVjGMRKR-EWz" >https://colab.research.google.com/drive/1P4ClLkPmfsaKn2tBbRp0nVjGMRKR-EWz<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://huggingface.co/spaces/openai/whisper/discussions/6" >https://huggingface.co/spaces/openai/whisper/discussions/6<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://huggingface.co/blog/fine-tune-whisper" >https://huggingface.co/blog/fine-tune-whisper<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://github.com/openai/whisper/discussions/98" >https://github.com/openai/whisper/discussions/98<i class="fas fa-external-link-alt"></i></a></p>
+
+            </div>
+
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/06/28/HakkaASR-Website/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">HakkaASR Website</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%88%E6%A1%88%E7%B5%90%E6%A7%8B"><span class="nav-text">專案結構</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC%E8%AA%AA%E6%98%8E"><span class="nav-text">程式碼說明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E6%A8%A1%E5%9E%8B%E5%90%8D%E7%A8%B1"><span class="nav-text">建立模型名稱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BB%E5%85%A5hugging-face"><span class="nav-text">登入hugging face</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BC%89%E5%85%A5%E9%9F%B3%E6%AA%94%E8%B3%87%E6%96%99"><span class="nav-text">載入音檔資料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BC%89%E5%85%A5Openai%E5%BB%BA%E7%AB%8B%E5%A5%BD%E7%9A%84%E6%A8%A1%E5%9E%8B"><span class="nav-text">載入Openai建立好的模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AA%9E%E6%96%99%E8%BD%89%E6%8F%9B%E5%8F%96%E6%A8%A3%E7%8E%87"><span class="nav-text">語料轉換取樣率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#data-collator"><span class="nav-text">data_collator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#compute-metrics"><span class="nav-text">compute_metrics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#model"><span class="nav-text">model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#training-args"><span class="nav-text">training_args</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#trainer"><span class="nav-text">trainer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%96%8B%E5%A7%8B%E8%A8%93%E7%B7%B4"><span class="nav-text">開始訓練</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%9E%E6%9C%AC%E5%9C%B0%E4%B8%8A%E5%82%B3%E6%A8%A1%E5%9E%8B%E5%88%B0HuggingFace"><span class="nav-text">從本地上傳模型到HuggingFace</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%9EHuggingFace%E4%B8%8B%E8%BC%89%E6%A8%A1%E5%9E%8B"><span class="nav-text">從HuggingFace下載模型</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-text">reference</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                <!-- &nbsp;<i class="fas fa-heart icon-animate"></i> -->
+                &nbsp;<a href="/">Aura</a>
+            
+        </div>
+        
+        <!-- <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div> -->
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+
+</body>
+</html>
