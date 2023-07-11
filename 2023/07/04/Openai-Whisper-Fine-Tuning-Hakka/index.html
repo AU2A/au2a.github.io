@@ -181,7 +181,7 @@
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2023-07-11 21:43:48</span>
+        <span class="pc">2023-07-11 21:45:30</span>
     </span>
     
     
@@ -203,7 +203,7 @@
 
                 <h1 id="重點專案結構"><a href="#重點專案結構" class="headerlink" title="重點專案結構"></a>重點專案結構</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">whisper_hakka</span><br><span class="line"> ┗┳━ audio</span><br><span class="line">  ┃   ┣━ test</span><br><span class="line">  ┃   ┃   ┗━ test語料存放區</span><br><span class="line">  ┃   ┣━ train</span><br><span class="line">  ┃   ┃   ┗━ train語料存放區</span><br><span class="line">  ┃   ┗━ metadata.csv 檔案路徑與文本內容</span><br><span class="line">  ┣━ model</span><br><span class="line">  ┃   ┗━ 模型存放區</span><br><span class="line">  ┣━ original_audio</span><br><span class="line">  ┃   ┗━ 原始音檔，有0.9, 1.0, 1.1倍速三組</span><br><span class="line">  ┣━ text</span><br><span class="line">  ┃   ┣━ nameAndText.txt 文本</span><br><span class="line">  ┃   ┗━ 文本相關檔案</span><br><span class="line">  ┣━ fine_tune.ipynb jupyter訓練腳本(建議用這個)</span><br><span class="line">  ┗━ run.py 訓練腳本</span><br></pre></td></tr></table></figure>
 <h1 id="安裝cuda"><a href="#安裝cuda" class="headerlink" title="安裝cuda"></a>安裝cuda</h1><h4 id="cuda"><a href="#cuda" class="headerlink" title="cuda"></a>cuda</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://developer.download.nvidia.com/compute/cuda/<span class="number">11</span>.<span class="number">4</span>.<span class="number">0</span>/local_installers/cuda_11.<span class="number">4</span>.<span class="number">0</span>_470.<span class="number">42</span>.<span class="number">01</span>_linux.run</span><br><span class="line">sudo sh cuda_11.<span class="number">4</span>.<span class="number">0</span>_470.<span class="number">42</span>.<span class="number">01</span>_linux.run</span><br></pre></td></tr></table></figure>
-<p>除了driver，其他都裝，[x]為安裝</p>
+<p>如果要獨立裝driver，就把driver取消</p>
 <h4 id="driver"><a href="#driver" class="headerlink" title="driver"></a>driver</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nvidia-driver-<span class="number">470</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="程式碼說明"><a href="#程式碼說明" class="headerlink" title="程式碼說明"></a>程式碼說明</h1><h4 id="建立模型名稱"><a href="#建立模型名稱" class="headerlink" title="建立模型名稱"></a>建立模型名稱</h4><p>請輸入檔案名稱</p>
