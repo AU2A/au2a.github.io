@@ -304,11 +304,95 @@
 
         
             <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%A3%E7%B5%90"><span class="nav-text">連結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%87%8D%E9%BB%9E%E5%B0%88%E6%A1%88%E7%B5%90%E6%A7%8B"><span class="nav-text">重點專案結構</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D-cuda"><span class="nav-text">安裝 cuda</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cuda"><span class="nav-text">cuda</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#driver"><span class="nav-text">driver</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Huggingface-%E9%87%91%E9%91%B0%E7%94%B3%E8%AB%8B"><span class="nav-text">Huggingface 金鑰申請</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC%E8%AA%AA%E6%98%8E"><span class="nav-text">程式碼說明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E6%A8%A1%E5%9E%8B%E5%90%8D%E7%A8%B1"><span class="nav-text">建立模型名稱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BB%E5%85%A5-hugging-face"><span class="nav-text">登入 hugging face</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BC%89%E5%85%A5%E9%9F%B3%E6%AA%94%E8%B3%87%E6%96%99"><span class="nav-text">載入音檔資料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BC%89%E5%85%A5-Openai-%E5%BB%BA%E7%AB%8B%E5%A5%BD%E7%9A%84%E6%A8%A1%E5%9E%8B"><span class="nav-text">載入 Openai 建立好的模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AA%9E%E6%96%99%E8%BD%89%E6%8F%9B%E5%8F%96%E6%A8%A3%E7%8E%87"><span class="nav-text">語料轉換取樣率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#data-collator"><span class="nav-text">data_collator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#compute-metrics"><span class="nav-text">compute_metrics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#model"><span class="nav-text">model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#training-args"><span class="nav-text">training_args</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#trainer"><span class="nav-text">trainer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%96%8B%E5%A7%8B%E8%A8%93%E7%B7%B4"><span class="nav-text">開始訓練</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%9E%E6%9C%AC%E5%9C%B0%E4%B8%8A%E5%82%B3%E6%A8%A1%E5%9E%8B%E5%88%B0-HuggingFace"><span class="nav-text">從本地上傳模型到 HuggingFace</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%9E-HuggingFace-%E4%B8%8B%E8%BC%89%E6%A8%A1%E5%9E%8B"><span class="nav-text">從 HuggingFace 下載模型</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-text">reference</span></a></li></ol>
-    </div>
-</div>
+                .post-toc-wrap {
+  position relative
+  box-sizing border-box
+  width 100%
+  height 100%
+  overflow-y auto
+  font-size 0.92rem
+
+  &::-webkit-scrollbar-thumb {
+    background var(--toc-scrollbar-color)
+    border-radius 0.3rem
+  }
+
+  &::-webkit-scrollbar-track {
+    background transparent
+  }
+
+  .post-toc {
+
+    ol {
+      margin 0
+      padding 0 0.1rem 0.8rem 0.6rem
+      text-align left
+      list-style none
+
+      &:last-child {
+        padding-bottom 0
+      }
+
+      > ol {
+        padding-left 0
+      }
+
+      a {
+        transition-property all
+        transition()
+      }
+    }
+
+
+    .nav-item {
+      margin-bottom 0.2rem
+      overflow hidden
+      line-height 1.8
+      white-space nowrap
+      text-overflow ellipsis
+    }
+
+
+    .nav {
+      .nav-child {
+        display hexo-config('toc.expand_all') ? block:none
+      }
+
+      .active > .nav-child {
+        display block
+      }
+
+      .active-current > .nav-child {
+        display block
+
+        > .nav-item {
+          display block
+        }
+      }
+
+
+      .nav-number
+      .nav-text {
+        color var(--toc-text-color)
+      }
+
+      .active > a {
+        .nav-number
+        .nav-text {
+          color var(--primary-color)
+        }
+      }
+
+      .active-current > a {
+        .nav-number
+        .nav-text {
+          color var(--primary-color)
+        }
+      }
+    }
+  }
+}
+
 
             </div>
         
