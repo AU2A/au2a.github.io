@@ -18,7 +18,7 @@
     
     <title>
         
-            LeetCode 2024/04/07 |
+            LeetCode-Writeup 319. Bulb Switcher |
         
         Aura Space
     </title>
@@ -155,7 +155,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">LeetCode 2024/04/07</span>
+                <span class="title-hover-animation">LeetCode-Writeup 319. Bulb Switcher</span>
             </div>
 
             
@@ -175,13 +175,13 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2024-04-07 23:10:42</span>
-        <span class="mobile">2024-04-07 23:10</span>
+        <span class="pc">2024-04-23 17:47:27</span>
+        <span class="mobile">2024-04-23 17:47</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2024-04-20 21:48:21</span>
+        <span class="pc">2024-04-23 17:55:43</span>
     </span>
     
     
@@ -191,6 +191,10 @@
                 
                     <li>
                         <a href="/categories/LeetCode/">LeetCode</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/LeetCode/LeetCode-Writeup/">LeetCode-Writeup</a>&nbsp;
                     </li>
                 
             </ul>
@@ -212,20 +216,23 @@
             <div class="article-content keep-markdown-body">
                 
 
-                <h1 id="2024-x2F-04-x2F-07"><a href="#2024-x2F-04-x2F-07" class="headerlink" title="2024&#x2F;04&#x2F;07"></a>2024&#x2F;04&#x2F;07</h1><ul>
-<li>_205. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/isomorphic-strings/" >Isomorphic Strings<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isIsomorphic</span><span class="params">(string s, string t)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> len = s.<span class="built_in">length</span>();</span><br><span class="line">        <span class="type">bool</span> chk;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.<span class="built_in">find</span>(s[i]) != t.<span class="built_in">find</span>(t[i])) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+                <h1 id="Bulb-Switcher"><a href="#Bulb-Switcher" class="headerlink" title="Bulb Switcher"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/bulb-switcher/description/" >Bulb Switcher<i class="fas fa-external-link-alt"></i></a></h1><p>這題還蠻有趣的，有三個接續的概念，兩個可過的解法</p>
+<h1 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h1><p>換個問題問，是否有辦法知道每個燈泡會在何時開關<br>開關次數是奇數最後會亮，偶數會暗，因此只要知道該燈泡是奇數次就可以知道最後是亮著了。</p>
+<p>那怎麼知道每顆燈在何時會開關？<br>第 6 顆燈泡為例，開關的時間點會在 1, 2, 3, 6 次觸發，偶數次是暗<br>第 10 顆燈泡為例，開關的時間點會在 1, 2, 5, 10 次觸發，偶數次是暗<br>第 36 顆燈泡為例，開關的時間點會在 1, 2, 3, 4, 6, 9, 12, 18, 36 次觸發，奇數次是亮</p>
+<p>數感好的話，應該會發現第 n 顆燈泡會開關的時間點會是在 n 的”因數”時進行開關。<br>換句話說只要知道每個數字是奇數還是偶數就可以知道最後是亮還是暗了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">factorIsOdd</span><span class="params">(<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cnt+=(n%i==<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cnt%<span class="number">2</span>==<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">bulbSwitch</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        ans+=<span class="built_in">factorIsOdd</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>1544. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/make-the-string-great/" >Make The String Great<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">makeGood</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>() - <span class="number">1</span> &amp;&amp; s != <span class="string">&quot;&quot;</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">abs</span>(s[i + <span class="number">1</span>] - s[i]) == <span class="number">32</span>) &#123;</span><br><span class="line">                s.<span class="built_in">erase</span>(i, <span class="number">2</span>);</span><br><span class="line">                i = <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h1><p>方法一概念是正確的，但寫完會發現，TLE…，題目給的 n 太大了。<br>回到剛剛的因數分解。<br>6 的因數有 1, 2, 3, 6，4 個<br>8 的因數有 1, 2, 4, 8，4 個<br>36 的因數有 1, 2, 3, 4, 6, 9, 12, 18, 36，9 個</p>
+<p>有沒有辦法取得”奇數個因數”的數，<br>所有的因數分解中，數字一定是成雙成對的，以 48 為例<br>1x48、2x24、3x16、4x12 …etc</p>
+<p>那有沒有數字的因數中有成雙成對，但數量又是奇數的？<br>數感好的話，應該會發現”平方數”的因數數量是奇數，以 16 為例。<br>1x16、2x8、”4x4”<br>因為平方數開根號的數就是自己 x 自己，<br>平方數因數量就會是奇數了（偶數組合與根號數）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">bulbSwitch</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">0</span>,root;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        root=<span class="built_in">sqrt</span>(i);</span><br><span class="line">        ans+=(i==root*root);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>1249. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/" >Minimum Remove to Make Valid Parentheses<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">minRemoveToMakeValid</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == <span class="string">&#x27;(&#x27;</span>) &#123;</span><br><span class="line">                left++;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s[i] == <span class="string">&#x27;)&#x27;</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (left == <span class="number">0</span> || left == right) &#123;</span><br><span class="line">                    s.<span class="built_in">erase</span>(i, <span class="number">1</span>);</span><br><span class="line">                    i--;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    right++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = s.<span class="built_in">size</span>() - <span class="number">1</span>; left &gt; right &amp;&amp; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == <span class="string">&#x27;(&#x27;</span>) &#123;</span><br><span class="line">                s.<span class="built_in">erase</span>(i, <span class="number">1</span>);</span><br><span class="line">                i++;</span><br><span class="line">                left--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h1><p>方法二概念正確，但會發現你的執行速度不是 Beat100%</p>
+<p>想要追求極致的話，是否有方法比 O(n)還快？<br>是否能透過計算取得 n 內的所有平方數數量？</p>
+<p>n&#x3D;16 時，有 1, 4, 9, 16，四個<br>n&#x3D;17 時，有 1, 4, 9, 16，四個<br>…<br>n&#x3D;24 時，有 1, 4, 9, 16，四個<br>n&#x3D;25 時，有 1, 4, 9, 16, 25，五個</p>
+<p>數感好的話，應該會發現，n&#x3D;16~24 都是四個，n&#x3D;25 才是五個，如果用開根號來計算的話：<br>n&#x3D;16 時，sqrt(n) &#x3D; 4<br>n&#x3D;17 時，sqrt(n) &#x3D; 4.12<br>…<br>n&#x3D;24 時，sqrt(n) &#x3D; 4.89<br>n&#x3D;25 時，sqrt(n) &#x3D; 5</p>
+<p>因此只要對 n 直接開根號的話，就可以取得該數內的平方數了，又因為 funtion 的回傳型態是整數，更不用擔心被小數影響結果。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">bulbSwitch</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sqrt</span>(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
             </div>
 
@@ -236,29 +243,14 @@
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                               rel="prev"
-                               href="/2024/04/14/LeetCode-2024-04-14/"
-                            >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                                <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode 2024/04/14</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/2024/03/10/LeetCode-2024-03/"
+                               href="/2024/04/20/LeetCode/LeetCode-2024-04-21/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode 2024/03</span>
+                                <span class="post-nav-title-item">LeetCode 2024/04/21</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
@@ -275,95 +267,11 @@
 
         
             <div class="toc-content-container">
-                .post-toc-wrap {
-  position relative
-  box-sizing border-box
-  width 100%
-  height 100%
-  overflow-y auto
-  font-size 0.92rem
-
-  &::-webkit-scrollbar-thumb {
-    background var(--toc-scrollbar-color)
-    border-radius 0.3rem
-  }
-
-  &::-webkit-scrollbar-track {
-    background transparent
-  }
-
-  .post-toc {
-
-    ol {
-      margin 0
-      padding 0 0.1rem 0.8rem 0.6rem
-      text-align left
-      list-style none
-
-      &:last-child {
-        padding-bottom 0
-      }
-
-      > ol {
-        padding-left 0
-      }
-
-      a {
-        transition-property all
-        transition()
-      }
-    }
-
-
-    .nav-item {
-      margin-bottom 0.2rem
-      overflow hidden
-      line-height 1.8
-      white-space nowrap
-      text-overflow ellipsis
-    }
-
-
-    .nav {
-      .nav-child {
-        display hexo-config('toc.expand_all') ? block:none
-      }
-
-      .active > .nav-child {
-        display block
-      }
-
-      .active-current > .nav-child {
-        display block
-
-        > .nav-item {
-          display block
-        }
-      }
-
-
-      .nav-number
-      .nav-text {
-        color var(--toc-text-color)
-      }
-
-      .active > a {
-        .nav-number
-        .nav-text {
-          color var(--primary-color)
-        }
-      }
-
-      .active-current > a {
-        .nav-number
-        .nav-text {
-          color var(--primary-color)
-        }
-      }
-    }
-  }
-}
-
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Bulb-Switcher"><span class="nav-text">Bulb Switcher</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="nav-text">方法二</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89"><span class="nav-text">方法三</span></a></li></ol>
+    </div>
+</div>
 
             </div>
         

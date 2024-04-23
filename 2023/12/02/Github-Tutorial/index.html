@@ -233,95 +233,11 @@
 
         
             <div class="toc-content-container">
-                .post-toc-wrap {
-  position relative
-  box-sizing border-box
-  width 100%
-  height 100%
-  overflow-y auto
-  font-size 0.92rem
-
-  &::-webkit-scrollbar-thumb {
-    background var(--toc-scrollbar-color)
-    border-radius 0.3rem
-  }
-
-  &::-webkit-scrollbar-track {
-    background transparent
-  }
-
-  .post-toc {
-
-    ol {
-      margin 0
-      padding 0 0.1rem 0.8rem 0.6rem
-      text-align left
-      list-style none
-
-      &:last-child {
-        padding-bottom 0
-      }
-
-      > ol {
-        padding-left 0
-      }
-
-      a {
-        transition-property all
-        transition()
-      }
-    }
-
-
-    .nav-item {
-      margin-bottom 0.2rem
-      overflow hidden
-      line-height 1.8
-      white-space nowrap
-      text-overflow ellipsis
-    }
-
-
-    .nav {
-      .nav-child {
-        display hexo-config('toc.expand_all') ? block:none
-      }
-
-      .active > .nav-child {
-        display block
-      }
-
-      .active-current > .nav-child {
-        display block
-
-        > .nav-item {
-          display block
-        }
-      }
-
-
-      .nav-number
-      .nav-text {
-        color var(--toc-text-color)
-      }
-
-      .active > a {
-        .nav-number
-        .nav-text {
-          color var(--primary-color)
-        }
-      }
-
-      .active-current > a {
-        .nav-number
-        .nav-text {
-          color var(--primary-color)
-        }
-      }
-    }
-  }
-}
-
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D"><span class="nav-text">安裝</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BC%89-GitHub-Desktop"><span class="nav-text">下載 GitHub Desktop</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%B0%88%E6%A1%88-Create-Repository"><span class="nav-text">建立專案 Create Repository</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub-%E7%B6%B2%E7%AB%99%E5%BB%BA%E7%AB%8B%E5%B0%88%E6%A1%88"><span class="nav-text">GitHub 網站建立專案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub-Desktop-%E5%BB%BA%E7%AB%8B%E5%B0%88%E6%A1%88"><span class="nav-text">GitHub Desktop 建立專案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A4%87%E8%A3%BD%E5%B0%88%E6%A1%88-Clone-Repository"><span class="nav-text">複製專案 Clone Repository</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%89%E5%8F%96%E5%B0%88%E6%A1%88-Pull"><span class="nav-text">拉取專案 Pull</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A8%E9%80%81%E5%B0%88%E6%A1%88-Push"><span class="nav-text">推送專案 Push</span></a></li></ol>
+    </div>
+</div>
 
             </div>
         

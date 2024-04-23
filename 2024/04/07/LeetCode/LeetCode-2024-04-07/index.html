@@ -18,7 +18,7 @@
     
     <title>
         
-            HakkaASR Website |
+            LeetCode 2024/04/07 |
         
         Aura Space
     </title>
@@ -155,7 +155,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">HakkaASR Website</span>
+                <span class="title-hover-animation">LeetCode 2024/04/07</span>
             </div>
 
             
@@ -175,13 +175,13 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2023-06-28 12:11:34</span>
-        <span class="mobile">2023-06-28 12:11</span>
+        <span class="pc">2024-04-07 23:10:42</span>
+        <span class="mobile">2024-04-07 23:10</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2024-04-13 10:07:27</span>
+        <span class="pc">2024-04-20 21:48:21</span>
     </span>
     
     
@@ -190,7 +190,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/HakkaASR/">HakkaASR</a>&nbsp;
+                        <a href="/categories/LeetCode/">LeetCode</a>&nbsp;
                     </li>
                 
             </ul>
@@ -212,27 +212,20 @@
             <div class="article-content keep-markdown-body">
                 
 
-                <h1 id="連結"><a href="#連結" class="headerlink" title="連結"></a>連結</h1><p><a class="link"   target="_blank" rel="noopener" href="https://hub.docker.com/r/au2a/hakka-website" >Docker<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://github.com/AU2A/Hakka_Website" >Github<i class="fas fa-external-link-alt"></i></a></p>
-<h1 id="Docker-執行"><a href="#Docker-執行" class="headerlink" title="Docker 執行"></a>Docker 執行</h1><p>使用 Docker 時，可以使用以下指令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -e psw=a_string -e domain=a_domain \</span><br><span class="line">        -e port1=5001 -e port2=5002 \</span><br><span class="line">        -p 5001:443 -p 5002:5002 au2a/hakka-website</span><br></pre></td></tr></table></figure>
+                <h1 id="2024-x2F-04-x2F-07"><a href="#2024-x2F-04-x2F-07" class="headerlink" title="2024&#x2F;04&#x2F;07"></a>2024&#x2F;04&#x2F;07</h1><ul>
+<li>_205. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/isomorphic-strings/" >Isomorphic Strings<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isIsomorphic</span><span class="params">(string s, string t)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> len = s.<span class="built_in">length</span>();</span><br><span class="line">        <span class="type">bool</span> chk;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.<span class="built_in">find</span>(s[i]) != t.<span class="built_in">find</span>(t[i])) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p><code>psw</code>為密碼，需要密碼才能執行，如需要請向我詢問。<br><code>domain</code>為網址，設定網頁使用的網址<br><code>port1</code>為外部的網頁 port<br><code>port2</code>為外部的解碼用 port</p>
-<p><code>-p 443:443</code>網頁使用的是<code>https</code>通道<br><code>-p 5002:5002</code>網頁解碼使用的通道</p>
-<h1 id="專案結構"><a href="#專案結構" class="headerlink" title="專案結構"></a>專案結構</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">files</span><br><span class="line"> ┗┳━ decode</span><br><span class="line">  ┃   ┗━ espnet解碼後的文本</span><br><span class="line">  ┣━ initFiles</span><br><span class="line">  ┃   ┗━ 密碼的md5較驗檔、需要初始化的檔案</span><br><span class="line">  ┣━ keys</span><br><span class="line">  ┃   ┗━ 安全憑證的密碼，和cert.pem, chain.pem, privkey.pem三個憑證檔案</span><br><span class="line">  ┣━ openai</span><br><span class="line">  ┃   ┣━ decode</span><br><span class="line">  ┃   ┃   ┗━openai whisper解碼後的文本</span><br><span class="line">  ┃   ┣━ model</span><br><span class="line">  ┃   ┃   ┗━openai whisper使用的model</span><br><span class="line">  ┃   ┣━ upload</span><br><span class="line">  ┃   ┃   ┗━上傳openai whisper解碼的音檔存放區</span><br><span class="line">  ┃   ┣━ delete.py 定期刪除存放太久的音檔語文本</span><br><span class="line">  ┃   ┣━ download.py 下載youtube檔案轉wav檔</span><br><span class="line">  ┃   ┗━ openai_whisper.py Openai whisper解碼主程式</span><br><span class="line">  ┣━ upload</span><br><span class="line">  ┃   ┗━ 上傳espnet解碼的音檔存放區</span><br><span class="line">  ┣━ views</span><br><span class="line">  ┃   ┗━ 網頁</span><br><span class="line">  ┣━ website</span><br><span class="line">  ┃   ┣━ demo</span><br><span class="line">  ┃   ┃   ┗━範例音檔與文本</span><br><span class="line">  ┃   ┣━ files</span><br><span class="line">  ┃   ┃   ┗━網頁主題、網頁JS程式碼</span><br><span class="line">  ┃   ┗━ server.js 伺服器主程式</span><br><span class="line">  ┣━ aidecodeList.txt 待whisper解碼清單</span><br><span class="line">  ┣━ decodeList.txt 待espnet解碼清單</span><br><span class="line">  ┣━ domainName 網址</span><br><span class="line">  ┣━ init.py 初始化</span><br><span class="line">  ┣━ run.sh docker用啟動執行檔</span><br><span class="line">  ┗━ test.sh 測試用啟動執行檔</span><br></pre></td></tr></table></figure>
+<ul>
+<li>1544. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/make-the-string-great/" >Make The String Great<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">makeGood</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>() - <span class="number">1</span> &amp;&amp; s != <span class="string">&quot;&quot;</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">abs</span>(s[i + <span class="number">1</span>] - s[i]) == <span class="number">32</span>) &#123;</span><br><span class="line">                s.<span class="built_in">erase</span>(i, <span class="number">2</span>);</span><br><span class="line">                i = <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h1 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h1><h2 id="全部執行"><a href="#全部執行" class="headerlink" title="全部執行"></a>全部執行</h2><p>如果要在本地端執行，請執行<code>test.sh</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 將hakka.corelab.dev文字放入domainName</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hakka.corelab.dev&quot;</span> &gt; domainName</span><br><span class="line"><span class="comment"># 初始化所有檔案</span></span><br><span class="line">python3 init.py</span><br><span class="line"><span class="comment"># 啟動三個解碼執行緒、自動刪除舊檔案與網頁伺服器</span></span><br><span class="line">python3 openai/openai_whisper.py &amp; python3 openai/openai_whisper.py &amp; python3 openai/openai_whisper.py &amp; python3 openai/delete.py &amp; node website/server.js</span><br></pre></td></tr></table></figure>
-
-<h2 id="分開執行"><a href="#分開執行" class="headerlink" title="分開執行"></a>分開執行</h2><p>請在專案目錄下執行檔案，不然部分指令相對路徑會錯誤</p>
-<h3 id="網頁執行"><a href="#網頁執行" class="headerlink" title="網頁執行"></a>網頁執行</h3><p>執行網頁前，需先安裝網頁需要的套件<br>請先到<code>website/</code>底下安裝</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/Hakka_Website/website$ npm install</span><br></pre></td></tr></table></figure>
-
-<p>在回到專案目錄執行網頁</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/Hakka_Website$ node website/server.js</span><br></pre></td></tr></table></figure>
-
-<h3 id="whisper-解碼執行"><a href="#whisper-解碼執行" class="headerlink" title="whisper 解碼執行"></a>whisper 解碼執行</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/Hakka_Website$ python3 openai/openai_whisper.py</span><br></pre></td></tr></table></figure>
-
-<h1 id="安全憑證"><a href="#安全憑證" class="headerlink" title="安全憑證"></a>安全憑證</h1><p>因為網頁有使用的錄音功能，所以網頁需要走<code>https</code>協定，因此需要申請安全憑證。<br>我是使用<code>LetsEncrypt</code>的安全憑證，每 90 天需要重新申請一次。<br><a class="link"   target="_blank" rel="noopener" href="https://itnext.io/node-express-letsencrypt-generate-a-free-ssl-certificate-and-run-an-https-server-in-5-minutes-a730fbe528ca" >參考網站<i class="fas fa-external-link-alt"></i></a><br>請將申請後的安全憑證檔案放到<code>keys/</code>底下即可運作網頁。<br>檔案有三：<code>cert.pem</code>, <code>chain.pem</code>, <code>privkey.pem</code></p>
+<ul>
+<li>1249. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/" >Minimum Remove to Make Valid Parentheses<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">minRemoveToMakeValid</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == <span class="string">&#x27;(&#x27;</span>) &#123;</span><br><span class="line">                left++;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s[i] == <span class="string">&#x27;)&#x27;</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (left == <span class="number">0</span> || left == right) &#123;</span><br><span class="line">                    s.<span class="built_in">erase</span>(i, <span class="number">1</span>);</span><br><span class="line">                    i--;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    right++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = s.<span class="built_in">size</span>() - <span class="number">1</span>; left &gt; right &amp;&amp; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == <span class="string">&#x27;(&#x27;</span>) &#123;</span><br><span class="line">                s.<span class="built_in">erase</span>(i, <span class="number">1</span>);</span><br><span class="line">                i++;</span><br><span class="line">                left--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
             </div>
 
@@ -246,18 +239,33 @@
                         <div class="article-prev">
                             <a class="prev"
                                rel="prev"
-                               href="/2023/07/03/LeetCode/LeetCode-2023-07/"
+                               href="/2024/04/14/LeetCode/LeetCode-2024-04-14/"
                             >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                                 <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode 2023/07</span>
+                                <span class="post-nav-title-item">LeetCode 2024/04/14</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                             </a>
                         </div>
                     
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2024/03/10/LeetCode/LeetCode-2024-03/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">LeetCode 2024/03</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
                     
                 </div>
             
@@ -269,7 +277,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%A3%E7%B5%90"><span class="nav-text">連結</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-%E5%9F%B7%E8%A1%8C"><span class="nav-text">Docker 執行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%88%E6%A1%88%E7%B5%90%E6%A7%8B"><span class="nav-text">專案結構</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%B7%E8%A1%8C"><span class="nav-text">執行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E9%83%A8%E5%9F%B7%E8%A1%8C"><span class="nav-text">全部執行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E9%96%8B%E5%9F%B7%E8%A1%8C"><span class="nav-text">分開執行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B6%B2%E9%A0%81%E5%9F%B7%E8%A1%8C"><span class="nav-text">網頁執行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#whisper-%E8%A7%A3%E7%A2%BC%E5%9F%B7%E8%A1%8C"><span class="nav-text">whisper 解碼執行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%86%91%E8%AD%89"><span class="nav-text">安全憑證</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2024-x2F-04-x2F-07"><span class="nav-text">2024&#x2F;04&#x2F;07</span></a></li></ol>
     </div>
 </div>
 
