@@ -181,7 +181,7 @@
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2024-04-21 18:07:29</span>
+        <span class="pc">2024-04-28 16:05:48</span>
     </span>
     
     
@@ -212,7 +212,7 @@
             <div class="article-content keep-markdown-body">
                 
 
-                <h1 id="2023-x2F-04-x2F-14"><a href="#2023-x2F-04-x2F-14" class="headerlink" title="2023&#x2F;04&#x2F;14"></a>2023&#x2F;04&#x2F;14</h1><ul>
+                <h1 id="2023-x2F-04-x2F-21"><a href="#2023-x2F-04-x2F-21" class="headerlink" title="2023&#x2F;04&#x2F;21"></a>2023&#x2F;04&#x2F;21</h1><ul>
 <li>129. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-root-to-leaf-numbers/description/" >Sum Root to Leaf Numbers<i class="fas fa-external-link-alt"></i></a></li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findNode</span><span class="params">(<span class="type">int</span> v, TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root-&gt;left &amp;&amp; !root-&gt;right) &#123;</span><br><span class="line">            <span class="keyword">return</span> v;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> temp = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (root-&gt;left) &#123;</span><br><span class="line">            temp += <span class="built_in">findNode</span>(v * <span class="number">10</span> + root-&gt;left-&gt;val, root-&gt;left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root-&gt;right) &#123;</span><br><span class="line">            temp += <span class="built_in">findNode</span>(v * <span class="number">10</span> + root-&gt;right-&gt;val, root-&gt;right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">sumNumbers</span><span class="params">(TreeNode* root)</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">findNode</span>(root-&gt;val, root); &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -347,7 +347,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2023-x2F-04-x2F-14"><span class="nav-text">2023&#x2F;04&#x2F;14</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2023-x2F-04-x2F-21"><span class="nav-text">2023&#x2F;04&#x2F;21</span></a></li></ol>
     </div>
 </div>
 
