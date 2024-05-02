@@ -181,7 +181,7 @@
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2024-05-02 11:33:02</span>
+        <span class="pc">2024-05-02 11:39:52</span>
     </span>
     
     
@@ -212,7 +212,7 @@
             <div class="article-content keep-markdown-body">
                 
 
-                <h1 id="2024-x2F-04-x2F-07"><a href="#2024-x2F-04-x2F-07" class="headerlink" title="2024&#x2F;04&#x2F;07"></a>2024&#x2F;04&#x2F;07</h1><ul>
+                <h1 id="2024-x2F-05-x2F-05"><a href="#2024-x2F-05-x2F-05" class="headerlink" title="2024&#x2F;05&#x2F;05"></a>2024&#x2F;05&#x2F;05</h1><ul>
 <li>2997. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-operations-to-make-array-xor-equal-to-k/description/" >Minimum Number of Operations to Make Array XOR Equal to K<i class="fas fa-external-link-alt"></i></a></li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minOperations</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> temp = k;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> num : nums) &#123;</span><br><span class="line">            temp ^= num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (temp &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            ans += temp % <span class="number">2</span>;</span><br><span class="line">            temp = temp &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -246,7 +246,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2024-x2F-04-x2F-07"><span class="nav-text">2024&#x2F;04&#x2F;07</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2024-x2F-05-x2F-05"><span class="nav-text">2024&#x2F;05&#x2F;05</span></a></li></ol>
     </div>
 </div>
 
