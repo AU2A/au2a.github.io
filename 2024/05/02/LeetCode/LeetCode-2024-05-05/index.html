@@ -21,7 +21,7 @@
             LeetCode 2024/05/05 |
         
         Aura Space
-    </title>
+    </title><meta name="robots" content="noindex">
     
 <link rel="stylesheet" href="/css/style.css">
 
@@ -181,7 +181,7 @@
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2024-05-02 11:32:29</span>
+        <span class="pc">2024-05-02 11:33:02</span>
     </span>
     
     
@@ -230,33 +230,13 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">abs</span>(a) == <span class="built_in">abs</span>(b)) &#123;</span><br><span class="line">            <span class="keyword">return</span> a &gt; b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">abs</span>(a) &gt; <span class="built_in">abs</span>(b);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findMaxK</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), cmp);</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == -nums[i + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findMaxK</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>, right = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[left] * <span class="number">-1</span> == nums[right]) &#123;</span><br><span class="line">                <span class="keyword">return</span> nums[right];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[left] * <span class="number">-1</span> &lt; nums[right]) &#123;</span><br><span class="line">                right--;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+<!-- flag of hidden posts -->
             </div>
 
             
 
             
 
-            
-                <div class="article-nav">
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                               rel="next"
-                               href="/2024/04/26/LeetCode-Writeup/LeetCode-Writeup-2370-Longest-Ideal-Subsequence/"
-                            >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode-Writeup 2370. Longest Ideal Subsequence</span>
-                                <span class="post-nav-item">Next posts</span>
-                            </span>
-                                <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                            </a>
-                        </div>
-                    
-                </div>
             
 
             
