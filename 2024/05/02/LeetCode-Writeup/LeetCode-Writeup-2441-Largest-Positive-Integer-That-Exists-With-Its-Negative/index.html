@@ -18,7 +18,7 @@
     
     <title>
         
-            LeetCode-Writeup 319. Bulb Switcher |
+            LeetCode-Writeup 2441. Largest Positive Integer That Exists With Its Negative |
         
         Aura Space
     </title>
@@ -155,7 +155,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">LeetCode-Writeup 319. Bulb Switcher</span>
+                <span class="title-hover-animation">LeetCode-Writeup 2441. Largest Positive Integer That Exists With Its Negative</span>
             </div>
 
             
@@ -175,13 +175,13 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2024-04-23 17:47:27</span>
-        <span class="mobile">2024-04-23 17:47</span>
+        <span class="pc">2024-05-02 21:43:14</span>
+        <span class="mobile">2024-05-02 21:43</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2024-05-02 21:44:44</span>
+        <span class="pc">2024-05-02 21:46:55</span>
     </span>
     
     
@@ -216,23 +216,14 @@
             <div class="article-content keep-markdown-body">
                 
 
-                <h1 id="319-Bulb-Switcher"><a href="#319-Bulb-Switcher" class="headerlink" title="319. Bulb Switcher"></a>319. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/bulb-switcher/description/" >Bulb Switcher<i class="fas fa-external-link-alt"></i></a></h1><p>這題還蠻有趣的，有三個接續的概念，兩個可過的解法</p>
-<h1 id="Idea-1-TLE"><a href="#Idea-1-TLE" class="headerlink" title="Idea 1 TLE"></a>Idea 1 TLE</h1><p>換個問題問，是否有辦法知道每個燈泡會在何時開關<br>開關次數是奇數最後會亮，偶數會暗，因此只要知道該燈泡是奇數次就可以知道最後是亮著了。</p>
-<p>那怎麼知道每顆燈在何時會開關？<br>第 6 顆燈泡為例，開關的時間點會在 1, 2, 3, 6 次觸發，偶數次是暗<br>第 10 顆燈泡為例，開關的時間點會在 1, 2, 5, 10 次觸發，偶數次是暗<br>第 36 顆燈泡為例，開關的時間點會在 1, 2, 3, 4, 6, 9, 12, 18, 36 次觸發，奇數次是亮</p>
-<p>數感好的話，應該會發現第 n 顆燈泡會開關的時間點會是在 n 的”因數”時進行開關。<br>換句話說只要知道每個數字是奇數還是偶數就可以知道最後是亮還是暗了。</p>
-<h2 id="Full-code"><a href="#Full-code" class="headerlink" title="Full code"></a>Full code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">factorIsOdd</span><span class="params">(<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cnt+=(n%i==<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cnt%<span class="number">2</span>==<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">bulbSwitch</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        ans+=<span class="built_in">factorIsOdd</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                <h1 id="2441-Largest-Positive-Integer-That-Exists-With-Its-Negative"><a href="#2441-Largest-Positive-Integer-That-Exists-With-Its-Negative" class="headerlink" title="2441. Largest Positive Integer That Exists With Its Negative"></a>2441. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/description/" >Largest Positive Integer That Exists With Its Negative<i class="fas fa-external-link-alt"></i></a></h1><h1 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h1><p>檢查數值，如果是正數+1，如果是負數+2，當數值剛好為 3 時代表正數與負數都有出現，正數負數都只會加一次。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findMaxK</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> table[<span class="number">1001</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> num : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (table[num] == <span class="number">0</span> || table[num] == <span class="number">2</span>) &#123;</span><br><span class="line">                    table[num] += <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (table[-num] == <span class="number">0</span> || table[-num] == <span class="number">1</span>) &#123;</span><br><span class="line">                    table[-num] += <span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            cout &lt;&lt; table[<span class="built_in">abs</span>(num)] &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">if</span> (table[<span class="built_in">abs</span>(num)] == <span class="number">3</span>) &#123;</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, <span class="built_in">abs</span>(num));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h1 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h1><p>方法一概念是正確的，但寫完會發現，TLE…，題目給的 n 太大了。<br>回到剛剛的因數分解。<br>6 的因數有 1, 2, 3, 6，4 個<br>8 的因數有 1, 2, 4, 8，4 個<br>36 的因數有 1, 2, 3, 4, 6, 9, 12, 18, 36，9 個</p>
-<p>有沒有辦法取得”奇數個因數”的數，<br>所有的因數分解中，數字一定是成雙成對的，以 48 為例<br>1x48、2x24、3x16、4x12 …etc</p>
-<p>那有沒有數字的因數中有成雙成對，但數量又是奇數的？<br>數感好的話，應該會發現”平方數”的因數數量是奇數，以 16 為例。<br>1x16、2x8、”4x4”<br>因為平方數開根號的數就是自己 x 自己，<br>平方數因數量就會是奇數了（偶數組合與根號數）</p>
-<h2 id="Full-code-1"><a href="#Full-code-1" class="headerlink" title="Full code"></a>Full code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">bulbSwitch</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">0</span>,root;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        root=<span class="built_in">sqrt</span>(i);</span><br><span class="line">        ans+=(i==root*root);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h1><p>將陣列用絕對值大小排序，再來就是從大到小檢查，找出最先出現第 i 數與第 i+1 數互為正負數。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">abs</span>(a) == <span class="built_in">abs</span>(b)) &#123;</span><br><span class="line">            <span class="keyword">return</span> a &gt; b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">abs</span>(a) &gt; <span class="built_in">abs</span>(b);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findMaxK</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), cmp);</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == -nums[i + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h1 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h1><p>方法二概念正確，但會發現你的執行速度不是 Beat100%</p>
-<p>想要追求極致的話，是否有方法比 O(n)還快？<br>是否能透過計算取得 n 內的所有平方數數量？</p>
-<p>n&#x3D;16 時，有 1, 4, 9, 16，四個<br>n&#x3D;17 時，有 1, 4, 9, 16，四個<br>…<br>n&#x3D;24 時，有 1, 4, 9, 16，四個<br>n&#x3D;25 時，有 1, 4, 9, 16, 25，五個</p>
-<p>數感好的話，應該會發現，n&#x3D;16~24 都是四個，n&#x3D;25 才是五個，如果用開根號來計算的話：<br>n&#x3D;16 時，sqrt(n) &#x3D; 4<br>n&#x3D;17 時，sqrt(n) &#x3D; 4.12<br>…<br>n&#x3D;24 時，sqrt(n) &#x3D; 4.89<br>n&#x3D;25 時，sqrt(n) &#x3D; 5</p>
-<p>因此只要對 n 直接開根號的話，就可以取得該數內的平方數了，又因為 funtion 的回傳型態是整數，更不用擔心被小數影響結果。</p>
-<h2 id="Full-code-2"><a href="#Full-code-2" class="headerlink" title="Full code"></a>Full code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">bulbSwitch</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sqrt</span>(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution 3"></a>Solution 3</h1><p>將陣列大到小排序，雙指標從兩側找出最先符合條件的數字</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findMaxK</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>, right = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[left] * <span class="number">-1</span> == nums[right]) &#123;</span><br><span class="line">                <span class="keyword">return</span> nums[right];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[left] * <span class="number">-1</span> &lt; nums[right]) &#123;</span><br><span class="line">                right--;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
             </div>
 
@@ -243,29 +234,14 @@
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                               rel="prev"
-                               href="/2024/04/25/LeetCode-Writeup/LeetCode-Writeup-310-Minimum-Height-Trees/"
-                            >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                                <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode-Writeup 310. Minimum Height Trees</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/2024/04/07/LeetCode/LeetCode-2024-04/"
+                               href="/2024/05/02/Docker-Tutorial/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode 2024/04</span>
+                                <span class="post-nav-title-item">Docker Tutorial</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
@@ -284,7 +260,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#319-Bulb-Switcher"><span class="nav-text">319. Bulb Switcher</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Idea-1-TLE"><span class="nav-text">Idea 1 TLE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Full-code"><span class="nav-text">Full code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution-1"><span class="nav-text">Solution 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Full-code-1"><span class="nav-text">Full code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution-2"><span class="nav-text">Solution 2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Full-code-2"><span class="nav-text">Full code</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2441-Largest-Positive-Integer-That-Exists-With-Its-Negative"><span class="nav-text">2441. Largest Positive Integer That Exists With Its Negative</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution-1"><span class="nav-text">Solution 1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution-2"><span class="nav-text">Solution 2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution-3"><span class="nav-text">Solution 3</span></a></li></ol>
     </div>
 </div>
 
