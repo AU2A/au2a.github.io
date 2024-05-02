@@ -18,7 +18,7 @@
     
     <title>
         
-            Github Tutorial |
+            Docker Tutorial |
         
         Aura Space
     </title>
@@ -155,7 +155,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">Github Tutorial</span>
+                <span class="title-hover-animation">Docker Tutorial</span>
             </div>
 
             
@@ -175,13 +175,13 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2023-12-02 22:30:10</span>
-        <span class="mobile">2023-12-02 22:30</span>
+        <span class="pc">2024-05-02 17:49:29</span>
+        <span class="mobile">2024-05-02 17:49</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2024-05-02 17:49:01</span>
+        <span class="pc">2024-05-02 18:03:41</span>
     </span>
     
     
@@ -190,7 +190,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/GitHub/">GitHub</a>&nbsp;
+                        <a href="/categories/Docker/">Docker</a>&nbsp;
                     </li>
                 
             </ul>
@@ -212,31 +212,29 @@
             <div class="article-content keep-markdown-body">
                 
 
-                <h1 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h1><h2 id="Clone-a-repo"><a href="#Clone-a-repo" class="headerlink" title="Clone a repo"></a>Clone a repo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> &#123;url.git&#125;</span><br></pre></td></tr></table></figure>
+                <h1 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h1><h2 id="Container-status"><a href="#Container-status" class="headerlink" title="Container status"></a>Container status</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br><span class="line">docker ps -q <span class="comment"># Only get running Container ID</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Add-some-files"><a href="#Add-some-files" class="headerlink" title="Add some files"></a>Add some files</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add &#123;filename&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Run-container"><a href="#Run-container" class="headerlink" title="Run container"></a>Run container</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run --name=&#123;NAME&#125; \  <span class="comment"># Container name</span></span><br><span class="line">            -d \            <span class="comment"># Running in the background</span></span><br><span class="line">            -e &#123;PARAM-NAME&#125;=&#123;PARAM-VALUE&#125; \    <span class="comment"># Parameters</span></span><br><span class="line">            -v &#123;OUTSIDE-PATH&#125;:&#123;INSIDE-PATH&#125; \  <span class="comment"># Volume PATH</span></span><br><span class="line">            -p &#123;OUTSIDE-PORT&#125;:&#123;INSIDE-PORT&#125; \  <span class="comment"># Port forwarding</span></span><br><span class="line">            &#123;REPOSITORY/IMAGE-Name&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Get-commit-history"><a href="#Get-commit-history" class="headerlink" title="Get commit history"></a>Get commit history</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<h2 id="Start-container"><a href="#Start-container" class="headerlink" title="Start container"></a>Start container</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start &#123;CONTAINER-ID/NAMES&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Commit"><a href="#Commit" class="headerlink" title="Commit"></a>Commit</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;text&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Stop-container"><a href="#Stop-container" class="headerlink" title="Stop container"></a>Stop container</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop &#123;CONTAINER-ID/NAMES&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Pull"><a href="#Pull" class="headerlink" title="Pull"></a>Pull</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+<h2 id="Control-container"><a href="#Control-container" class="headerlink" title="Control container"></a>Control container</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it &#123;CONTAINER-ID/NAMES&#125; bash</span><br></pre></td></tr></table></figure>
 
-<h2 id="Push"><a href="#Push" class="headerlink" title="Push"></a>Push</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push &#123;branch-name&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Remove-container"><a href="#Remove-container" class="headerlink" title="Remove container"></a>Remove container</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">rm</span> &#123;CONTAINER-ID/NAMES&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h1><h2 id="Get-now-branch-and-all-branch-list"><a href="#Get-now-branch-and-all-branch-list" class="headerlink" title="Get now branch and all branch list"></a>Get now branch and all branch list</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<h2 id="Container-logs"><a href="#Container-logs" class="headerlink" title="Container logs"></a>Container logs</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs &#123;CONTAINER-ID/NAMES&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Create-branch"><a href="#Create-branch" class="headerlink" title="Create branch"></a>Create branch</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch &#123;branch-name&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="images"><a href="#images" class="headerlink" title="images"></a>images</h1><h2 id="Images-list"><a href="#Images-list" class="headerlink" title="Images list"></a>Images list</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image <span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="Branch-Naming-Example"><a href="#Branch-Naming-Example" class="headerlink" title="Branch Naming Example"></a>Branch Naming Example</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git branch feat/&#123;<span class="built_in">id</span>&#125;-xxx   <span class="comment"># add new feature</span></span><br><span class="line">git branch fix/&#123;<span class="built_in">id</span>&#125;-xxx    <span class="comment"># fix some bugs</span></span><br><span class="line">git branch refactor/&#123;<span class="built_in">id</span>&#125;-xxx <span class="comment"># Refactor the code</span></span><br><span class="line">git branch docs/&#123;<span class="built_in">id</span>&#125;-xxx   <span class="comment"># Update Files</span></span><br><span class="line">git branch style/&#123;<span class="built_in">id</span>&#125;-xxx  <span class="comment"># Coding style, formatter</span></span><br><span class="line">git branch chore/&#123;<span class="built_in">id</span>&#125;-xxx  <span class="comment"># Change working process, tools ...etc</span></span><br></pre></td></tr></table></figure>
+<h2 id="Remove-image"><a href="#Remove-image" class="headerlink" title="Remove image"></a>Remove image</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image <span class="built_in">rm</span> &#123;REPOSITORY&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Switch-branch"><a href="#Switch-branch" class="headerlink" title="Switch branch"></a>Switch branch</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git switch &#123;branch-name&#125;</span><br><span class="line">git switch -c &#123;branch-name&#125; <span class="comment"># if branch not exist, auto create</span></span><br></pre></td></tr></table></figure>
+<h2 id="Build-image"><a href="#Build-image" class="headerlink" title="Build image"></a>Build image</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t &#123;IMAGE-Name&#125; &#123;PATH&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Merge-branch"><a href="#Merge-branch" class="headerlink" title="Merge branch"></a>Merge branch</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git switch &#123;Target-branch-name&#125;</span><br><span class="line">git merge &#123;branch-name&#125;</span><br><span class="line">git push origin &#123;Target-branch-name&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Push-image"><a href="#Push-image" class="headerlink" title="Push image"></a>Push image</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push &#123;IMAGE-Name&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="checkout"><a href="#checkout" class="headerlink" title="checkout"></a>checkout</h1><h2 id="check-commit-and-files"><a href="#check-commit-and-files" class="headerlink" title="check commit and files"></a>check commit and files</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout &#123;commit-id&#125;</span><br><span class="line">git checkout &#123;commit-id&#125; -- &#123;file-path&#125;</span><br><span class="line">git checkout main</span><br></pre></td></tr></table></figure>
-
-<h1 id="With-Docker"><a href="#With-Docker" class="headerlink" title="With Docker"></a>With Docker</h1><h2 id="Login-ghcr-io-with-docker-on-terminal"><a href="#Login-ghcr-io-with-docker-on-terminal" class="headerlink" title="Login ghcr.io with docker on terminal"></a>Login ghcr.io with docker on terminal</h2><ol>
+<h1 id="With-Github"><a href="#With-Github" class="headerlink" title="With Github"></a>With Github</h1><h2 id="Login-ghcr-io-with-docker-on-terminal"><a href="#Login-ghcr-io-with-docker-on-terminal" class="headerlink" title="Login ghcr.io with docker on terminal"></a>Login ghcr.io with docker on terminal</h2><ol>
 <li><p>Get a “personal access token (classic)” from <a class="link"   target="_blank" rel="noopener" href="https://github.com/settings/tokens" >Developer Page<i class="fas fa-external-link-alt"></i></a></p>
 </li>
 <li><p>login by terminal</p>
@@ -253,29 +251,14 @@
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                               rel="prev"
-                               href="/2024/03/10/LeetCode/LeetCode-2024-03/"
-                            >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                                <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode 2024/03</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/2023/11/05/LeetCode/LeetCode-2023-11/"
+                               href="/2024/04/26/LeetCode-Writeup/LeetCode-Writeup-2370-Longest-Ideal-Subsequence/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode 2023/11</span>
+                                <span class="post-nav-title-item">LeetCode-Writeup 2370. Longest Ideal Subsequence</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
@@ -294,7 +277,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic"><span class="nav-text">Basic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Clone-a-repo"><span class="nav-text">Clone a repo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-some-files"><span class="nav-text">Add some files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Get-commit-history"><span class="nav-text">Get commit history</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Commit"><span class="nav-text">Commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pull"><span class="nav-text">Pull</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Push"><span class="nav-text">Push</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Branch"><span class="nav-text">Branch</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Get-now-branch-and-all-branch-list"><span class="nav-text">Get now branch and all branch list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-branch"><span class="nav-text">Create branch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Branch-Naming-Example"><span class="nav-text">Branch Naming Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch-branch"><span class="nav-text">Switch branch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Merge-branch"><span class="nav-text">Merge branch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#checkout"><span class="nav-text">checkout</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#check-commit-and-files"><span class="nav-text">check commit and files</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#With-Docker"><span class="nav-text">With Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Login-ghcr-io-with-docker-on-terminal"><span class="nav-text">Login ghcr.io with docker on terminal</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Container"><span class="nav-text">Container</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Container-status"><span class="nav-text">Container status</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Run-container"><span class="nav-text">Run container</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Start-container"><span class="nav-text">Start container</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stop-container"><span class="nav-text">Stop container</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Control-container"><span class="nav-text">Control container</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Remove-container"><span class="nav-text">Remove container</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Container-logs"><span class="nav-text">Container logs</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#images"><span class="nav-text">images</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Images-list"><span class="nav-text">Images list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Remove-image"><span class="nav-text">Remove image</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Build-image"><span class="nav-text">Build image</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Push-image"><span class="nav-text">Push image</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#With-Github"><span class="nav-text">With Github</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Login-ghcr-io-with-docker-on-terminal"><span class="nav-text">Login ghcr.io with docker on terminal</span></a></li></ol></li></ol>
     </div>
 </div>
 
