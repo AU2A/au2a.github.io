@@ -47,10 +47,10 @@
 </div>
 
 
-<main class="page-container">
+    <main class="page-container">
 
-    
         
+            
 <div class="first-screen-container flex-center fade-in-down-animation">
     <div class="content flex-center">
         
@@ -115,12 +115,12 @@
     </div>
 </div>
 
-    
+                
 
-    <div class="page-main-content is-home">
+                    <div class="page-main-content is-home">
 
-        <div class="page-main-content-top">
-            
+                        <div class="page-main-content-top">
+                            
 <header class="header-wrapper transparent-1">
 
     <div class="header-content has-first-screen">
@@ -207,15 +207,121 @@
 </header>
 
 
-        </div>
+                        </div>
 
-        <div class="page-main-content-middle">
+                        <div class="page-main-content-middle">
 
-            <div class="main-content">
+                            <div class="main-content">
+
+                                
+                                    <!-- <div class="home-content-container fade-in-down-animation">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
 
                 
-                    <!-- <div class="home-content-container fade-in-down-animation">
-    <ul class="home-article-list">
+
+                <h3 class="home-article-title">
+                    <a href="/2025/06/15/APCS/APCS-2025-06-2/">
+                        APCS-2025-06 2.轉盤得分
+                    </a>
+                </h3>
+
+                <div class="home-article-content keep-markdown-body">
+                    
+                        解題步驟
+讀取輸入: 讀取輪盤數量 m、每個輪盤的字元數量 n、以及遊戲回合數 k。接著讀取 m 個輪盤的初始狀態（字串）。
+模擬遊戲過程: 對於每個遊戲回合，讀取每個輪盤的轉動距離，並根據轉動距離更新輪盤的狀態。
+計算每回合的分數: 對於每個回合，...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span>
+            <i class="fas fa-history"></i>&nbsp;
+            <span class="home-article-date" data-updated="Wed Jun 25 2025 00:04:53 GMT+0800">
+                2025-06-25
+            </span>
+        </span>
+        
+        
+    </div>
+
+    <a class="read-more" href="/2025/06/15/APCS/APCS-2025-06-2/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2025/06/15/APCS/APCS-2025-01-1/">
+                        APCS-2025-06 1.跳柵遊戲
+                    </a>
+                </h3>
+
+                <div class="home-article-content keep-markdown-body">
+                    
+                        
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span>
+            <i class="fas fa-history"></i>&nbsp;
+            <span class="home-article-date" data-updated="Wed Jun 25 2025 10:29:07 GMT+0800">
+                2025-06-25
+            </span>
+        </span>
+        
+        
+    </div>
+
+    <a class="read-more" href="/2025/06/15/APCS/APCS-2025-01-1/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2025/06/15/APCS/APCS-2025-06-1/">
+                        APCS-2025-06 1.跳柵遊戲
+                    </a>
+                </h3>
+
+                <div class="home-article-content keep-markdown-body">
+                    
+                        解題步驟
+讀取初始生命值和陷阱條件: 讀取初始生命值 k，以及兩個陷阱的條件 x1、y1 和 x2、y2。
+初始化位置和生命值: 初始化位置 p 為 0，生命值為 k。
+模擬遊戲過程: 使用 while 迴圈模擬遊戲過程，直到生命值小於等於 0。
+更...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span>
+            <i class="fas fa-history"></i>&nbsp;
+            <span class="home-article-date" data-updated="Wed Jun 25 2025 10:28:25 GMT+0800">
+                2025-06-25
+            </span>
+        </span>
+        
+        
+    </div>
+
+    <a class="read-more" href="/2025/06/15/APCS/APCS-2025-06-1/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
         
             <li class="home-article-item">
 
@@ -461,110 +567,6 @@ Idea 1 TLE 70&#x2F;71Main function先將所有的連結建立成一個字典，�
 
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2024/04/23/LeetCode-Writeup/LeetCode-Writeup-319-Bulb-Switcher/">
-                        LeetCode-Writeup 319. Bulb Switcher
-                    </a>
-                </h3>
-
-                <div class="home-article-content keep-markdown-body">
-                    
-                        319. Bulb Switcher這題還蠻有趣的，有三個接續的概念，兩個可過的解法
-Idea 1 TLE換個問題問，是否有辦法知道每個燈泡會在何時開關開關次數是奇數最後會亮，偶數會暗，因此只要知道該燈泡是奇數次就可以知道最後是亮著了。
-那怎麼知道每...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span>
-            <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-updated="Thu May 02 2024 21:44:44 GMT+0800">
-                2024-05-02
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a class="read-more" href="/2024/04/23/LeetCode-Writeup/LeetCode-Writeup-319-Bulb-Switcher/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2024/04/07/LeetCode/LeetCode-2024-04/">
-                        LeetCode 2024/04
-                    </a>
-                </h3>
-
-                <div class="home-article-content keep-markdown-body">
-                    
-                        Week1205. Isomorphic StringsLeetcode Link My Solution
-1544. Make The String GreatLeetcode Link My Solution
-1249. Minimum Remo...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span>
-            <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-updated="Thu May 09 2024 16:27:02 GMT+0800">
-                2024-05-09
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a class="read-more" href="/2024/04/07/LeetCode/LeetCode-2024-04/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2024/03/10/LeetCode/LeetCode-2024-03/">
-                        LeetCode 2024/03
-                    </a>
-                </h3>
-
-                <div class="home-article-content keep-markdown-body">
-                    
-                        Week11750. Minimum Length of String After Deleting Similar EndsLeetcode Link My Solution
-876. Middle of the Linked ListLeetco...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span>
-            <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-updated="Thu May 09 2024 16:27:00 GMT+0800">
-                2024-05-09
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a class="read-more" href="/2024/03/10/LeetCode/LeetCode-2024-03/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
     </ul>
 
     <div class="home-paginator">
@@ -582,13 +584,13 @@ Idea 1 TLE換個問題問，是否有辦法知道每個燈泡會在何時開關�
 </div> -->
 
 
-                
-            </div>
+                                        
+                            </div>
 
-        </div>
+                        </div>
 
-        <div class="page-main-content-bottom">
-            
+                        <div class="page-main-content-bottom">
+                            
 <footer class="footer">
     <div class="info-container">
         <div class="copyright-info info-item">
@@ -611,13 +613,13 @@ Idea 1 TLE換個問題問，是否有辦法知道每個燈泡會在何時開關�
     </div>
 </footer>
 
-        </div>
-    </div>
+                        </div>
+                    </div>
 
-    
+                    
 
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
+                            <div class="right-bottom-side-tools">
+                                <div class="side-tools-container">
     <ul class="side-tools-list">
         <li class="tools-item tool-font-adjust-plus flex-center">
             <i class="fas fa-search-plus"></i>
@@ -653,15 +655,15 @@ Idea 1 TLE換個問題問，是否有辦法知道每個燈泡會在何時開關�
     </ul>
 </div>
 
-    </div>
+                            </div>
 
-    <div class="zoom-in-image-mask">
+                            <div class="zoom-in-image-mask">
     <img class="zoom-in-image">
 </div>
 
 
-    
-        <div class="search-pop-overlay">
+                                
+                                    <div class="search-pop-overlay">
     <div class="popup search-popup">
         <div class="search-header">
           <span class="search-input-field-pre">
@@ -689,12 +691,9 @@ Idea 1 TLE換個問題問，是否有辦法知道每個燈泡會在何時開關�
     </div>
 </div>
 
-    
+                                        
 
-</main>
-
-
-
+    </main>
 
 <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
 
