@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Aura&#39;s Space">
+    <meta name="description" content="A place to learn">
+    <meta name="author" content="Aura">
+    <style>
+        body{
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;  /* Firefox */
+        }
+        body::-webkit-scrollbar { 
+            display: none;  /* Safari and Chrome */
+        }
+    </style>
+    
+    <title>
+        
+            APCS-2025-01 |
+        
+        Aura Space
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#f39c12","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.svg","font_size":null,"font_family":"Roboto","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep learning,|| Keep Coding.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"center","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+    <main class="page-container">
+
+        
+
+                    <div class="page-main-content">
+
+                        <div class="page-main-content-top">
+                            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Aura Space
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+                        </div>
+
+                        <div class="page-main-content-middle">
+
+                            <div class="main-content">
+
+                                
+                                                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">APCS-2025-01</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Aura</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2025-05-11 22:17:41</span>
+        <span class="mobile">2025-05-11 22:17</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2025-11-06 21:48:31</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/APCS/">APCS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h1 id="1-等紅綠燈"><a href="#1-等紅綠燈" class="headerlink" title="1. 等紅綠燈"></a>1. 等紅綠燈</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
+<li><strong>讀取輸入</strong>: 讀取綠燈秒數 <code>green</code>、紅燈秒數 <code>red</code>，以及小朋友的人數 <code>n</code>。</li>
+<li><strong>計算週期與初始化</strong>: 計算一個完整的紅綠燈週期 <code>loop = green + red</code>。初始化總等待時間 <code>delay</code> 為 0。</li>
+<li><strong>遍歷小朋友</strong>: 使用 <code>for</code> 迴圈，依序處理 <code>n</code> 個小朋友。</li>
+<li><strong>讀取騎車時間並計算抵達時刻</strong>: 在迴圈中，讀取每個小朋友的騎車時間 <code>t</code>。使用模數運算 (<code>%</code>) 計算 <code>t % loop</code>，這代表小朋友在一個週期中的哪個時間點抵達終點。</li>
+<li><strong>判斷是否遇到紅燈</strong>: 檢查抵達時間 <code>t % loop</code> 是否大於等於綠燈時間 <code>green</code>。如果是，表示小朋友在紅燈時段抵達。</li>
+<li><strong>累計等待時間</strong>: 如果在紅燈時段抵達，計算需要等待的時間（<code>loop - (t % loop)</code>），並將其累加到總等待時間 <code>delay</code>。</li>
+<li><strong>輸出總和</strong>: 迴圈結束後，<code>delay</code> 變數中儲存了所有小朋友的總等待時間，將其輸出。</li>
+</ol>
+<h2 id="分段步驟程式碼"><a href="#分段步驟程式碼" class="headerlink" title="分段步驟程式碼"></a>分段步驟程式碼</h2><h3 id="讀取輸入與初始化"><a href="#讀取輸入與初始化" class="headerlink" title="讀取輸入與初始化"></a>讀取輸入與初始化</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> green, red, n, t, delay = <span class="number">0</span>;</span><br><span class="line">cin &gt;&gt; green &gt;&gt; red &gt;&gt; n;</span><br><span class="line"><span class="type">int</span> loop = green + red;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼宣告所有需要的變數。<code>green</code> 和 <code>red</code> 分別儲存綠燈和紅燈的秒數，<code>n</code> 為小朋友人數，<code>t</code> 用於暫存每個小朋友的時間，<code>delay</code> 用於累計總等待時間並初始化為 0。接著讀取 <code>green</code>、<code>red</code> 和 <code>n</code>，並計算出完整的紅綠燈週期 <code>loop</code>。</p>
+<h3 id="遍歷小朋友並計算等待時間"><a href="#遍歷小朋友並計算等待時間" class="headerlink" title="遍歷小朋友並計算等待時間"></a>遍歷小朋友並計算等待時間</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    t %= loop;</span><br><span class="line">    <span class="keyword">if</span>(t &gt;= green)&#123;</span><br><span class="line">        delay += loop - t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼使用 <code>for</code> 迴圈處理 <code>n</code> 個小朋友。</p>
+<ul>
+<li><code>cin &gt;&gt; t;</code>：讀取當前小朋友騎完一圈的時間 <code>t</code>。</li>
+<li><code>t %= loop;</code>：這是解題的關鍵。我們只關心小朋友在紅綠燈週期的 <em>哪個時間點</em> 抵達，而不在乎他繞了幾圈。取 <code>t</code> 對 <code>loop</code> 的餘數，可以得到他在週期中的抵達時間（範圍會是 0 到 <code>loop-1</code>）。</li>
+<li><code>if(t &gt;= green)</code>：判斷這個抵達時間是否在紅燈時段。綠燈時段是 <code>[0, green-1]</code>，紅燈時段是 <code>[green, loop-1]</code>。</li>
+<li><code>delay += loop - t;</code>：如果是在紅燈時段（<code>t</code>）抵達，他需要等到週期結束（<code>loop</code>），因此等待時間為 <code>loop - t</code>。將這段時間累加到 <code>delay</code>。</li>
+</ul>
+<h3 id="輸出總等待時間"><a href="#輸出總等待時間" class="headerlink" title="輸出總等待時間"></a>輸出總等待時間</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; delay ;</span><br></pre></td></tr></table></figure>
+
+<p>迴圈結束後，<code>delay</code> 已經累計了所有小朋友的等待時間，將其輸出。</p>
+<h2 id="完整程式碼"><a href="#完整程式碼" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> green, red, n, t, delay = <span class="number">0</span>;</span><br><span class="line">    cin &gt;&gt; green &gt;&gt; red &gt;&gt; n;</span><br><span class="line">    <span class="type">int</span> loop = green + red;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; t;</span><br><span class="line">        t %= loop;</span><br><span class="line">        <span class="keyword">if</span>(t &gt;= green)&#123;</span><br><span class="line">            delay += loop - t;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; delay ;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-字串操作"><a href="#2-字串操作" class="headerlink" title="2. 字串操作"></a>2. 字串操作</h1><h2 id="解題步驟-1"><a href="#解題步驟-1" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
+<li><strong>讀取輸入與初始化</strong>: 讀取初始字串 <code>s</code> 和操作次數 <code>k</code>。並儲存字串的長度 <code>s_len</code> 以方便後續使用。</li>
+<li><strong>迴圈處理 K 次操作</strong>: 使用一個 <code>for</code> 迴圈，從 <code>i=0</code> 到 <code>k-1</code>，執行 <code>k</code> 次操作。</li>
+<li><strong>讀取並判斷操作類型</strong>: 在 <code>for</code> 迴圈中，首先讀取當次的操作類型 <code>op</code>。</li>
+<li><strong>執行操作</strong>:<ul>
+<li><strong>如果 <code>op == 0</code> (兩兩交換)</strong>: 寫一個 <code>for</code> 迴圈，<code>j</code> 從 0 開始，每次遞增 2 (即 0, 2, 4, …)。在迴圈中，使用一個 <code>temp</code> 變數來交換 <code>s[j]</code> 和 <code>s[j+1]</code>。</li>
+<li><strong>如果 <code>op == 1</code> (兩兩排序)</strong>: 同樣使用一個 <code>j</code> 迴圈 (步長為 2)。在迴圈中，檢查 <code>if(s[j] &gt; s[j+1])</code>，如果條件成立（即順序錯誤），則交換 <code>s[j]</code> 和 <code>s[j+1]</code>。</li>
+<li><strong>如果 <code>op == 2</code> (完美重排)</strong>: 宣告一個暫存字串 <code>s_temp</code> 並將 <code>s</code> 複製過去。接著，寫一個 <code>for</code> 迴圈，<code>i</code> 從 <code>0</code> 跑到 <code>s_len/2 - 1</code>。在迴圈中，將 <code>s_temp</code> 的前半段 <code>s_temp[i]</code> 放到 <code>s</code> 的偶數索引 <code>s[2*i]</code>，並將 <code>s_temp</code> 的後半段 <code>s_temp[i + s_len/2]</code> 放到 <code>s</code> 的奇數索引 <code>s[2*i+1]</code>。</li>
+</ul>
+</li>
+<li><strong>輸出最終字串</strong>: 在 <code>k</code> 次操作的 <code>for</code> 迴圈結束後，輸出最終的字串 <code>s</code>。</li>
+</ol>
+<h2 id="分段步驟程式碼-1"><a href="#分段步驟程式碼-1" class="headerlink" title="分段步驟程式碼"></a>分段步驟程式碼</h2><h3 id="讀取輸入與初始化-1"><a href="#讀取輸入與初始化-1" class="headerlink" title="讀取輸入與初始化"></a>讀取輸入與初始化</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string s;</span><br><span class="line"><span class="type">int</span> k, op;</span><br><span class="line">cin &gt;&gt; s &gt;&gt; k;</span><br><span class="line"><span class="type">int</span> s_len = s.<span class="built_in">length</span>();</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼讀取初始字串 <code>s</code> 和操作次數 <code>k</code>，並將 <code>s</code> 的長度儲存在 <code>s_len</code> 變數中。</p>
+<h3 id="迴圈處理-K-次操作"><a href="#迴圈處理-K-次操作" class="headerlink" title="迴圈處理 K 次操作"></a>迴圈處理 K 次操作</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">    cin &gt;&gt; op;</span><br><span class="line">    <span class="comment">// ... 根據 op 執行對應操作 ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼建立一個迴圈，會執行 <code>k</code> 次。在每次迴圈開始時，讀取使用者輸入的操作類型 <code>op</code>。</p>
+<h3 id="操作-0-兩兩交換"><a href="#操作-0-兩兩交換" class="headerlink" title="操作 0: 兩兩交換"></a>操作 0: 兩兩交換</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(op == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;s_len;j+=<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="type">char</span> temp = s[j];</span><br><span class="line">        s[j]   = s[j+<span class="number">1</span>];</span><br><span class="line">        s[j+<span class="number">1</span>] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>op</code> 為 0，此迴圈會遍歷字串的索引 0, 2, 4, …，並將 <code>s[j]</code> 和 <code>s[j+1]</code> 進行交換。</p>
+<h3 id="操作-1-兩兩排序"><a href="#操作-1-兩兩排序" class="headerlink" title="操作 1: 兩兩排序"></a>操作 1: 兩兩排序</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(op == <span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;s_len;j+=<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(s[j] &gt; s[j+<span class="number">1</span>])&#123;</span><br><span class="line">            <span class="type">char</span> temp = s[j];</span><br><span class="line">            s[j]   = s[j+<span class="number">1</span>];</span><br><span class="line">            s[j+<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>op</code> 為 1，此迴圈同樣遍歷索引 0, 2, 4, …。但只在 <code>s[j]</code> 的字典序大於 <code>s[j+1]</code> 時才進行交換，確保每對字元都按字典序排列。</p>
+<h3 id="操作-2-完美重排"><a href="#操作-2-完美重排" class="headerlink" title="操作 2: 完美重排"></a>操作 2: 完美重排</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    string s_temp = s;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;s_len/<span class="number">2</span>;i++)&#123;</span><br><span class="line">        s[<span class="number">2</span>*i] = s_temp[i];</span><br><span class="line">        s[<span class="number">2</span>*i+<span class="number">1</span>] = s_temp[i+s_len/<span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>op</code> 為 2，首先建立一個 <code>s_temp</code> 來保存 <code>s</code> 的原始狀態。然後迴圈 <code>i</code> 從 <code>0</code> 執行到 <code>s_len/2 - 1</code>，將 <code>s_temp</code> 的前半段 <code>s_temp[i]</code> 和後半段 <code>s_temp[i + s_len/2]</code> 交錯放入 <code>s</code> 的 <code>s[2*i]</code> 和 <code>s[2*i+1]</code> 位置。</p>
+<h3 id="輸出最終結果"><a href="#輸出最終結果" class="headerlink" title="輸出最終結果"></a>輸出最終結果</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; s;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>k</code> 次操作全部執行完畢後，輸出字串 <code>s</code> 的最終內容。</p>
+<h2 id="完整程式碼-1"><a href="#完整程式碼-1" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string s;</span><br><span class="line">    <span class="type">int</span> k, op;</span><br><span class="line">    cin &gt;&gt; s &gt;&gt; k;</span><br><span class="line">    <span class="type">int</span> s_len = s.<span class="built_in">length</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">        cin &gt;&gt; op;</span><br><span class="line">        <span class="keyword">if</span>(op == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;s_len;j+=<span class="number">2</span>)&#123;</span><br><span class="line">                <span class="type">char</span> temp = s[j];</span><br><span class="line">                s[j]   = s[j+<span class="number">1</span>];</span><br><span class="line">                s[j+<span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(op == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;s_len;j+=<span class="number">2</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s[j] &gt; s[j+<span class="number">1</span>])&#123;</span><br><span class="line">                    <span class="type">char</span> temp = s[j];</span><br><span class="line">                    s[j]   = s[j+<span class="number">1</span>];</span><br><span class="line">                    s[j+<span class="number">1</span>] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            string s_temp = s;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;s_len/<span class="number">2</span>;i++)&#123;</span><br><span class="line">                s[<span class="number">2</span>*i] = s_temp[i];</span><br><span class="line">                s[<span class="number">2</span>*i+<span class="number">1</span>] = s_temp[i+s_len/<span class="number">2</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; s;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            </div>
+
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2025/06/15/APCS/APCS-2025-06/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">APCS-2025-06</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2024/05/12/LeetCode/LeetCode-2024-05-W2/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">LeetCode 2024/05 W2</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%AD%89%E7%B4%85%E7%B6%A0%E7%87%88"><span class="nav-text">1. 等紅綠燈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%AD%A5%E9%A9%9F"><span class="nav-text">解題步驟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E6%AD%A5%E9%A9%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-text">分段步驟程式碼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%80%E5%8F%96%E8%BC%B8%E5%85%A5%E8%88%87%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">讀取輸入與初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%8D%E6%AD%B7%E5%B0%8F%E6%9C%8B%E5%8F%8B%E4%B8%A6%E8%A8%88%E7%AE%97%E7%AD%89%E5%BE%85%E6%99%82%E9%96%93"><span class="nav-text">遍歷小朋友並計算等待時間</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BC%B8%E5%87%BA%E7%B8%BD%E7%AD%89%E5%BE%85%E6%99%82%E9%96%93"><span class="nav-text">輸出總等待時間</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-text">完整程式碼</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%AD%97%E4%B8%B2%E6%93%8D%E4%BD%9C"><span class="nav-text">2. 字串操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%AD%A5%E9%A9%9F-1"><span class="nav-text">解題步驟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E6%AD%A5%E9%A9%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC-1"><span class="nav-text">分段步驟程式碼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%80%E5%8F%96%E8%BC%B8%E5%85%A5%E8%88%87%E5%88%9D%E5%A7%8B%E5%8C%96-1"><span class="nav-text">讀取輸入與初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%B4%E5%9C%88%E8%99%95%E7%90%86-K-%E6%AC%A1%E6%93%8D%E4%BD%9C"><span class="nav-text">迴圈處理 K 次操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C-0-%E5%85%A9%E5%85%A9%E4%BA%A4%E6%8F%9B"><span class="nav-text">操作 0: 兩兩交換</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C-1-%E5%85%A9%E5%85%A9%E6%8E%92%E5%BA%8F"><span class="nav-text">操作 1: 兩兩排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C-2-%E5%AE%8C%E7%BE%8E%E9%87%8D%E6%8E%92"><span class="nav-text">操作 2: 完美重排</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BC%B8%E5%87%BA%E6%9C%80%E7%B5%82%E7%B5%90%E6%9E%9C"><span class="nav-text">輸出最終結果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC-1"><span class="nav-text">完整程式碼</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                                                        
+                            </div>
+
+                        </div>
+
+                        <div class="page-main-content-bottom">
+                            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2025
+            
+                <!-- &nbsp;<i class="fas fa-heart icon-animate"></i> -->
+                &nbsp;<a href="/">Aura</a>
+            
+        </div>
+        
+        <!-- <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div> -->
+        
+        
+    </div>
+</footer>
+
+                        </div>
+                    </div>
+
+                    
+                        <div class="post-tools">
+                            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+                        </div>
+                        
+
+                            <div class="right-bottom-side-tools">
+                                <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+                            </div>
+
+                            <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+                                
+                                    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+                                        
+
+    </main>
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+
+</body>
+</html>
