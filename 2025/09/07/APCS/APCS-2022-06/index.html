@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Aura&#39;s Space">
+    <meta name="description" content="A place to learn">
+    <meta name="author" content="Aura">
+    <style>
+        body{
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;  /* Firefox */
+        }
+        body::-webkit-scrollbar { 
+            display: none;  /* Safari and Chrome */
+        }
+    </style>
+    
+    <title>
+        
+            APCS-2022-06 |
+        
+        Aura Space
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#f39c12","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.svg","font_size":null,"font_family":"Roboto","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep learning,|| Keep Coding.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"center","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+    <main class="page-container">
+
+        
+
+                    <div class="page-main-content">
+
+                        <div class="page-main-content-top">
+                            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Aura Space
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+                        </div>
+
+                        <div class="page-main-content-middle">
+
+                            <div class="main-content">
+
+                                
+                                                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">APCS-2022-06</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Aura</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2025-09-07 20:13:34</span>
+        <span class="mobile">2025-09-07 20:13</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2025-11-08 21:45:03</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/APCS/">APCS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h1 id="1-數字遊戲"><a href="#1-數字遊戲" class="headerlink" title="1. 數字遊戲"></a>1. 數字遊戲</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
+<li><strong>初始化變數</strong>: 宣告一個大小為 9 的整數陣列 <code>cnt</code> 用於計算 1 到 9 每個數字出現的次數，並將其全部初始化為 0。宣告一個整數 <code>max_cnt</code> 用於儲存「出現最多次的次數」，並初始化為 0。</li>
+<li><strong>讀取輸入與統計</strong>: 使用 for 迴圈執行 3 次。在迴圈中：<ul>
+<li>讀取一個整數 <code>P</code>。</li>
+<li>將 <code>cnt[P-1]</code> 的值加 1（例如，讀到 6，就增加 <code>cnt[5]</code> 的計數）。</li>
+<li>檢查 <code>cnt[P-1]</code> 是否大於 <code>max_cnt</code>，如果是，則更新 <code>max_cnt = cnt[P-1]</code>。</li>
+</ul>
+</li>
+<li><strong>輸出最大次數</strong>: 迴圈結束後，<code>max_cnt</code> 儲存的就是出現最多次的數字的次數（即 $P$），將其輸出。</li>
+<li><strong>輸出不重複數字</strong>: 使用<br>一個 for 迴圈，從 9 遞減到 1 (變數 <code>i</code> 從 9 到 1)。<ul>
+<li>在迴圈中，檢查 <code>cnt[i-1]</code> 是否大於 0。</li>
+<li>如果大於 0，表示數字 <code>i</code> 在輸入中出現過，將 <code>i</code> 輸出。</li>
+</ul>
+</li>
+</ol>
+<h2 id="分段步驟程式碼"><a href="#分段步驟程式碼" class="headerlink" title="分段步驟程式碼"></a>分段步驟程式碼</h2><h3 id="初始化變數與計數陣列"><a href="#初始化變數與計數陣列" class="headerlink" title="初始化變數與計數陣列"></a>初始化變數與計數陣列</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> P, max_cnt = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> cnt[<span class="number">9</span>] = &#123;<span class="number">0</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼宣告了用於讀取輸入的變數 <code>P</code>、儲存最大次數的 <code>max_cnt</code>，以及一個大小為 9 的陣列 <code>cnt</code> 來儲存 1~9 的出現次數，並初始化所有值為 0。</p>
+<h3 id="讀取輸入、統計次數並更新最大次數"><a href="#讀取輸入、統計次數並更新最大次數" class="headerlink" title="讀取輸入、統計次數並更新最大次數"></a>讀取輸入、統計次數並更新最大次數</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">    cin &gt;&gt; P;</span><br><span class="line">    cnt[P<span class="number">-1</span>]++;</span><br><span class="line">    <span class="keyword">if</span>(cnt[P<span class="number">-1</span>]&gt;max_cnt)&#123;</span><br><span class="line">        max_cnt = cnt[P<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼使用迴圈讀取 3 個數字。每讀到一個數字 <code>P</code>，就對應增加 <code>cnt[P-1]</code> 的計數。同時，它會不斷檢查並更新 <code>max_cnt</code>，以確保 <code>max_cnt</code> 始終儲存當前為止出現過的最大次數。</p>
+<h3 id="輸出最大次數"><a href="#輸出最大次數" class="headerlink" title="輸出最大次數"></a>輸出最大次數</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; max_cnt &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼輸出在前面步驟中計算出來的最大次數，即題目要求的 $P$。</p>
+<h3 id="依序輸出不重複數字"><a href="#依序輸出不重複數字" class="headerlink" title="依序輸出不重複數字"></a>依序輸出不重複數字</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">9</span>;i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">    <span class="keyword">if</span>(cnt[i<span class="number">-1</span>]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        cout &lt;&lt; i &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼從 9 開始反向遍歷到 1。透過檢查 <code>cnt[i-1]</code> 是否大於 0，來判斷數字 <code>i</code> 是否在輸入中出現過。如果出現過，就將其輸出。由於是從 9 向下檢查，因此能確保輸出是「由大到小」的順序。</p>
+<h2 id="完整程式碼"><a href="#完整程式碼" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> P, max_cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> cnt[<span class="number">9</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">        cin &gt;&gt; P;</span><br><span class="line">        cnt[P<span class="number">-1</span>]++;</span><br><span class="line">        <span class="keyword">if</span>(cnt[P<span class="number">-1</span>]&gt;max_cnt)&#123;</span><br><span class="line">            max_cnt = cnt[P<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; max_cnt &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">9</span>;i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(cnt[i<span class="number">-1</span>]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            cout &lt;&lt; i &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-字串解碼"><a href="#2-字串解碼" class="headerlink" title="2. 字串解碼"></a>2. 字串解碼</h1><h2 id="解題步驟-1"><a href="#解題步驟-1" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
+<li><strong>讀取輸入資料</strong>: 讀取加密層數 <code>m</code>、字串長度 <code>n</code>。接著使用 <code>vector&lt;string&gt;</code> 儲存 <code>m</code> 個加密鍵 <code>keys</code>，最後讀取經過 <code>m</code> 層加密後的字串 <code>encode</code>。</li>
+<li><strong>建立反向解密迴圈</strong>: 加密是從第 0 層進行到第 <code>m-1</code> 層。因此，解密必須反向操作，使用一個 <code>for</code> 迴圈從 <code>i = m-1</code> 迭代到 <code>0</code>。</li>
+<li><strong>反向解密 - 步驟 2 (重建字串)</strong>: 在每一層解密中，我們需要反轉加密的步驟 2。<ul>
+<li>加密是「從 <code>S</code> 的頭&#x2F;尾取字元，放到 <code>T</code> 的尾端」。</li>
+<li>解密就是「從 <code>encode</code> (即 T) 的尾端取字元，根據 <code>key</code> 放回 <code>decode</code> (即 S) 的頭端或尾端」。</li>
+<li>我們從 <code>j = n-1</code> 迭代到 <code>0</code> 來反向讀取 <code>key</code>。</li>
+<li>如果 <code>key[j] == &#39;1&#39;</code> (加密時從 <code>S</code> 尾端取)，解密時就將 <code>encode.back()</code> 放到 <code>decode</code> 的 _尾端_。</li>
+<li>如果 <code>key[j] == &#39;0&#39;</code> (加密時從 <code>S</code> 前端取)，解密時就將 <code>encode.back()</code> 放到 <code>decode</code> 的 _前端_。</li>
+</ul>
+</li>
+<li><strong>計算 ‘1’ 的數量</strong>: 在執行步驟 3 的同時，計算當前 <code>key</code> 中 ‘1’ 的總數 <code>cnt</code>。</li>
+<li><strong>反向解密 - 步驟 1 (交換字串)</strong>: 檢查 <code>cnt</code> 是否為奇數。如果是，代表加密時曾執行過「交換字串」的操作。因此在解密時，我們需要執行 <em>反向</em> 的交換（將後半部移到前面，前半部移到後面）來還原字串。</li>
+<li><strong>更新字串狀態</strong>: 將當前層解密完成的 <code>decode</code> 字串，賦值回 <code>encode</code> 變數，作為下一層解密迴圈的輸入。</li>
+<li><strong>輸出最終結果</strong>: 當 <code>m</code> 層迴圈全部解密完畢後，<code>encode</code> 變數中儲存的即為原始字串，將其輸出。</li>
+</ol>
+<h2 id="分段步驟程式碼-1"><a href="#分段步驟程式碼-1" class="headerlink" title="分段步驟程式碼"></a>分段步驟程式碼</h2><h3 id="讀取輸入資料"><a href="#讀取輸入資料" class="headerlink" title="讀取輸入資料"></a>讀取輸入資料</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> m,n;</span><br><span class="line">cin &gt;&gt; m &gt;&gt; n;</span><br><span class="line">string encode;</span><br><span class="line"><span class="function">vector&lt;string&gt; <span class="title">keys</span><span class="params">(m)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">    cin &gt;&gt; keys[i];</span><br><span class="line">&#125;</span><br><span class="line">cin &gt;&gt; encode;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼讀取加密層數 <code>m</code> 和字串長度 <code>n</code>，宣告一個 <code>vector&lt;string&gt;</code> 來儲存 <code>m</code> 個加密鍵，並讀取最終的加密字串 <code>encode</code>。</p>
+<h3 id="反向解密迴圈"><a href="#反向解密迴圈" class="headerlink" title="反向解密迴圈"></a>反向解密迴圈</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=m<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">    string key = keys[i];</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    string decode = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">// ... (步驟 2 和 步驟 1 的反向邏輯) ...</span></span><br><span class="line">    encode = decode; <span class="comment">// 更新 encode 以進行下一層解密</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼建立一個<br><code>for</code> 迴圈，從最後一層密鑰 <code>m-1</code> 開始反向迭代到第 <code>0</code> 層。每次迴圈都會處理一層解密，並將解密結果 <code>decode</code> 存回 <code>encode</code>，供上一個解密層使用。</p>
+<h3 id="反向步驟-2-重建字串"><a href="#反向步驟-2-重建字串" class="headerlink" title="反向步驟 2 (重建字串)"></a>反向步驟 2 (重建字串)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=n<span class="number">-1</span>;j&gt;=<span class="number">0</span>;j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(key[j]==<span class="string">&#x27;1&#x27;</span>)&#123;</span><br><span class="line">                cnt++;</span><br><span class="line">                decode = decode + encode.<span class="built_in">back</span>();</span><br><span class="line">                encode.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                decode = encode.<span class="built_in">back</span>() + decode;</span><br><span class="line">                encode.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼反向執行加密的步驟 2。它從 <code>n-1</code> 開始迭代 <code>key</code>，並從 <code>encode</code> 的尾端 <code>pop_back()</code> 取出字元。根據 <code>key[j]</code> 是 ‘1’ 還是 ‘0’，將取出的字元加到 <code>decode</code> 的尾端或前端，同時計算 ‘1’ 的數量 <code>cnt</code>。</p>
+<h3 id="反向步驟-1-交換字串"><a href="#反向步驟-1-交換字串" class="headerlink" title="反向步驟 1 (交換字串)"></a>反向步驟 1 (交換字串)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span>(cnt%<span class="number">2</span>==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">1</span>)&#123;</span><br><span class="line">                decode = decode.<span class="built_in">substr</span>((n<span class="number">-1</span>)/<span class="number">2</span>+<span class="number">1</span>,n)</span><br><span class="line">                       + decode[(n<span class="number">-1</span>)/<span class="number">2</span>]</span><br><span class="line">                       + decode.<span class="built_in">substr</span>(<span class="number">0</span>,(n<span class="number">-1</span>)/<span class="number">2</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                decode = decode.<span class="built_in">substr</span>(n/<span class="number">2</span>,n)</span><br><span class="line">                       + decode.<span class="built_in">substr</span>(<span class="number">0</span>,n/<span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在重建完 <code>decode</code> 字串後，檢查 <code>cnt</code> 是否為奇數。如果是，則執行反向的交換操作，將 <code>decode</code> 的後半段和前半段對調（並正確處理奇數長度的中間字元），以還原加密步驟 1 的交換。</p>
+<h3 id="輸出最終結果"><a href="#輸出最終結果" class="headerlink" title="輸出最終結果"></a>輸出最終結果</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; encode;</span><br></pre></td></tr></table></figure>
+
+<p>在所有 <code>m</code> 層迴圈都執行完畢後，<code>encode</code> 變數中儲存的即是完全解密後的原始字串，將其輸出。</p>
+<h2 id="完整程式碼-1"><a href="#完整程式碼-1" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> m,n;</span><br><span class="line">    cin &gt;&gt; m &gt;&gt; n;</span><br><span class="line">    string encode;</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">keys</span><span class="params">(m)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">        cin &gt;&gt; keys[i];</span><br><span class="line">    &#125;</span><br><span class="line">    cin &gt;&gt; encode;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=m<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        string key = keys[i];</span><br><span class="line">        <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        string decode = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=n<span class="number">-1</span>;j&gt;=<span class="number">0</span>;j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(key[j]==<span class="string">&#x27;1&#x27;</span>)&#123;</span><br><span class="line">                cnt++;</span><br><span class="line">                decode = decode + encode.<span class="built_in">back</span>();</span><br><span class="line">                encode.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                decode = encode.<span class="built_in">back</span>() + decode;</span><br><span class="line">                encode.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt%<span class="number">2</span>==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">1</span>)&#123;</span><br><span class="line">                decode = decode.<span class="built_in">substr</span>((n<span class="number">-1</span>)/<span class="number">2</span>+<span class="number">1</span>,n)</span><br><span class="line">                       + decode[(n<span class="number">-1</span>)/<span class="number">2</span>]</span><br><span class="line">                       + decode.<span class="built_in">substr</span>(<span class="number">0</span>,(n<span class="number">-1</span>)/<span class="number">2</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                decode = decode.<span class="built_in">substr</span>(n/<span class="number">2</span>,n)</span><br><span class="line">                       + decode.<span class="built_in">substr</span>(<span class="number">0</span>,n/<span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        encode = decode;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; encode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            </div>
+
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2025/08/17/APCS/APCS-2022-10/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">APCS-2022-10</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%95%B8%E5%AD%97%E9%81%8A%E6%88%B2"><span class="nav-text">1. 數字遊戲</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%AD%A5%E9%A9%9F"><span class="nav-text">解題步驟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E6%AD%A5%E9%A9%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-text">分段步驟程式碼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E8%AE%8A%E6%95%B8%E8%88%87%E8%A8%88%E6%95%B8%E9%99%A3%E5%88%97"><span class="nav-text">初始化變數與計數陣列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%80%E5%8F%96%E8%BC%B8%E5%85%A5%E3%80%81%E7%B5%B1%E8%A8%88%E6%AC%A1%E6%95%B8%E4%B8%A6%E6%9B%B4%E6%96%B0%E6%9C%80%E5%A4%A7%E6%AC%A1%E6%95%B8"><span class="nav-text">讀取輸入、統計次數並更新最大次數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BC%B8%E5%87%BA%E6%9C%80%E5%A4%A7%E6%AC%A1%E6%95%B8"><span class="nav-text">輸出最大次數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E5%BA%8F%E8%BC%B8%E5%87%BA%E4%B8%8D%E9%87%8D%E8%A4%87%E6%95%B8%E5%AD%97"><span class="nav-text">依序輸出不重複數字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-text">完整程式碼</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%AD%97%E4%B8%B2%E8%A7%A3%E7%A2%BC"><span class="nav-text">2. 字串解碼</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%AD%A5%E9%A9%9F-1"><span class="nav-text">解題步驟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E6%AD%A5%E9%A9%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC-1"><span class="nav-text">分段步驟程式碼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%80%E5%8F%96%E8%BC%B8%E5%85%A5%E8%B3%87%E6%96%99"><span class="nav-text">讀取輸入資料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E8%A7%A3%E5%AF%86%E8%BF%B4%E5%9C%88"><span class="nav-text">反向解密迴圈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E6%AD%A5%E9%A9%9F-2-%E9%87%8D%E5%BB%BA%E5%AD%97%E4%B8%B2"><span class="nav-text">反向步驟 2 (重建字串)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E6%AD%A5%E9%A9%9F-1-%E4%BA%A4%E6%8F%9B%E5%AD%97%E4%B8%B2"><span class="nav-text">反向步驟 1 (交換字串)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BC%B8%E5%87%BA%E6%9C%80%E7%B5%82%E7%B5%90%E6%9E%9C"><span class="nav-text">輸出最終結果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC-1"><span class="nav-text">完整程式碼</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                                                        
+                            </div>
+
+                        </div>
+
+                        <div class="page-main-content-bottom">
+                            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2025
+            
+                <!-- &nbsp;<i class="fas fa-heart icon-animate"></i> -->
+                &nbsp;<a href="/">Aura</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>  
+        </div>
+        <!-- v3.6.1 -->
+        
+        
+    </div>
+</footer>
+
+                        </div>
+                    </div>
+
+                    
+                        <div class="post-tools">
+                            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+                        </div>
+                        
+
+                            <div class="right-bottom-side-tools">
+                                <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+                            </div>
+
+                            <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+                                
+                                    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+                                        
+
+    </main>
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+
+</body>
+</html>
