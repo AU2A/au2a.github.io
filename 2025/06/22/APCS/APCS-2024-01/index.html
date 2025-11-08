@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Aura&#39;s Space">
+    <meta name="description" content="A place to learn">
+    <meta name="author" content="Aura">
+    <style>
+        body{
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;  /* Firefox */
+        }
+        body::-webkit-scrollbar { 
+            display: none;  /* Safari and Chrome */
+        }
+    </style>
+    
+    <title>
+        
+            APCS-2024-01 |
+        
+        Aura Space
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#f39c12","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.svg","font_size":null,"font_family":"Roboto","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep learning,|| Keep Coding.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"center","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+    <main class="page-container">
+
+        
+
+                    <div class="page-main-content">
+
+                        <div class="page-main-content-top">
+                            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Aura Space
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+                        </div>
+
+                        <div class="page-main-content-middle">
+
+                            <div class="main-content">
+
+                                
+                                                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">APCS-2024-01</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Aura</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2025-06-22 20:28:41</span>
+        <span class="mobile">2025-06-22 20:28</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2025-11-08 09:26:30</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/APCS/">APCS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h1 id="1-遊戲選角"><a href="#1-遊戲選角" class="headerlink" title="1. 遊戲選角"></a>1. 遊戲選角</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
+<li><strong>讀取角色數量和資料</strong>：讀取角色總數 <code>n</code>。使用迴圈讀取 <code>n</code> 次，每次讀取一個角色的攻擊力 <code>a</code> 和防禦力 <code>d</code>。</li>
+<li><strong>儲存資料</strong>：使用一個二維 <code>vector</code> (或結構陣列) 來儲存每個角色的攻擊力和防禦力。<code>vector&lt;vector&lt;int&gt;&gt; s</code> 中，<code>s[i][0]</code> 儲存第 <code>i</code> 個角色的攻擊力，<code>s[i][1]</code> 儲存防禦力。</li>
+<li><strong>定義比較函式</strong>：要根據「能力值」（$攻擊力^2 + 防禦力^2$）來排序。我們需要自訂一個比較函式 <code>cmp</code>，它接受兩個角色資料 (例如 <code>vector&lt;int&gt; a</code> 和 <code>vector&lt;int&gt; b</code>)。</li>
+<li><strong>實作比較邏輯</strong>：在 <code>cmp</code> 函式中，計算 <code>a</code> 的能力值 (<code>a[0]*a[0]+a[1]*a[1]</code>) 和 <code>b</code> 的能力值 (<code>b[0]*b[0]+b[1]*b[1]</code>)。為了得到<strong>第二大</strong>的值，我們需要從大到小 (descending) 排序，所以函式應回傳 <code>a</code> 的能力值是否<strong>大於</strong> <code>b</code> 的能力值。</li>
+<li><strong>排序</strong>：使用 <code>std::sort</code> 函式，搭配自訂的 <code>cmp</code> 比較函式，對儲存所有角色資料的 <code>vector</code> 進行排序。</li>
+<li><strong>輸出結果</strong>：排序後，<code>vector</code> 中的第 0 個元素 ( <code>s[0]</code> ) 具有最大的能力值。因此，第 1 個元素 ( <code>s[1]</code> ) 具有<strong>第二大</strong>的能力值。輸出 <code>s[1][0]</code> (攻擊力) 和 <code>s[1][1]</code> (防禦力)。</li>
+</ol>
+<h2 id="分段步驟程式碼"><a href="#分段步驟程式碼" class="headerlink" title="分段步驟程式碼"></a>分段步驟程式碼</h2><h3 id="包含函式庫與自訂比較函式"><a href="#包含函式庫與自訂比較函式" class="headerlink" title="包含函式庫與自訂比較函式"></a>包含函式庫與自訂比較函式</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自訂比較函式</span></span><br><span class="line"><span class="comment">// 根據能力值 (a*a + d*d) 由大到小排序</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(vector&lt;<span class="type">int</span>&gt; a, vector&lt;<span class="type">int</span>&gt; b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a[<span class="number">0</span>]*a[<span class="number">0</span>]+a[<span class="number">1</span>]*a[<span class="number">1</span>] &gt; b[<span class="number">0</span>]*b[<span class="number">0</span>]+b[<span class="number">1</span>]*b[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼包含了必要的函式庫 (<code>iostream</code>, <code>vector</code>, <code>algorithm</code>)。<br>並定義了一個比較函式 <code>cmp</code>，用於 <code>sort</code>。它計算兩個輸入 <code>vector</code> (分別代表兩個角色) 的能力值平方和，並回傳第一個是否大於第二個，以實現降冪排序。</p>
+<h3 id="讀取輸入並儲存"><a href="#讀取輸入並儲存" class="headerlink" title="讀取輸入並儲存"></a>讀取輸入並儲存</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n ;</span><br><span class="line">    <span class="comment">// 宣告一個 n x 2 的二維 vector 來儲存 n 個角色的攻擊力和防禦力</span></span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">s</span>(n,<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">2</span>));</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; s[i][<span class="number">0</span>] &gt;&gt; s[i][<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<p>在 <code>main</code> 函式中，首先讀取角色數量 <code>n</code>。然後，宣告一個名為 <code>s</code> 的二維 <code>vector</code>，它有 <code>n</code> 列，每列有 2 個元素。接著，使用迴圈讀取 <code>n</code> 行輸入，將攻擊力和防禦力分別存入 <code>s[i][0]</code> 和 <code>s[i][1]</code>。</p>
+<h3 id="排序與輸出"><a href="#排序與輸出" class="headerlink" title="排序與輸出"></a>排序與輸出</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="comment">// 使用 std::sort 並傳入自訂的 cmp 函式來排序</span></span><br><span class="line">    <span class="built_in">sort</span>(s.<span class="built_in">begin</span>(),s.<span class="built_in">end</span>(),cmp);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 排序後，s[0] 是能力值最大的，s[1] 是第二大的</span></span><br><span class="line">    <span class="comment">// 輸出 s[1] 的攻擊力和防禦力</span></span><br><span class="line">    cout &lt;&lt; s[<span class="number">1</span>][<span class="number">0</span>] &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; s[<span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼呼叫 <code>std::sort</code>，對 <code>s</code> 向量從頭到尾 (<code>s.begin()</code> 到 <code>s.end()</code>) 進行排序，並使用 <code>cmp</code> 函式作為排序的標準。<br>排序完成後，<code>s[1]</code> 中儲存的就是能力值第二大的角色資料。最後，輸出 <code>s[1][0]</code> (攻擊力) 和 <code>s[1][1]</code> (防禦力)，並以空格分隔。</p>
+<h2 id="完整程式碼"><a href="#完整程式碼" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自訂比較函式</span></span><br><span class="line"><span class="comment">// 比較兩個角色 (a, b) 的能力值</span></span><br><span class="line"><span class="comment">// 能力值 = 攻擊力^2 + 防禦力^2</span></span><br><span class="line"><span class="comment">// 回傳 true 表示 a 應該排在 b 前面 (降冪排序)</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(vector&lt;<span class="type">int</span>&gt; a, vector&lt;<span class="type">int</span>&gt; b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a[<span class="number">0</span>]*a[<span class="number">0</span>]+a[<span class="number">1</span>]*a[<span class="number">1</span>] &gt; b[<span class="number">0</span>]*b[<span class="number">0</span>]+b[<span class="number">1</span>]*b[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n ; <span class="comment">// 讀取角色數量</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 宣告 n x 2 的二維 vector 儲存資料</span></span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">s</span>(n,<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 迴圈讀取 n 個角色的攻擊力 (s[i][0]) 和防禦力 (s[i][1])</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; s[i][<span class="number">0</span>] &gt;&gt; s[i][<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用 std::sort 和自訂的 cmp 函式對角色</span></span><br><span class="line">    <span class="comment">// 根據能力值進行降冪排序</span></span><br><span class="line">    <span class="built_in">sort</span>(s.<span class="built_in">begin</span>(),s.<span class="built_in">end</span>(),cmp);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 排序後，s[0] 是第一名，s[1] 是第二名</span></span><br><span class="line">    <span class="comment">// 輸出第二名角色的攻擊力和防禦力</span></span><br><span class="line">    cout &lt;&lt; s[<span class="number">1</span>][<span class="number">0</span>] &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; s[<span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>好的，這是一份 “蜜蜂 Bob” 題目的解題 writeup，結構參考了您提供的範例：</p>
+<h1 id="2-蜜蜂觀察"><a href="#2-蜜蜂觀察" class="headerlink" title="2. 蜜蜂觀察"></a>2. 蜜蜂觀察</h1><h2 id="解題步驟-1"><a href="#解題步驟-1" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
+<li><strong>讀取輸入</strong>: 讀取蜂巢大小 $m$、$n$ 以及總步數 $k$。</li>
+<li><strong>儲存蜂巢地圖</strong>: 建立一個 $m \times n$ 的二維資料結構（例如 <code>vector&lt;string&gt;</code>），並讀取 $m$ 行字串來儲存蜂巢上每個格子的字母。</li>
+<li><strong>初始化狀態</strong>:<ul>
+<li>設定 Bob 的起始位置 <code>(x, y)</code> 在左下角，即 <code>(m-1, 0)</code>。</li>
+<li>建立一個大小為 52 的整數陣列 <code>abc</code> 並全部初始化為 0，用來分別統計 26 個大寫字母和 26 個小寫字母出現的次數。</li>
+</ul>
+</li>
+<li><strong>模擬移動過程</strong>:<ul>
+<li>使用一個 for 迴圈執行 $k$ 次，代表 Bob 的 $k$ 步移動。</li>
+<li>在迴圈中，首先讀取該步驟的移動方向 <code>step</code>。</li>
+<li><strong>檢查邊界並移動</strong>: 根據 <code>step</code> 的值 (0-5)，判斷移動後的<br>新位置是否會超出蜂巢邊界（撞牆）。<ul>
+<li>如果不會超出邊界，則更新 <code>x</code> 和 <code>y</code> 座標。</li>
+<li>如果會超出邊界，<code>x</code> 和 <code>y</code> 座標保持不變（停在原地）。</li>
+</ul>
+</li>
+<li><strong>記錄路徑與字元</strong>:<ul>
+<li>輸出當前位置 <code>(x, y)</code> 上的字元 <code>comb[x][y]</code>。</li>
+<li>將 <code>abc</code> 陣列中對應的字元計數加 1。需區分大小寫，例如 ‘A’-‘Z’ 對應 0-25，’a’-‘z’ 對應 26-51。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>計算並輸出字元種類數</strong>:<ul>
+<li>迴圈結束後，宣告一個變數 <code>diff</code> 來計算種類數。</li>
+<li>遍歷 <code>abc</code> 陣列 (0 到 51)，如果 <code>abc[i] &gt; 0</code>（表示該字元至少出現過一次），則將 <code>diff</code> 加 1。</li>
+<li>最後，換行並輸出 <code>diff</code> 的值。</li>
+</ul>
+</li>
+</ol>
+<h2 id="分段步驟程式碼-1"><a href="#分段步驟程式碼-1" class="headerlink" title="分段步驟程式碼"></a>分段步驟程式碼</h2><h3 id="讀取輸入與儲存蜂巢地圖"><a href="#讀取輸入與儲存蜂巢地圖" class="headerlink" title="讀取輸入與儲存蜂巢地圖"></a>讀取輸入與儲存蜂巢地圖</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> m,n,k;</span><br><span class="line">cin &gt;&gt; m &gt;&gt; n &gt;&gt; k;</span><br><span class="line"><span class="function">vector&lt;string&gt; <span class="title">comb</span><span class="params">(m)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">    cin &gt;&gt; comb[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼讀取蜂巢大小 $m$、$n$ 和步數 $k$。然後使用 <code>vector&lt;string&gt;</code> 讀取並儲存 $m \times n$ 的蜂巢地圖。</p>
+<h3 id="初始化狀態"><a href="#初始化狀態" class="headerlink" title="初始化狀態"></a>初始化狀態</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x=m<span class="number">-1</span>,y=<span class="number">0</span>, step;</span><br><span class="line"><span class="type">int</span> abc[<span class="number">52</span>] = &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼初始化 Bob 的起始位置 <code>x=m-1</code>、<code>y=0</code>（左下角）。並初始化一個大小為 52 的計數陣列 <code>abc</code> 為全 0，用來統計 52 種（大小寫相異）字母的出現次數。</p>
+<h3 id="模擬移動過程-迴圈與移動邏輯"><a href="#模擬移動過程-迴圈與移動邏輯" class="headerlink" title="模擬移動過程 (迴圈與移動邏輯)"></a>模擬移動過程 (迴圈與移動邏輯)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">    cin &gt;&gt; step;</span><br><span class="line">    <span class="keyword">if</span>(step==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(x<span class="number">-1</span>&gt;=<span class="number">0</span>)&#123; <span class="comment">// 往上 (Up)</span></span><br><span class="line">            x--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(step==<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(y+<span class="number">1</span>&lt;n)&#123; <span class="comment">// 往右 (Right)</span></span><br><span class="line">            y++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(step==<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(x+<span class="number">1</span>&lt;m &amp;&amp; y+<span class="number">1</span>&lt;n)&#123; <span class="comment">// 往右下 (Down-Right)</span></span><br><span class="line">            x++;</span><br><span class="line">            y++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(step==<span class="number">3</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(x+<span class="number">1</span>&lt;m)&#123; <span class="comment">// 往下 (Down)</span></span><br><span class="line">            x++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(step==<span class="number">4</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(y<span class="number">-1</span>&gt;=<span class="number">0</span>)&#123; <span class="comment">// 往左 (Left)</span></span><br><span class="line">            y--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(step==<span class="number">5</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(x<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; y<span class="number">-1</span>&gt;=<span class="number">0</span>)&#123; <span class="comment">// 往左上 (Up-Left)</span></span><br><span class="line">            x--;</span><br><span class="line">            y--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ... (記錄路徑與字元)</span></span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼是 <code>k</code> 步移動的主迴圈。</p>
+<ol>
+<li>讀取每一步的方向 <code>step</code>。</li>
+<li>使用 <code>if-else if</code> 結構判斷 6 種方向。</li>
+<li>在更新座標 <code>x</code> 和 <code>y</code> 之前，先檢查新位置是否仍在 $m \times n$ 的範圍內。如果超出範圍（撞牆），則不更新座標，Bob 停在原地。</li>
+</ol>
+<h3 id="記錄路徑與字元-在迴圈內"><a href="#記錄路徑與字元-在迴圈內" class="headerlink" title="記錄路徑與字元 (在迴圈內)"></a>記錄路徑與字元 (在迴圈內)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    cout &lt;&lt; comb[x][y];</span><br><span class="line">    <span class="keyword">if</span> (comb[x][y] &gt;= <span class="string">&#x27;a&#x27;</span>)&#123;</span><br><span class="line">        abc[comb[x][y]-<span class="string">&#x27;a&#x27;</span>+<span class="number">26</span>]++;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        abc[comb[x][y]-<span class="string">&#x27;A&#x27;</span>]++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="comment">// for 迴圈結束</span></span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼在 <code>for</code> 迴圈內，緊接在移動邏輯之後。</p>
+<ol>
+<li><code>cout &lt;&lt; comb[x][y];</code> 輸出當前（移動後或停在原地）位置的字元，累加成路徑字串。</li>
+<li><code>if-else</code> 判斷當前字元是小寫還大寫：<ul>
+<li>大寫：’A’ 對應 <code>abc[0]</code>，’B’ 對應 <code>abc[1]</code> …</li>
+<li>小寫：’a’ 對應 <code>abc[26]</code>，’b’ 對應 <code>abc[27]</code> …<br>並將對應的計數器加 1。</li>
+</ul>
+</li>
+</ol>
+<h3 id="計算並輸出字元種類數"><a href="#計算並輸出字元種類數" class="headerlink" title="計算並輸出字元種類數"></a>計算並輸出字元種類數</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> diff = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">52</span>;i++)&#123;</span><br><span class="line">    diff += abc[i]&gt;<span class="number">0</span> ;</span><br><span class="line">&#125;</span><br><span class="line">cout&lt;&lt;endl&lt;&lt;diff;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼在 <code>for</code> 迴圈結束後執行。</p>
+<ol>
+<li>初始化種類數 <code>diff</code> 為 0。</li>
+<li>遍歷 <code>abc</code> 陣列，<code>abc[i] &gt; 0</code> 這個布林表達式在 C++ 中會被轉為 1 (true) 或 0 (false)。</li>
+<li>因此，<code>diff</code> 只會累加那些至少出現過一次 (計數 &gt; 0) 的字元種類。</li>
+<li>最後，<code>cout &lt;&lt; endl;</code> 換行，並輸出總種類數 <code>diff</code>。</li>
+</ol>
+<h2 id="完整程式碼-1"><a href="#完整程式碼-1" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> m,n,k;</span><br><span class="line">    cin &gt;&gt; m &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">comb</span><span class="params">(m)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">        cin &gt;&gt; comb[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> x=m<span class="number">-1</span>,y=<span class="number">0</span>, step;</span><br><span class="line">    <span class="type">int</span> abc[<span class="number">52</span>] = &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">        cin &gt;&gt; step;</span><br><span class="line">        <span class="keyword">if</span>(step==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(x<span class="number">-1</span>&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">                x--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(step==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(y+<span class="number">1</span>&lt;n)&#123;</span><br><span class="line">                y++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(step==<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(x+<span class="number">1</span>&lt;m &amp;&amp; y+<span class="number">1</span>&lt;n)&#123;</span><br><span class="line">                x++;</span><br><span class="line">                y++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(step==<span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(x+<span class="number">1</span>&lt;m)&#123;</span><br><span class="line">                x++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(step==<span class="number">4</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(y<span class="number">-1</span>&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">                y--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(step==<span class="number">5</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(x<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; y<span class="number">-1</span>&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">                x--;</span><br><span class="line">                y--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; comb[x][y];</span><br><span class="line">        <span class="keyword">if</span> (comb[x][y] &gt;= <span class="string">&#x27;a&#x27;</span>)&#123;</span><br><span class="line">            abc[comb[x][y]-<span class="string">&#x27;a&#x27;</span>+<span class="number">26</span>]++;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            abc[comb[x][y]-<span class="string">&#x27;A&#x27;</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> diff = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">52</span>;i++)&#123;</span><br><span class="line">        diff += abc[i]&gt;<span class="number">0</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl&lt;&lt;diff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            </div>
+
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2025/06/15/APCS/APCS-2025-06/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">APCS-2025-06</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E9%81%8A%E6%88%B2%E9%81%B8%E8%A7%92"><span class="nav-text">1. 遊戲選角</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%AD%A5%E9%A9%9F"><span class="nav-text">解題步驟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E6%AD%A5%E9%A9%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-text">分段步驟程式碼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%85%E5%90%AB%E5%87%BD%E5%BC%8F%E5%BA%AB%E8%88%87%E8%87%AA%E8%A8%82%E6%AF%94%E8%BC%83%E5%87%BD%E5%BC%8F"><span class="nav-text">包含函式庫與自訂比較函式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%80%E5%8F%96%E8%BC%B8%E5%85%A5%E4%B8%A6%E5%84%B2%E5%AD%98"><span class="nav-text">讀取輸入並儲存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E8%88%87%E8%BC%B8%E5%87%BA"><span class="nav-text">排序與輸出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-text">完整程式碼</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E8%9C%9C%E8%9C%82%E8%A7%80%E5%AF%9F"><span class="nav-text">2. 蜜蜂觀察</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%AD%A5%E9%A9%9F-1"><span class="nav-text">解題步驟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E6%AD%A5%E9%A9%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC-1"><span class="nav-text">分段步驟程式碼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%80%E5%8F%96%E8%BC%B8%E5%85%A5%E8%88%87%E5%84%B2%E5%AD%98%E8%9C%82%E5%B7%A2%E5%9C%B0%E5%9C%96"><span class="nav-text">讀取輸入與儲存蜂巢地圖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E7%8B%80%E6%85%8B"><span class="nav-text">初始化狀態</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%93%AC%E7%A7%BB%E5%8B%95%E9%81%8E%E7%A8%8B-%E8%BF%B4%E5%9C%88%E8%88%87%E7%A7%BB%E5%8B%95%E9%82%8F%E8%BC%AF"><span class="nav-text">模擬移動過程 (迴圈與移動邏輯)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%98%E9%8C%84%E8%B7%AF%E5%BE%91%E8%88%87%E5%AD%97%E5%85%83-%E5%9C%A8%E8%BF%B4%E5%9C%88%E5%85%A7"><span class="nav-text">記錄路徑與字元 (在迴圈內)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%88%E7%AE%97%E4%B8%A6%E8%BC%B8%E5%87%BA%E5%AD%97%E5%85%83%E7%A8%AE%E9%A1%9E%E6%95%B8"><span class="nav-text">計算並輸出字元種類數</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC-1"><span class="nav-text">完整程式碼</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                                                        
+                            </div>
+
+                        </div>
+
+                        <div class="page-main-content-bottom">
+                            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2025
+            
+                <!-- &nbsp;<i class="fas fa-heart icon-animate"></i> -->
+                &nbsp;<a href="/">Aura</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>  
+        </div>
+        <!-- v3.6.1 -->
+        
+        
+    </div>
+</footer>
+
+                        </div>
+                    </div>
+
+                    
+                        <div class="post-tools">
+                            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+                        </div>
+                        
+
+                            <div class="right-bottom-side-tools">
+                                <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+                            </div>
+
+                            <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+                                
+                                    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+                                        
+
+    </main>
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+
+</body>
+</html>
