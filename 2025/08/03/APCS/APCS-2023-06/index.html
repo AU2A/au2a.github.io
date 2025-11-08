@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Aura&#39;s Space">
+    <meta name="description" content="A place to learn">
+    <meta name="author" content="Aura">
+    <style>
+        body{
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;  /* Firefox */
+        }
+        body::-webkit-scrollbar { 
+            display: none;  /* Safari and Chrome */
+        }
+    </style>
+    
+    <title>
+        
+            APCS-2023-06 |
+        
+        Aura Space
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#f39c12","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.svg","font_size":null,"font_family":"Roboto","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep learning,|| Keep Coding.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"center","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+    <main class="page-container">
+
+        
+
+                    <div class="page-main-content">
+
+                        <div class="page-main-content-top">
+                            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Aura Space
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+                        </div>
+
+                        <div class="page-main-content-middle">
+
+                            <div class="main-content">
+
+                                
+                                                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">APCS-2023-06</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Aura</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2025-08-03 20:24:09</span>
+        <span class="mobile">2025-08-03 20:24</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2025-11-08 09:38:55</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/APCS/">APCS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h1 id="1-路徑偵測"><a href="#1-路徑偵測" class="headerlink" title="1. 路徑偵測"></a>1. 路徑偵測</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
+<li><strong>讀取輸入</strong>: 讀取座標點的總數 <code>n</code>。</li>
+<li><strong>初始化狀態</strong>:<ul>
+<li>定義 <code>d</code> 來表示目前方向 (1&#x3D;右, 2&#x3D;上, 3&#x3D;左, 4&#x3D;下)。</li>
+<li>根據題目，初始方向為向右，所以 <code>d = 1</code>。</li>
+<li>初始化左轉 <code>l</code>、右轉 <code>r</code>、迴轉 <code>re</code> 的計數器為 0。</li>
+<li>讀取第一個點的座標 <code>(x, y)</code>，這將作為我們路徑的起始位置。</li>
+</ul>
+</li>
+<li><strong>迴圈處理路徑</strong>: 使用 for 迴圈，從 <code>i=1</code> 到 <code>n-1</code>，讀取剩下的 <code>n-1</code> 個點。</li>
+<li><strong>讀取下一個點</strong>: 在迴圈中，讀取下一個點的座標 <code>(nx, ny)</code>。</li>
+<li><strong>判斷轉向</strong>:<ul>
+<li>使用 <code>if-else if</code> 結構，根據<strong>目前方向 <code>d</code></strong> 進行判斷。</li>
+<li>在<br><code>d</code> 的條件下，比較目前座標 <code>(x, y)</code> 和下一個座標 <code>(nx, ny)</code> 的相對位置。</li>
+<li>例如：如果 <code>d=1</code> (目前向右)，而 <code>ny &gt; y</code> (下一個點在上方)，這代表一次<strong>左轉</strong>。此時 <code>l++</code> 並更新 <code>d=2</code> (新方向為上)。</li>
+<li>如果 <code>d=1</code> (目前向右)，而 <code>nx &lt; x</code> (下一個點在左方)，這代表一次<strong>迴轉</strong>。此時 <code>re++</code> 並更新 <code>d=3</code> (新方向為左)。</li>
+<li>依此類推，完成所有四個方向的判斷。</li>
+</ul>
+</li>
+<li><strong>更新目前位置</strong>: 在判斷完轉向後，將 <code>x = nx</code> 和 <code>y = ny</code>，使下一個點成為新的目前位置，以供下一次迴圈判斷。</li>
+<li><strong>輸出結果</strong>: 迴圈結束後，輸出 <code>l</code>, <code>r</code>, <code>re</code> 的值。</li>
+</ol>
+<h2 id="分段步驟程式碼"><a href="#分段步驟程式碼" class="headerlink" title="分段步驟程式碼"></a>分段步驟程式碼</h2><h3 id="初始化狀態並讀取第一個點"><a href="#初始化狀態並讀取第一個點" class="headerlink" title="初始化狀態並讀取第一個點"></a>初始化狀態並讀取第一個點</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n,x,y,nx,ny,d=<span class="number">1</span>,l=<span class="number">0</span>,r=<span class="number">0</span>,re=<span class="number">0</span>;</span><br><span class="line">cin&gt;&gt;n;</span><br><span class="line">cin&gt;&gt;x&gt;&gt;y;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼讀取點的總數 <code>n</code>。初始化目前方向 <code>d=1</code> (向右)，左轉 <code>l</code>、右轉 <code>r</code>、迴轉 <code>re</code> 計數器為 0。讀取第一個點的座標 <code>x</code>, <code>y</code>，這也確立了我們的初始位置。</p>
+<h3 id="迴圈處理所有轉向"><a href="#迴圈處理所有轉向" class="headerlink" title="迴圈處理所有轉向"></a>迴圈處理所有轉向</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">    cin&gt;&gt;nx&gt;&gt;ny;</span><br><span class="line">    <span class="keyword">if</span>(d==<span class="number">1</span>)&#123; <span class="comment">// 目前向右</span></span><br><span class="line">        <span class="keyword">if</span>(ny &gt; y)&#123; <span class="comment">// 向上 (左轉)</span></span><br><span class="line">            l++;</span><br><span class="line">            d=<span class="number">2</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ny &lt; y)&#123; <span class="comment">// 向下 (右轉)</span></span><br><span class="line">            r++;</span><br><span class="line">            d=<span class="number">4</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nx &lt; x)&#123; <span class="comment">// 向左 (迴轉)</span></span><br><span class="line">            re++;</span><br><span class="line">            d=<span class="number">3</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(d==<span class="number">2</span>)&#123; <span class="comment">// 目前向上</span></span><br><span class="line">        <span class="keyword">if</span>(nx &gt; x)&#123; <span class="comment">// 向右 (右轉)</span></span><br><span class="line">            r++;</span><br><span class="line">            d=<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nx &lt; x)&#123; <span class="comment">// 向左 (左轉)</span></span><br><span class="line">            l++;</span><br><span class="line">            d=<span class="number">3</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ny &lt; y)&#123; <span class="comment">// 向下 (迴轉)</span></span><br><span class="line">            re++;</span><br><span class="line">            d=<span class="number">4</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(d==<span class="number">3</span>)&#123; <span class="comment">// 目前向左</span></span><br><span class="line">        <span class="keyword">if</span>(ny &gt; y)&#123; <span class="comment">// 向上 (右轉)</span></span><br><span class="line">            r++;</span><br><span class="line">            d=<span class="number">2</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ny &lt; y)&#123; <span class="comment">// 向下 (左轉)</span></span><br><span class="line">            l++;</span><br><span class="line">            d=<span class="number">4</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nx &gt; x)&#123; <span class="comment">// 向右 (迴轉)</span></span><br><span class="line">            re++;</span><br><span class="line">            d=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(d==<span class="number">4</span>)&#123; <span class="comment">// 目前向下</span></span><br><span class="line">        <span class="keyword">if</span>(nx &gt; x)&#123; <span class="comment">// 向右 (左轉)</span></span><br><span class="line">            l++;</span><br><span class="line">            d=<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nx &lt; x)&#123; <span class="comment">// 向左 (右轉)</span></span><br><span class="line">            r++;</span><br><span class="line">            d=<span class="number">3</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ny &gt; y)&#123; <span class="comment">// 向上 (迴轉)</span></span><br><span class="line">            re++;</span><br><span class="line">            d=<span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    x=nx; <span class="comment">// 更新目前位置</span></span><br><span class="line">    y=ny;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼是解題的核心。它遍歷 <code>n-1</code> 次，每次讀取下一個點 <code>(nx, ny)</code>。<br>接著，它檢查目前的方向 <code>d</code>：</p>
+<ul>
+<li><strong><code>d=1</code> (向右)</strong>: 檢查 Y 軸變化（<code>ny &gt; y</code> 左轉, <code>ny &lt; y</code> 右轉）或 X 軸變化（<code>nx &lt; x</code> 迴轉）。</li>
+<li><strong><code>d=2</code> (向上)</strong>: 檢查 X 軸變化（<code>nx &gt; x</code> 右轉, <code>nx &lt; x</code> 左轉）或 Y 軸變化（<code>ny &lt; y</code> 迴轉）。</li>
+<li><strong><code>d=3</code> (向左)</strong>: 檢查 Y 軸變化（<code>ny &gt; y</code> 右轉, <code>ny &lt; y</code> 左轉）或 X 軸變化（<code>nx &gt; x</code> 迴轉）。</li>
+<li><strong><code>d=4</code> (向下)</strong>: 檢查 X 軸變化（<code>nx &gt; x</code> 左轉, <code>nx &lt; x</code> 右轉）或 Y 軸變化（<code>ny &gt; y</code> 迴轉）。</li>
+</ul>
+<p>每次偵測到轉向，就增加對應的計數器 (<code>l</code>, <code>r</code>, <code>re</code>) 並更新方向 <code>d</code>。如果沒有轉向（例如 <code>d=1</code> 且 <code>nx &gt; x</code>），則 <code>d</code> 保持不變。<br>最後，將 <code>x</code> 和 <code>y</code> 更新為 <code>nx</code> 和 <code>ny</code>，為下一次迴圈做準備。</p>
+<h3 id="輸出結果"><a href="#輸出結果" class="headerlink" title="輸出結果"></a>輸出結果</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;l&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;r&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;re;</span><br></pre></td></tr></table></figure>
+
+<p>迴圈結束後，<code>l</code>, <code>r</code>, <code>re</code> 已記錄所有轉向次數，將它們依序輸出。</p>
+<h2 id="完整程式碼"><a href="#完整程式碼" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n,x,y,nx,ny,d=<span class="number">1</span>,l=<span class="number">0</span>,r=<span class="number">0</span>,re=<span class="number">0</span>;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    cin&gt;&gt;x&gt;&gt;y;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin&gt;&gt;nx&gt;&gt;ny;</span><br><span class="line">        <span class="keyword">if</span>(d==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ny &gt; y)&#123;</span><br><span class="line">                l++;</span><br><span class="line">                d=<span class="number">2</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ny &lt; y)&#123;</span><br><span class="line">                r++;</span><br><span class="line">                d=<span class="number">4</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nx &lt; x)&#123;</span><br><span class="line">                re++;</span><br><span class="line">                d=<span class="number">3</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(d==<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nx &gt; x)&#123;</span><br><span class="line">                r++;</span><br><span class="line">                d=<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nx &lt; x)&#123;</span><br><span class="line">                l++;</span><br><span class="line">                d=<span class="number">3</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ny &lt; y)&#123;</span><br><span class="line">                re++;</span><br><span class="line">                d=<span class="number">4</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(d==<span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ny &gt; y)&#123;</span><br><span class="line">                r++;</span><br><span class="line">                d=<span class="number">2</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ny &lt; y)&#123;</span><br><span class="line">                l++;</span><br><span class="line">                d=<span class="number">4</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nx &gt; x)&#123;</span><br><span class="line">                re++;</span><br><span class="line">                d=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(d==<span class="number">4</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nx &gt; x)&#123;</span><br><span class="line">                l++;</span><br><span class="line">                d=<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nx &lt; x)&#123;</span><br><span class="line">                r++;</span><br><span class="line">                d=<span class="number">3</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ny &gt; y)&#123;</span><br><span class="line">                re++;</span><br><span class="line">                d=<span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        x=nx;</span><br><span class="line">        y=ny;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;l&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;r&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;re;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-特殊位置"><a href="#2-特殊位置" class="headerlink" title="2. 特殊位置"></a>2. 特殊位置</h1><h2 id="解題步驟-1"><a href="#解題步驟-1" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
+<li><strong>讀取矩陣維度和內容</strong>: 讀取 $n$、$m$ 以及 $n \times m$ 矩陣 <code>a</code> 的所有元素。</li>
+<li><strong>初始化答案儲存</strong>: 宣告一個 <code>vector&lt;pair&lt;int, int&gt;&gt; ans</code> 來儲存所有特殊位置的座標。</li>
+<li><strong>遍歷所有位置</strong>: 使用兩層 <code>for</code> 迴圈，依序檢查矩陣中的每一個位置 <code>(i, j)</code>。</li>
+<li><strong>計算範圍內總和</strong>: 對於當前位置 <code>(i, j)</code>，令 <code>x = a[i][j]</code>。接著使用兩層 <code>for</code> 迴圈遍歷矩陣中所有位置 <code>(x_pos, y_pos)</code>。</li>
+<li><strong>檢查曼哈頓距離</strong>: 計算 <code>(i, j)</code> 與 <code>(x_pos, y_pos)</code> 的曼哈頓距離 <code>|i - x_pos| + |j - y_pos|</code>。</li>
+<li><strong>累加總和</strong>: 如果距離小於等於 <code>x</code> (即 <code>a[i][j]</code>)，則將 <code>a[x_pos][y_pos]</code> 加入總和 <code>sum</code>。</li>
+<li><strong>檢查特殊位置條件</strong>: 對於 <code>(i, j)</code>，計算完 <code>sum</code> 後，檢查 <code>sum % 10</code> 是否等於 <code>x</code> (即 <code>a[i][j]</code>)。如果相等，則將 <code>(i, j)</code> 存入 <code>ans</code> 中。</li>
+<li><strong>輸出結果</strong>: 遍歷結束後，首先輸出 <code>ans</code> 的大小 (即特殊位置的總數)，然後依序（字典序）輸出 <code>ans</code> 中儲存的每一個座標。</li>
+</ol>
+<h2 id="分段步驟程式碼-1"><a href="#分段步驟程式碼-1" class="headerlink" title="分段步驟程式碼"></a>分段步驟程式碼</h2><h3 id="讀取矩陣維度和內容"><a href="#讀取矩陣維度和內容" class="headerlink" title="讀取矩陣維度和內容"></a>讀取矩陣維度和內容</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n,m;</span><br><span class="line">cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line"><span class="type">int</span> a[n][m];</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">        cin &gt;&gt; a[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼讀取矩陣的維度 $n$ 和 $m$，並使用兩層迴圈讀取 $n \times m$ 個矩陣元素，存儲在 <code>a</code> 陣列中。</p>
+<h3 id="初始化答案儲存"><a href="#初始化答案儲存" class="headerlink" title="初始化答案儲存"></a>初始化答案儲存</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; ans;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼初始化一個 <code>vector</code>，其元素型別為 <code>pair&lt;int, int&gt;</code>，用來儲存所有找到的特殊位置座標。</p>
+<h3 id="遍歷、計算並檢查特殊位置"><a href="#遍歷、計算並檢查特殊位置" class="headerlink" title="遍歷、計算並檢查特殊位置"></a>遍歷、計算並檢查特殊位置</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> x=<span class="number">0</span>;x&lt;n;x++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> y=<span class="number">0</span>;y&lt;m;y++)&#123;</span><br><span class="line">                <span class="keyword">if</span>( (<span class="built_in">abs</span>(i-x) + <span class="built_in">abs</span>(j-y)) &lt;= a[i][j])&#123;</span><br><span class="line">                    sum+=a[x][y];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(sum%<span class="number">10</span>==a[i][j])&#123;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(&#123;i,j&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這是解題的核心。</p>
+<ol>
+<li>最外層的兩層迴圈 <code>(i, j)</code> 用於遍歷矩陣中的每一個位置。</li>
+<li>對於每個 <code>(i, j)</code>，初始化 <code>sum = 0</code>。</li>
+<li>內層的兩層迴圈 <code>(x, y)</code> 用於遍歷所有矩陣位置，以計算曼哈頓距離。</li>
+<li><code>if</code> 判斷式檢查 <code>(x, y)</code> 是否在 <code>(i, j)</code> 的曼哈頓距離 <code>a[i][j]</code> 範圍內。</li>
+<li>如果在範圍內，將 <code>a[x][y]</code> 累加到 <code>sum</code>。</li>
+<li>內層迴圈結束後，檢查 <code>sum % 10</code> 是否等於 <code>a[i][j]</code>。如果成立，表示 <code>(i, j)</code> 是一個特殊位置，將其座標 <code>(i, j)</code> 加入 <code>ans</code> 中。</li>
+</ol>
+<h3 id="輸出最終答案"><a href="#輸出最終答案" class="headerlink" title="輸出最終答案"></a>輸出最終答案</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; ans.<span class="built_in">size</span>() &lt;&lt; endl;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;ans.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">    cout &lt;&lt; ans[i].first &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; ans[i].second &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這段程式碼首先輸出 <code>ans.size()</code>，即特殊位置的總數。接著，使用一個迴圈遍歷 <code>ans</code>，並依序輸出儲存的每個座標。由於 <code>ans</code> 是按照 <code>(i, j)</code> 字典序（先行後列）的順序加入的，因此輸出時自然會符合字典序。</p>
+<h2 id="完整程式碼-1"><a href="#完整程式碼-1" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span> <span class="comment">// 雖然 abs 在 iostream 中常被隱含，但標準 C++ 中 abs(int) 在 &lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n,m;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="type">int</span> a[n][m];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">            cin &gt;&gt; a[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; ans;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">            <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> x=<span class="number">0</span>;x&lt;n;x++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> y=<span class="number">0</span>;y&lt;m;y++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>( (<span class="built_in">abs</span>(i-x) + <span class="built_in">abs</span>(j-y)) &lt;= a[i][j])&#123;</span><br><span class="line">                        sum+=a[x][y];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(sum%<span class="number">10</span>==a[i][j])&#123;</span><br><span class="line">                ans.<span class="built_in">push_back</span>(&#123;i,j&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans.<span class="built_in">size</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;ans.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        cout &lt;&lt; ans[i].first &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; ans[i].second &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            </div>
+
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2025/07/06/APCS/APCS-2023-10/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">APCS-2023-10</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E8%B7%AF%E5%BE%91%E5%81%B5%E6%B8%AC"><span class="nav-text">1. 路徑偵測</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%AD%A5%E9%A9%9F"><span class="nav-text">解題步驟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E6%AD%A5%E9%A9%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-text">分段步驟程式碼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E7%8B%80%E6%85%8B%E4%B8%A6%E8%AE%80%E5%8F%96%E7%AC%AC%E4%B8%80%E5%80%8B%E9%BB%9E"><span class="nav-text">初始化狀態並讀取第一個點</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%B4%E5%9C%88%E8%99%95%E7%90%86%E6%89%80%E6%9C%89%E8%BD%89%E5%90%91"><span class="nav-text">迴圈處理所有轉向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BC%B8%E5%87%BA%E7%B5%90%E6%9E%9C"><span class="nav-text">輸出結果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-text">完整程式碼</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E7%89%B9%E6%AE%8A%E4%BD%8D%E7%BD%AE"><span class="nav-text">2. 特殊位置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%AD%A5%E9%A9%9F-1"><span class="nav-text">解題步驟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E6%AD%A5%E9%A9%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC-1"><span class="nav-text">分段步驟程式碼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%80%E5%8F%96%E7%9F%A9%E9%99%A3%E7%B6%AD%E5%BA%A6%E5%92%8C%E5%85%A7%E5%AE%B9"><span class="nav-text">讀取矩陣維度和內容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E7%AD%94%E6%A1%88%E5%84%B2%E5%AD%98"><span class="nav-text">初始化答案儲存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%8D%E6%AD%B7%E3%80%81%E8%A8%88%E7%AE%97%E4%B8%A6%E6%AA%A2%E6%9F%A5%E7%89%B9%E6%AE%8A%E4%BD%8D%E7%BD%AE"><span class="nav-text">遍歷、計算並檢查特殊位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BC%B8%E5%87%BA%E6%9C%80%E7%B5%82%E7%AD%94%E6%A1%88"><span class="nav-text">輸出最終答案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC-1"><span class="nav-text">完整程式碼</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                                                        
+                            </div>
+
+                        </div>
+
+                        <div class="page-main-content-bottom">
+                            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2025
+            
+                <!-- &nbsp;<i class="fas fa-heart icon-animate"></i> -->
+                &nbsp;<a href="/">Aura</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>  
+        </div>
+        <!-- v3.6.1 -->
+        
+        
+    </div>
+</footer>
+
+                        </div>
+                    </div>
+
+                    
+                        <div class="post-tools">
+                            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+                        </div>
+                        
+
+                            <div class="right-bottom-side-tools">
+                                <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+                            </div>
+
+                            <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+                                
+                                    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+                                        
+
+    </main>
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+
+</body>
+</html>
