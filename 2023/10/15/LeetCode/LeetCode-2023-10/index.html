@@ -1,470 +1,332 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=en>
 <head>
+    <!-- so meta -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Aura&#39;s Space">
-    <meta name="description" content="A place to learn">
-    <meta name="author" content="Aura">
-    <style>
-        body{
-            -ms-overflow-style: none;  /* Internet Explorer 10+ */
-            scrollbar-width: none;  /* Firefox */
-        }
-        body::-webkit-scrollbar { 
-            display: none;  /* Safari and Chrome */
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Week12413. Smallest Even MultipleLeetcode Link My Solution 2409. Count Days Spent TogetherLeetcode Link My Solution 2455. Average Value of Even Numbers That Are Divisible by ThreeLeetcode Link My Solu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 2023&#x2F;10">
+<meta property="og:url" content="http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/index.html">
+<meta property="og:site_name" content="Aura&#39;s Space">
+<meta property="og:description" content="Week12413. Smallest Even MultipleLeetcode Link My Solution 2409. Count Days Spent TogetherLeetcode Link My Solution 2455. Average Value of Even Numbers That Are Divisible by ThreeLeetcode Link My Solu">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-15T13:39:38.000Z">
+<meta property="article:modified_time" content="2024-05-09T08:28:34.000Z">
+<meta property="article:author" content="Aura">
+<meta property="article:tag" content="Aura&#39;s Space">
+<meta name="twitter:card" content="summary">
     
-    <title>
+    
+      
         
-            LeetCode 2023/10 |
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
-        Aura Space
-    </title>
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>LeetCode 2023/10</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/logo.svg">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {}
-    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#f39c12","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.svg","font_size":null,"font_family":"Roboto","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep learning,|| Keep Coding.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"center","copyright_info":false},"version":"3.6.1"}
-    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
-    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
-    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
-  </script>
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
 <meta name="generator" content="Hexo 6.3.0"></head>
 
-
-<body>
-<div class="progress-bar-container">
+<body class="max-width mx-auto px3 ltr">
     
-
-    
-</div>
-
-
-    <main class="page-container">
-
-        
-
-                    <div class="page-main-content">
-
-                        <div class="page-main-content-top">
-                            
-<header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
-            
-                <a class="logo-image" href="/">
-                    <img src="/images/logo.svg">
-                </a>
-            
-            <a class="logo-title" href="/">
-               Aura Space
-            </a>
-        </div>
-
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
-                                HOME
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                ARCHIVES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                ABOUT
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">HOME</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">ARCHIVES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">ABOUT</a>
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-                        </div>
-
-                        <div class="page-main-content-middle">
-
-                            <div class="main-content">
-
-                                
-                                                    <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
-
-            <div class="article-title">
-                <span class="title-hover-animation">LeetCode 2023/10</span>
-            </div>
-
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="/images/avatar.svg">
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">Aura</span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            
-<div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        
-            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
-        
-        <span class="pc">2023-10-15 21:39:38</span>
-        <span class="mobile">2023-10-15 21:39</span>
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
     </span>
-    
-        <span class="article-update-date article-meta-item">
-        <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2024-05-09 16:28:34</span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/11/05/LeetCode/LeetCode-2023-11/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/09/12/LeetCode/LeetCode-2023-09/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/LeetCode/">LeetCode</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&text=LeetCode 2023/10"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&title=LeetCode 2023/10"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&is_video=false&description=LeetCode 2023/10"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LeetCode 2023/10&body=Check out this article: http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&title=LeetCode 2023/10"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&title=LeetCode 2023/10"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&title=LeetCode 2023/10"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&title=LeetCode 2023/10"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&name=LeetCode 2023/10&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&t=LeetCode 2023/10"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
     
     
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Week1"><span class="toc-number">1.</span> <span class="toc-text">Week1</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2413-Smallest-Even-Multiple"><span class="toc-number">1.0.0.0.1.</span> <span class="toc-text">2413. Smallest Even Multiple</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2409-Count-Days-Spent-Together"><span class="toc-number">1.0.0.0.2.</span> <span class="toc-text">2409. Count Days Spent Together</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2455-Average-Value-of-Even-Numbers-That-Are-Divisible-by-Three"><span class="toc-number">1.0.0.0.3.</span> <span class="toc-text">2455. Average Value of Even Numbers That Are Divisible by Three</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2485-Find-the-Pivot-Integer"><span class="toc-number">1.0.0.0.4.</span> <span class="toc-text">2485. Find the Pivot Integer</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2465-Number-of-Distinct-Averages"><span class="toc-number">1.0.0.0.5.</span> <span class="toc-text">2465. Number of Distinct Averages</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2264-Largest-3-Same-Digit-Number-in-String"><span class="toc-number">1.0.0.0.6.</span> <span class="toc-text">2264. Largest 3-Same-Digit Number in String</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2367-Number-of-Arithmetic-Triplets"><span class="toc-number">1.0.0.0.7.</span> <span class="toc-text">2367. Number of Arithmetic Triplets</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2395-Find-Subarrays-With-Equal-Sum"><span class="toc-number">1.0.0.0.8.</span> <span class="toc-text">2395. Find Subarrays With Equal Sum</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2605-Form-Smallest-Number-From-Two-Digit-Arrays"><span class="toc-number">1.0.0.0.9.</span> <span class="toc-text">2605. Form Smallest Number From Two Digit Arrays</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2843-Count-Symmetric-Integers"><span class="toc-number">1.0.0.0.10.</span> <span class="toc-text">2843. Count Symmetric Integers</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#50-pow-x-n"><span class="toc-number">1.0.0.0.11.</span> <span class="toc-text">50. pow(x, n)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#260-Single-Number-III"><span class="toc-number">1.0.0.0.12.</span> <span class="toc-text">260. Single Number III</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#309-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown"><span class="toc-number">1.0.0.0.13.</span> <span class="toc-text">309. Best Time to Buy and Sell Stock with Cooldown</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2873-Maximum-Value-of-an-Ordered-Triplet-I"><span class="toc-number">1.0.0.0.14.</span> <span class="toc-text">2873. Maximum Value of an Ordered Triplet I</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2875-Minimum-Size-Subarray-in-Infinite-Array"><span class="toc-number">1.0.0.0.15.</span> <span class="toc-text">2875. Minimum Size Subarray in Infinite Array</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2894-Divisible-and-Non-divisible-Sums-Difference"><span class="toc-number">1.0.0.0.16.</span> <span class="toc-text">2894. Divisible and Non-divisible Sums Difference</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2895-Minimum-Processing-Time"><span class="toc-number">1.0.0.0.17.</span> <span class="toc-text">2895. Minimum Processing Time</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Week2"><span class="toc-number">2.</span> <span class="toc-text">Week2</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2469-Convert-the-Temperature"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">2469. Convert the Temperature</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2432-The-Employee-That-Worked-on-the-Longest-Task"><span class="toc-number">2.0.0.0.2.</span> <span class="toc-text">2432. The Employee That Worked on the Longest Task</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2578-Split-With-Minimum-Sum"><span class="toc-number">2.0.0.0.3.</span> <span class="toc-text">2578. Split With Minimum Sum</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2481-Minimum-Cuts-to-Divide-a-Circle"><span class="toc-number">2.0.0.0.4.</span> <span class="toc-text">2481. Minimum Cuts to Divide a Circle</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2639-Find-the-Width-of-Columns-of-a-Grid"><span class="toc-number">2.0.0.0.5.</span> <span class="toc-text">2639. Find the Width of Columns of a Grid</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1093-Statistics-from-a-Large-Sample"><span class="toc-number">2.0.0.0.6.</span> <span class="toc-text">1093. Statistics from a Large Sample</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2903-Find-Indices-With-Index-and-Value-Difference-I"><span class="toc-number">2.0.0.0.7.</span> <span class="toc-text">2903. Find Indices With Index and Value Difference I</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2904-Shortest-and-Lexicographically-Smallest-Beautiful-String"><span class="toc-number">2.0.0.0.8.</span> <span class="toc-text">2904. Shortest and Lexicographically Smallest Beautiful String</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2905-Find-Indices-With-Index-and-Value-Difference-II"><span class="toc-number">2.0.0.0.9.</span> <span class="toc-text">2905. Find Indices With Index and Value Difference II</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2906-Construct-Product-Matrix"><span class="toc-number">2.0.0.0.10.</span> <span class="toc-text">2906. Construct Product Matrix</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Week3"><span class="toc-number">3.</span> <span class="toc-text">Week3</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2000-Reverse-Prefix-of-Word"><span class="toc-number">3.0.0.0.1.</span> <span class="toc-text">2000. Reverse Prefix of Word</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2287-Rearrange-Characters-to-Make-Target-String"><span class="toc-number">3.0.0.0.2.</span> <span class="toc-text">2287. Rearrange Characters to Make Target String</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1848-Minimum-Distance-to-the-Target-Element"><span class="toc-number">3.0.0.0.3.</span> <span class="toc-text">1848. Minimum Distance to the Target Element</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2562-Find-the-Array-Concatenation-Value"><span class="toc-number">3.0.0.0.4.</span> <span class="toc-text">2562. Find the Array Concatenation Value</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2108-Find-First-Palindromic-String-in-the-Array"><span class="toc-number">3.0.0.0.5.</span> <span class="toc-text">2108. Find First Palindromic String in the Array</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1315-Sum-of-Nodes-with-Even-Valued-Grandparent"><span class="toc-number">3.0.0.0.6.</span> <span class="toc-text">1315. Sum of Nodes with Even-Valued Grandparent</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2908-Minimum-Sum-of-Mountain-Triplets-I"><span class="toc-number">3.0.0.0.7.</span> <span class="toc-text">2908. Minimum Sum of Mountain Triplets I</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2909-Minimum-Sum-of-Mountain-Triplets-II"><span class="toc-number">3.0.0.0.8.</span> <span class="toc-text">2909. Minimum Sum of Mountain Triplets II</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+      </div>
     
-    
+  </span>
 </div>
 
-                        </div>
-                    </div>
-                </div>
-            
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        LeetCode 2023/10
+    </h1>
 
-            <div class="article-content keep-markdown-body">
-                
 
-                <h1 id="Week1"><a href="#Week1" class="headerlink" title="Week1"></a>Week1</h1><h5 id="2413-Smallest-Even-Multiple"><a href="#2413-Smallest-Even-Multiple" class="headerlink" title="2413. Smallest Even Multiple"></a>2413. Smallest Even Multiple</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/smallest-even-multiple/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2413" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2409-Count-Days-Spent-Together"><a href="#2409-Count-Days-Spent-Together" class="headerlink" title="2409. Count Days Spent Together"></a>2409. Count Days Spent Together</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-days-spent-together/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2409" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2455-Average-Value-of-Even-Numbers-That-Are-Divisible-by-Three"><a href="#2455-Average-Value-of-Even-Numbers-That-Are-Divisible-by-Three" class="headerlink" title="2455. Average Value of Even Numbers That Are Divisible by Three"></a>2455. Average Value of Even Numbers That Are Divisible by Three</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/average-value-of-even-numbers-that-are-divisible-by-three/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2455" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2485-Find-the-Pivot-Integer"><a href="#2485-Find-the-Pivot-Integer" class="headerlink" title="2485. Find the Pivot Integer"></a>2485. Find the Pivot Integer</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-pivot-integer/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2485" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2465-Number-of-Distinct-Averages"><a href="#2465-Number-of-Distinct-Averages" class="headerlink" title="2465. Number of Distinct Averages"></a>2465. Number of Distinct Averages</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-distinct-averages/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2465" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2264-Largest-3-Same-Digit-Number-in-String"><a href="#2264-Largest-3-Same-Digit-Number-in-String" class="headerlink" title="2264. Largest 3-Same-Digit Number in String"></a>2264. Largest 3-Same-Digit Number in String</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-3-same-digit-number-in-string/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2264" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2367-Number-of-Arithmetic-Triplets"><a href="#2367-Number-of-Arithmetic-Triplets" class="headerlink" title="2367. Number of Arithmetic Triplets"></a>2367. Number of Arithmetic Triplets</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-arithmetic-triplets/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2367" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2395-Find-Subarrays-With-Equal-Sum"><a href="#2395-Find-Subarrays-With-Equal-Sum" class="headerlink" title="2395. Find Subarrays With Equal Sum"></a>2395. Find Subarrays With Equal Sum</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-subarrays-with-equal-sum/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2395" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2605-Form-Smallest-Number-From-Two-Digit-Arrays"><a href="#2605-Form-Smallest-Number-From-Two-Digit-Arrays" class="headerlink" title="2605. Form Smallest Number From Two Digit Arrays"></a>2605. Form Smallest Number From Two Digit Arrays</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/form-smallest-number-from-two-digit-arrays/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2605" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2843-Count-Symmetric-Integers"><a href="#2843-Count-Symmetric-Integers" class="headerlink" title="2843. Count Symmetric Integers"></a>2843. Count Symmetric Integers</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-symmetric-integers/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2843" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="50-pow-x-n"><a href="#50-pow-x-n" class="headerlink" title="50. pow(x, n)"></a>50. pow(x, n)</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/powx-n/description/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/50" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="260-Single-Number-III"><a href="#260-Single-Number-III" class="headerlink" title="260. Single Number III"></a>260. Single Number III</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/single-number-iii/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/260" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="309-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown"><a href="#309-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown" class="headerlink" title="309. Best Time to Buy and Sell Stock with Cooldown"></a>309. Best Time to Buy and Sell Stock with Cooldown</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/309" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2873-Maximum-Value-of-an-Ordered-Triplet-I"><a href="#2873-Maximum-Value-of-an-Ordered-Triplet-I" class="headerlink" title="2873. Maximum Value of an Ordered Triplet I"></a>2873. Maximum Value of an Ordered Triplet I</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-value-of-an-ordered-triplet-i/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2873" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2875-Minimum-Size-Subarray-in-Infinite-Array"><a href="#2875-Minimum-Size-Subarray-in-Infinite-Array" class="headerlink" title="2875. Minimum Size Subarray in Infinite Array"></a>2875. Minimum Size Subarray in Infinite Array</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-size-subarray-in-infinite-array/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2875" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2894-Divisible-and-Non-divisible-Sums-Difference"><a href="#2894-Divisible-and-Non-divisible-Sums-Difference" class="headerlink" title="2894. Divisible and Non-divisible Sums Difference"></a>2894. Divisible and Non-divisible Sums Difference</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/divisible-and-non-divisible-sums-difference/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2894" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2895-Minimum-Processing-Time"><a href="#2895-Minimum-Processing-Time" class="headerlink" title="2895. Minimum Processing Time"></a>2895. Minimum Processing Time</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-processing-time/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2895" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h1 id="Week2"><a href="#Week2" class="headerlink" title="Week2"></a>Week2</h1><h5 id="2469-Convert-the-Temperature"><a href="#2469-Convert-the-Temperature" class="headerlink" title="2469. Convert the Temperature"></a>2469. Convert the Temperature</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-the-temperature/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2469" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2432-The-Employee-That-Worked-on-the-Longest-Task"><a href="#2432-The-Employee-That-Worked-on-the-Longest-Task" class="headerlink" title="2432. The Employee That Worked on the Longest Task"></a>2432. The Employee That Worked on the Longest Task</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/the-employee-that-worked-on-the-longest-task/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2432" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2578-Split-With-Minimum-Sum"><a href="#2578-Split-With-Minimum-Sum" class="headerlink" title="2578. Split With Minimum Sum"></a>2578. Split With Minimum Sum</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/split-with-minimum-sum/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2578" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2481-Minimum-Cuts-to-Divide-a-Circle"><a href="#2481-Minimum-Cuts-to-Divide-a-Circle" class="headerlink" title="2481. Minimum Cuts to Divide a Circle"></a>2481. Minimum Cuts to Divide a Circle</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-cuts-to-divide-a-circle/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2481" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2639-Find-the-Width-of-Columns-of-a-Grid"><a href="#2639-Find-the-Width-of-Columns-of-a-Grid" class="headerlink" title="2639. Find the Width of Columns of a Grid"></a>2639. Find the Width of Columns of a Grid</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-width-of-columns-of-a-grid/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2639" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="1093-Statistics-from-a-Large-Sample"><a href="#1093-Statistics-from-a-Large-Sample" class="headerlink" title="1093. Statistics from a Large Sample"></a>1093. Statistics from a Large Sample</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/statistics-from-a-large-sample/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/1093" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2903-Find-Indices-With-Index-and-Value-Difference-I"><a href="#2903-Find-Indices-With-Index-and-Value-Difference-I" class="headerlink" title="2903. Find Indices With Index and Value Difference I"></a>2903. Find Indices With Index and Value Difference I</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2903" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2904-Shortest-and-Lexicographically-Smallest-Beautiful-String"><a href="#2904-Shortest-and-Lexicographically-Smallest-Beautiful-String" class="headerlink" title="2904. Shortest and Lexicographically Smallest Beautiful String"></a>2904. Shortest and Lexicographically Smallest Beautiful String</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/shortest-and-lexicographically-smallest-beautiful-string/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2904" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2905-Find-Indices-With-Index-and-Value-Difference-II"><a href="#2905-Find-Indices-With-Index-and-Value-Difference-II" class="headerlink" title="2905. Find Indices With Index and Value Difference II"></a>2905. Find Indices With Index and Value Difference II</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-indices-with-index-and-value-difference-ii/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2905" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2906-Construct-Product-Matrix"><a href="#2906-Construct-Product-Matrix" class="headerlink" title="2906. Construct Product Matrix"></a>2906. Construct Product Matrix</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/construct-product-matrix/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2906" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h1 id="Week3"><a href="#Week3" class="headerlink" title="Week3"></a>Week3</h1><h5 id="2000-Reverse-Prefix-of-Word"><a href="#2000-Reverse-Prefix-of-Word" class="headerlink" title="2000. Reverse Prefix of Word"></a>2000. Reverse Prefix of Word</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-prefix-of-word/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2000" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2287-Rearrange-Characters-to-Make-Target-String"><a href="#2287-Rearrange-Characters-to-Make-Target-String" class="headerlink" title="2287. Rearrange Characters to Make Target String"></a>2287. Rearrange Characters to Make Target String</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/rearrange-characters-to-make-target-string/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2287" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="1848-Minimum-Distance-to-the-Target-Element"><a href="#1848-Minimum-Distance-to-the-Target-Element" class="headerlink" title="1848. Minimum Distance to the Target Element"></a>1848. Minimum Distance to the Target Element</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-distance-to-the-target-element/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/1848" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2562-Find-the-Array-Concatenation-Value"><a href="#2562-Find-the-Array-Concatenation-Value" class="headerlink" title="2562. Find the Array Concatenation Value"></a>2562. Find the Array Concatenation Value</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-array-concatenation-value/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2562" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2108-Find-First-Palindromic-String-in-the-Array"><a href="#2108-Find-First-Palindromic-String-in-the-Array" class="headerlink" title="2108. Find First Palindromic String in the Array"></a>2108. Find First Palindromic String in the Array</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-first-palindromic-string-in-the-array/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2108" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="1315-Sum-of-Nodes-with-Even-Valued-Grandparent"><a href="#1315-Sum-of-Nodes-with-Even-Valued-Grandparent" class="headerlink" title="1315. Sum of Nodes with Even-Valued Grandparent"></a>1315. Sum of Nodes with Even-Valued Grandparent</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/1315" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2908-Minimum-Sum-of-Mountain-Triplets-I"><a href="#2908-Minimum-Sum-of-Mountain-Triplets-I" class="headerlink" title="2908. Minimum Sum of Mountain Triplets I"></a>2908. Minimum Sum of Mountain Triplets I</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-sum-of-mountain-triplets-i/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2908" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
-<h5 id="2909-Minimum-Sum-of-Mountain-Triplets-II"><a href="#2909-Minimum-Sum-of-Mountain-Triplets-II" class="headerlink" title="2909. Minimum Sum of Mountain Triplets II"></a>2909. Minimum Sum of Mountain Triplets II</h5><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-sum-of-mountain-triplets-ii/description/" >Leetcode Link<i class="fas fa-external-link-alt"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2909" >My Solution<i class="fas fa-external-link-alt"></i></a></p>
 
-            </div>
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Aura</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-10-15T13:39:38.000Z" class="dt-published" itemprop="datePublished">2023-10-15</time>
+        
+      
+    </div>
 
-            
 
-            
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/LeetCode/">LeetCode</a>
+    </div>
 
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                               rel="prev"
-                               href="/2023/11/05/LeetCode/LeetCode-2023-11/"
-                            >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                                <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode 2023/11</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                               rel="next"
-                               href="/2023/09/12/LeetCode/LeetCode-2023-09/"
-                            >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">LeetCode 2023/09</span>
-                                <span class="post-nav-item">Next posts</span>
-                            </span>
-                                <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
 
-            
-        </div>
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="Week1"><a href="#Week1" class="headerlink" title="Week1"></a>Week1</h1><h5 id="2413-Smallest-Even-Multiple"><a href="#2413-Smallest-Even-Multiple" class="headerlink" title="2413. Smallest Even Multiple"></a>2413. Smallest Even Multiple</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/smallest-even-multiple/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2413">My Solution</a></p>
+<h5 id="2409-Count-Days-Spent-Together"><a href="#2409-Count-Days-Spent-Together" class="headerlink" title="2409. Count Days Spent Together"></a>2409. Count Days Spent Together</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/count-days-spent-together/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2409">My Solution</a></p>
+<h5 id="2455-Average-Value-of-Even-Numbers-That-Are-Divisible-by-Three"><a href="#2455-Average-Value-of-Even-Numbers-That-Are-Divisible-by-Three" class="headerlink" title="2455. Average Value of Even Numbers That Are Divisible by Three"></a>2455. Average Value of Even Numbers That Are Divisible by Three</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/average-value-of-even-numbers-that-are-divisible-by-three/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2455">My Solution</a></p>
+<h5 id="2485-Find-the-Pivot-Integer"><a href="#2485-Find-the-Pivot-Integer" class="headerlink" title="2485. Find the Pivot Integer"></a>2485. Find the Pivot Integer</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-pivot-integer/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2485">My Solution</a></p>
+<h5 id="2465-Number-of-Distinct-Averages"><a href="#2465-Number-of-Distinct-Averages" class="headerlink" title="2465. Number of Distinct Averages"></a>2465. Number of Distinct Averages</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-distinct-averages/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2465">My Solution</a></p>
+<h5 id="2264-Largest-3-Same-Digit-Number-in-String"><a href="#2264-Largest-3-Same-Digit-Number-in-String" class="headerlink" title="2264. Largest 3-Same-Digit Number in String"></a>2264. Largest 3-Same-Digit Number in String</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-3-same-digit-number-in-string/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2264">My Solution</a></p>
+<h5 id="2367-Number-of-Arithmetic-Triplets"><a href="#2367-Number-of-Arithmetic-Triplets" class="headerlink" title="2367. Number of Arithmetic Triplets"></a>2367. Number of Arithmetic Triplets</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-arithmetic-triplets/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2367">My Solution</a></p>
+<h5 id="2395-Find-Subarrays-With-Equal-Sum"><a href="#2395-Find-Subarrays-With-Equal-Sum" class="headerlink" title="2395. Find Subarrays With Equal Sum"></a>2395. Find Subarrays With Equal Sum</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-subarrays-with-equal-sum/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2395">My Solution</a></p>
+<h5 id="2605-Form-Smallest-Number-From-Two-Digit-Arrays"><a href="#2605-Form-Smallest-Number-From-Two-Digit-Arrays" class="headerlink" title="2605. Form Smallest Number From Two Digit Arrays"></a>2605. Form Smallest Number From Two Digit Arrays</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/form-smallest-number-from-two-digit-arrays/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2605">My Solution</a></p>
+<h5 id="2843-Count-Symmetric-Integers"><a href="#2843-Count-Symmetric-Integers" class="headerlink" title="2843. Count Symmetric Integers"></a>2843. Count Symmetric Integers</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/count-symmetric-integers/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2843">My Solution</a></p>
+<h5 id="50-pow-x-n"><a href="#50-pow-x-n" class="headerlink" title="50. pow(x, n)"></a>50. pow(x, n)</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/powx-n/description/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/50">My Solution</a></p>
+<h5 id="260-Single-Number-III"><a href="#260-Single-Number-III" class="headerlink" title="260. Single Number III"></a>260. Single Number III</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/single-number-iii/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/260">My Solution</a></p>
+<h5 id="309-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown"><a href="#309-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown" class="headerlink" title="309. Best Time to Buy and Sell Stock with Cooldown"></a>309. Best Time to Buy and Sell Stock with Cooldown</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/309">My Solution</a></p>
+<h5 id="2873-Maximum-Value-of-an-Ordered-Triplet-I"><a href="#2873-Maximum-Value-of-an-Ordered-Triplet-I" class="headerlink" title="2873. Maximum Value of an Ordered Triplet I"></a>2873. Maximum Value of an Ordered Triplet I</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-value-of-an-ordered-triplet-i/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2873">My Solution</a></p>
+<h5 id="2875-Minimum-Size-Subarray-in-Infinite-Array"><a href="#2875-Minimum-Size-Subarray-in-Infinite-Array" class="headerlink" title="2875. Minimum Size Subarray in Infinite Array"></a>2875. Minimum Size Subarray in Infinite Array</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-size-subarray-in-infinite-array/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2875">My Solution</a></p>
+<h5 id="2894-Divisible-and-Non-divisible-Sums-Difference"><a href="#2894-Divisible-and-Non-divisible-Sums-Difference" class="headerlink" title="2894. Divisible and Non-divisible Sums Difference"></a>2894. Divisible and Non-divisible Sums Difference</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/divisible-and-non-divisible-sums-difference/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2894">My Solution</a></p>
+<h5 id="2895-Minimum-Processing-Time"><a href="#2895-Minimum-Processing-Time" class="headerlink" title="2895. Minimum Processing Time"></a>2895. Minimum Processing Time</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-processing-time/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2895">My Solution</a></p>
+<h1 id="Week2"><a href="#Week2" class="headerlink" title="Week2"></a>Week2</h1><h5 id="2469-Convert-the-Temperature"><a href="#2469-Convert-the-Temperature" class="headerlink" title="2469. Convert the Temperature"></a>2469. Convert the Temperature</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-the-temperature/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2469">My Solution</a></p>
+<h5 id="2432-The-Employee-That-Worked-on-the-Longest-Task"><a href="#2432-The-Employee-That-Worked-on-the-Longest-Task" class="headerlink" title="2432. The Employee That Worked on the Longest Task"></a>2432. The Employee That Worked on the Longest Task</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/the-employee-that-worked-on-the-longest-task/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2432">My Solution</a></p>
+<h5 id="2578-Split-With-Minimum-Sum"><a href="#2578-Split-With-Minimum-Sum" class="headerlink" title="2578. Split With Minimum Sum"></a>2578. Split With Minimum Sum</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/split-with-minimum-sum/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2578">My Solution</a></p>
+<h5 id="2481-Minimum-Cuts-to-Divide-a-Circle"><a href="#2481-Minimum-Cuts-to-Divide-a-Circle" class="headerlink" title="2481. Minimum Cuts to Divide a Circle"></a>2481. Minimum Cuts to Divide a Circle</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-cuts-to-divide-a-circle/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2481">My Solution</a></p>
+<h5 id="2639-Find-the-Width-of-Columns-of-a-Grid"><a href="#2639-Find-the-Width-of-Columns-of-a-Grid" class="headerlink" title="2639. Find the Width of Columns of a Grid"></a>2639. Find the Width of Columns of a Grid</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-width-of-columns-of-a-grid/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2639">My Solution</a></p>
+<h5 id="1093-Statistics-from-a-Large-Sample"><a href="#1093-Statistics-from-a-Large-Sample" class="headerlink" title="1093. Statistics from a Large Sample"></a>1093. Statistics from a Large Sample</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/statistics-from-a-large-sample/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/1093">My Solution</a></p>
+<h5 id="2903-Find-Indices-With-Index-and-Value-Difference-I"><a href="#2903-Find-Indices-With-Index-and-Value-Difference-I" class="headerlink" title="2903. Find Indices With Index and Value Difference I"></a>2903. Find Indices With Index and Value Difference I</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2903">My Solution</a></p>
+<h5 id="2904-Shortest-and-Lexicographically-Smallest-Beautiful-String"><a href="#2904-Shortest-and-Lexicographically-Smallest-Beautiful-String" class="headerlink" title="2904. Shortest and Lexicographically Smallest Beautiful String"></a>2904. Shortest and Lexicographically Smallest Beautiful String</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/shortest-and-lexicographically-smallest-beautiful-string/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2904">My Solution</a></p>
+<h5 id="2905-Find-Indices-With-Index-and-Value-Difference-II"><a href="#2905-Find-Indices-With-Index-and-Value-Difference-II" class="headerlink" title="2905. Find Indices With Index and Value Difference II"></a>2905. Find Indices With Index and Value Difference II</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-indices-with-index-and-value-difference-ii/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2905">My Solution</a></p>
+<h5 id="2906-Construct-Product-Matrix"><a href="#2906-Construct-Product-Matrix" class="headerlink" title="2906. Construct Product Matrix"></a>2906. Construct Product Matrix</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/construct-product-matrix/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2906">My Solution</a></p>
+<h1 id="Week3"><a href="#Week3" class="headerlink" title="Week3"></a>Week3</h1><h5 id="2000-Reverse-Prefix-of-Word"><a href="#2000-Reverse-Prefix-of-Word" class="headerlink" title="2000. Reverse Prefix of Word"></a>2000. Reverse Prefix of Word</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-prefix-of-word/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2000">My Solution</a></p>
+<h5 id="2287-Rearrange-Characters-to-Make-Target-String"><a href="#2287-Rearrange-Characters-to-Make-Target-String" class="headerlink" title="2287. Rearrange Characters to Make Target String"></a>2287. Rearrange Characters to Make Target String</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/rearrange-characters-to-make-target-string/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2287">My Solution</a></p>
+<h5 id="1848-Minimum-Distance-to-the-Target-Element"><a href="#1848-Minimum-Distance-to-the-Target-Element" class="headerlink" title="1848. Minimum Distance to the Target Element"></a>1848. Minimum Distance to the Target Element</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-distance-to-the-target-element/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/1848">My Solution</a></p>
+<h5 id="2562-Find-the-Array-Concatenation-Value"><a href="#2562-Find-the-Array-Concatenation-Value" class="headerlink" title="2562. Find the Array Concatenation Value"></a>2562. Find the Array Concatenation Value</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-array-concatenation-value/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2562">My Solution</a></p>
+<h5 id="2108-Find-First-Palindromic-String-in-the-Array"><a href="#2108-Find-First-Palindromic-String-in-the-Array" class="headerlink" title="2108. Find First Palindromic String in the Array"></a>2108. Find First Palindromic String in the Array</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-first-palindromic-string-in-the-array/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2108">My Solution</a></p>
+<h5 id="1315-Sum-of-Nodes-with-Even-Valued-Grandparent"><a href="#1315-Sum-of-Nodes-with-Even-Valued-Grandparent" class="headerlink" title="1315. Sum of Nodes with Even-Valued Grandparent"></a>1315. Sum of Nodes with Even-Valued Grandparent</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/1315">My Solution</a></p>
+<h5 id="2908-Minimum-Sum-of-Mountain-Triplets-I"><a href="#2908-Minimum-Sum-of-Mountain-Triplets-I" class="headerlink" title="2908. Minimum Sum of Mountain Triplets I"></a>2908. Minimum Sum of Mountain Triplets I</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-sum-of-mountain-triplets-i/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2908">My Solution</a></p>
+<h5 id="2909-Minimum-Sum-of-Mountain-Triplets-II"><a href="#2909-Minimum-Sum-of-Mountain-Triplets-II" class="headerlink" title="2909. Minimum Sum of Mountain Triplets II"></a>2909. Minimum Sum of Mountain Triplets II</h5><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-sum-of-mountain-triplets-ii/description/">Leetcode Link</a> <a target="_blank" rel="noopener" href="https://aura.codex.tw/leetcode/code/2909">My Solution</a></p>
+
+  </div>
+</article>
+
+
 
         
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Week1"><span class="nav-text">Week1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2413-Smallest-Even-Multiple"><span class="nav-text">2413. Smallest Even Multiple</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2409-Count-Days-Spent-Together"><span class="nav-text">2409. Count Days Spent Together</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2455-Average-Value-of-Even-Numbers-That-Are-Divisible-by-Three"><span class="nav-text">2455. Average Value of Even Numbers That Are Divisible by Three</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2485-Find-the-Pivot-Integer"><span class="nav-text">2485. Find the Pivot Integer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2465-Number-of-Distinct-Averages"><span class="nav-text">2465. Number of Distinct Averages</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2264-Largest-3-Same-Digit-Number-in-String"><span class="nav-text">2264. Largest 3-Same-Digit Number in String</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2367-Number-of-Arithmetic-Triplets"><span class="nav-text">2367. Number of Arithmetic Triplets</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2395-Find-Subarrays-With-Equal-Sum"><span class="nav-text">2395. Find Subarrays With Equal Sum</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2605-Form-Smallest-Number-From-Two-Digit-Arrays"><span class="nav-text">2605. Form Smallest Number From Two Digit Arrays</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2843-Count-Symmetric-Integers"><span class="nav-text">2843. Count Symmetric Integers</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#50-pow-x-n"><span class="nav-text">50. pow(x, n)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#260-Single-Number-III"><span class="nav-text">260. Single Number III</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#309-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown"><span class="nav-text">309. Best Time to Buy and Sell Stock with Cooldown</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2873-Maximum-Value-of-an-Ordered-Triplet-I"><span class="nav-text">2873. Maximum Value of an Ordered Triplet I</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2875-Minimum-Size-Subarray-in-Infinite-Array"><span class="nav-text">2875. Minimum Size Subarray in Infinite Array</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2894-Divisible-and-Non-divisible-Sums-Difference"><span class="nav-text">2894. Divisible and Non-divisible Sums Difference</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2895-Minimum-Processing-Time"><span class="nav-text">2895. Minimum Processing Time</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week2"><span class="nav-text">Week2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2469-Convert-the-Temperature"><span class="nav-text">2469. Convert the Temperature</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2432-The-Employee-That-Worked-on-the-Longest-Task"><span class="nav-text">2432. The Employee That Worked on the Longest Task</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2578-Split-With-Minimum-Sum"><span class="nav-text">2578. Split With Minimum Sum</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2481-Minimum-Cuts-to-Divide-a-Circle"><span class="nav-text">2481. Minimum Cuts to Divide a Circle</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2639-Find-the-Width-of-Columns-of-a-Grid"><span class="nav-text">2639. Find the Width of Columns of a Grid</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1093-Statistics-from-a-Large-Sample"><span class="nav-text">1093. Statistics from a Large Sample</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2903-Find-Indices-With-Index-and-Value-Difference-I"><span class="nav-text">2903. Find Indices With Index and Value Difference I</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2904-Shortest-and-Lexicographically-Smallest-Beautiful-String"><span class="nav-text">2904. Shortest and Lexicographically Smallest Beautiful String</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2905-Find-Indices-With-Index-and-Value-Difference-II"><span class="nav-text">2905. Find Indices With Index and Value Difference II</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2906-Construct-Product-Matrix"><span class="nav-text">2906. Construct Product Matrix</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week3"><span class="nav-text">Week3</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2000-Reverse-Prefix-of-Word"><span class="nav-text">2000. Reverse Prefix of Word</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2287-Rearrange-Characters-to-Make-Target-String"><span class="nav-text">2287. Rearrange Characters to Make Target String</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1848-Minimum-Distance-to-the-Target-Element"><span class="nav-text">1848. Minimum Distance to the Target Element</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2562-Find-the-Array-Concatenation-Value"><span class="nav-text">2562. Find the Array Concatenation Value</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2108-Find-First-Palindromic-String-in-the-Array"><span class="nav-text">2108. Find First Palindromic String in the Array</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1315-Sum-of-Nodes-with-Even-Valued-Grandparent"><span class="nav-text">1315. Sum of Nodes with Even-Valued Grandparent</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2908-Minimum-Sum-of-Mountain-Triplets-I"><span class="nav-text">2908. Minimum Sum of Mountain Triplets I</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2909-Minimum-Sum-of-Mountain-Triplets-II"><span class="nav-text">2909. Minimum Sum of Mountain Triplets II</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
     </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Week1"><span class="toc-number">1.</span> <span class="toc-text">Week1</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2413-Smallest-Even-Multiple"><span class="toc-number">1.0.0.0.1.</span> <span class="toc-text">2413. Smallest Even Multiple</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2409-Count-Days-Spent-Together"><span class="toc-number">1.0.0.0.2.</span> <span class="toc-text">2409. Count Days Spent Together</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2455-Average-Value-of-Even-Numbers-That-Are-Divisible-by-Three"><span class="toc-number">1.0.0.0.3.</span> <span class="toc-text">2455. Average Value of Even Numbers That Are Divisible by Three</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2485-Find-the-Pivot-Integer"><span class="toc-number">1.0.0.0.4.</span> <span class="toc-text">2485. Find the Pivot Integer</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2465-Number-of-Distinct-Averages"><span class="toc-number">1.0.0.0.5.</span> <span class="toc-text">2465. Number of Distinct Averages</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2264-Largest-3-Same-Digit-Number-in-String"><span class="toc-number">1.0.0.0.6.</span> <span class="toc-text">2264. Largest 3-Same-Digit Number in String</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2367-Number-of-Arithmetic-Triplets"><span class="toc-number">1.0.0.0.7.</span> <span class="toc-text">2367. Number of Arithmetic Triplets</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2395-Find-Subarrays-With-Equal-Sum"><span class="toc-number">1.0.0.0.8.</span> <span class="toc-text">2395. Find Subarrays With Equal Sum</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2605-Form-Smallest-Number-From-Two-Digit-Arrays"><span class="toc-number">1.0.0.0.9.</span> <span class="toc-text">2605. Form Smallest Number From Two Digit Arrays</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2843-Count-Symmetric-Integers"><span class="toc-number">1.0.0.0.10.</span> <span class="toc-text">2843. Count Symmetric Integers</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#50-pow-x-n"><span class="toc-number">1.0.0.0.11.</span> <span class="toc-text">50. pow(x, n)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#260-Single-Number-III"><span class="toc-number">1.0.0.0.12.</span> <span class="toc-text">260. Single Number III</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#309-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown"><span class="toc-number">1.0.0.0.13.</span> <span class="toc-text">309. Best Time to Buy and Sell Stock with Cooldown</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2873-Maximum-Value-of-an-Ordered-Triplet-I"><span class="toc-number">1.0.0.0.14.</span> <span class="toc-text">2873. Maximum Value of an Ordered Triplet I</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2875-Minimum-Size-Subarray-in-Infinite-Array"><span class="toc-number">1.0.0.0.15.</span> <span class="toc-text">2875. Minimum Size Subarray in Infinite Array</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2894-Divisible-and-Non-divisible-Sums-Difference"><span class="toc-number">1.0.0.0.16.</span> <span class="toc-text">2894. Divisible and Non-divisible Sums Difference</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2895-Minimum-Processing-Time"><span class="toc-number">1.0.0.0.17.</span> <span class="toc-text">2895. Minimum Processing Time</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Week2"><span class="toc-number">2.</span> <span class="toc-text">Week2</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2469-Convert-the-Temperature"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">2469. Convert the Temperature</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2432-The-Employee-That-Worked-on-the-Longest-Task"><span class="toc-number">2.0.0.0.2.</span> <span class="toc-text">2432. The Employee That Worked on the Longest Task</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2578-Split-With-Minimum-Sum"><span class="toc-number">2.0.0.0.3.</span> <span class="toc-text">2578. Split With Minimum Sum</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2481-Minimum-Cuts-to-Divide-a-Circle"><span class="toc-number">2.0.0.0.4.</span> <span class="toc-text">2481. Minimum Cuts to Divide a Circle</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2639-Find-the-Width-of-Columns-of-a-Grid"><span class="toc-number">2.0.0.0.5.</span> <span class="toc-text">2639. Find the Width of Columns of a Grid</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1093-Statistics-from-a-Large-Sample"><span class="toc-number">2.0.0.0.6.</span> <span class="toc-text">1093. Statistics from a Large Sample</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2903-Find-Indices-With-Index-and-Value-Difference-I"><span class="toc-number">2.0.0.0.7.</span> <span class="toc-text">2903. Find Indices With Index and Value Difference I</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2904-Shortest-and-Lexicographically-Smallest-Beautiful-String"><span class="toc-number">2.0.0.0.8.</span> <span class="toc-text">2904. Shortest and Lexicographically Smallest Beautiful String</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2905-Find-Indices-With-Index-and-Value-Difference-II"><span class="toc-number">2.0.0.0.9.</span> <span class="toc-text">2905. Find Indices With Index and Value Difference II</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2906-Construct-Product-Matrix"><span class="toc-number">2.0.0.0.10.</span> <span class="toc-text">2906. Construct Product Matrix</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Week3"><span class="toc-number">3.</span> <span class="toc-text">Week3</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2000-Reverse-Prefix-of-Word"><span class="toc-number">3.0.0.0.1.</span> <span class="toc-text">2000. Reverse Prefix of Word</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2287-Rearrange-Characters-to-Make-Target-String"><span class="toc-number">3.0.0.0.2.</span> <span class="toc-text">2287. Rearrange Characters to Make Target String</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1848-Minimum-Distance-to-the-Target-Element"><span class="toc-number">3.0.0.0.3.</span> <span class="toc-text">1848. Minimum Distance to the Target Element</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2562-Find-the-Array-Concatenation-Value"><span class="toc-number">3.0.0.0.4.</span> <span class="toc-text">2562. Find the Array Concatenation Value</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2108-Find-First-Palindromic-String-in-the-Array"><span class="toc-number">3.0.0.0.5.</span> <span class="toc-text">2108. Find First Palindromic String in the Array</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1315-Sum-of-Nodes-with-Even-Valued-Grandparent"><span class="toc-number">3.0.0.0.6.</span> <span class="toc-text">1315. Sum of Nodes with Even-Valued Grandparent</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2908-Minimum-Sum-of-Mountain-Triplets-I"><span class="toc-number">3.0.0.0.7.</span> <span class="toc-text">2908. Minimum Sum of Mountain Triplets I</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2909-Minimum-Sum-of-Mountain-Triplets-II"><span class="toc-number">3.0.0.0.8.</span> <span class="toc-text">2909. Minimum Sum of Mountain Triplets II</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&text=LeetCode 2023/10"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&title=LeetCode 2023/10"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&is_video=false&description=LeetCode 2023/10"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LeetCode 2023/10&body=Check out this article: http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&title=LeetCode 2023/10"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&title=LeetCode 2023/10"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&title=LeetCode 2023/10"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&title=LeetCode 2023/10"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&name=LeetCode 2023/10&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/10/15/LeetCode/LeetCode-2023-10/&t=LeetCode 2023/10"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
 </div>
 
-            </div>
         
-    </div>
-</div>
-
-
-                                                        
-                            </div>
-
-                        </div>
-
-                        <div class="page-main-content-bottom">
-                            
-<footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
-            
-                <span>2020</span> -
-            
-            2025
-            
-                <!-- &nbsp;<i class="fas fa-heart icon-animate"></i> -->
-                &nbsp;<a href="/">Aura</a>
-            
-        </div>
-        
-        <div class="theme-info info-item">
-            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>  
-        </div>
-        <!-- v3.6.1 -->
-        
-        
-    </div>
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2025
+    Aura
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
 </footer>
 
-                        </div>
-                    </div>
-
-                    
-                        <div class="post-tools">
-                            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="tools-item flex-center toggle-show-toc">
-                <i class="fas fa-list"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-    </ul>
-</div>
-
-                        </div>
-                        
-
-                            <div class="right-bottom-side-tools">
-                                <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
-
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-    </ul>
-</div>
-
-                            </div>
-
-                            <div class="zoom-in-image-mask">
-    <img class="zoom-in-image">
-</div>
-
-
-                                
-                                    <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fas fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="Search..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="close-popup-btn">
-                <i class="fas fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
     </div>
-</div>
-
-                                        
-
-    </main>
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+    <!-- styles -->
 
 
 
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
-
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
 
 
-<div class="post-scripts">
-    
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
-        
-            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
-        
-        
-            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
-        
-    
-</div>
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
 
 </body>
 </html>

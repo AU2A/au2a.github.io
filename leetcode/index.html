@@ -1,715 +1,571 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=en>
 <head>
+    <!-- so meta -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Aura&#39;s Space">
-    <meta name="description" content="A place to learn">
-    <meta name="author" content="Aura">
-    <style>
-        body{
-            -ms-overflow-style: none;  /* Internet Explorer 10+ */
-            scrollbar-width: none;  /* Firefox */
-        }
-        body::-webkit-scrollbar { 
-            display: none;  /* Safari and Chrome */
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="2024&#x2F;05 Week2 2487. Remove Nodes From Linked List 1004. Max Consecutive Ones III 933. Number of Recent Calls 104. Maximum Depth of Binary Tree 374. Guess Number Higher or Lower 452. Minimum Numbe">
+<meta property="og:type" content="website">
+<meta property="og:title" content="leetcode">
+<meta property="og:url" content="http://example.com/leetcode/index.html">
+<meta property="og:site_name" content="Aura&#39;s Space">
+<meta property="og:description" content="2024&#x2F;05 Week2 2487. Remove Nodes From Linked List 1004. Max Consecutive Ones III 933. Number of Recent Calls 104. Maximum Depth of Binary Tree 374. Guess Number Higher or Lower 452. Minimum Numbe">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-26T02:23:39.000Z">
+<meta property="article:modified_time" content="2024-05-12T06:18:22.000Z">
+<meta property="article:author" content="Aura">
+<meta property="article:tag" content="Aura&#39;s Space">
+<meta name="twitter:card" content="summary">
     
-    <title>
+    
+      
         
-            leetcode |
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
-        Aura Space
-    </title>
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>leetcode</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/logo.svg">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {}
-    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#f39c12","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.svg","font_size":null,"font_family":"Roboto","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep learning,|| Keep Coding.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"center","copyright_info":false},"version":"3.6.1"}
-    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
-    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
-    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
-  </script>
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
 <meta name="generator" content="Hexo 6.3.0"></head>
 
-
-<body>
-<div class="progress-bar-container">
+<body class="max-width mx-auto px3 ltr">
     
-
-    
-</div>
-
-
-    <main class="page-container">
-
+    <div class="content index py4 ">
         
-
-                    <div class="page-main-content">
-
-                        <div class="page-main-content-top">
-                            
-<header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
-            
-                <a class="logo-image" href="/">
-                    <img src="/images/logo.svg">
-                </a>
-            
-            <a class="logo-title" href="/">
-               Aura Space
-            </a>
-        </div>
-
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
-                                HOME
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                ARCHIVES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                ABOUT
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
+          <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/logo.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">Aura&#39;s Space</h1>
     </div>
-
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">HOME</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">ARCHIVES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">ABOUT</a>
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+   --><!--
+     --><li><a href="/about/">About</a></li><!--
+   --><!--
+     --><li><a href="/archives/">Writing</a></li><!--
+   -->
+    </ul>
+  </div>
 </header>
 
-
-                        </div>
-
-                        <div class="page-main-content-middle">
-
-                            <div class="main-content">
-
-                                
-                                                                                            
-<div class="fade-in-down-animation">
-    <div class="page-template-container">
         
-        
-        <div class="page-template-content keep-markdown-body">
-            
-                <h1 id="2024-x2F-05-Week2"><a href="#2024-x2F-05-Week2" class="headerlink" title="2024&#x2F;05 Week2"></a>2024&#x2F;05 Week2</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-nodes-from-linked-list/description/" >2487. Remove Nodes From Linked List<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/max-consecutive-ones-iii/description/" >1004. Max Consecutive Ones III<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-recent-calls/description/" >933. Number of Recent Calls<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-depth-of-binary-tree/description/" >104. Maximum Depth of Binary Tree<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/guess-number-higher-or-lower/description/" >374. Guess Number Higher or Lower<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/description/" >452. Minimum Number of Arrows to Burst Balloons<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/determine-if-two-strings-are-close/description/" >1657. Determine if Two Strings Are Close<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/double-a-number-represented-as-a-linked-list/description/" >2816. Double a Number Represented as a Linked List<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/relative-ranks/description/" >506. Relative Ranks<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximize-happiness-of-selected-children/description/" >3075. Maximize Happiness of Selected Children<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/k-th-smallest-prime-fraction/description/" >786. K-th Smallest Prime Fraction<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-cost-to-hire-k-workers/description/" >857. Minimum Cost to Hire K Workers<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/leaf-similar-trees/description/" >872. Leaf-Similar Trees<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/domino-and-tromino-tiling/description/" >790. Domino and Tromino Tiling<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-local-values-in-a-matrix/description/" >2373. Largest Local Values in a Matrix<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/permutation-difference-between-two-strings/description/" >3146. Permutation Difference between Two Strings<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/taking-maximum-energy-from-the-mystic-dungeon/description/" >3147. Taking Maximum Energy From the Mystic Dungeon<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-difference-score-in-a-grid/description/" >3148. Maximum Difference Score in a Grid<i class="fas fa-external-link-alt"></i></a></li>
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <h1 id="2024-x2F-05-Week2"><a href="#2024-x2F-05-Week2" class="headerlink" title="2024&#x2F;05 Week2"></a>2024&#x2F;05 Week2</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-nodes-from-linked-list/description/">2487. Remove Nodes From Linked List</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/max-consecutive-ones-iii/description/">1004. Max Consecutive Ones III</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-recent-calls/description/">933. Number of Recent Calls</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-depth-of-binary-tree/description/">104. Maximum Depth of Binary Tree</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/guess-number-higher-or-lower/description/">374. Guess Number Higher or Lower</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/description/">452. Minimum Number of Arrows to Burst Balloons</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/determine-if-two-strings-are-close/description/">1657. Determine if Two Strings Are Close</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/double-a-number-represented-as-a-linked-list/description/">2816. Double a Number Represented as a Linked List</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/relative-ranks/description/">506. Relative Ranks</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximize-happiness-of-selected-children/description/">3075. Maximize Happiness of Selected Children</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/k-th-smallest-prime-fraction/description/">786. K-th Smallest Prime Fraction</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-cost-to-hire-k-workers/description/">857. Minimum Cost to Hire K Workers</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/leaf-similar-trees/description/">872. Leaf-Similar Trees</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/domino-and-tromino-tiling/description/">790. Domino and Tromino Tiling</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-local-values-in-a-matrix/description/">2373. Largest Local Values in a Matrix</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/permutation-difference-between-two-strings/description/">3146. Permutation Difference between Two Strings</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/taking-maximum-energy-from-the-mystic-dungeon/description/">3147. Taking Maximum Energy From the Mystic Dungeon</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-difference-score-in-a-grid/description/">3148. Maximum Difference Score in a Grid</a></li>
 </ul>
 <h1 id="2024-x2F-05-Week1"><a href="#2024-x2F-05-Week1" class="headerlink" title="2024&#x2F;05 Week1"></a>2024&#x2F;05 Week1</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-operations-to-make-array-xor-equal-to-k/description/" >2997. Minimum Number of Operations to Make Array XOR Equal to K<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-prefix-of-word/" >2000. Reverse Prefix of Word<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/description/" >2441. Largest Positive Integer That Exists With Its Negative<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-integer/description/" >7. Reverse Integer<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/string-to-integer-atoi/description/" >8. String to Integer (atoi)<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/compare-version-numbers/description/" >165. Compare Version Numbers<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/combination-sum/description/" >39. Combination Sum<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/boats-to-save-people/description/" >881. Boats to Save People<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/guess-number-higher-or-lower/description/" >374. Guess Number Higher or Lower<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/n-th-tribonacci-number/description/" >1137. N-th Tribonacci Number<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/valid-word/description/" >3136. Valid Word<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-operations-to-make-word-k-periodic/description/" >3137. Minimum Number of Operations to Make Word K-Periodic<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-length-of-anagram-concatenation/description/" >3138. Minimum Length of Anagram Concatenation<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/delete-node-in-a-linked-list/description/" >237. Delete Node in a Linked List<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-operations-to-make-array-xor-equal-to-k/description/">2997. Minimum Number of Operations to Make Array XOR Equal to K</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-prefix-of-word/">2000. Reverse Prefix of Word</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/description/">2441. Largest Positive Integer That Exists With Its Negative</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-integer/description/">7. Reverse Integer</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/string-to-integer-atoi/description/">8. String to Integer (atoi)</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/compare-version-numbers/description/">165. Compare Version Numbers</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/combination-sum/description/">39. Combination Sum</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/boats-to-save-people/description/">881. Boats to Save People</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/guess-number-higher-or-lower/description/">374. Guess Number Higher or Lower</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/n-th-tribonacci-number/description/">1137. N-th Tribonacci Number</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/valid-word/description/">3136. Valid Word</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-operations-to-make-word-k-periodic/description/">3137. Minimum Number of Operations to Make Word K-Periodic</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-length-of-anagram-concatenation/description/">3138. Minimum Length of Anagram Concatenation</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/delete-node-in-a-linked-list/description/">237. Delete Node in a Linked List</a></li>
 </ul>
 <h1 id="2024-x2F-04-Week4"><a href="#2024-x2F-04-Week4" class="headerlink" title="2024&#x2F;04 Week4"></a>2024&#x2F;04 Week4</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-height-trees/description/" >310. Minimum Height Trees<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/n-th-tribonacci-number/description/" >1137. N-th Tribonacci Number<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-ideal-subsequence/description/" >2370. Longest Ideal Subsequence<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-integer-added-to-array-i/description/" >3131. Find the Integer Added to Array I<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-integer-added-to-array-ii/description/" >3132. Find the Integer Added to Array II<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-height-trees/description/">310. Minimum Height Trees</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/n-th-tribonacci-number/description/">1137. N-th Tribonacci Number</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-ideal-subsequence/description/">2370. Longest Ideal Subsequence</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-integer-added-to-array-i/description/">3131. Find the Integer Added to Array I</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-integer-added-to-array-ii/description/">3132. Find the Integer Added to Array II</a></li>
 </ul>
 <h1 id="2024-x2F-04-Week3"><a href="#2024-x2F-04-Week3" class="headerlink" title="2024&#x2F;04 Week3"></a>2024&#x2F;04 Week3</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-root-to-leaf-numbers/description/" >129. Sum Root to Leaf Numbers<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/increasing-triplet-subsequence/description/" >334. Increasing Triplet Subsequence<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/add-one-row-to-tree/description/" >623. Add One Row to Tree<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-highest-altitude/description/" >1732. Find the Highest Altitude<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/unique-number-of-occurrences/description/" >1207. Unique Number of Occurrences<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/search-in-a-binary-search-tree/description/" >700. Search in a Binary Search Tree<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/smallest-string-starting-from-leaf/description/" >988. Smallest String Starting From Leaf<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/island-perimeter/description/" >463. Island Perimeter<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/bulb-switcher/description/" >319. Bulb Switcher<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-islands/description/" >200. Number of Islands<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/132-pattern/description/" >456. 132 Pattern<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-all-groups-of-farmland/description/" >1992. Find All Groups of Farmland<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-the-number-of-special-characters-i/description/" >3120. Count the Number of Special Characters I<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-the-number-of-special-characters-ii/description/" >3121. Count the Number of Special Characters II<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/word-break/description/" >139. Word Break<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/single-number-ii/description/" >137. Single Number II<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-if-path-exists-in-graph/description/" >1971. Find if Path Exists in Graph<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-root-to-leaf-numbers/description/">129. Sum Root to Leaf Numbers</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/increasing-triplet-subsequence/description/">334. Increasing Triplet Subsequence</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/add-one-row-to-tree/description/">623. Add One Row to Tree</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-highest-altitude/description/">1732. Find the Highest Altitude</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/unique-number-of-occurrences/description/">1207. Unique Number of Occurrences</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/search-in-a-binary-search-tree/description/">700. Search in a Binary Search Tree</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/smallest-string-starting-from-leaf/description/">988. Smallest String Starting From Leaf</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/island-perimeter/description/">463. Island Perimeter</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/bulb-switcher/description/">319. Bulb Switcher</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-islands/description/">200. Number of Islands</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/132-pattern/description/">456. 132 Pattern</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-all-groups-of-farmland/description/">1992. Find All Groups of Farmland</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/count-the-number-of-special-characters-i/description/">3120. Count the Number of Special Characters I</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/count-the-number-of-special-characters-ii/description/">3121. Count the Number of Special Characters II</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/word-break/description/">139. Word Break</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/single-number-ii/description/">137. Single Number II</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-if-path-exists-in-graph/description/">1971. Find if Path Exists in Graph</a></li>
 </ul>
 <h1 id="2024-x2F-04-Week2"><a href="#2024-x2F-04-Week2" class="headerlink" title="2024&#x2F;04 Week2"></a>2024&#x2F;04 Week2</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/jewels-and-stones/" >771. Jewels and Stones<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/trapping-rain-water/" >42. Trapping Rain Water<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-left-leaves/" >404. Sum of Left Leaves<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/latest-time-you-can-obtain-after-replacing-characters/" >3114. Latest Time You Can Obtain After Replacing Characters<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-prime-difference/" >3115. Maximum Prime Difference<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/jewels-and-stones/">771. Jewels and Stones</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/trapping-rain-water/">42. Trapping Rain Water</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-left-leaves/">404. Sum of Left Leaves</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/latest-time-you-can-obtain-after-replacing-characters/">3114. Latest Time You Can Obtain After Replacing Characters</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-prime-difference/">3115. Maximum Prime Difference</a></li>
 </ul>
 <h1 id="2024-x2F-04-Week1"><a href="#2024-x2F-04-Week1" class="headerlink" title="2024&#x2F;04 Week1"></a>2024&#x2F;04 Week1</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/isomorphic-strings/" >205. Isomorphic Strings<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/make-the-string-great/" >1544. Make The String Great<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/" >1249. Minimum Remove to Make Valid Parentheses<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/isomorphic-strings/">205. Isomorphic Strings</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/make-the-string-great/">1544. Make The String Great</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/">1249. Minimum Remove to Make Valid Parentheses</a></li>
 </ul>
 <h1 id="2024-x2F-03-Week4"><a href="#2024-x2F-03-Week4" class="headerlink" title="2024&#x2F;03 Week4"></a>2024&#x2F;03 Week4</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/first-missing-positive/submissions/" >41. First Missing Positive<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/first-missing-positive/submissions/">41. First Missing Positive</a></li>
 </ul>
 <h1 id="2024-x2F-03-Week3"><a href="#2024-x2F-03-Week3" class="headerlink" title="2024&#x2F;03 Week3"></a>2024&#x2F;03 Week3</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/" >452. Minimum Number of Arrows to Burst Balloons<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/merge-in-between-linked-lists/" >1669. Merge In Between Linked Lists<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-linked-list/" >206. Reverse Linked List<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reorder-list/" >143. Reorder List<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-duplicate-number/" >287. Find the Duplicate Number<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-all-duplicates-in-an-array/" >442. Find All Duplicates in an Array<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/">452. Minimum Number of Arrows to Burst Balloons</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/merge-in-between-linked-lists/">1669. Merge In Between Linked Lists</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-linked-list/">206. Reverse Linked List</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reorder-list/">143. Reorder List</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-duplicate-number/">287. Find the Duplicate Number</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-all-duplicates-in-an-array/">442. Find All Duplicates in an Array</a></li>
 </ul>
 <h1 id="2024-x2F-03-Week2"><a href="#2024-x2F-03-Week2" class="headerlink" title="2024&#x2F;03 Week2"></a>2024&#x2F;03 Week2</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/custom-sort-string/" >791. Custom Sort String<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/product-of-array-except-self/" >238. Product of Array Except Self<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/custom-sort-string/">791. Custom Sort String</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/product-of-array-except-self/">238. Product of Array Except Self</a></li>
 </ul>
 <h1 id="2024-x2F-03-Week1"><a href="#2024-x2F-03-Week1" class="headerlink" title="2024&#x2F;03 Week1"></a>2024&#x2F;03 Week1</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/" >1750. Minimum Length of String After Deleting Similar Ends<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/middle-of-the-linked-list/" >876. Middle of the Linked List<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/linked-list-cycle/" >141. Linked List Cycle<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-elements-with-maximum-frequency/" >3005. Count Elements With Maximum Frequency<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/merge-strings-alternately/" >1768. Merge Strings Alternately<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-common-value/" >2540. Minimum Common Value<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/apple-redistribution-into-boxes/" >3074. Apple Redistribution into Boxes<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximize-happiness-of-selected-children/" >3075. Maximize Happiness of Selected Children<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/shortest-uncommon-substring-in-an-array/" >3076. Shortest Uncommon Substring in an Array<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/intersection-of-two-arrays/" >349. Intersection of Two Arrays<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/">1750. Minimum Length of String After Deleting Similar Ends</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/middle-of-the-linked-list/">876. Middle of the Linked List</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/linked-list-cycle/">141. Linked List Cycle</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/count-elements-with-maximum-frequency/">3005. Count Elements With Maximum Frequency</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/merge-strings-alternately/">1768. Merge Strings Alternately</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-common-value/">2540. Minimum Common Value</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/apple-redistribution-into-boxes/">3074. Apple Redistribution into Boxes</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximize-happiness-of-selected-children/">3075. Maximize Happiness of Selected Children</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/shortest-uncommon-substring-in-an-array/">3076. Shortest Uncommon Substring in an Array</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/intersection-of-two-arrays/">349. Intersection of Two Arrays</a></li>
 </ul>
 <h1 id="2023-x2F-11-Week2"><a href="#2023-x2F-11-Week2" class="headerlink" title="2023&#x2F;11 Week2"></a>2023&#x2F;11 Week2</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/move-zeroes/" >283. Move Zeroes<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/is-subsequence/" >392. Is Subsequence<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-average-subarray-i/" >643. Maximum Average Subarray I<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-highest-altitude/" >1732. Find the Highest Altitude<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-pivot-index/" >724. Find Pivot Index<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/product-of-array-except-self/" >238. Product of Array Except Self<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-champion-i/" >2923. Find Champion I<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/move-zeroes/">283. Move Zeroes</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/is-subsequence/">392. Is Subsequence</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-average-subarray-i/">643. Maximum Average Subarray I</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-highest-altitude/">1732. Find the Highest Altitude</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-pivot-index/">724. Find Pivot Index</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/product-of-array-except-self/">238. Product of Array Except Self</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-champion-i/">2923. Find Champion I</a></li>
 </ul>
 <h1 id="2023-x2F-11-Week1"><a href="#2023-x2F-11-Week1" class="headerlink" title="2023&#x2F;11 Week1"></a>2023&#x2F;11 Week1</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/merge-strings-alternately/" >1768. Merge Strings Alternately<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/greatest-common-divisor-of-strings/" >1071. Greatest Common Divisor of Strings<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/" >1431. Kids With the Greatest Number of Candies<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/can-place-flowers/" >605. Can Place Flowers<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-vowels-of-a-string/" >345. Reverse Vowels of a String<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-words-in-a-string/" >151. Reverse Words in a String<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-k-or-of-an-array/" >2917. Find the K-or of an Array<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-equal-sum-of-two-arrays-after-replacing-zeros/" >2918. Minimum Equal Sum of Two Arrays After Replacing Zeros<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/merge-strings-alternately/">1768. Merge Strings Alternately</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/greatest-common-divisor-of-strings/">1071. Greatest Common Divisor of Strings</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/">1431. Kids With the Greatest Number of Candies</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/can-place-flowers/">605. Can Place Flowers</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-vowels-of-a-string/">345. Reverse Vowels of a String</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-words-in-a-string/">151. Reverse Words in a String</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-k-or-of-an-array/">2917. Find the K-or of an Array</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-equal-sum-of-two-arrays-after-replacing-zeros/">2918. Minimum Equal Sum of Two Arrays After Replacing Zeros</a></li>
 </ul>
 <h1 id="2023-x2F-10-Week3"><a href="#2023-x2F-10-Week3" class="headerlink" title="2023&#x2F;10 Week3"></a>2023&#x2F;10 Week3</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-prefix-of-word/" >2000. Reverse Prefix of Word<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/rearrange-characters-to-make-target-string/" >2287. Rearrange Characters to Make Target String<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-distance-to-the-target-element/" >1848. Minimum Distance to the Target Element<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-array-concatenation-value/" >2562. Find the Array Concatenation Value<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-first-palindromic-string-in-the-array/" >2108. Find First Palindromic String in the Array<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/" >1315. Sum of Nodes with Even-Valued Grandparent<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-sum-of-mountain-triplets-i/" >2908. Minimum Sum of Mountain Triplets I<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-sum-of-mountain-triplets-ii/" >2909. Minimum Sum of Mountain Triplets II<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-prefix-of-word/">2000. Reverse Prefix of Word</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/rearrange-characters-to-make-target-string/">2287. Rearrange Characters to Make Target String</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-distance-to-the-target-element/">1848. Minimum Distance to the Target Element</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-array-concatenation-value/">2562. Find the Array Concatenation Value</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-first-palindromic-string-in-the-array/">2108. Find First Palindromic String in the Array</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/">1315. Sum of Nodes with Even-Valued Grandparent</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-sum-of-mountain-triplets-i/">2908. Minimum Sum of Mountain Triplets I</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-sum-of-mountain-triplets-ii/">2909. Minimum Sum of Mountain Triplets II</a></li>
 </ul>
 <h1 id="2023-x2F-10-Week2"><a href="#2023-x2F-10-Week2" class="headerlink" title="2023&#x2F;10 Week2"></a>2023&#x2F;10 Week2</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-the-temperature/" >2469. Convert the Temperature<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/the-employee-that-worked-on-the-longest-task/" >2432. The Employee That Worked on the Longest Task<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/split-with-minimum-sum/" >2578. Split With Minimum Sum<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-cuts-to-divide-a-circle/" >2481. Minimum Cuts to Divide a Circle<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-width-of-columns-of-a-grid/" >2639. Find the Width of Columns of a Grid<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/statistics-from-a-large-sample/" >1093. Statistics from a Large Sample<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/" >2903. Find Indices With Index and Value Difference I<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/shortest-and-lexicographically-smallest-beautiful-string/" >2904. Shortest and Lexicographically Smallest Beautiful String<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-indices-with-index-and-value-difference-ii/" >2905. Find Indices With Index and Value Difference II<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/construct-product-matrix/" >2906. Construct Product Matrix<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-the-temperature/">2469. Convert the Temperature</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/the-employee-that-worked-on-the-longest-task/">2432. The Employee That Worked on the Longest Task</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/split-with-minimum-sum/">2578. Split With Minimum Sum</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-cuts-to-divide-a-circle/">2481. Minimum Cuts to Divide a Circle</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-width-of-columns-of-a-grid/">2639. Find the Width of Columns of a Grid</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/statistics-from-a-large-sample/">1093. Statistics from a Large Sample</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/">2903. Find Indices With Index and Value Difference I</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/shortest-and-lexicographically-smallest-beautiful-string/">2904. Shortest and Lexicographically Smallest Beautiful String</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-indices-with-index-and-value-difference-ii/">2905. Find Indices With Index and Value Difference II</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/construct-product-matrix/">2906. Construct Product Matrix</a></li>
 </ul>
 <h1 id="2023-x2F-10-Week1"><a href="#2023-x2F-10-Week1" class="headerlink" title="2023&#x2F;10 Week1"></a>2023&#x2F;10 Week1</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/smallest-even-multiple/" >2413. Smallest Even Multiple<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-days-spent-together/" >2409. Count Days Spent Together<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/average-value-of-even-numbers-that-are-divisible-by-three/" >2455. Average Value of Even Numbers That Are Divisible by Three<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-pivot-integer/" >2485. Find the Pivot Integer<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-distinct-averages/" >2465. Number of Distinct Averages<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-3-same-digit-number-in-string/" >2264. Largest 3-Same-Digit Number in String<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-arithmetic-triplets/" >2367. Number of Arithmetic Triplets<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-subarrays-with-equal-sum/" >2395. Find Subarrays With Equal Sum<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/form-smallest-number-from-two-digit-arrays/" >2605. Form Smallest Number From Two Digit Arrays<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-symmetric-integers/" >2843. Count Symmetric Integers<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/powx-n/description/" >50. pow(x, n)<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/single-number-iii/" >260. Single Number III<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/" >309. Best Time to Buy and Sell Stock with Cooldown<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-value-of-an-ordered-triplet-i/" >2873. Maximum Value of an Ordered Triplet I<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-size-subarray-in-infinite-array/" >2875. Minimum Size Subarray in Infinite Array<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/divisible-and-non-divisible-sums-difference/" >2894. Divisible and Non-divisible Sums Difference<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-processing-time/" >2895. Minimum Processing Time<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/smallest-even-multiple/">2413. Smallest Even Multiple</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/count-days-spent-together/">2409. Count Days Spent Together</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/average-value-of-even-numbers-that-are-divisible-by-three/">2455. Average Value of Even Numbers That Are Divisible by Three</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-pivot-integer/">2485. Find the Pivot Integer</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-distinct-averages/">2465. Number of Distinct Averages</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-3-same-digit-number-in-string/">2264. Largest 3-Same-Digit Number in String</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-arithmetic-triplets/">2367. Number of Arithmetic Triplets</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-subarrays-with-equal-sum/">2395. Find Subarrays With Equal Sum</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/form-smallest-number-from-two-digit-arrays/">2605. Form Smallest Number From Two Digit Arrays</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/count-symmetric-integers/">2843. Count Symmetric Integers</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/powx-n/description/">50. pow(x, n)</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/single-number-iii/">260. Single Number III</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/">309. Best Time to Buy and Sell Stock with Cooldown</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-value-of-an-ordered-triplet-i/">2873. Maximum Value of an Ordered Triplet I</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-size-subarray-in-infinite-array/">2875. Minimum Size Subarray in Infinite Array</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/divisible-and-non-divisible-sums-difference/">2894. Divisible and Non-divisible Sums Difference</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-processing-time/">2895. Minimum Processing Time</a></li>
 </ul>
 <h1 id="2023-x2F-09-Week3"><a href="#2023-x2F-09-Week3" class="headerlink" title="2023&#x2F;09 Week3"></a>2023&#x2F;09 Week3</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/occurrences-after-bigram/" >1078. Occurrences After Bigram<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/pass-the-pillow/" >2582. Pass the Pillow<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-the-number-of-vowel-strings-in-range/" >2586. Count the Number of Vowel Strings in Range<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-right-shifts-to-sort-the-array/" >2855. Minimum Right Shifts to Sort the Array<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/search-a-2d-matrix-ii/" >240. Search a 2D Matrix II<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-values-at-indices-with-k-set-bits/" >2859. Sum of Values at Indices With K Set Bits<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/happy-students/" >2860. Happy Students<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/occurrences-after-bigram/">1078. Occurrences After Bigram</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/pass-the-pillow/">2582. Pass the Pillow</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/count-the-number-of-vowel-strings-in-range/">2586. Count the Number of Vowel Strings in Range</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-right-shifts-to-sort-the-array/">2855. Minimum Right Shifts to Sort the Array</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/search-a-2d-matrix-ii/">240. Search a 2D Matrix II</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-values-at-indices-with-k-set-bits/">2859. Sum of Values at Indices With K Set Bits</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/happy-students/">2860. Happy Students</a></li>
 </ul>
 <h1 id="2023-x2F-09-Week2"><a href="#2023-x2F-09-Week2" class="headerlink" title="2023&#x2F;09 Week2"></a>2023&#x2F;09 Week2</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-left-leaves/" >404. Sum of Left Leaves<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/ugly-number/" >263. Ugly Number<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/" >448. Find All Numbers Disappeared in an Array<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/two-sum-iv-input-is-a-bst/" >653. Two Sum IV - Input is a BST<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/" >1010. Pairs of Songs With Total Durations Divisible by 60<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/points-that-intersect-with-cars/" >2848. Points That Intersect With Cars<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/determine-if-a-cell-is-reachable-at-a-given-time/" >2849. Determine if a Cell Is Reachable at a Given Time<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-left-leaves/">404. Sum of Left Leaves</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/ugly-number/">263. Ugly Number</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/">448. Find All Numbers Disappeared in an Array</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/two-sum-iv-input-is-a-bst/">653. Two Sum IV - Input is a BST</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/">1010. Pairs of Songs With Total Durations Divisible by 60</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/points-that-intersect-with-cars/">2848. Points That Intersect With Cars</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/determine-if-a-cell-is-reachable-at-a-given-time/">2849. Determine if a Cell Is Reachable at a Given Time</a></li>
 </ul>
 <h1 id="2023-x2F-09-Week1"><a href="#2023-x2F-09-Week1" class="headerlink" title="2023&#x2F;09 Week1"></a>2023&#x2F;09 Week1</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-number-of-pairs-in-array/" >2341. Maximum Number of Pairs in Array<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/evaluate-boolean-binary-tree/" >2331. Evaluate Boolean Binary Tree<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/delete-greatest-value-in-each-row/" >2500. Delete Greatest Value in Each Row<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-maximum-number-of-string-pairs/" >2744. Find Maximum Number of String Pairs<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/furthest-point-from-origin/" >2833. Furthest Point From Origin<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-minimum-possible-sum-of-a-beautiful-array/" >2834. Find the Minimum Possible Sum of a Beautiful Array<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-number-of-pairs-in-array/">2341. Maximum Number of Pairs in Array</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/evaluate-boolean-binary-tree/">2331. Evaluate Boolean Binary Tree</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/delete-greatest-value-in-each-row/">2500. Delete Greatest Value in Each Row</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-maximum-number-of-string-pairs/">2744. Find Maximum Number of String Pairs</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/furthest-point-from-origin/">2833. Furthest Point From Origin</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-minimum-possible-sum-of-a-beautiful-array/">2834. Find the Minimum Possible Sum of a Beautiful Array</a></li>
 </ul>
 <h1 id="2023-x2F-08-Week3"><a href="#2023-x2F-08-Week3" class="headerlink" title="2023&#x2F;08 Week3"></a>2023&#x2F;08 Week3</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/concatenation-of-array/" >1929. Concatenation of Array<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/determine-whether-matrix-can-be-obtained-by-rotation/" >1886. Determine Whether Matrix Can Be Obtained By Rotation<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/" >1752. Check if Array Is Sorted and Rotated<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/water-bottles/" >1518. Water Bottles<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/insert-interval/" >57. Insert Interval<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/majority-element-ii/" >229. Majority Element II<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/check-if-a-string-is-an-acronym-of-words/" >2828. Check if a String Is an Acronym of Words<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/determine-the-minimum-sum-of-a-k-avoiding-array/" >2829. Determine the Minimum Sum of a k-avoiding Array<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-longest-equal-subarray/" >2831. Find the Longest Equal Subarray<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/concatenation-of-array/">1929. Concatenation of Array</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/determine-whether-matrix-can-be-obtained-by-rotation/">1886. Determine Whether Matrix Can Be Obtained By Rotation</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/">1752. Check if Array Is Sorted and Rotated</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/water-bottles/">1518. Water Bottles</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/insert-interval/">57. Insert Interval</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/majority-element-ii/">229. Majority Element II</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/check-if-a-string-is-an-acronym-of-words/">2828. Check if a String Is an Acronym of Words</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/determine-the-minimum-sum-of-a-k-avoiding-array/">2829. Determine the Minimum Sum of a k-avoiding Array</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-longest-equal-subarray/">2831. Find the Longest Equal Subarray</a></li>
 </ul>
 <h1 id="2023-x2F-08-Week2"><a href="#2023-x2F-08-Week2" class="headerlink" title="2023&#x2F;08 Week2"></a>2023&#x2F;08 Week2</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/" >2441. Largest Positive Integer That Exists With Its Negative<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-the-digits-that-divide-a-number/" >2520. Count the Digits That Divide a Number<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/strong-password-checker-ii/" >2299. Strong Password Checker II<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-letter-to-equalize-frequency/" >2423. Remove Letter To Equalize Frequency<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/prison-cells-after-n-days/" >957. Prison Cells After N Days<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/rle-iterator/" >900. RLE Iterator<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/max-pair-sum-in-an-array/" >2815. Max Pair Sum in an Array<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/double-a-number-represented-as-a-linked-list/" >2816. Double a Number Represented as a Linked List<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/">2441. Largest Positive Integer That Exists With Its Negative</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/count-the-digits-that-divide-a-number/">2520. Count the Digits That Divide a Number</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/strong-password-checker-ii/">2299. Strong Password Checker II</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-letter-to-equalize-frequency/">2423. Remove Letter To Equalize Frequency</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/prison-cells-after-n-days/">957. Prison Cells After N Days</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/rle-iterator/">900. RLE Iterator</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/max-pair-sum-in-an-array/">2815. Max Pair Sum in an Array</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/double-a-number-represented-as-a-linked-list/">2816. Double a Number Represented as a Linked List</a></li>
 </ul>
 <h1 id="2023-x2F-08-Week1"><a href="#2023-x2F-08-Week1" class="headerlink" title="2023&#x2F;08 Week1"></a>2023&#x2F;08 Week1</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/" >108. Convert Sorted Array to Binary Search Tree<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/range-sum-query-immutable/" >303. Range Sum Query - Immutable<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/happy-number/" >202. Happy Number<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/implement-queue-using-stacks/" >232. Implement Queue using Stacks<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-cost-to-set-cooking-time/" >2162. Minimum Cost to Set Cooking Time<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/faulty-keyboard/" >2810. Faulty Keyboard<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/check-if-it-is-possible-to-split-array/" >2811. Check if it is Possible to Split Array<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-safest-path-in-a-grid/" >2812. Find the Safest Path in a Grid<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-elegance-of-a-k-length-subsequence/" >2813. Maximum Elegance of a K-Length Subsequence<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/">108. Convert Sorted Array to Binary Search Tree</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/range-sum-query-immutable/">303. Range Sum Query - Immutable</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/happy-number/">202. Happy Number</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/implement-queue-using-stacks/">232. Implement Queue using Stacks</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-cost-to-set-cooking-time/">2162. Minimum Cost to Set Cooking Time</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/faulty-keyboard/">2810. Faulty Keyboard</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/check-if-it-is-possible-to-split-array/">2811. Check if it is Possible to Split Array</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-safest-path-in-a-grid/">2812. Find the Safest Path in a Grid</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-elegance-of-a-k-length-subsequence/">2813. Maximum Elegance of a K-Length Subsequence</a></li>
 </ul>
 <h1 id="2023-x2F-07-Week5"><a href="#2023-x2F-07-Week5" class="headerlink" title="2023&#x2F;07 Week5"></a>2023&#x2F;07 Week5</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-lucky-integer-in-an-array/" >1394. Find Lucky Integer in an Array<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-palindromic-subsequences/" >1332. Remove Palindromic Subsequences<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/" >1281. Subtract the Product and Sum of Digits of an Integer<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/" >1013. Partition Array Into Three Parts With Equal Sum<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-lattice-points-inside-a-circle/" >2249. Count Lattice Points Inside a Circle<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-average-difference/" >2256. Minimum Average Difference<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/split-strings-by-separator/" >2788. Split Strings by Separator<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-element-in-an-array-after-merge-operations/" >2789. Largest Element in an Array after Merge Operations<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-lucky-integer-in-an-array/">1394. Find Lucky Integer in an Array</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-palindromic-subsequences/">1332. Remove Palindromic Subsequences</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/">1281. Subtract the Product and Sum of Digits of an Integer</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/">1013. Partition Array Into Three Parts With Equal Sum</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/count-lattice-points-inside-a-circle/">2249. Count Lattice Points Inside a Circle</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-average-difference/">2256. Minimum Average Difference</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/split-strings-by-separator/">2788. Split Strings by Separator</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-element-in-an-array-after-merge-operations/">2789. Largest Element in an Array after Merge Operations</a></li>
 </ul>
 <h1 id="2023-x2F-07-Week4"><a href="#2023-x2F-07-Week4" class="headerlink" title="2023&#x2F;07 Week4"></a>2023&#x2F;07 Week4</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-sum-with-exactly-k-elements/" >2656. Maximum Sum With Exactly K Elements<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-unequal-triplets-in-array/" >2475. Number of Unequal Triplets in Array<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/take-gifts-from-the-richest-pile/" >2558. Take Gifts From the Richest Pile<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/percentage-of-letter-in-string/" >2278. Percentage of Letter in String<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/h-index-ii/" >275. H-Index II<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/basic-calculator-ii/" >227. Basic Calculator II<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-squares-of-special-elements/" >2778. Sum of Squares of Special Elements<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-beauty-of-an-array-after-applying-operation/" >2779. Maximum Beauty of an Array After Applying Operation<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-index-of-a-valid-split/" >2780. Minimum Index of a Valid Split<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-sum-with-exactly-k-elements/">2656. Maximum Sum With Exactly K Elements</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-unequal-triplets-in-array/">2475. Number of Unequal Triplets in Array</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/take-gifts-from-the-richest-pile/">2558. Take Gifts From the Richest Pile</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/percentage-of-letter-in-string/">2278. Percentage of Letter in String</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/h-index-ii/">275. H-Index II</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/basic-calculator-ii/">227. Basic Calculator II</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-squares-of-special-elements/">2778. Sum of Squares of Special Elements</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-beauty-of-an-array-after-applying-operation/">2779. Maximum Beauty of an Array After Applying Operation</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-index-of-a-valid-split/">2780. Minimum Index of a Valid Split</a></li>
 </ul>
 <h1 id="2023-x2F-07-Week3"><a href="#2023-x2F-07-Week3" class="headerlink" title="2023&#x2F;07 Week3"></a>2023&#x2F;07 Week3</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-words-in-a-string-iii/" >557. Reverse Words in a String III<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-vowels-of-a-string/" >345. Reverse Vowels of a String<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/island-perimeter/" >463. Island Perimeter<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/intersection-of-two-linked-lists/" >160. Intersection of Two Linked Lists<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/zigzag-conversion/" >6. Zigzag Conversion<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/rank-teams-by-votes/" >1366. Rank Teams by Votes<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-maximum-achievable-number/" >2769. Find the Maximum Achievable Number<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-number-of-jumps-to-reach-the-last-index/" >6899. Maximum Number of Jumps to Reach the Last Index<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-non-decreasing-subarray-from-two-arrays/" >6912. Longest Non-decreasing Subarray From Two Arrays<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-words-in-a-string-iii/">557. Reverse Words in a String III</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-vowels-of-a-string/">345. Reverse Vowels of a String</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/island-perimeter/">463. Island Perimeter</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/intersection-of-two-linked-lists/">160. Intersection of Two Linked Lists</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/zigzag-conversion/">6. Zigzag Conversion</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/rank-teams-by-votes/">1366. Rank Teams by Votes</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-maximum-achievable-number/">2769. Find the Maximum Achievable Number</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-number-of-jumps-to-reach-the-last-index/">6899. Maximum Number of Jumps to Reach the Last Index</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-non-decreasing-subarray-from-two-arrays/">6912. Longest Non-decreasing Subarray From Two Arrays</a></li>
 </ul>
 <h1 id="2023-x2F-07-Week2"><a href="#2023-x2F-07-Week2" class="headerlink" title="2023&#x2F;07 Week2"></a>2023&#x2F;07 Week2</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sort-the-people/" >2418. Sort the People<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-valid-clock-times/" >2437. Number of Valid Clock Times<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-hours-of-training-to-win-a-competition/" >2383. Minimum Hours of Training to Win a Competition<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/merge-similar-items/" >2363. Merge Similar Items<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/" >2461. Maximum Sum of Distinct Subarrays With Length K<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-subarray-with-maximum-bitwise-and/" >2419. Longest Subarray With Maximum Bitwise AND<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-even-odd-subarray-with-threshold/" >2760. Longest Even Odd Subarray With Threshold<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/prime-pairs-with-target-sum/" >2761. Prime Pairs With Target Sum<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/sort-the-people/">2418. Sort the People</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-valid-clock-times/">2437. Number of Valid Clock Times</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-hours-of-training-to-win-a-competition/">2383. Minimum Hours of Training to Win a Competition</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/merge-similar-items/">2363. Merge Similar Items</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/">2461. Maximum Sum of Distinct Subarrays With Length K</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-subarray-with-maximum-bitwise-and/">2419. Longest Subarray With Maximum Bitwise AND</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-even-odd-subarray-with-threshold/">2760. Longest Even Odd Subarray With Threshold</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/prime-pairs-with-target-sum/">2761. Prime Pairs With Target Sum</a></li>
 </ul>
 <h1 id="2023-x2F-07-Week1"><a href="#2023-x2F-07-Week1" class="headerlink" title="2023&#x2F;07 Week1"></a>2023&#x2F;07 Week1</h1><ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/check-if-it-is-a-straight-line/" >1232. Check If It Is a Straight Line<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/greatest-common-divisor-of-strings/" >1071. Greatest Common Divisor of Strings<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/" >1160. Find Words That Can Be Formed by Characters<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-69-number/" >1323. Maximum 69 Number<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/mirror-reflection/" >858. Mirror Reflection<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/validate-stack-sequences/" >946. Validate Stack Sequences<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-beautiful-pairs/" >2748. Number of Beautiful Pairs<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/ways-to-split-array-into-good-subarrays/" >2750. Ways to Split Array Into Good Subarrays<i class="fas fa-external-link-alt"></i></a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/check-if-it-is-a-straight-line/">1232. Check If It Is a Straight Line</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/greatest-common-divisor-of-strings/">1071. Greatest Common Divisor of Strings</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/">1160. Find Words That Can Be Formed by Characters</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-69-number/">1323. Maximum 69 Number</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/mirror-reflection/">858. Mirror Reflection</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/validate-stack-sequences/">946. Validate Stack Sequences</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-beautiful-pairs/">2748. Number of Beautiful Pairs</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problems/ways-to-split-array-into-good-subarrays/">2750. Ways to Split Array Into Good Subarrays</a></li>
 </ul>
 <h1 id="2023-x2F-06-x2F-25"><a href="#2023-x2F-06-x2F-25" class="headerlink" title="2023&#x2F;06&#x2F;25"></a>2023&#x2F;06&#x2F;25</h1><ul>
-<li>242. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/valid-anagram/" >Valid Anagram<i class="fas fa-external-link-alt"></i></a></li>
-<li>541. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-string-ii/" >Reverse String II<i class="fas fa-external-link-alt"></i></a></li>
-<li>485. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/max-consecutive-ones/" >Max Consecutive Ones<i class="fas fa-external-link-alt"></i></a></li>
-<li>414. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/third-maximum-number/" >Third Maximum Number<i class="fas fa-external-link-alt"></i></a></li>
-<li>2244. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-rounds-to-complete-all-tasks/" >Minimum Rounds to Complete All Tasks<i class="fas fa-external-link-alt"></i></a></li>
-<li>2275. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/" >Largest Combination With Bitwise AND Greater Than Zero<i class="fas fa-external-link-alt"></i></a></li>
-<li>2739. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/total-distance-traveled/" >Total Distance Traveled<i class="fas fa-external-link-alt"></i></a></li>
-<li>2740. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-value-of-the-partition/" >Find the Value of the Partition<i class="fas fa-external-link-alt"></i></a></li>
-<li>2741. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/special-permutations/" >Special Permutations<i class="fas fa-external-link-alt"></i></a></li>
-<li>2742. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/painting-the-walls/" >Painting the Walls<i class="fas fa-external-link-alt"></i></a></li>
+<li>242. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/valid-anagram/">Valid Anagram</a></li>
+<li>541. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-string-ii/">Reverse String II</a></li>
+<li>485. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/max-consecutive-ones/">Max Consecutive Ones</a></li>
+<li>414. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/third-maximum-number/">Third Maximum Number</a></li>
+<li>2244. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-rounds-to-complete-all-tasks/">Minimum Rounds to Complete All Tasks</a></li>
+<li>2275. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/">Largest Combination With Bitwise AND Greater Than Zero</a></li>
+<li>2739. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/total-distance-traveled/">Total Distance Traveled</a></li>
+<li>2740. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-value-of-the-partition/">Find the Value of the Partition</a></li>
+<li>2741. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/special-permutations/">Special Permutations</a></li>
+<li>2742. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/painting-the-walls/">Painting the Walls</a></li>
 </ul>
 <h1 id="2023-x2F-06-x2F-18"><a href="#2023-x2F-06-x2F-18" class="headerlink" title="2023&#x2F;06&#x2F;18"></a>2023&#x2F;06&#x2F;18</h1><ul>
-<li>1365. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/" >How Many Numbers Are Smaller Than the Current Number<i class="fas fa-external-link-alt"></i></a></li>
-<li>1184. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/distance-between-bus-stops/" >Distance Between Bus Stops<i class="fas fa-external-link-alt"></i></a></li>
-<li>1399. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-largest-group/" >Count Largest Group<i class="fas fa-external-link-alt"></i></a></li>
-<li>1566. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/" >Detect Pattern of Length M Repeated K or More Times<i class="fas fa-external-link-alt"></i></a></li>
-<li>235. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" >Lowest Common Ancestor of a Binary Search Tree<i class="fas fa-external-link-alt"></i></a></li>
-<li>406. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/queue-reconstruction-by-height/" >Queue Reconstruction by Height<i class="fas fa-external-link-alt"></i></a></li>
-<li>2733. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/neither-minimum-nor-maximum/" >Neither Minimum nor Maximum<i class="fas fa-external-link-alt"></i></a></li>
-<li>2734. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/lexicographically-smallest-string-after-substring-operation/" >Lexicographically Smallest String After Substring Operation<i class="fas fa-external-link-alt"></i></a></li>
-<li>2735. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/collecting-chocolates/" >Collecting Chocolates<i class="fas fa-external-link-alt"></i></a></li>
-<li>2736. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-sum-queries/" >Maximum Sum Queries<i class="fas fa-external-link-alt"></i></a></li>
+<li>1365. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/">How Many Numbers Are Smaller Than the Current Number</a></li>
+<li>1184. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/distance-between-bus-stops/">Distance Between Bus Stops</a></li>
+<li>1399. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/count-largest-group/">Count Largest Group</a></li>
+<li>1566. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/">Detect Pattern of Length M Repeated K or More Times</a></li>
+<li>235. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/">Lowest Common Ancestor of a Binary Search Tree</a></li>
+<li>406. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/queue-reconstruction-by-height/">Queue Reconstruction by Height</a></li>
+<li>2733. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/neither-minimum-nor-maximum/">Neither Minimum nor Maximum</a></li>
+<li>2734. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/lexicographically-smallest-string-after-substring-operation/">Lexicographically Smallest String After Substring Operation</a></li>
+<li>2735. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/collecting-chocolates/">Collecting Chocolates</a></li>
+<li>2736. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-sum-queries/">Maximum Sum Queries</a></li>
 </ul>
 <h1 id="2023-x2F-06-x2F-11"><a href="#2023-x2F-06-x2F-11" class="headerlink" title="2023&#x2F;06&#x2F;11"></a>2023&#x2F;06&#x2F;11</h1><ul>
-<li>925. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/long-pressed-name/" >Long Pressed Name<i class="fas fa-external-link-alt"></i></a></li>
-<li>859. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/buddy-strings/" >Buddy Strings<i class="fas fa-external-link-alt"></i></a></li>
-<li>717. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/1-bit-and-2-bit-characters/" >1-bit and 2-bit Characters<i class="fas fa-external-link-alt"></i></a></li>
-<li>506. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/relative-ranks/" >Relative Ranks<i class="fas fa-external-link-alt"></i></a></li>
-<li>2716. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimize-string-length/" >Minimize String Length<i class="fas fa-external-link-alt"></i></a></li>
-<li>2717. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/semi-ordered-permutation/" >Semi-Ordered Permutation<i class="fas fa-external-link-alt"></i></a></li>
-<li>2718. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-matrix-after-queries/" >Sum of Matrix After Queries<i class="fas fa-external-link-alt"></i></a></li>
-<li>2719. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-of-integers/" >Count of Integers<i class="fas fa-external-link-alt"></i></a></li>
+<li>925. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/long-pressed-name/">Long Pressed Name</a></li>
+<li>859. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/buddy-strings/">Buddy Strings</a></li>
+<li>717. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/1-bit-and-2-bit-characters/">1-bit and 2-bit Characters</a></li>
+<li>506. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/relative-ranks/">Relative Ranks</a></li>
+<li>2716. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimize-string-length/">Minimize String Length</a></li>
+<li>2717. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/semi-ordered-permutation/">Semi-Ordered Permutation</a></li>
+<li>2718. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-matrix-after-queries/">Sum of Matrix After Queries</a></li>
+<li>2719. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/count-of-integers/">Count of Integers</a></li>
 </ul>
 <h1 id="2023-x2F-06-x2F-04"><a href="#2023-x2F-06-x2F-04" class="headerlink" title="2023&#x2F;06&#x2F;04"></a>2023&#x2F;06&#x2F;04</h1><ul>
-<li>2529. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/" >Maximum Count of Positive Integer and Negative Integer<i class="fas fa-external-link-alt"></i></a></li>
-<li>1582. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/special-positions-in-a-binary-matrix/" >Special Positions in a Binary Matrix<i class="fas fa-external-link-alt"></i></a></li>
-<li>2133. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/check-if-every-row-and-column-contains-all-numbers/" >Check if Every Row and Column Contains All Numbers<i class="fas fa-external-link-alt"></i></a></li>
-<li>283. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/move-zeroes/" >Move Zeroes<i class="fas fa-external-link-alt"></i></a></li>
-<li>1347. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/" >Minimum Number of Steps to Make Two Strings Anagram<i class="fas fa-external-link-alt"></i></a></li>
-<li>210. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/course-schedule-ii/" >Course Schedule II<i class="fas fa-external-link-alt"></i></a></li>
-<li>2710. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-trailing-zeros-from-a-string/" >Remove Trailing Zeros From a String<i class="fas fa-external-link-alt"></i></a></li>
-<li>2711. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/difference-of-number-of-distinct-values-on-diagonals/" >Difference of Number of Distinct Values on Diagonals<i class="fas fa-external-link-alt"></i></a></li>
-<li>2712. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-cost-to-make-all-characters-equal/" >Minimum Cost to Make All Characters Equal<i class="fas fa-external-link-alt"></i></a></li>
-<li>2713. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix/" >Maximum Strictly Increasing Cells in a Matrix<i class="fas fa-external-link-alt"></i></a></li>
+<li>2529. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/">Maximum Count of Positive Integer and Negative Integer</a></li>
+<li>1582. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/special-positions-in-a-binary-matrix/">Special Positions in a Binary Matrix</a></li>
+<li>2133. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/check-if-every-row-and-column-contains-all-numbers/">Check if Every Row and Column Contains All Numbers</a></li>
+<li>283. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/move-zeroes/">Move Zeroes</a></li>
+<li>1347. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/">Minimum Number of Steps to Make Two Strings Anagram</a></li>
+<li>210. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/course-schedule-ii/">Course Schedule II</a></li>
+<li>2710. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-trailing-zeros-from-a-string/">Remove Trailing Zeros From a String</a></li>
+<li>2711. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/difference-of-number-of-distinct-values-on-diagonals/">Difference of Number of Distinct Values on Diagonals</a></li>
+<li>2712. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-cost-to-make-all-characters-equal/">Minimum Cost to Make All Characters Equal</a></li>
+<li>2713. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix/">Maximum Strictly Increasing Cells in a Matrix</a></li>
 </ul>
 <h1 id="2023-x2F-05-x2F-28"><a href="#2023-x2F-05-x2F-28" class="headerlink" title="2023&#x2F;05&#x2F;28"></a>2023&#x2F;05&#x2F;28</h1><ul>
-<li>832. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/flipping-an-image/" >Flipping an Image<i class="fas fa-external-link-alt"></i></a></li>
-<li>507. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/perfect-number/" >Perfect Number<i class="fas fa-external-link-alt"></i></a></li>
-<li>1694. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reformat-phone-number/" >Reformat Phone Number<i class="fas fa-external-link-alt"></i></a></li>
-<li>405. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-a-number-to-hexadecimal/" >Convert a Number to Hexadecimal<i class="fas fa-external-link-alt"></i></a></li>
-<li>1208. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/get-equal-substrings-within-budget/" >Get Equal Substrings Within Budget<i class="fas fa-external-link-alt"></i></a></li>
-<li>567. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/permutation-in-string/" >Permutation in String<i class="fas fa-external-link-alt"></i></a></li>
-<li>2696. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-string-length-after-removing-substrings/" >Minimum String Length After Removing Substrings<i class="fas fa-external-link-alt"></i></a></li>
-<li>2697. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/lexicographically-smallest-palindrome/" >Lexicographically Smallest Palindrome<i class="fas fa-external-link-alt"></i></a></li>
-<li>2698. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-punishment-number-of-an-integer/" >Find the Punishment Number of an Integer<i class="fas fa-external-link-alt"></i></a></li>
-<li>2699. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/modify-graph-edge-weights/" >Modify Graph Edge Weights<i class="fas fa-external-link-alt"></i></a></li>
+<li>832. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/flipping-an-image/">Flipping an Image</a></li>
+<li>507. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/perfect-number/">Perfect Number</a></li>
+<li>1694. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/reformat-phone-number/">Reformat Phone Number</a></li>
+<li>405. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-a-number-to-hexadecimal/">Convert a Number to Hexadecimal</a></li>
+<li>1208. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/get-equal-substrings-within-budget/">Get Equal Substrings Within Budget</a></li>
+<li>567. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/permutation-in-string/">Permutation in String</a></li>
+<li>2696. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-string-length-after-removing-substrings/">Minimum String Length After Removing Substrings</a></li>
+<li>2697. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/lexicographically-smallest-palindrome/">Lexicographically Smallest Palindrome</a></li>
+<li>2698. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-punishment-number-of-an-integer/">Find the Punishment Number of an Integer</a></li>
+<li>2699. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/modify-graph-edge-weights/">Modify Graph Edge Weights</a></li>
 </ul>
 <h1 id="2023-x2F-05-x2F-21"><a href="#2023-x2F-05-x2F-21" class="headerlink" title="2023&#x2F;05&#x2F;21"></a>2023&#x2F;05&#x2F;21</h1><ul>
-<li>1408. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/string-matching-in-an-array/" >String Matching in an Array<i class="fas fa-external-link-alt"></i></a></li>
-<li>83. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/" >Remove Duplicates from Sorted List<i class="fas fa-external-link-alt"></i></a></li>
-<li>1152. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/" >Cells with Odd Values in a Matrix<i class="fas fa-external-link-alt"></i></a></li>
-<li>897. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/increasing-order-search-tree/" >Increasing Order Search Tree<i class="fas fa-external-link-alt"></i></a></li>
-<li>2191. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sort-the-jumbled-numbers/" >Sort the Jumbled Numbers<i class="fas fa-external-link-alt"></i></a></li>
-<li>1915. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-wonderful-substrings/" >Number of Wonderful Substrings<i class="fas fa-external-link-alt"></i></a></li>
-<li>2682. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-losers-of-the-circular-game/" >Find the Losers of the Circular Game<i class="fas fa-external-link-alt"></i></a></li>
-<li>2683. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/neighboring-bitwise-xor/" >Neighboring Bitwise XOR<i class="fas fa-external-link-alt"></i></a></li>
-<li>2684. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-number-of-moves-in-a-grid/" >Maximum Number of Moves in a Grid<i class="fas fa-external-link-alt"></i></a></li>
-<li>2685. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/count-the-number-of-complete-components/" >Count the Number of Complete Components<i class="fas fa-external-link-alt"></i></a></li>
+<li>1408. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/string-matching-in-an-array/">String Matching in an Array</a></li>
+<li>83. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/">Remove Duplicates from Sorted List</a></li>
+<li>1152. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/">Cells with Odd Values in a Matrix</a></li>
+<li>897. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/increasing-order-search-tree/">Increasing Order Search Tree</a></li>
+<li>2191. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/sort-the-jumbled-numbers/">Sort the Jumbled Numbers</a></li>
+<li>1915. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-wonderful-substrings/">Number of Wonderful Substrings</a></li>
+<li>2682. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-losers-of-the-circular-game/">Find the Losers of the Circular Game</a></li>
+<li>2683. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/neighboring-bitwise-xor/">Neighboring Bitwise XOR</a></li>
+<li>2684. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-number-of-moves-in-a-grid/">Maximum Number of Moves in a Grid</a></li>
+<li>2685. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/count-the-number-of-complete-components/">Count the Number of Complete Components</a></li>
 </ul>
 <h1 id="2023-x2F-05-x2F-14"><a href="#2023-x2F-05-x2F-14" class="headerlink" title="2023&#x2F;05&#x2F;14"></a>2023&#x2F;05&#x2F;14</h1><ul>
-<li>2496. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-value-of-a-string-in-an-array/" >Maximum Value of a String in an Array<i class="fas fa-external-link-alt"></i></a></li>
-<li>1512. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-good-pairs/" >Number of Good Pairs<i class="fas fa-external-link-alt"></i></a></li>
-<li>812. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-triangle-area/" >Largest Triangle Area<i class="fas fa-external-link-alt"></i></a></li>
-<li>2303. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/calculate-amount-paid-in-taxes/" >Calculate Amount Paid in Taxes<i class="fas fa-external-link-alt"></i></a></li>
-<li>2400. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps/" >Number of Ways to Reach a Position After Exactly k Steps<i class="fas fa-external-link-alt"></i></a></li>
-<li>1138. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/alphabet-board-path/" >Alphabet Board Path<i class="fas fa-external-link-alt"></i></a></li>
-<li>2670. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-distinct-difference-array/" >Find the Distinct Difference Array<i class="fas fa-external-link-alt"></i></a></li>
-<li>2671. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/frequency-tracker/" >Frequency Tracker<i class="fas fa-external-link-alt"></i></a></li>
-<li>2672. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-adjacent-elements-with-the-same-color/" >Number of Adjacent Elements With the Same Color<i class="fas fa-external-link-alt"></i></a></li>
-<li>2673. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/make-costs-of-paths-equal-in-a-binary-tree/" >Make Costs of Paths Equal in a Binary Tree<i class="fas fa-external-link-alt"></i></a></li>
+<li>2496. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-value-of-a-string-in-an-array/">Maximum Value of a String in an Array</a></li>
+<li>1512. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-good-pairs/">Number of Good Pairs</a></li>
+<li>812. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/largest-triangle-area/">Largest Triangle Area</a></li>
+<li>2303. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/calculate-amount-paid-in-taxes/">Calculate Amount Paid in Taxes</a></li>
+<li>2400. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps/">Number of Ways to Reach a Position After Exactly k Steps</a></li>
+<li>1138. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/alphabet-board-path/">Alphabet Board Path</a></li>
+<li>2670. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-distinct-difference-array/">Find the Distinct Difference Array</a></li>
+<li>2671. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/frequency-tracker/">Frequency Tracker</a></li>
+<li>2672. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-adjacent-elements-with-the-same-color/">Number of Adjacent Elements With the Same Color</a></li>
+<li>2673. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/make-costs-of-paths-equal-in-a-binary-tree/">Make Costs of Paths Equal in a Binary Tree</a></li>
 </ul>
 <h1 id="2023-x2F-05-x2F-07"><a href="#2023-x2F-05-x2F-07" class="headerlink" title="2023&#x2F;05&#x2F;07"></a>2023&#x2F;05&#x2F;07</h1><ul>
-<li>55. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/jump-game/" >Jump Game<i class="fas fa-external-link-alt"></i></a></li>
-<li>133. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/clone-graph/" >Clone Graph<i class="fas fa-external-link-alt"></i></a></li>
-<li>200. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-islands/" >Number of Islands<i class="fas fa-external-link-alt"></i></a></li>
-<li>207. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/course-schedule/" >Course Schedule<i class="fas fa-external-link-alt"></i></a></li>
-<li>417. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/pacific-atlantic-water-flow/" >Pacific Atlantic Water Flow<i class="fas fa-external-link-alt"></i></a></li>
-<li>2660. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/determine-the-winner-of-a-bowling-game/" >Determine the Winner of a Bowling Game<i class="fas fa-external-link-alt"></i></a></li>
-<li>2661. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/first-completely-painted-row-or-column/" >First Completely Painted Row or Column<i class="fas fa-external-link-alt"></i></a></li>
-<li>2662. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-cost-of-a-path-with-special-roads/" >Minimum Cost of a Path With Special Roads<i class="fas fa-external-link-alt"></i></a></li>
-<li>2663. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/lexicographically-smallest-beautiful-string/" >Lexicographically Smallest Beautiful String<i class="fas fa-external-link-alt"></i></a></li>
+<li>55. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/jump-game/">Jump Game</a></li>
+<li>133. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/clone-graph/">Clone Graph</a></li>
+<li>200. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-islands/">Number of Islands</a></li>
+<li>207. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/course-schedule/">Course Schedule</a></li>
+<li>417. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/pacific-atlantic-water-flow/">Pacific Atlantic Water Flow</a></li>
+<li>2660. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/determine-the-winner-of-a-bowling-game/">Determine the Winner of a Bowling Game</a></li>
+<li>2661. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/first-completely-painted-row-or-column/">First Completely Painted Row or Column</a></li>
+<li>2662. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-cost-of-a-path-with-special-roads/">Minimum Cost of a Path With Special Roads</a></li>
+<li>2663. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/lexicographically-smallest-beautiful-string/">Lexicographically Smallest Beautiful String</a></li>
 </ul>
 <h1 id="2023-x2F-04-x2F-30"><a href="#2023-x2F-04-x2F-30" class="headerlink" title="2023&#x2F;04&#x2F;30"></a>2023&#x2F;04&#x2F;30</h1><ul>
-<li>62. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/unique-paths/" >Unique Paths<i class="fas fa-external-link-alt"></i></a></li>
-<li>91. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/decode-ways/" >Decode Ways<i class="fas fa-external-link-alt"></i></a></li>
-<li>198. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/house-robber/" >House Robber<i class="fas fa-external-link-alt"></i></a></li>
-<li>213. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/house-robber-ii/" >House Robber II<i class="fas fa-external-link-alt"></i></a></li>
-<li>377. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/combination-sum-iv/" >Combination Sum IV<i class="fas fa-external-link-alt"></i></a></li>
-<li>2651. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/calculate-delayed-arrival-time/" >Calculate Delayed Arrival Time<i class="fas fa-external-link-alt"></i></a></li>
-<li>2652. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-multiples/" >Sum Multiples<i class="fas fa-external-link-alt"></i></a></li>
-<li>2653. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sliding-subarray-beauty/" >Sliding Subarray Beauty<i class="fas fa-external-link-alt"></i></a></li>
-<li>2654. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/" >Minimum Number of Operations to Make All Array Elements Equal to 1<i class="fas fa-external-link-alt"></i></a></li>
+<li>62. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/unique-paths/">Unique Paths</a></li>
+<li>91. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/decode-ways/">Decode Ways</a></li>
+<li>198. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/house-robber/">House Robber</a></li>
+<li>213. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/house-robber-ii/">House Robber II</a></li>
+<li>377. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/combination-sum-iv/">Combination Sum IV</a></li>
+<li>2651. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/calculate-delayed-arrival-time/">Calculate Delayed Arrival Time</a></li>
+<li>2652. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-multiples/">Sum Multiples</a></li>
+<li>2653. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/sliding-subarray-beauty/">Sliding Subarray Beauty</a></li>
+<li>2654. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/">Minimum Number of Operations to Make All Array Elements Equal to 1</a></li>
 </ul>
 <h1 id="2023-x2F-04-x2F-23"><a href="#2023-x2F-04-x2F-23" class="headerlink" title="2023&#x2F;04&#x2F;23"></a>2023&#x2F;04&#x2F;23</h1><ul>
-<li>70. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/climbing-stairs/" >Climbing Stairs<i class="fas fa-external-link-alt"></i></a></li>
-<li>139. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/word-break/" >Word Break<i class="fas fa-external-link-alt"></i></a></li>
-<li>300. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-increasing-subsequence/" >Longest Increasing Subsequence<i class="fas fa-external-link-alt"></i></a></li>
-<li>322. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/coin-change/" >Coin Change<i class="fas fa-external-link-alt"></i></a></li>
-<li>1143. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-common-subsequence/" >Longest Common Subsequence<i class="fas fa-external-link-alt"></i></a></li>
-<li>2643. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/row-with-maximum-ones/" >Row With Maximum Ones<i class="fas fa-external-link-alt"></i></a></li>
-<li>2644. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-maximum-divisibility-score/" >Find the Maximum Divisibility Score<i class="fas fa-external-link-alt"></i></a></li>
-<li>2645. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-additions-to-make-valid-string/" >Minimum Additions to Make Valid String<i class="fas fa-external-link-alt"></i></a></li>
-<li>2646. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/minimize-the-total-price-of-the-trips/" >Minimize the Total Price of the Trips<i class="fas fa-external-link-alt"></i></a></li>
+<li>70. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/climbing-stairs/">Climbing Stairs</a></li>
+<li>139. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/word-break/">Word Break</a></li>
+<li>300. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-increasing-subsequence/">Longest Increasing Subsequence</a></li>
+<li>322. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/coin-change/">Coin Change</a></li>
+<li>1143. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-common-subsequence/">Longest Common Subsequence</a></li>
+<li>2643. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/row-with-maximum-ones/">Row With Maximum Ones</a></li>
+<li>2644. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-maximum-divisibility-score/">Find the Maximum Divisibility Score</a></li>
+<li>2645. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-additions-to-make-valid-string/">Minimum Additions to Make Valid String</a></li>
+<li>2646. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimize-the-total-price-of-the-trips/">Minimize the Total Price of the Trips</a></li>
 </ul>
 <h1 id="2023-x2F-04-x2F-16"><a href="#2023-x2F-04-x2F-16" class="headerlink" title="2023&#x2F;04&#x2F;16"></a>2023&#x2F;04&#x2F;16</h1><ul>
-<li>190. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-bits/" >Reverse Bits<i class="fas fa-external-link-alt"></i></a></li>
-<li>191. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-1-bits/" >Number of 1 Bits<i class="fas fa-external-link-alt"></i></a></li>
-<li>268. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/missing-number/" >Missing Number<i class="fas fa-external-link-alt"></i></a></li>
-<li>338. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/counting-bits/" >Counting Bits<i class="fas fa-external-link-alt"></i></a></li>
-<li>371. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-two-integers/" >Sum of Two Integers<i class="fas fa-external-link-alt"></i></a></li>
-<li>2609. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-longest-balanced-substring-of-a-binary-string/" >Find the Longest Balanced Substring of a Binary String<i class="fas fa-external-link-alt"></i></a></li>
-<li>2610. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-an-array-into-a-2d-array-with-conditions/" >Convert an Array Into a 2D Array With Conditions<i class="fas fa-external-link-alt"></i></a></li>
+<li>190. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-bits/">Reverse Bits</a></li>
+<li>191. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-1-bits/">Number of 1 Bits</a></li>
+<li>268. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/missing-number/">Missing Number</a></li>
+<li>338. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/counting-bits/">Counting Bits</a></li>
+<li>371. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-two-integers/">Sum of Two Integers</a></li>
+<li>2609. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-longest-balanced-substring-of-a-binary-string/">Find the Longest Balanced Substring of a Binary String</a></li>
+<li>2610. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/convert-an-array-into-a-2d-array-with-conditions/">Convert an Array Into a 2D Array With Conditions</a></li>
 </ul>
 <h1 id="2023-x2F-04-x2F-09"><a href="#2023-x2F-04-x2F-09" class="headerlink" title="2023&#x2F;04&#x2F;09"></a>2023&#x2F;04&#x2F;09</h1><ul>
-<li>11. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/" >Container With Most Water<i class="fas fa-external-link-alt"></i></a></li>
-<li>15. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/3sum/" >3Sum<i class="fas fa-external-link-alt"></i></a></li>
-<li>33. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/search-in-rotated-sorted-array/" >Search in Rotated Sorted Array<i class="fas fa-external-link-alt"></i></a></li>
-<li>152. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-product-subarray/" >Maximum Product Subarray<i class="fas fa-external-link-alt"></i></a></li>
-<li>153. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" >Find Minimum in Rotated Sorted Array<i class="fas fa-external-link-alt"></i></a></li>
-<li>2600. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/k-items-with-the-maximum-sum/" >K Items With the Maximum Sum<i class="fas fa-external-link-alt"></i></a></li>
-<li>2601. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/prime-subtraction-operation/" >Prime Subtraction Operation<i class="fas fa-external-link-alt"></i></a></li>
+<li>11. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/">Container With Most Water</a></li>
+<li>15. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/3sum/">3Sum</a></li>
+<li>33. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/search-in-rotated-sorted-array/">Search in Rotated Sorted Array</a></li>
+<li>152. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-product-subarray/">Maximum Product Subarray</a></li>
+<li>153. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/">Find Minimum in Rotated Sorted Array</a></li>
+<li>2600. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/k-items-with-the-maximum-sum/">K Items With the Maximum Sum</a></li>
+<li>2601. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/prime-subtraction-operation/">Prime Subtraction Operation</a></li>
 </ul>
 <h1 id="2023-x2F-03-x2F-26"><a href="#2023-x2F-03-x2F-26" class="headerlink" title="2023&#x2F;03&#x2F;26"></a>2023&#x2F;03&#x2F;26</h1><ul>
-<li>1. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/two-sum/" >Two Sum<i class="fas fa-external-link-alt"></i></a></li>
-<li>53. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-subarray/" >Maximum Subarray<i class="fas fa-external-link-alt"></i></a></li>
-<li>121. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" >Best Time to Buy and Sell Stock<i class="fas fa-external-link-alt"></i></a></li>
-<li>217. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/contains-duplicate/" >Contains Duplicate<i class="fas fa-external-link-alt"></i></a></li>
-<li>238. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/product-of-array-except-self/" >Product of Array Except Self<i class="fas fa-external-link-alt"></i></a></li>
-<li>2595. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-even-and-odd-bits/" >Number of Even and Odd Bits<i class="fas fa-external-link-alt"></i></a></li>
-<li>2596. <a class="link"   target="_blank" rel="noopener" href="https://leetcode.com/problems/check-knight-tour-configuration/" >Check Knight Tour Configuration<i class="fas fa-external-link-alt"></i></a></li>
+<li>1. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/two-sum/">Two Sum</a></li>
+<li>53. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-subarray/">Maximum Subarray</a></li>
+<li>121. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/">Best Time to Buy and Sell Stock</a></li>
+<li>217. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/contains-duplicate/">Contains Duplicate</a></li>
+<li>238. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/product-of-array-except-self/">Product of Array Except Self</a></li>
+<li>2595. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-even-and-odd-bits/">Number of Even and Odd Bits</a></li>
+<li>2596. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/check-knight-tour-configuration/">Check Knight Tour Configuration</a></li>
 </ul>
 
-            
-        </div>
         
-    </div>
-</div>
+  </div>
+</article>
 
-
-                                                                                                
-                            </div>
-
-                        </div>
-
-                        <div class="page-main-content-bottom">
-                            
-<footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
-            
-                <span>2020</span> -
-            
-            2025
-            
-                <!-- &nbsp;<i class="fas fa-heart icon-animate"></i> -->
-                &nbsp;<a href="/">Aura</a>
-            
-        </div>
         
-        <div class="theme-info info-item">
-            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>  
-        </div>
-        <!-- v3.6.1 -->
-        
-        
-    </div>
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2025
+    Aura
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
 </footer>
 
-                        </div>
-                    </div>
-
-                    
-
-                            <div class="right-bottom-side-tools">
-                                <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
-
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-    </ul>
-</div>
-
-                            </div>
-
-                            <div class="zoom-in-image-mask">
-    <img class="zoom-in-image">
-</div>
-
-
-                                
-                                    <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fas fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="Search..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="close-popup-btn">
-                <i class="fas fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
     </div>
-</div>
-
-                                        
-
-    </main>
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+    <!-- styles -->
 
 
 
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
-
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+<!-- clipboard -->
 
 
-<div class="post-scripts">
-    
-</div>
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
 
 </body>
 </html>

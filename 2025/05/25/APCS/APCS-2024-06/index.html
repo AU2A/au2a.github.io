@@ -1,218 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=en>
 <head>
+    <!-- so meta -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Aura&#39;s Space">
-    <meta name="description" content="A place to learn">
-    <meta name="author" content="Aura">
-    <style>
-        body{
-            -ms-overflow-style: none;  /* Internet Explorer 10+ */
-            scrollbar-width: none;  /* Firefox */
-        }
-        body::-webkit-scrollbar { 
-            display: none;  /* Safari and Chrome */
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="1. 特技表演解題步驟 讀取輸入資料: 讀取大樓的總數 n，接著使用一個 for 迴圈讀取 n 棟大樓分別的高度，並將它們儲存在一個陣列 h 中。 初始化變數: 初始化兩個整數變數。max_d 用來儲存找到的「最長」滑翔路徑長度，初始為 0。d 用來儲存「當前」正在計算的連續滑翔路徑長度，初始為 1（因為任何一棟大樓本身都構成長度為 1 的路徑）。 遍歷大樓陣列: 使用 for 迴圈從第一棟大樓">
+<meta property="og:type" content="article">
+<meta property="og:title" content="APCS-2024-06">
+<meta property="og:url" content="http://example.com/2025/05/25/APCS/APCS-2024-06/index.html">
+<meta property="og:site_name" content="Aura&#39;s Space">
+<meta property="og:description" content="1. 特技表演解題步驟 讀取輸入資料: 讀取大樓的總數 n，接著使用一個 for 迴圈讀取 n 棟大樓分別的高度，並將它們儲存在一個陣列 h 中。 初始化變數: 初始化兩個整數變數。max_d 用來儲存找到的「最長」滑翔路徑長度，初始為 0。d 用來儲存「當前」正在計算的連續滑翔路徑長度，初始為 1（因為任何一棟大樓本身都構成長度為 1 的路徑）。 遍歷大樓陣列: 使用 for 迴圈從第一棟大樓">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-25T12:13:56.000Z">
+<meta property="article:modified_time" content="2025-11-07T11:18:42.891Z">
+<meta property="article:author" content="Aura">
+<meta property="article:tag" content="Aura&#39;s Space">
+<meta name="twitter:card" content="summary">
     
-    <title>
+    
+      
         
-            APCS-2024-06 |
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
-        Aura Space
-    </title>
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>APCS-2024-06</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/logo.svg">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {}
-    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#f39c12","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.svg","font_size":null,"font_family":"Roboto","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep learning,|| Keep Coding.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":false,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"center","copyright_info":false},"version":"3.6.1"}
-    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
-    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
-    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
-  </script>
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
 <meta name="generator" content="Hexo 6.3.0"></head>
 
-
-<body>
-<div class="progress-bar-container">
+<body class="max-width mx-auto px3 ltr">
     
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2025/06/15/APCS/APCS-2025-06/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2025/05/18/APCS/APCS-2024-10/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/05/25/APCS/APCS-2024-06/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&text=APCS-2024-06"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&title=APCS-2024-06"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&is_video=false&description=APCS-2024-06"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=APCS-2024-06&body=Check out this article: http://example.com/2025/05/25/APCS/APCS-2024-06/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&title=APCS-2024-06"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&title=APCS-2024-06"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&title=APCS-2024-06"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&title=APCS-2024-06"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&name=APCS-2024-06&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/05/25/APCS/APCS-2024-06/&t=APCS-2024-06"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
     
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%89%B9%E6%8A%80%E8%A1%A8%E6%BC%94"><span class="toc-number">1.</span> <span class="toc-text">1. 特技表演</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A1%8C%E6%AD%A5%E9%A9%9F"><span class="toc-number">1.1.</span> <span class="toc-text">解題步驟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E6%AD%A5%E9%A9%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="toc-number">1.2.</span> <span class="toc-text">分段步驟程式碼</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%80%E5%8F%96%E8%BC%B8%E5%85%A5%E8%B3%87%E6%96%99"><span class="toc-number">1.2.1.</span> <span class="toc-text">讀取輸入資料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E8%AE%8A%E6%95%B8"><span class="toc-number">1.2.2.</span> <span class="toc-text">初始化變數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%8D%E6%AD%B7%E3%80%81%E6%AF%94%E8%BC%83%E4%B8%A6%E6%9B%B4%E6%96%B0%E6%9C%80%E9%95%B7%E8%B7%AF%E5%BE%91"><span class="toc-number">1.2.3.</span> <span class="toc-text">遍歷、比較並更新最長路徑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BC%B8%E5%87%BA%E7%B5%90%E6%9E%9C"><span class="toc-number">1.2.4.</span> <span class="toc-text">輸出結果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="toc-number">1.3.</span> <span class="toc-text">完整程式碼</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E9%9B%BB%E5%AD%90%E7%95%AB%E5%B8%83"><span class="toc-number">2.</span> <span class="toc-text">2. 電子畫布</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A1%8C%E6%AD%A5%E9%A9%9F-1"><span class="toc-number">2.1.</span> <span class="toc-text">解題步驟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E6%AD%A5%E9%A9%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC-1"><span class="toc-number">2.2.</span> <span class="toc-text">分段步驟程式碼</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E5%87%BD%E5%BC%8F%E5%BA%AB%E8%88%87%E5%87%BD%E5%BC%8F%E5%8E%9F%E5%9E%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text">引入函式庫與函式原型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%80%E5%8F%96%E8%BC%B8%E5%85%A5%E8%88%87%E5%88%9D%E5%A7%8B%E5%8C%96%E7%95%AB%E5%B8%83"><span class="toc-number">2.2.2.</span> <span class="toc-text">讀取輸入與初始化畫布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%93%AC-N-%E6%AC%A1%E7%95%AB%E7%AD%86%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.3.</span> <span class="toc-text">模擬 N 次畫筆操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BC%B8%E5%87%BA%E7%95%AB%E5%B8%83%E7%8B%80%E6%85%8B"><span class="toc-number">2.2.4.</span> <span class="toc-text">輸出畫布狀態</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%BC%E5%93%88%E9%A0%93%E8%B7%9D%E9%9B%A2%E5%87%BD%E5%BC%8F%E5%AF%A6%E4%BD%9C"><span class="toc-number">2.2.5.</span> <span class="toc-text">曼哈頓距離函式實作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC-1"><span class="toc-number">2.3.</span> <span class="toc-text">完整程式碼</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
 </div>
 
-
-    <main class="page-container">
-
+    
+    <div class="content index py4 ">
         
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        APCS-2024-06
+    </h1>
 
-                    <div class="page-main-content">
 
-                        <div class="page-main-content-top">
-                            
-<header class="header-wrapper">
 
-    <div class="header-content">
-        <div class="left">
-            
-                <a class="logo-image" href="/">
-                    <img src="/images/logo.svg">
-                </a>
-            
-            <a class="logo-title" href="/">
-               Aura Space
-            </a>
-        </div>
-
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
-                                HOME
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                ARCHIVES
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                ABOUT
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Aura</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-05-25T12:13:56.000Z" class="dt-published" itemprop="datePublished">2025-05-25</time>
+        
+      
     </div>
 
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">HOME</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">ARCHIVES</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">ABOUT</a>
-                </li>
-            
-        </ul>
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/APCS/">APCS</a>
     </div>
 
-    <div class="window-mask"></div>
 
-</header>
+      
 
+    </div>
+  </header>
+  
 
-                        </div>
-
-                        <div class="page-main-content-middle">
-
-                            <div class="main-content">
-
-                                
-                                                    <div class="fade-in-down-animation">
-    <div class="post-page-container">
-        <div class="article-content-container">
-
-            <div class="article-title">
-                <span class="title-hover-animation">APCS-2024-06</span>
-            </div>
-
-            
-                <div class="article-header">
-                    <div class="avatar">
-                        <img src="/images/avatar.svg">
-                    </div>
-                    <div class="info">
-                        <div class="author">
-                            <span class="name">Aura</span>
-                            
-                        </div>
-                        <div class="meta-info">
-                            
-<div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        
-            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
-        
-        <span class="pc">2025-05-25 20:13:56</span>
-        <span class="mobile">2025-05-25 20:13</span>
-    </span>
-    
-        <span class="article-update-date article-meta-item">
-        <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2025-11-07 19:18:42</span>
-    </span>
-    
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/APCS/">APCS</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-
-    
-    
-    
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            
-
-            <div class="article-content keep-markdown-body">
-                
-
-                <h1 id="1-特技表演"><a href="#1-特技表演" class="headerlink" title="1. 特技表演"></a>1. 特技表演</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="1-特技表演"><a href="#1-特技表演" class="headerlink" title="1. 特技表演"></a>1. 特技表演</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
 <li><strong>讀取輸入資料</strong>: 讀取大樓的總數 <code>n</code>，接著使用一個 <code>for</code> 迴圈讀取 <code>n</code> 棟大樓分別的高度，並將它們儲存在一個陣列 <code>h</code> 中。</li>
 <li><strong>初始化變數</strong>: 初始化兩個整數變數。<code>max_d</code> 用來儲存找到的「最長」滑翔路徑長度，初始為 0。<code>d</code> 用來儲存「當前」正在計算的連續滑翔路徑長度，初始為 1（因為任何一棟大樓本身都構成長度為 1 的路徑）。</li>
 <li><strong>遍歷大樓陣列</strong>: 使用 <code>for</code> 迴圈從第一棟大樓 (<code>i = 0</code>) 檢查到倒數第二棟大樓 (<code>i &lt; n-1</code>)。</li>
@@ -275,223 +221,139 @@
 <p>這段程式碼實作了計算曼哈頓距離的輔助函式。它計算兩個座標 <code>(hh, ww)</code> 和 <code>(r, c)</code> 之間 x 座標差的絕對值與 y 座標差的絕對值之和。</p>
 <h2 id="完整程式碼-1"><a href="#完整程式碼-1" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 曼哈頓距離函式原型</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">m_dis</span><span class="params">(<span class="type">int</span>,<span class="type">int</span>,<span class="type">int</span>,<span class="type">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> h, w, n;</span><br><span class="line">    <span class="type">int</span> r, c, t, x;</span><br><span class="line">    cin &gt;&gt; h &gt;&gt; w &gt;&gt; n;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">// 初始化 h x w 畫布，全為 0</span></span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">board</span>(h,<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(w,<span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 進行 n 次操作</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; r &gt;&gt; c &gt;&gt; t &gt;&gt; x;</span><br><span class="line">        <span class="comment">// 遍歷所有格子</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> hh=<span class="number">0</span>;hh&lt;h;hh++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> ww=<span class="number">0</span>;ww&lt;w;ww++)&#123;</span><br><span class="line">                <span class="comment">// 如果在範圍內，就加上顏色</span></span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">m_dis</span>(hh, ww, r, c)&lt;=t)&#123;</span><br><span class="line">                    board[hh][ww] += x;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 輸出最終畫布狀態</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> hh=<span class="number">0</span>;hh&lt;h;hh++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> ww=<span class="number">0</span>;ww&lt;w;ww++)&#123;</span><br><span class="line">            cout&lt;&lt; board[hh][ww]&lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 曼哈頓距離函式實作</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">m_dis</span><span class="params">(<span class="type">int</span> hh, <span class="type">int</span> ww, <span class="type">int</span> r, <span class="type">int</span> c)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> h_diff = hh-r;</span><br><span class="line">    <span class="type">int</span> w_diff = ww-c;</span><br><span class="line">    <span class="comment">// 取絕對值</span></span><br><span class="line">    <span class="keyword">if</span>(h_diff&lt;<span class="number">0</span>) h_diff*=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">if</span>(w_diff&lt;<span class="number">0</span>) w_diff*=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> h_diff + w_diff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-            </div>
+  </div>
+</article>
 
-            
 
-            
-
-            
-                <div class="article-nav">
-                    
-                        <div class="article-prev">
-                            <a class="prev"
-                               rel="prev"
-                               href="/2025/06/15/APCS/APCS-2025-06/"
-                            >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                                <span class="title flex-center">
-                                <span class="post-nav-title-item">APCS-2025-06</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                            </a>
-                        </div>
-                    
-                    
-                        <div class="article-next">
-                            <a class="next"
-                               rel="next"
-                               href="/2025/05/18/APCS/APCS-2024-10/"
-                            >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">APCS-2024-10</span>
-                                <span class="post-nav-item">Next posts</span>
-                            </span>
-                                <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                            </a>
-                        </div>
-                    
-                </div>
-            
-
-            
-        </div>
 
         
-            <div class="toc-content-container">
-                <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%89%B9%E6%8A%80%E8%A1%A8%E6%BC%94"><span class="nav-text">1. 特技表演</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%AD%A5%E9%A9%9F"><span class="nav-text">解題步驟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E6%AD%A5%E9%A9%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-text">分段步驟程式碼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%80%E5%8F%96%E8%BC%B8%E5%85%A5%E8%B3%87%E6%96%99"><span class="nav-text">讀取輸入資料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E8%AE%8A%E6%95%B8"><span class="nav-text">初始化變數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%8D%E6%AD%B7%E3%80%81%E6%AF%94%E8%BC%83%E4%B8%A6%E6%9B%B4%E6%96%B0%E6%9C%80%E9%95%B7%E8%B7%AF%E5%BE%91"><span class="nav-text">遍歷、比較並更新最長路徑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BC%B8%E5%87%BA%E7%B5%90%E6%9E%9C"><span class="nav-text">輸出結果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-text">完整程式碼</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E9%9B%BB%E5%AD%90%E7%95%AB%E5%B8%83"><span class="nav-text">2. 電子畫布</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%AD%A5%E9%A9%9F-1"><span class="nav-text">解題步驟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E6%AD%A5%E9%A9%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC-1"><span class="nav-text">分段步驟程式碼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E5%87%BD%E5%BC%8F%E5%BA%AB%E8%88%87%E5%87%BD%E5%BC%8F%E5%8E%9F%E5%9E%8B"><span class="nav-text">引入函式庫與函式原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%80%E5%8F%96%E8%BC%B8%E5%85%A5%E8%88%87%E5%88%9D%E5%A7%8B%E5%8C%96%E7%95%AB%E5%B8%83"><span class="nav-text">讀取輸入與初始化畫布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%93%AC-N-%E6%AC%A1%E7%95%AB%E7%AD%86%E6%93%8D%E4%BD%9C"><span class="nav-text">模擬 N 次畫筆操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BC%B8%E5%87%BA%E7%95%AB%E5%B8%83%E7%8B%80%E6%85%8B"><span class="nav-text">輸出畫布狀態</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%BC%E5%93%88%E9%A0%93%E8%B7%9D%E9%9B%A2%E5%87%BD%E5%BC%8F%E5%AF%A6%E4%BD%9C"><span class="nav-text">曼哈頓距離函式實作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC-1"><span class="nav-text">完整程式碼</span></a></li></ol></li></ol>
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
     </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%89%B9%E6%8A%80%E8%A1%A8%E6%BC%94"><span class="toc-number">1.</span> <span class="toc-text">1. 特技表演</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A1%8C%E6%AD%A5%E9%A9%9F"><span class="toc-number">1.1.</span> <span class="toc-text">解題步驟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E6%AD%A5%E9%A9%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="toc-number">1.2.</span> <span class="toc-text">分段步驟程式碼</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%80%E5%8F%96%E8%BC%B8%E5%85%A5%E8%B3%87%E6%96%99"><span class="toc-number">1.2.1.</span> <span class="toc-text">讀取輸入資料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E8%AE%8A%E6%95%B8"><span class="toc-number">1.2.2.</span> <span class="toc-text">初始化變數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%8D%E6%AD%B7%E3%80%81%E6%AF%94%E8%BC%83%E4%B8%A6%E6%9B%B4%E6%96%B0%E6%9C%80%E9%95%B7%E8%B7%AF%E5%BE%91"><span class="toc-number">1.2.3.</span> <span class="toc-text">遍歷、比較並更新最長路徑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BC%B8%E5%87%BA%E7%B5%90%E6%9E%9C"><span class="toc-number">1.2.4.</span> <span class="toc-text">輸出結果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="toc-number">1.3.</span> <span class="toc-text">完整程式碼</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E9%9B%BB%E5%AD%90%E7%95%AB%E5%B8%83"><span class="toc-number">2.</span> <span class="toc-text">2. 電子畫布</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A1%8C%E6%AD%A5%E9%A9%9F-1"><span class="toc-number">2.1.</span> <span class="toc-text">解題步驟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E6%AD%A5%E9%A9%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC-1"><span class="toc-number">2.2.</span> <span class="toc-text">分段步驟程式碼</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E5%87%BD%E5%BC%8F%E5%BA%AB%E8%88%87%E5%87%BD%E5%BC%8F%E5%8E%9F%E5%9E%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text">引入函式庫與函式原型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%80%E5%8F%96%E8%BC%B8%E5%85%A5%E8%88%87%E5%88%9D%E5%A7%8B%E5%8C%96%E7%95%AB%E5%B8%83"><span class="toc-number">2.2.2.</span> <span class="toc-text">讀取輸入與初始化畫布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%93%AC-N-%E6%AC%A1%E7%95%AB%E7%AD%86%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.3.</span> <span class="toc-text">模擬 N 次畫筆操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BC%B8%E5%87%BA%E7%95%AB%E5%B8%83%E7%8B%80%E6%85%8B"><span class="toc-number">2.2.4.</span> <span class="toc-text">輸出畫布狀態</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%BC%E5%93%88%E9%A0%93%E8%B7%9D%E9%9B%A2%E5%87%BD%E5%BC%8F%E5%AF%A6%E4%BD%9C"><span class="toc-number">2.2.5.</span> <span class="toc-text">曼哈頓距離函式實作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC-1"><span class="toc-number">2.3.</span> <span class="toc-text">完整程式碼</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/05/25/APCS/APCS-2024-06/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&text=APCS-2024-06"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&title=APCS-2024-06"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&is_video=false&description=APCS-2024-06"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=APCS-2024-06&body=Check out this article: http://example.com/2025/05/25/APCS/APCS-2024-06/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&title=APCS-2024-06"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&title=APCS-2024-06"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&title=APCS-2024-06"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&title=APCS-2024-06"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/05/25/APCS/APCS-2024-06/&name=APCS-2024-06&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/05/25/APCS/APCS-2024-06/&t=APCS-2024-06"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
 </div>
 
-            </div>
         
-    </div>
-</div>
-
-
-                                                        
-                            </div>
-
-                        </div>
-
-                        <div class="page-main-content-bottom">
-                            
-<footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
-            
-                <span>2020</span> -
-            
-            2025
-            
-                <!-- &nbsp;<i class="fas fa-heart icon-animate"></i> -->
-                &nbsp;<a href="/">Aura</a>
-            
-        </div>
-        
-        <div class="theme-info info-item">
-            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>  
-        </div>
-        <!-- v3.6.1 -->
-        
-        
-    </div>
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2025
+    Aura
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
 </footer>
 
-                        </div>
-                    </div>
-
-                    
-                        <div class="post-tools">
-                            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="tools-item flex-center toggle-show-toc">
-                <i class="fas fa-list"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-    </ul>
-</div>
-
-                        </div>
-                        
-
-                            <div class="right-bottom-side-tools">
-                                <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
-
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-    </ul>
-</div>
-
-                            </div>
-
-                            <div class="zoom-in-image-mask">
-    <img class="zoom-in-image">
-</div>
-
-
-                                
-                                    <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fas fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="Search..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="close-popup-btn">
-                <i class="fas fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
     </div>
-</div>
-
-                                        
-
-    </main>
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+    <!-- styles -->
 
 
 
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
-
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
 
 
-<div class="post-scripts">
-    
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
-        
-            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
-        
-        
-            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
-        
-    
-</div>
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
 
 </body>
 </html>
