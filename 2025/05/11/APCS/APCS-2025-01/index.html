@@ -123,11 +123,14 @@
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Aura</span>
-      </span>
-      
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Aura
+                    
+          </span>
+        </span>
+        
     <div class="postdate">
       
         <time datetime="2025-05-11T14:17:41.000Z" class="dt-published" itemprop="datePublished">2025-05-11</time>
@@ -136,21 +139,21 @@
     </div>
 
 
-      
+          
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
         <a class="category-link" href="/categories/APCS/">APCS</a>
     </div>
 
 
-      
+            
 
-    </div>
+      </div>
   </header>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="1-等紅綠燈"><a href="#1-等紅綠燈" class="headerlink" title="1. 等紅綠燈"></a>1. 等紅綠燈</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
+    <div class="content e-content" itemprop="articleBody">
+      <h1 id="1-等紅綠燈"><a href="#1-等紅綠燈" class="headerlink" title="1. 等紅綠燈"></a>1. 等紅綠燈</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
 <li><strong>讀取輸入</strong>: 讀取綠燈秒數 <code>green</code>、紅燈秒數 <code>red</code>，以及小朋友的人數 <code>n</code>。</li>
 <li><strong>計算週期與初始化</strong>: 計算一個完整的紅綠燈週期 <code>loop = green + red</code>。初始化總等待時間 <code>delay</code> 為 0。</li>
 <li><strong>遍歷小朋友</strong>: 使用 <code>for</code> 迴圈，依序處理 <code>n</code> 個小朋友。</li>
@@ -208,9 +211,8 @@
 <p>在 <code>k</code> 次操作全部執行完畢後，輸出字串 <code>s</code> 的最終內容。</p>
 <h2 id="完整程式碼-1"><a href="#完整程式碼-1" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string s;</span><br><span class="line">    <span class="type">int</span> k, op;</span><br><span class="line">    cin &gt;&gt; s &gt;&gt; k;</span><br><span class="line">    <span class="type">int</span> s_len = s.<span class="built_in">length</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">        cin &gt;&gt; op;</span><br><span class="line">        <span class="keyword">if</span>(op == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;s_len;j+=<span class="number">2</span>)&#123;</span><br><span class="line">                <span class="type">char</span> temp = s[j];</span><br><span class="line">                s[j]   = s[j+<span class="number">1</span>];</span><br><span class="line">                s[j+<span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(op == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;s_len;j+=<span class="number">2</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s[j] &gt; s[j+<span class="number">1</span>])&#123;</span><br><span class="line">                    <span class="type">char</span> temp = s[j];</span><br><span class="line">                    s[j]   = s[j+<span class="number">1</span>];</span><br><span class="line">                    s[j+<span class="number">1</span>] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            string s_temp = s;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;s_len/<span class="number">2</span>;i++)&#123;</span><br><span class="line">                s[<span class="number">2</span>*i] = s_temp[i];</span><br><span class="line">                s[<span class="number">2</span>*i+<span class="number">1</span>] = s_temp[i+s_len/<span class="number">2</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; s;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  </div>
+    </div>
 </article>
-
 
 
         

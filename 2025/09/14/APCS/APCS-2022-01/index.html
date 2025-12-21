@@ -123,11 +123,14 @@
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Aura</span>
-      </span>
-      
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Aura
+                    
+          </span>
+        </span>
+        
     <div class="postdate">
       
         <time datetime="2025-09-14T06:03:14.000Z" class="dt-published" itemprop="datePublished">2025-09-14</time>
@@ -136,21 +139,21 @@
     </div>
 
 
-      
+          
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
         <a class="category-link" href="/categories/APCS/">APCS</a>
     </div>
 
 
-      
+            
 
-    </div>
+      </div>
   </header>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="1-程式交易"><a href="#1-程式交易" class="headerlink" title="1. 程式交易"></a>1. 程式交易</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
+    <div class="content e-content" itemprop="articleBody">
+      <h1 id="1-程式交易"><a href="#1-程式交易" class="headerlink" title="1. 程式交易"></a>1. 程式交易</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
 <li><strong>讀取輸入資料</strong>: 讀取股票天數 <code>n</code>、價差 <code>D</code>，以及 <code>n</code> 天的每日價格。</li>
 <li><strong>初始化交易狀態</strong>:<ul>
 <li>設定總利潤 <code>ans</code> 為 0。</li>
@@ -261,9 +264,8 @@
 <p>當 <code>while</code> 迴圈結束時，<code>info</code> 向量中只會剩下一個元素，即 <code>info[0]</code>。我們輸出其編號 <code>info[0][2]</code>。</p>
 <h2 id="完整程式碼-1"><a href="#完整程式碼-1" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n,m,idx;</span><br><span class="line">    cin &gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">S</span><span class="params">(n)</span>, <span class="title">T</span><span class="params">(n)</span></span>;</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">info</span>(n,<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">4</span>,<span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; S[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; T[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; idx;</span><br><span class="line">        info[i][<span class="number">0</span>]=S[idx<span class="number">-1</span>];</span><br><span class="line">        info[i][<span class="number">1</span>]=T[idx<span class="number">-1</span>];</span><br><span class="line">        info[i][<span class="number">2</span>]=idx;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(info.<span class="built_in">size</span>()!=<span class="number">1</span>)&#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; win,lose;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i+<span class="number">1</span>&lt;info.<span class="built_in">size</span>();i+=<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> a=info[i][<span class="number">0</span>],b=info[i][<span class="number">1</span>],c=info[i+<span class="number">1</span>][<span class="number">0</span>],d=info[i+<span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span>(a*b&gt;=c*d)&#123;</span><br><span class="line">                win.<span class="built_in">push_back</span> (&#123;a+c*d/(<span class="number">2</span>*b),b+c*d/(<span class="number">2</span>*a),info[i][<span class="number">2</span>],info[i][<span class="number">3</span>]&#125;);</span><br><span class="line">                lose.<span class="built_in">push_back</span>(&#123;c+c/<span class="number">2</span>,d+d/<span class="number">2</span>,info[i+<span class="number">1</span>][<span class="number">2</span>],info[i+<span class="number">1</span>][<span class="number">3</span>]+<span class="number">1</span>&#125;);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                win.<span class="built_in">push_back</span> (&#123;c+a*b/(<span class="number">2</span>*d),d+a*b/(<span class="number">2</span>*c),info[i+<span class="number">1</span>][<span class="number">2</span>],info[i+<span class="number">1</span>][<span class="number">3</span>]&#125;);</span><br><span class="line">                lose.<span class="built_in">push_back</span>(&#123;a+a/<span class="number">2</span>,b+b/<span class="number">2</span>,info[i][<span class="number">2</span>],info[i][<span class="number">3</span>]+<span class="number">1</span>&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(info.<span class="built_in">size</span>()%<span class="number">2</span>==<span class="number">1</span>)&#123;</span><br><span class="line">            win.<span class="built_in">push_back</span>(info[info.<span class="built_in">size</span>()<span class="number">-1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        info = win;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;lose.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(lose[i][<span class="number">3</span>]!=m)&#123;</span><br><span class="line">                info.<span class="built_in">push_back</span>(lose[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;info[<span class="number">0</span>][<span class="number">2</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  </div>
+    </div>
 </article>
-
 
 
         

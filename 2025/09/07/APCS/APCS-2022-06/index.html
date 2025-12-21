@@ -123,11 +123,14 @@
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Aura</span>
-      </span>
-      
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Aura
+                    
+          </span>
+        </span>
+        
     <div class="postdate">
       
         <time datetime="2025-09-07T12:13:34.000Z" class="dt-published" itemprop="datePublished">2025-09-07</time>
@@ -136,21 +139,21 @@
     </div>
 
 
-      
+          
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
         <a class="category-link" href="/categories/APCS/">APCS</a>
     </div>
 
 
-      
+            
 
-    </div>
+      </div>
   </header>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="1-數字遊戲"><a href="#1-數字遊戲" class="headerlink" title="1. 數字遊戲"></a>1. 數字遊戲</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
+    <div class="content e-content" itemprop="articleBody">
+      <h1 id="1-數字遊戲"><a href="#1-數字遊戲" class="headerlink" title="1. 數字遊戲"></a>1. 數字遊戲</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
 <li><strong>初始化變數</strong>: 宣告一個大小為 9 的整數陣列 <code>cnt</code> 用於計算 1 到 9 每個數字出現的次數，並將其全部初始化為 0。宣告一個整數 <code>max_cnt</code> 用於儲存「出現最多次的次數」，並初始化為 0。</li>
 <li><strong>讀取輸入與統計</strong>: 使用 for 迴圈執行 3 次。在迴圈中：<ul>
 <li>讀取一個整數 <code>P</code>。</li>
@@ -212,9 +215,8 @@
 <p>在所有 <code>m</code> 層迴圈都執行完畢後，<code>encode</code> 變數中儲存的即是完全解密後的原始字串，將其輸出。</p>
 <h2 id="完整程式碼-1"><a href="#完整程式碼-1" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> m,n;</span><br><span class="line">    cin &gt;&gt; m &gt;&gt; n;</span><br><span class="line">    string encode;</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">keys</span><span class="params">(m)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">        cin &gt;&gt; keys[i];</span><br><span class="line">    &#125;</span><br><span class="line">    cin &gt;&gt; encode;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=m<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        string key = keys[i];</span><br><span class="line">        <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        string decode = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=n<span class="number">-1</span>;j&gt;=<span class="number">0</span>;j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(key[j]==<span class="string">&#x27;1&#x27;</span>)&#123;</span><br><span class="line">                cnt++;</span><br><span class="line">                decode = decode + encode.<span class="built_in">back</span>();</span><br><span class="line">                encode.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                decode = encode.<span class="built_in">back</span>() + decode;</span><br><span class="line">                encode.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt%<span class="number">2</span>==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">1</span>)&#123;</span><br><span class="line">                decode = decode.<span class="built_in">substr</span>((n<span class="number">-1</span>)/<span class="number">2</span>+<span class="number">1</span>,n)</span><br><span class="line">                       + decode[(n<span class="number">-1</span>)/<span class="number">2</span>]</span><br><span class="line">                       + decode.<span class="built_in">substr</span>(<span class="number">0</span>,(n<span class="number">-1</span>)/<span class="number">2</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                decode = decode.<span class="built_in">substr</span>(n/<span class="number">2</span>,n)</span><br><span class="line">                       + decode.<span class="built_in">substr</span>(<span class="number">0</span>,n/<span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        encode = decode;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; encode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  </div>
+    </div>
 </article>
-
 
 
         

@@ -123,11 +123,14 @@
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Aura</span>
-      </span>
-      
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Aura
+                    
+          </span>
+        </span>
+        
     <div class="postdate">
       
         <time datetime="2023-07-04T01:42:49.000Z" class="dt-published" itemprop="datePublished">2023-07-04</time>
@@ -136,21 +139,21 @@
     </div>
 
 
-      
+          
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
         <a class="category-link" href="/categories/HakkaASR/">HakkaASR</a>
     </div>
 
 
-      
+            
 
-    </div>
+      </div>
   </header>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="連結"><a href="#連結" class="headerlink" title="連結"></a>連結</h1><p><a target="_blank" rel="noopener" href="https://github.com/AU2A/whisper_finetuning">Github</a></p>
+    <div class="content e-content" itemprop="articleBody">
+      <h1 id="連結"><a href="#連結" class="headerlink" title="連結"></a>連結</h1><p><a target="_blank" rel="noopener" href="https://github.com/AU2A/whisper_finetuning">Github</a></p>
 <h1 id="重點專案結構"><a href="#重點專案結構" class="headerlink" title="重點專案結構"></a>重點專案結構</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">whisper_hakka</span><br><span class="line"> ┗┳━ audio</span><br><span class="line">  ┃   ┣━ test</span><br><span class="line">  ┃   ┃   ┗━ test語料存放區</span><br><span class="line">  ┃   ┣━ train</span><br><span class="line">  ┃   ┃   ┗━ train語料存放區</span><br><span class="line">  ┃   ┗━ metadata.csv 檔案路徑與文本內容</span><br><span class="line">  ┣━ model</span><br><span class="line">  ┃   ┗━ 模型存放區</span><br><span class="line">  ┣━ fine_tune.ipynb jupyter訓練腳本</span><br><span class="line">  ┗━ huggingface_token huggingfacer金鑰</span><br></pre></td></tr></table></figure>
 
 <h1 id="安裝-cuda"><a href="#安裝-cuda" class="headerlink" title="安裝 cuda"></a>安裝 cuda</h1><h4 id="cuda"><a href="#cuda" class="headerlink" title="cuda"></a>cuda</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://developer.download.nvidia.com/compute/cuda/11.4.0/local_installers/cuda_11.4.0_470.42.01_linux.run</span><br><span class="line">sudo sh cuda_11.4.0_470.42.01_linux.run</span><br></pre></td></tr></table></figure>
@@ -194,9 +197,8 @@
 
 <h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h1><p><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/sanchit-gandhi/notebooks/blob/main/fine_tune_whisper.ipynb#scrollTo=810ced54-7187-4a06-b2fe-ba6dcca94dc3">https://colab.research.google.com/github/sanchit-gandhi/notebooks/blob/main/fine_tune_whisper.ipynb#scrollTo=810ced54-7187-4a06-b2fe-ba6dcca94dc3</a><br><a target="_blank" rel="noopener" href="https://colab.research.google.com/drive/1RkboArXsuXIEDTE5OHfJe-0Gn7v3gXI1?usp=sharing#scrollTo=-hxbi4vVPpoy">https://colab.research.google.com/drive/1RkboArXsuXIEDTE5OHfJe-0Gn7v3gXI1?usp=sharing#scrollTo=-hxbi4vVPpoy</a><br><a target="_blank" rel="noopener" href="https://wandb.ai/parambharat/whisper_finetuning/reports/Fine-tuning-Whisper-ASR-models---VmlldzozMTEzNDE5">https://wandb.ai/parambharat/whisper_finetuning/reports/Fine-tuning-Whisper-ASR-models---VmlldzozMTEzNDE5</a><br><a target="_blank" rel="noopener" href="https://huggingface.co/jlondonobo/whisper-medium-pt">https://huggingface.co/jlondonobo/whisper-medium-pt</a><br><a target="_blank" rel="noopener" href="https://github.com/bayartsogt-ya/whisper-multiple-hf-datasets">https://github.com/bayartsogt-ya/whisper-multiple-hf-datasets</a><br><a target="_blank" rel="noopener" href="https://github.com/luigisaetta/whisper-app/blob/main/match_layers.ipynb">https://github.com/luigisaetta/whisper-app/blob/main/match_layers.ipynb</a><br><a target="_blank" rel="noopener" href="https://www.mlq.ai/openai-whisper-gpt-3-fine-tuning-youtube-video/">https://www.mlq.ai/openai-whisper-gpt-3-fine-tuning-youtube-video/</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/71561761/how-to-load-a-fine-tuned-pytorch-huggingface-bert-model-from-a-checkpoint-file">https://stackoverflow.com/questions/71561761/how-to-load-a-fine-tuned-pytorch-huggingface-bert-model-from-a-checkpoint-file</a><br><a target="_blank" rel="noopener" href="https://colab.research.google.com/drive/1P4ClLkPmfsaKn2tBbRp0nVjGMRKR-EWz">https://colab.research.google.com/drive/1P4ClLkPmfsaKn2tBbRp0nVjGMRKR-EWz</a><br><a target="_blank" rel="noopener" href="https://huggingface.co/spaces/openai/whisper/discussions/6">https://huggingface.co/spaces/openai/whisper/discussions/6</a><br><a target="_blank" rel="noopener" href="https://huggingface.co/blog/fine-tune-whisper">https://huggingface.co/blog/fine-tune-whisper</a><br><a target="_blank" rel="noopener" href="https://github.com/openai/whisper/discussions/98">https://github.com/openai/whisper/discussions/98</a></p>
 
-  </div>
+    </div>
 </article>
-
 
 
         

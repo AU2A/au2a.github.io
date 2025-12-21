@@ -123,11 +123,14 @@
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Aura</span>
-      </span>
-      
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Aura
+                    
+          </span>
+        </span>
+        
     <div class="postdate">
       
         <time datetime="2023-08-28T06:11:08.000Z" class="dt-published" itemprop="datePublished">2023-08-28</time>
@@ -136,21 +139,21 @@
     </div>
 
 
-      
+          
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
         <a class="category-link" href="/categories/HakkaASR/">HakkaASR</a>
     </div>
 
 
-      
+            
 
-    </div>
+      </div>
   </header>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="連結"><a href="#連結" class="headerlink" title="連結"></a>連結</h1><p><a target="_blank" rel="noopener" href="https://github.com/yfliao/whisper-hakka">Github</a></p>
+    <div class="content e-content" itemprop="articleBody">
+      <h1 id="連結"><a href="#連結" class="headerlink" title="連結"></a>連結</h1><p><a target="_blank" rel="noopener" href="https://github.com/yfliao/whisper-hakka">Github</a></p>
 <h1 id="重點專案結構"><a href="#重點專案結構" class="headerlink" title="重點專案結構"></a>重點專案結構</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">whisper-hakka</span><br><span class="line"> ┗┳━ custom_data</span><br><span class="line">  ┃   ┗━ data_prep.py 資料檢查、產生binary檔案</span><br><span class="line">  ┣━ data-char 放字單位的文本</span><br><span class="line">  ┃   ┣━ dev</span><br><span class="line">  ┃   ┃   ┣━ audio_paths symbolic link to wav.scp</span><br><span class="line">  ┃   ┃   ┣━ spk2utt 語者ID與其語料ID</span><br><span class="line">  ┃   ┃   ┣━ text    語料ID與語料文本</span><br><span class="line">  ┃   ┃   ┣━ utt2spk 語料ID與其語者ID</span><br><span class="line">  ┃   ┃   ┗━ wav.scp 語料ID與語料路徑</span><br><span class="line">  ┃   ┣━ test</span><br><span class="line">  ┃   ┃   ┗━ 同(dev)</span><br><span class="line">  ┃   ┗━ train</span><br><span class="line">  ┃       ┗━ 同(dev)</span><br><span class="line">  ┣━ data-pinyin 放詞單位的文本</span><br><span class="line">  ┃   ┗━ 同(data-char)</span><br><span class="line">  ┣━ evaluate</span><br><span class="line">  ┃   ┗━ evaluate_on_custom_dataset.py 驗證腳本</span><br><span class="line">  ┣━ train</span><br><span class="line">  ┃   ┣━ fine-tune_on_custom_dataset.py 使用本地語料訓練腳本</span><br><span class="line">  ┃   ┗━ fine-tune_on_hf_dataset.py 使用huggingface語料訓練腳本</span><br><span class="line">  ┣━ requirements.txt library套件</span><br><span class="line">  ┗━ run.sh 所有會執行的指令</span><br></pre></td></tr></table></figure>
 
 <h1 id="安裝虛擬環境"><a href="#安裝虛擬環境" class="headerlink" title="安裝虛擬環境"></a>安裝虛擬環境</h1><p>建議用虛擬環境 virtual environment 建置 python 環境，可以避免原始套件衝突。</p>
@@ -188,9 +191,8 @@
 
 <p>此方法生成的模型可以使用在 python 的 whisper 套件。</p>
 
-  </div>
+    </div>
 </article>
-
 
 
         

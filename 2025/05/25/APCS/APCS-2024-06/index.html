@@ -123,11 +123,14 @@
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Aura</span>
-      </span>
-      
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Aura
+                    
+          </span>
+        </span>
+        
     <div class="postdate">
       
         <time datetime="2025-05-25T12:13:56.000Z" class="dt-published" itemprop="datePublished">2025-05-25</time>
@@ -136,21 +139,21 @@
     </div>
 
 
-      
+          
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
         <a class="category-link" href="/categories/APCS/">APCS</a>
     </div>
 
 
-      
+            
 
-    </div>
+      </div>
   </header>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="1-特技表演"><a href="#1-特技表演" class="headerlink" title="1. 特技表演"></a>1. 特技表演</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
+    <div class="content e-content" itemprop="articleBody">
+      <h1 id="1-特技表演"><a href="#1-特技表演" class="headerlink" title="1. 特技表演"></a>1. 特技表演</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
 <li><strong>讀取輸入資料</strong>: 讀取大樓的總數 <code>n</code>，接著使用一個 <code>for</code> 迴圈讀取 <code>n</code> 棟大樓分別的高度，並將它們儲存在一個陣列 <code>h</code> 中。</li>
 <li><strong>初始化變數</strong>: 初始化兩個整數變數。<code>max_d</code> 用來儲存找到的「最長」滑翔路徑長度，初始為 0。<code>d</code> 用來儲存「當前」正在計算的連續滑翔路徑長度，初始為 1（因為任何一棟大樓本身都構成長度為 1 的路徑）。</li>
 <li><strong>遍歷大樓陣列</strong>: 使用 <code>for</code> 迴圈從第一棟大樓 (<code>i = 0</code>) 檢查到倒數第二棟大樓 (<code>i &lt; n-1</code>)。</li>
@@ -213,9 +216,8 @@
 <p>這段程式碼實作了計算曼哈頓距離的輔助函式。它計算兩個座標 <code>(hh, ww)</code> 和 <code>(r, c)</code> 之間 x 座標差的絕對值與 y 座標差的絕對值之和。</p>
 <h2 id="完整程式碼-1"><a href="#完整程式碼-1" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 曼哈頓距離函式原型</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">m_dis</span><span class="params">(<span class="type">int</span>,<span class="type">int</span>,<span class="type">int</span>,<span class="type">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> h, w, n;</span><br><span class="line">    <span class="type">int</span> r, c, t, x;</span><br><span class="line">    cin &gt;&gt; h &gt;&gt; w &gt;&gt; n;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">// 初始化 h x w 畫布，全為 0</span></span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">board</span>(h,<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(w,<span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 進行 n 次操作</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin &gt;&gt; r &gt;&gt; c &gt;&gt; t &gt;&gt; x;</span><br><span class="line">        <span class="comment">// 遍歷所有格子</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> hh=<span class="number">0</span>;hh&lt;h;hh++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> ww=<span class="number">0</span>;ww&lt;w;ww++)&#123;</span><br><span class="line">                <span class="comment">// 如果在範圍內，就加上顏色</span></span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">m_dis</span>(hh, ww, r, c)&lt;=t)&#123;</span><br><span class="line">                    board[hh][ww] += x;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 輸出最終畫布狀態</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> hh=<span class="number">0</span>;hh&lt;h;hh++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> ww=<span class="number">0</span>;ww&lt;w;ww++)&#123;</span><br><span class="line">            cout&lt;&lt; board[hh][ww]&lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 曼哈頓距離函式實作</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">m_dis</span><span class="params">(<span class="type">int</span> hh, <span class="type">int</span> ww, <span class="type">int</span> r, <span class="type">int</span> c)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> h_diff = hh-r;</span><br><span class="line">    <span class="type">int</span> w_diff = ww-c;</span><br><span class="line">    <span class="comment">// 取絕對值</span></span><br><span class="line">    <span class="keyword">if</span>(h_diff&lt;<span class="number">0</span>) h_diff*=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">if</span>(w_diff&lt;<span class="number">0</span>) w_diff*=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> h_diff + w_diff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  </div>
+    </div>
 </article>
-
 
 
         

@@ -123,11 +123,14 @@
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Aura</span>
-      </span>
-      
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Aura
+                    
+          </span>
+        </span>
+        
     <div class="postdate">
       
         <time datetime="2024-04-25T01:48:49.000Z" class="dt-published" itemprop="datePublished">2024-04-25</time>
@@ -136,21 +139,21 @@
     </div>
 
 
-      
+          
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
         <a class="category-link" href="/categories/LeetCode/">LeetCode</a> › <a class="category-link" href="/categories/LeetCode/LeetCode-Writeup/">LeetCode-Writeup</a>
     </div>
 
 
-      
+            
 
-    </div>
+      </div>
   </header>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="310-Minimum-Height-Trees"><a href="#310-Minimum-Height-Trees" class="headerlink" title="310. Minimum Height Trees"></a>310. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-height-trees/description/">Minimum Height Trees</a></h1><p>這題問題不難，難在要如何在時間內完成。</p>
+    <div class="content e-content" itemprop="articleBody">
+      <h1 id="310-Minimum-Height-Trees"><a href="#310-Minimum-Height-Trees" class="headerlink" title="310. Minimum Height Trees"></a>310. <a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-height-trees/description/">Minimum Height Trees</a></h1><p>這題問題不難，難在要如何在時間內完成。</p>
 <h1 id="Idea-1-TLE-70-x2F-71"><a href="#Idea-1-TLE-70-x2F-71" class="headerlink" title="Idea 1 TLE 70&#x2F;71"></a>Idea 1 TLE 70&#x2F;71</h1><h2 id="Main-function"><a href="#Main-function" class="headerlink" title="Main function"></a>Main function</h2><p>先將所有的連結建立成一個字典，紀錄節點連接的其他節點，以及用另一個 vector 紀錄節點連接其他節點的數量。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> edge : edges) &#123;</span><br><span class="line">    dict[edge[<span class="number">0</span>]].<span class="built_in">push_back</span>(edge[<span class="number">1</span>]);</span><br><span class="line">    dict[edge[<span class="number">1</span>]].<span class="built_in">push_back</span>(edge[<span class="number">0</span>]);</span><br><span class="line">    dictCnt[edge[<span class="number">0</span>]]++;</span><br><span class="line">    dictCnt[edge[<span class="number">1</span>]]++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -198,9 +201,8 @@
 <p>方法二的遞迴是每層的端節點到下一層，每次遞迴可以檢查多的節點，而且理論上越接近根節點分支就會變少，可以大幅降低遞迴數量。</p>
 <h2 id="Full-code-1"><a href="#Full-code-1" class="headerlink" title="Full code"></a>Full code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; tree;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; treeCnt;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">maxDepth</span><span class="params">(vector&lt;<span class="type">int</span>&gt; leafs)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; newLeafs;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> leaf : leafs) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> node : tree[leaf]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (treeCnt[node] != <span class="number">0</span>) &#123;</span><br><span class="line">                    treeCnt[node]--;</span><br><span class="line">                    <span class="keyword">if</span> (treeCnt[node] == <span class="number">1</span>) &#123;</span><br><span class="line">                        newLeafs.<span class="built_in">push_back</span>(node);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (newLeafs.<span class="built_in">size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> leafs;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">maxDepth</span>(newLeafs);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">findMinHeightTrees</span><span class="params">(<span class="type">int</span> n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; edges)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        tree.<span class="built_in">resize</span>(n);</span><br><span class="line">        treeCnt.<span class="built_in">resize</span>(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> edge : edges) &#123;</span><br><span class="line">            tree[edge[<span class="number">0</span>]].<span class="built_in">push_back</span>(edge[<span class="number">1</span>]);</span><br><span class="line">            tree[edge[<span class="number">1</span>]].<span class="built_in">push_back</span>(edge[<span class="number">0</span>]);</span><br><span class="line">            treeCnt[edge[<span class="number">0</span>]]++;</span><br><span class="line">            treeCnt[edge[<span class="number">1</span>]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; leafs;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; treeCnt.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (treeCnt[i] == <span class="number">1</span>) &#123;</span><br><span class="line">                treeCnt[i]--;</span><br><span class="line">                leafs.<span class="built_in">push_back</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">maxDepth</span>(leafs);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-  </div>
+    </div>
 </article>
-
 
 
         

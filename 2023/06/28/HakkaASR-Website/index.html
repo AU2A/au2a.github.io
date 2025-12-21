@@ -121,11 +121,14 @@
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Aura</span>
-      </span>
-      
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Aura
+                    
+          </span>
+        </span>
+        
     <div class="postdate">
       
         <time datetime="2023-06-28T04:11:34.000Z" class="dt-published" itemprop="datePublished">2023-06-28</time>
@@ -134,21 +137,21 @@
     </div>
 
 
-      
+          
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
         <a class="category-link" href="/categories/HakkaASR/">HakkaASR</a>
     </div>
 
 
-      
+            
 
-    </div>
+      </div>
   </header>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="連結"><a href="#連結" class="headerlink" title="連結"></a>連結</h1><p><a target="_blank" rel="noopener" href="https://hub.docker.com/r/au2a/hakka-website">Docker</a><br><a target="_blank" rel="noopener" href="https://github.com/AU2A/Hakka_Website">Github</a></p>
+    <div class="content e-content" itemprop="articleBody">
+      <h1 id="連結"><a href="#連結" class="headerlink" title="連結"></a>連結</h1><p><a target="_blank" rel="noopener" href="https://hub.docker.com/r/au2a/hakka-website">Docker</a><br><a target="_blank" rel="noopener" href="https://github.com/AU2A/Hakka_Website">Github</a></p>
 <h1 id="Docker-執行"><a href="#Docker-執行" class="headerlink" title="Docker 執行"></a>Docker 執行</h1><p>使用 Docker 時，可以使用以下指令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -e psw=a_string -e domain=a_domain \</span><br><span class="line">        -e port1=5001 -e port2=5002 \</span><br><span class="line">        -p 5001:443 -p 5002:5002 au2a/hakka-website</span><br></pre></td></tr></table></figure>
 
@@ -170,9 +173,8 @@
 
 <h1 id="安全憑證"><a href="#安全憑證" class="headerlink" title="安全憑證"></a>安全憑證</h1><p>因為網頁有使用的錄音功能，所以網頁需要走<code>https</code>協定，因此需要申請安全憑證。<br>我是使用<code>LetsEncrypt</code>的安全憑證，每 90 天需要重新申請一次。<br><a target="_blank" rel="noopener" href="https://itnext.io/node-express-letsencrypt-generate-a-free-ssl-certificate-and-run-an-https-server-in-5-minutes-a730fbe528ca">參考網站</a><br>請將申請後的安全憑證檔案放到<code>keys/</code>底下即可運作網頁。<br>檔案有三：<code>cert.pem</code>, <code>chain.pem</code>, <code>privkey.pem</code></p>
 
-  </div>
+    </div>
 </article>
-
 
 
         

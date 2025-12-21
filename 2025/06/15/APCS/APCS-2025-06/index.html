@@ -123,11 +123,14 @@
 
 
 
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Aura</span>
-      </span>
-      
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Aura
+                    
+          </span>
+        </span>
+        
     <div class="postdate">
       
         <time datetime="2025-06-15T14:17:41.000Z" class="dt-published" itemprop="datePublished">2025-06-15</time>
@@ -136,21 +139,21 @@
     </div>
 
 
-      
+          
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
         <a class="category-link" href="/categories/APCS/">APCS</a>
     </div>
 
 
-      
+            
 
-    </div>
+      </div>
   </header>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h1 id="1-跳柵遊戲"><a href="#1-跳柵遊戲" class="headerlink" title="1. 跳柵遊戲"></a>1. 跳柵遊戲</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
+    <div class="content e-content" itemprop="articleBody">
+      <h1 id="1-跳柵遊戲"><a href="#1-跳柵遊戲" class="headerlink" title="1. 跳柵遊戲"></a>1. 跳柵遊戲</h1><h2 id="解題步驟"><a href="#解題步驟" class="headerlink" title="解題步驟"></a>解題步驟</h2><ol>
 <li><strong>讀取初始生命值和陷阱條件</strong>: 讀取初始生命值 <code>k</code>，以及兩個陷阱的條件 <code>x1</code>、<code>y1</code> 和 <code>x2</code>、<code>y2</code>。</li>
 <li><strong>初始化位置和生命值</strong>: 初始化位置 <code>p</code> 為 0，生命值為 <code>k</code>。</li>
 <li><strong>模擬遊戲過程</strong>: 使用 while 迴圈模擬遊戲過程，直到生命值小於等於 0。</li>
@@ -192,9 +195,8 @@
 <p>這段程式碼將每個回合的分數 <code>score</code> 累加到總分 <code>total_score</code> 中，並最終輸出 <code>total_score</code>。</p>
 <h2 id="完整程式碼-1"><a href="#完整程式碼-1" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 讀取輸入</span></span><br><span class="line">    <span class="type">int</span> m, n, k;</span><br><span class="line">    cin &gt;&gt; m &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">wheel</span><span class="params">(m)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">        cin &gt;&gt; wheel[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> rotate;</span><br><span class="line">    <span class="type">int</span> total_score = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 模擬遊戲過程</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> loop = <span class="number">0</span>; loop &lt; k; loop++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            cin &gt;&gt; rotate;</span><br><span class="line">            <span class="comment">// 計算等效轉動距離</span></span><br><span class="line">            rotate %= n;</span><br><span class="line">            <span class="keyword">if</span> (rotate &lt; <span class="number">0</span>) rotate += n;</span><br><span class="line">            string rotated_wheel = <span class="string">&quot;&quot;</span>;</span><br><span class="line">            <span class="comment">// 更新輪盤狀態</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = n - rotate; j &lt; n; j++) &#123;</span><br><span class="line">                rotated_wheel += wheel[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n - rotate; j++) &#123;</span><br><span class="line">                rotated_wheel += wheel[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">            wheel[i] = rotated_wheel;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 計算每回合的分數</span></span><br><span class="line">        <span class="type">int</span> score = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> count[<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;  <span class="comment">// 統計字元出現次數</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">                count[wheel[j][i] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> max_count = <span class="number">0</span>;  <span class="comment">// 找出出現次數最多的字元</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">26</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (count[j] &gt; max_count) max_count = count[j];</span><br><span class="line">            &#125;</span><br><span class="line">            score += max_count;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 累加總分</span></span><br><span class="line">        total_score += score;</span><br><span class="line">        <span class="comment">// cout&lt;&lt;score&lt;&lt;endl; // 可用於 debug</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 輸出總分</span></span><br><span class="line">    cout &lt;&lt; total_score;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  </div>
+    </div>
 </article>
-
 
 
         
