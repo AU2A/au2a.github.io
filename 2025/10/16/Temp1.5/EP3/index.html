@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言如果說 Structured Output 是讓模型學會「說官話」（標準格式），那麼 Tools 就是賦予模型「動手做」的能力。 在 LLM 的世界裡，模型本質上只是一個機率預測器，它不知道昨天的天氣，也無法幫你下單買珍珠奶">
+    <meta name="description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言接續上次關於 Structured Output 的討論，當 Agent 能夠穩定輸出結構化數據後，下一步就是讓它具備「行動力」。在 LangChain 的世界裡，這被稱為 **Tools (工具)**。工具不僅擴展了 Ag">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Temperature 1.5 的日常】EP3: LangChain - Tools, 賦予 AI 雙手的魔法">
 <meta property="og:url" content="http://example.com/2025/10/16/Temp1.5/EP3/index.html">
 <meta property="og:site_name" content="Aura&#39;s Space">
-<meta property="og:description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言如果說 Structured Output 是讓模型學會「說官話」（標準格式），那麼 Tools 就是賦予模型「動手做」的能力。 在 LLM 的世界裡，模型本質上只是一個機率預測器，它不知道昨天的天氣，也無法幫你下單買珍珠奶">
+<meta property="og:description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言接續上次關於 Structured Output 的討論，當 Agent 能夠穩定輸出結構化數據後，下一步就是讓它具備「行動力」。在 LangChain 的世界裡，這被稱為 **Tools (工具)**。工具不僅擴展了 Ag">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-10-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-21T12:44:37.415Z">
+<meta property="article:modified_time" content="2025-12-21T12:59:28.099Z">
 <meta property="article:author" content="Aura">
 <meta property="article:tag" content="LangChain">
 <meta property="article:tag" content="Python">
@@ -106,7 +106,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E3%80%81-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E4%BB%80%E9%BA%BC%E6%98%AF-LangChain-Tool%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">一、 什麼是 LangChain Tool？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E5%AE%9A%E7%BE%A9%E5%B7%A5%E5%85%B7%E7%9A%84%E4%B8%89%E7%A8%AE%E5%A7%BF%E5%8B%A2"><span class="toc-number">3.</span> <span class="toc-text">二、 定義工具的三種姿勢</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9C%80%E5%84%AA%E9%9B%85%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%9A-tool-%E8%A3%9D%E9%A3%BE%E5%99%A8"><span class="toc-number">3.1.</span> <span class="toc-text">1. 最優雅的方式：@tool 裝飾器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9C%80%E5%9A%B4%E8%AC%B9%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%9A%E7%B9%BC%E6%89%BF-BaseTool"><span class="toc-number">3.2.</span> <span class="toc-text">2. 最嚴謹的方式：繼承 BaseTool</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%BF%AB%E9%80%9F%E5%B0%81%E8%A3%9D%EF%BC%9AStructuredTool-from-function"><span class="toc-number">3.3.</span> <span class="toc-text">3. 快速封裝：StructuredTool.from_function</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E5%B7%A5%E5%85%B7%E7%9A%84%E6%BC%94%E9%80%B2%EF%BC%9A%E5%BE%9E-Tool-%E5%88%B0-Toolkits"><span class="toc-number">4.</span> <span class="toc-text">三、 工具的演進：從 Tool 到 Toolkits</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E5%A6%82%E4%BD%95%E8%AE%93%E6%A8%A1%E5%9E%8B%E5%AD%B8%E6%9C%83%E7%94%A8%E5%B7%A5%E5%85%B7%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">四、 如何讓模型學會用工具？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E5%AF%A6%E6%88%B0%E4%B8%AD%E7%9A%84%E3%80%8C%E5%9D%91%E3%80%8D%E8%88%87%E9%98%B2%E7%A6%A6%E6%80%A7%E7%B7%A8%E7%A8%8B"><span class="toc-number">6.</span> <span class="toc-text">五、 實戰中的「坑」與防禦性編程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%B9%BB%E8%A6%BA%E8%AA%BF%E7%94%A8-Hallucinated-Tools"><span class="toc-number">6.1.</span> <span class="toc-text">1. 幻覺調用 (Hallucinated Tools)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%9A%E4%B8%8D%E8%A6%81%E8%AE%93-AI-%E6%93%81%E6%9C%89%E7%84%A1%E9%99%90%E6%AC%8A%E5%8A%9B"><span class="toc-number">6.2.</span> <span class="toc-text">2. 安全性：不要讓 AI 擁有無限權力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8F%8F%E8%BF%B0-Description-%E7%AB%B6%E7%88%AD"><span class="toc-number">6.3.</span> <span class="toc-text">3. 描述 (Description) 競爭</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E8%88%87-LangGraph-%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%81%AF%E5%8B%95"><span class="toc-number">7.</span> <span class="toc-text">六、 與 LangGraph 的深度聯動</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">8.</span> <span class="toc-text">七、 結語</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E3%80%81-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E5%B7%A5%E5%85%B7%E7%9A%84%E6%9C%AC%E8%B3%AA%EF%BC%9A%E6%A8%A1%E5%9E%8B%E8%88%87%E7%8F%BE%E5%AF%A6%E7%9A%84%E6%A9%8B%E6%A8%91"><span class="toc-number">2.</span> <span class="toc-text">一、 工具的本質：模型與現實的橋樑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%EF%BC%9A%E5%AE%9A%E7%BE%A9%E5%B7%A5%E5%85%B7%E7%9A%84%E4%B8%89%E9%87%8D%E5%A2%83%E7%95%8C"><span class="toc-number">3.</span> <span class="toc-text">二、 快速上手：定義工具的三重境界</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E7%A4%8E%E5%AE%9A%E7%BE%A9%EF%BC%9A-tool-%E8%A3%9D%E9%A3%BE%E5%99%A8"><span class="toc-number">3.1.</span> <span class="toc-text">1. 基礎定義：@tool 裝飾器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%B1%AC%E6%80%A7"><span class="toc-number">3.2.</span> <span class="toc-text">2. 自定義屬性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%80%B2%E9%9A%8E-Schema%EF%BC%9APydantic-%E7%9A%84%E5%A8%81%E5%8A%9B"><span class="toc-number">3.3.</span> <span class="toc-text">3. 進階 Schema：Pydantic 的威力</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E9%97%9C%E9%8D%B5%E6%A0%B8%E5%BF%83%EF%BC%9AToolRuntime-%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E6%B3%A8%E5%85%A5"><span class="toc-number">4.</span> <span class="toc-text">三、 關鍵核心：ToolRuntime 的上下文注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E5%91%BD%E4%BB%A4%E8%88%87%E6%8E%A7%E5%88%B6%EF%BC%9A%E4%BD%BF%E7%94%A8-Command-%E6%9B%B4%E6%96%B0%E7%8B%80%E6%85%8B"><span class="toc-number">5.</span> <span class="toc-text">四、 命令與控制：使用 Command 更新狀態</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%AB%AF%E5%B7%A5%E5%85%B7-Server-side-Tools"><span class="toc-number">6.</span> <span class="toc-text">五、 伺服器端工具 (Server-side Tools)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E6%8A%80%E8%A1%93%E7%B8%BD%E7%B5%90"><span class="toc-number">7.</span> <span class="toc-text">六、 技術總結</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">8.</span> <span class="toc-text">七、 結語</span></a></li></ol>
       </div>
     
   </span>
@@ -161,86 +161,68 @@
 <p>本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。</p>
 </blockquote>
 <hr>
-<h3 id="零、-前言"><a href="#零、-前言" class="headerlink" title="零、 前言"></a>零、 前言</h3><p>如果說 <strong>Structured Output</strong> 是讓模型學會「說官話」（標準格式），那麼 <strong>Tools</strong> 就是賦予模型「動手做」的能力。</p>
-<p>在 LLM 的世界裡，模型本質上只是一個機率預測器，它不知道昨天的天氣，也無法幫你下單買珍珠奶茶。但透過 LangChain 的 Tool 抽象層，我們可以把任何 Python 函數封裝成 LLM 可理解的「技能」，讓 AI 真正從「聊天機器人」進化為「人工智慧代理人 (Agent)」。</p>
+<h3 id="零、-前言"><a href="#零、-前言" class="headerlink" title="零、 前言"></a>零、 前言</h3><p>接續上次關於 <strong>Structured Output</strong> 的討論，當 Agent 能夠穩定輸出結構化數據後，下一步就是讓它具備「行動力」。在 LangChain 的世界裡，這被稱為 **Tools (工具)**。工具不僅擴展了 Agent 的能力邊界——讓它能抓取即時數據、執行程式碼或查詢資料庫，更重要的是，它定義了模型如何與真實世界互動的標準介面。</p>
+<h3 id="一、-工具的本質：模型與現實的橋樑"><a href="#一、-工具的本質：模型與現實的橋樑" class="headerlink" title="一、 工具的本質：模型與現實的橋樑"></a>一、 工具的本質：模型與現實的橋樑</h3><p>在底層邏輯中，Tools 是具備明確 <strong>輸入 (Inputs)</strong> 與 <strong>輸出 (Outputs)</strong> 的可調用函數。</p>
+<p>當我們將工具傳遞給 Chat Model 時，模型並不是真的「執行」了程式碼，而是根據對話上下文決定「何時」調用工具以及「提供什麼參數」。這種決策機制讓 Agent 能夠像人類操作儀表板一樣，有目的地選擇工具。</p>
 <hr>
-<h3 id="一、-什麼是-LangChain-Tool？"><a href="#一、-什麼是-LangChain-Tool？" class="headerlink" title="一、 什麼是 LangChain Tool？"></a>一、 什麼是 LangChain Tool？</h3><p>在 LangChain 的定義中，一個 Tool 包含三個核心要素：</p>
-<ol>
-<li>**名稱 (Name)**：告訴模型這個工具叫什麼（例如：<code>get_weather</code>）。</li>
-<li>**描述 (Description)**：這是最重要的部分。模型根據這段文字判斷「何時」該用這個工具。</li>
-<li>**輸入結構 (Args Schema)**：定義工具需要的參數，通常基於 Pydantic。</li>
-</ol>
-<p>當 LLM 發現它無法直接回答問題時，它會輸出一個「工具調用請求」（Tool Call），包含工具名稱與參數。接著，由我們的程式碼執行該工具，並將結果（Observation）回傳給模型，模型再根據結果生成最終回答。</p>
-<hr>
-<h3 id="二、-定義工具的三種姿勢"><a href="#二、-定義工具的三種姿勢" class="headerlink" title="二、 定義工具的三種姿勢"></a>二、 定義工具的三種姿勢</h3><p>在 LangChain 中，根據複雜程度，我們有不同的方式來定義工具。</p>
-<h4 id="1-最優雅的方式：-tool-裝飾器"><a href="#1-最優雅的方式：-tool-裝飾器" class="headerlink" title="1. 最優雅的方式：@tool 裝飾器"></a>1. 最優雅的方式：<code>@tool</code> 裝飾器</h4><p>這是最常用且推薦的方式，適合大多數簡單場景。LangChain 會自動將函式的 Docstring 視為工具描述。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_core.tools <span class="keyword">import</span> tool</span><br><span class="line"></span><br><span class="line"><span class="meta">@tool</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">multiply</span>(<span class="params">a: <span class="built_in">int</span>, b: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;將兩個整數相乘。&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> a * b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看工具信息</span></span><br><span class="line"><span class="built_in">print</span>(multiply.name)        <span class="comment"># multiply</span></span><br><span class="line"><span class="built_in">print</span>(multiply.description) <span class="comment"># 將兩個整數相乘。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="二、-快速上手：定義工具的三重境界"><a href="#二、-快速上手：定義工具的三重境界" class="headerlink" title="二、 快速上手：定義工具的三重境界"></a>二、 快速上手：定義工具的三重境界</h3><h4 id="1-基礎定義：-tool-裝飾器"><a href="#1-基礎定義：-tool-裝飾器" class="headerlink" title="1. 基礎定義：@tool 裝飾器"></a>1. 基礎定義：<code>@tool</code> 裝飾器</h4><p>這是最簡單的方式。LangChain 會自動將函數的 <strong>Docstring</strong> 轉換為工具描述，將 <strong>Type Hints</strong> 轉換為輸入 Schema。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.tools <span class="keyword">import</span> tool</span><br><span class="line"></span><br><span class="line"><span class="meta">@tool</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">search_database</span>(<span class="params">query: <span class="built_in">str</span>, limit: <span class="built_in">int</span> = <span class="number">10</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;搜尋客戶資料庫中符合查詢條件的紀錄。&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;找到 <span class="subst">&#123;limit&#125;</span> 筆關於 &#x27;<span class="subst">&#123;query&#125;</span>&#x27; 的結果&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h4 id="2-最嚴謹的方式：繼承-BaseTool"><a href="#2-最嚴謹的方式：繼承-BaseTool" class="headerlink" title="2. 最嚴謹的方式：繼承 BaseTool"></a>2. 最嚴謹的方式：繼承 <code>BaseTool</code></h4><p>當你需要更複雜的邏輯（例如類別初始化、非同步處理、或者需要維持內部狀態）時，繼承 <code>BaseTool</code> 是最好的選擇。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.pydantic_v1 <span class="keyword">import</span> BaseModel, Field</span><br><span class="line"><span class="keyword">from</span> langchain.tools <span class="keyword">import</span> BaseTool</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Type</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SearchInput</span>(<span class="title class_ inherited__">BaseModel</span>):</span><br><span class="line">    query: <span class="built_in">str</span> = Field(description=<span class="string">&quot;要搜尋的關鍵字&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CustomSearchTool</span>(<span class="title class_ inherited__">BaseTool</span>):</span><br><span class="line">    name = <span class="string">&quot;custom_search&quot;</span></span><br><span class="line">    description = <span class="string">&quot;當你需要查詢即時資訊或新聞時使用。&quot;</span></span><br><span class="line">    args_schema: <span class="type">Type</span>[BaseModel] = SearchInput</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_run</span>(<span class="params">self, query: <span class="built_in">str</span></span>):</span><br><span class="line">        <span class="comment"># 這裡實作實際的搜尋邏輯</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;找到關於 <span class="subst">&#123;query&#125;</span> 的結果：LangChain 萬歲！&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><em>註：Type Hints 是強制要求的，因為這是模型理解如何傳參的唯一依據。</em></p>
+<h4 id="2-自定義屬性"><a href="#2-自定義屬性" class="headerlink" title="2. 自定義屬性"></a>2. 自定義屬性</h4><p>有時函數名稱不夠直觀，你可以手動覆蓋名稱與描述，以引導模型做出更準確的判斷：</p>
+<ul>
+<li><strong>Custom Name:</strong> 例如將 <code>calc</code> 改為 <code>calculator</code>。</li>
+<li><strong>Custom Description:</strong> 提供更詳細的調用時機說明。</li>
+</ul>
+<h4 id="3-進階-Schema：Pydantic-的威力"><a href="#3-進階-Schema：Pydantic-的威力" class="headerlink" title="3. 進階 Schema：Pydantic 的威力"></a>3. 進階 Schema：Pydantic 的威力</h4><p>當工具參數變得複雜（例如需要列舉、布林值或預設值）時，可以使用 <code>args_schema</code> 綁定 Pydantic 模型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">WeatherInput</span>(<span class="title class_ inherited__">BaseModel</span>):</span><br><span class="line">    location: <span class="built_in">str</span> = Field(description=<span class="string">&quot;城市名稱或座標&quot;</span>)</span><br><span class="line">    units: <span class="type">Literal</span>[<span class="string">&quot;celsius&quot;</span>, <span class="string">&quot;fahrenheit&quot;</span>] = Field(default=<span class="string">&quot;celsius&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@tool(<span class="params">args_schema=WeatherInput</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_weather</span>(<span class="params">location: <span class="built_in">str</span>, units: <span class="built_in">str</span> = <span class="string">&quot;celsius&quot;</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    ...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h4 id="3-快速封裝：StructuredTool-from-function"><a href="#3-快速封裝：StructuredTool-from-function" class="headerlink" title="3. 快速封裝：StructuredTool.from_function"></a>3. 快速封裝：<code>StructuredTool.from_function</code></h4><p>適合將既有的函數快速轉換為工具，而不需要修改函數本身的原始碼。</p>
 <hr>
-<h3 id="三、-工具的演進：從-Tool-到-Toolkits"><a href="#三、-工具的演進：從-Tool-到-Toolkits" class="headerlink" title="三、 工具的演進：從 Tool 到 Toolkits"></a>三、 工具的演進：從 Tool 到 Toolkits</h3><p>當你的 AI 需要處理複雜任務時，單個工具往往不夠。LangChain 提供了 <strong>Toolkits</strong> 的概念，將一組相關的工具打包在一起。</p>
+<h3 id="三、-關鍵核心：ToolRuntime-的上下文注入"><a href="#三、-關鍵核心：ToolRuntime-的上下文注入" class="headerlink" title="三、 關鍵核心：ToolRuntime 的上下文注入"></a>三、 關鍵核心：ToolRuntime 的上下文注入</h3><p>工具最強大的地方在於它能存取 **Runtime Context (執行階段上下文)**。這讓工具不再是孤立的函數，而是能感知環境的智能組件。</p>
+<p>透過 <code>ToolRuntime</code> 參數，工具可以存取以下四大核心資源：</p>
 <table>
 <thead>
 <tr>
-<th>Toolkit 類型</th>
-<th>包含內容</th>
-<th>適用場景</th>
+<th>資源類型</th>
+<th>描述</th>
+<th>應用範例</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>SQL Database</strong></td>
-<td>查詢表格、檢查 Schema、執行 SQL</td>
-<td>資料庫分析助手</td>
+<td><strong>State (狀態)</strong></td>
+<td>執行過程中的可變數據。</td>
+<td>統計目前對話中 AI 與 User 的訊息比例。</td>
 </tr>
 <tr>
-<td><strong>Gmail Toolkit</strong></td>
-<td>讀取郵件、草擬、發送、搜尋</td>
-<td>自動化辦公助理</td>
+<td><strong>Context (上下文)</strong></td>
+<td>不可變的配置訊息。</td>
+<td>根據 <code>user_id</code> 從資料庫調取特定帳戶餘額。</td>
 </tr>
 <tr>
-<td><strong>Playwright</strong></td>
-<td>導覽網頁、點擊按鈕、抓取內容</td>
-<td>網頁自動化與爬蟲</td>
+<td><strong>Store (儲存)</strong></td>
+<td>跨對話的長期記憶。</td>
+<td>儲存並讀取使用者的個人偏好（如：喜好語言）。</td>
 </tr>
 <tr>
-<td><strong>Python REPL</strong></td>
-<td>執行 Python 代碼</td>
-<td>數學計算、數據視覺化</td>
+<td><strong>Stream Writer</strong></td>
+<td>執行過程中的自定義串流。</td>
+<td>在執行耗時任務時，即時回傳「正在檢索…」給使用者。</td>
 </tr>
 </tbody></table>
+<blockquote>
+<p><strong>重要提示：</strong> <code>runtime</code> 參數對模型是隱藏的。模型在調用工具時看不到這個參數，它由 LangGraph 內部自動注入，確保了安全性與簡潔性。</p>
+</blockquote>
 <hr>
-<h3 id="四、-如何讓模型學會用工具？"><a href="#四、-如何讓模型學會用工具？" class="headerlink" title="四、 如何讓模型學會用工具？"></a>四、 如何讓模型學會用工具？</h3><p>定義好工具後，我們需要透過 <code>.bind_tools()</code> 將其綁定到支援 Tool Calling 的模型上。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tools = [multiply, CustomSearchTool()]</span><br><span class="line">llm_with_tools = llm.bind_tools(tools)</span><br><span class="line"></span><br><span class="line">query = <span class="string">&quot;請幫我算一下 123 乘以 456 是多少？&quot;</span></span><br><span class="line">response = llm_with_tools.invoke(query)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意：這裡 response.content 可能是空的</span></span><br><span class="line"><span class="comment"># 真正的資訊在 response.tool_calls 中</span></span><br><span class="line"><span class="built_in">print</span>(response.tool_calls)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="五、-實戰中的「坑」與防禦性編程"><a href="#五、-實戰中的「坑」與防禦性編程" class="headerlink" title="五、 實戰中的「坑」與防禦性編程"></a>五、 實戰中的「坑」與防禦性編程</h3><p>雖然 Tool Calling 看起來很神，但在生產環境中，這往往是出問題最多的地方。</p>
-<h4 id="1-幻覺調用-Hallucinated-Tools"><a href="#1-幻覺調用-Hallucinated-Tools" class="headerlink" title="1. 幻覺調用 (Hallucinated Tools)"></a>1. 幻覺調用 (Hallucinated Tools)</h4><p>模型有時會發瘋，調用一個你根本沒定義的工具。</p>
+<h3 id="四、-命令與控制：使用-Command-更新狀態"><a href="#四、-命令與控制：使用-Command-更新狀態" class="headerlink" title="四、 命令與控制：使用 Command 更新狀態"></a>四、 命令與控制：使用 <code>Command</code> 更新狀態</h3><p>工具不只能回傳字串，還能回傳 <code>Command</code> 對象來控制 Agent 的行為。例如：</p>
 <ul>
-<li><strong>對策</strong>：使用 <code>StructuredTool</code> 強制校驗參數，並在代碼層級加入 Try-Catch。</li>
-</ul>
-<h4 id="2-安全性：不要讓-AI-擁有無限權力"><a href="#2-安全性：不要讓-AI-擁有無限權力" class="headerlink" title="2. 安全性：不要讓 AI 擁有無限權力"></a>2. 安全性：不要讓 AI 擁有無限權力</h4><p>如果你給了 AI 一個 <code>execute_query</code> 工具，它可能會不小心執行 <code>DROP TABLE users;</code>。</p>
-<ul>
-<li><strong>對策</strong>：</li>
-<li><strong>唯讀權限</strong>：給予資料庫唯讀帳號。</li>
-<li>**人機協作 (Human-in-the-loop)**：在執行敏感動作（如發郵件、扣款）前，增加人工審核環節。</li>
-</ul>
-<h4 id="3-描述-Description-競爭"><a href="#3-描述-Description-競爭" class="headerlink" title="3. 描述 (Description) 競爭"></a>3. 描述 (Description) 競爭</h4><p>如果你有兩個工具描述得太像（例如 <code>search_google</code> 和 <code>search_bing</code>），模型會陷入糾結。</p>
-<ul>
-<li><strong>對策</strong>：確保每個工具的 <code>description</code> 有明確的邊界與區隔。</li>
+<li><strong>清除歷史紀錄：</strong> 透過 <code>RemoveMessage</code> 讓 Agent 忘記之前的對話。</li>
+<li><strong>更新內部狀態：</strong> 工具執行完後，直接修改 Agent State 中的變數（如更新 <code>user_name</code>）。</li>
 </ul>
 <hr>
-<h3 id="六、-與-LangGraph-的深度聯動"><a href="#六、-與-LangGraph-的深度聯動" class="headerlink" title="六、 與 LangGraph 的深度聯動"></a>六、 與 LangGraph 的深度聯動</h3><p>在 LangChain 的新時代，我們不再傾向於使用黑盒子般的 <code>AgentExecutor</code>，而是使用 <strong>LangGraph</strong>。</p>
-<p>在 LangGraph 中，工具調用變成了一個明確的節點（Node）。</p>
-<ol>
-<li>**Node 1 (LLM)**：決定要調用哪個工具。</li>
-<li>**Edge (Conditional)**：如果 <code>tool_calls</code> 存在，指向 Node 2。</li>
-<li>**Node 2 (Tools)**：執行 Python 函數。</li>
-<li>**Edge (Loop)**：將結果傳回 Node 1 總結。</li>
-</ol>
-<p>這種結構讓整個決策過程變得可視化且可控，是目前開發 AI Agent 的業界標準。</p>
+<h3 id="五、-伺服器端工具-Server-side-Tools"><a href="#五、-伺服器端工具-Server-side-Tools" class="headerlink" title="五、 伺服器端工具 (Server-side Tools)"></a>五、 伺服器端工具 (Server-side Tools)</h3><p>值得注意的是，並非所有工具都需要自行開發。如 OpenAI、Anthropic 與 Gemini 等模型供應商通常內建了伺服器端工具（如 Web Search 或 Code Interpreter）。這類工具由供應商直接執行，開發者只需通過配置即可調用。</p>
+<hr>
+<h3 id="六、-技術總結"><a href="#六、-技術總結" class="headerlink" title="六、 技術總結"></a>六、 技術總結</h3><p>在 LangChain v1.0+ 的架構下，工具的設計 philosophy 是 <strong>「參數分離」</strong>：模型負責決策業務參數，而系統負責注入環境參數（Runtime）。這種設計讓工具具備了高度的可測試性與重用性。</p>
+<p>在 1.5 度的視角下，工具不再只是 Function Call，它是 Agent 的感官與手腳。當工具能讀取 <code>Store</code> 中的長期記憶，並透過 <code>Command</code> 修改 <code>State</code> 時，Agent 才真正具備了「進化」的可能性。</p>
 <hr>
 <h3 id="七、-結語"><a href="#七、-結語" class="headerlink" title="七、 結語"></a>七、 結語</h3><p><strong>「工具是人類能力的延伸，也是 AI 智能的落腳點。」</strong></p>
 <p>掌握了 LangChain Tools，你就握住了通往實用性 AI 的鑰匙。它讓 AI 從「談話型」進化為「行動型」。雖然配置過程中有許多細節需要打磨，但當你看到模型自動查表、計算並發出報告的那一刻，你會發現這一切都是值得的。</p>
@@ -270,7 +252,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E3%80%81-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E4%BB%80%E9%BA%BC%E6%98%AF-LangChain-Tool%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">一、 什麼是 LangChain Tool？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E5%AE%9A%E7%BE%A9%E5%B7%A5%E5%85%B7%E7%9A%84%E4%B8%89%E7%A8%AE%E5%A7%BF%E5%8B%A2"><span class="toc-number">3.</span> <span class="toc-text">二、 定義工具的三種姿勢</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9C%80%E5%84%AA%E9%9B%85%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%9A-tool-%E8%A3%9D%E9%A3%BE%E5%99%A8"><span class="toc-number">3.1.</span> <span class="toc-text">1. 最優雅的方式：@tool 裝飾器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9C%80%E5%9A%B4%E8%AC%B9%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%9A%E7%B9%BC%E6%89%BF-BaseTool"><span class="toc-number">3.2.</span> <span class="toc-text">2. 最嚴謹的方式：繼承 BaseTool</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%BF%AB%E9%80%9F%E5%B0%81%E8%A3%9D%EF%BC%9AStructuredTool-from-function"><span class="toc-number">3.3.</span> <span class="toc-text">3. 快速封裝：StructuredTool.from_function</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E5%B7%A5%E5%85%B7%E7%9A%84%E6%BC%94%E9%80%B2%EF%BC%9A%E5%BE%9E-Tool-%E5%88%B0-Toolkits"><span class="toc-number">4.</span> <span class="toc-text">三、 工具的演進：從 Tool 到 Toolkits</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E5%A6%82%E4%BD%95%E8%AE%93%E6%A8%A1%E5%9E%8B%E5%AD%B8%E6%9C%83%E7%94%A8%E5%B7%A5%E5%85%B7%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">四、 如何讓模型學會用工具？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E5%AF%A6%E6%88%B0%E4%B8%AD%E7%9A%84%E3%80%8C%E5%9D%91%E3%80%8D%E8%88%87%E9%98%B2%E7%A6%A6%E6%80%A7%E7%B7%A8%E7%A8%8B"><span class="toc-number">6.</span> <span class="toc-text">五、 實戰中的「坑」與防禦性編程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%B9%BB%E8%A6%BA%E8%AA%BF%E7%94%A8-Hallucinated-Tools"><span class="toc-number">6.1.</span> <span class="toc-text">1. 幻覺調用 (Hallucinated Tools)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%9A%E4%B8%8D%E8%A6%81%E8%AE%93-AI-%E6%93%81%E6%9C%89%E7%84%A1%E9%99%90%E6%AC%8A%E5%8A%9B"><span class="toc-number">6.2.</span> <span class="toc-text">2. 安全性：不要讓 AI 擁有無限權力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8F%8F%E8%BF%B0-Description-%E7%AB%B6%E7%88%AD"><span class="toc-number">6.3.</span> <span class="toc-text">3. 描述 (Description) 競爭</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E8%88%87-LangGraph-%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%81%AF%E5%8B%95"><span class="toc-number">7.</span> <span class="toc-text">六、 與 LangGraph 的深度聯動</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">8.</span> <span class="toc-text">七、 結語</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E3%80%81-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E5%B7%A5%E5%85%B7%E7%9A%84%E6%9C%AC%E8%B3%AA%EF%BC%9A%E6%A8%A1%E5%9E%8B%E8%88%87%E7%8F%BE%E5%AF%A6%E7%9A%84%E6%A9%8B%E6%A8%91"><span class="toc-number">2.</span> <span class="toc-text">一、 工具的本質：模型與現實的橋樑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%EF%BC%9A%E5%AE%9A%E7%BE%A9%E5%B7%A5%E5%85%B7%E7%9A%84%E4%B8%89%E9%87%8D%E5%A2%83%E7%95%8C"><span class="toc-number">3.</span> <span class="toc-text">二、 快速上手：定義工具的三重境界</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E7%A4%8E%E5%AE%9A%E7%BE%A9%EF%BC%9A-tool-%E8%A3%9D%E9%A3%BE%E5%99%A8"><span class="toc-number">3.1.</span> <span class="toc-text">1. 基礎定義：@tool 裝飾器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%87%AA%E5%AE%9A%E7%BE%A9%E5%B1%AC%E6%80%A7"><span class="toc-number">3.2.</span> <span class="toc-text">2. 自定義屬性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%80%B2%E9%9A%8E-Schema%EF%BC%9APydantic-%E7%9A%84%E5%A8%81%E5%8A%9B"><span class="toc-number">3.3.</span> <span class="toc-text">3. 進階 Schema：Pydantic 的威力</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E9%97%9C%E9%8D%B5%E6%A0%B8%E5%BF%83%EF%BC%9AToolRuntime-%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E6%B3%A8%E5%85%A5"><span class="toc-number">4.</span> <span class="toc-text">三、 關鍵核心：ToolRuntime 的上下文注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E5%91%BD%E4%BB%A4%E8%88%87%E6%8E%A7%E5%88%B6%EF%BC%9A%E4%BD%BF%E7%94%A8-Command-%E6%9B%B4%E6%96%B0%E7%8B%80%E6%85%8B"><span class="toc-number">5.</span> <span class="toc-text">四、 命令與控制：使用 Command 更新狀態</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%AB%AF%E5%B7%A5%E5%85%B7-Server-side-Tools"><span class="toc-number">6.</span> <span class="toc-text">五、 伺服器端工具 (Server-side Tools)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E6%8A%80%E8%A1%93%E7%B8%BD%E7%B5%90"><span class="toc-number">7.</span> <span class="toc-text">六、 技術總結</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">8.</span> <span class="toc-text">七、 結語</span></a></li></ol>
       </div>
     
 

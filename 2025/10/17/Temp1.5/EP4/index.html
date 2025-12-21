@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言在上一篇我們討論了 Tools，讓 AI 可以執行動作。但你有沒有發現，當 AI 在調用工具、查資料、思考複雜邏輯時，使用者往往對著一個閃爍的游標發呆？ 在 LLM 的時代，「延遲（Latency）」是開發者的天敵。由於模型">
+    <meta name="description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言接續上次關於 Tools 的討論，當我們賦予了 Agent 雙手去執行任務後，下一個面臨的問題就是「等待」。LLM 生成回應需要時間，尤其是當任務涉及多個工具調用時，漫長的空白等待會毀掉使用者體驗。因此，本篇要來聊聊 Lan">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感">
 <meta property="og:url" content="http://example.com/2025/10/17/Temp1.5/EP4/index.html">
 <meta property="og:site_name" content="Aura&#39;s Space">
-<meta property="og:description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言在上一篇我們討論了 Tools，讓 AI 可以執行動作。但你有沒有發現，當 AI 在調用工具、查資料、思考複雜邏輯時，使用者往往對著一個閃爍的游標發呆？ 在 LLM 的時代，「延遲（Latency）」是開發者的天敵。由於模型">
+<meta property="og:description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言接續上次關於 Tools 的討論，當我們賦予了 Agent 雙手去執行任務後，下一個面臨的問題就是「等待」。LLM 生成回應需要時間，尤其是當任務涉及多個工具調用時，漫長的空白等待會毀掉使用者體驗。因此，本篇要來聊聊 Lan">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-10-16T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-21T12:45:47.001Z">
+<meta property="article:modified_time" content="2025-12-21T13:01:50.195Z">
 <meta property="article:author" content="Aura">
 <meta property="article:tag" content="LangChain">
 <meta property="article:tag" content="Python">
@@ -73,7 +73,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/2025/10/26/APCS/APCS-2021-11/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/2025/10/18/Temp1.5/EP5/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post" href="/2025/10/16/Temp1.5/EP3/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -106,7 +106,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E3%80%81-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E4%B8%B2%E6%B5%81%E7%9A%84%E5%BA%95%E5%B1%A4%E9%82%8F%E8%BC%AF%EF%BC%9A%E9%80%90%E5%AD%97%E5%90%90%E9%9C%B2"><span class="toc-number">2.</span> <span class="toc-text">一、 串流的底層邏輯：逐字吐露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-LangChain-%E7%9A%84%E4%B8%89%E7%A8%AE%E4%B8%B2%E6%B5%81%E5%A7%BF%E5%8B%A2"><span class="toc-number">3.</span> <span class="toc-text">二、 LangChain 的三種串流姿勢</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9C%80%E5%9F%BA%E7%A4%8E%E7%9A%84-stream"><span class="toc-number">3.1.</span> <span class="toc-text">1. 最基礎的 .stream()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%9D%9E%E5%90%8C%E6%AD%A5%E7%9A%84-astream"><span class="toc-number">3.2.</span> <span class="toc-text">2. 非同步的 .astream()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E7%B5%82%E6%A5%B5%E6%96%B9%E6%A1%88%EF%BC%9A-astream-events"><span class="toc-number">3.3.</span> <span class="toc-text">3. 終極方案：.astream_events()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E5%AF%A6%E6%88%B0%E7%AF%84%E4%BE%8B%EF%BC%9A%E7%9B%A3%E8%81%BD-Agent-%E7%9A%84%E5%91%BC%E5%90%B8"><span class="toc-number">4.</span> <span class="toc-text">三、 實戰範例：監聽 Agent 的呼吸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E4%B8%B2%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A6%8B%E6%8C%91%E6%88%B0"><span class="toc-number">5.</span> <span class="toc-text">四、 串流中的常見挑戰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E6%8E%A5%E6%94%B6%EF%BC%9F%EF%BC%88SSE-%E5%8D%94%E5%AE%9A%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">五、 前端如何接收？（SSE 協定）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">7.</span> <span class="toc-text">六、 結語</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E3%80%81-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E7%82%BA%E4%BB%80%E9%BA%BC%E9%9C%80%E8%A6%81%E4%B8%B2%E6%B5%81%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">一、 為什麼需要串流？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-LangChain-%E4%B8%B2%E6%B5%81%E7%9A%84%E4%B8%89%E5%A4%A7%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">二、 LangChain 串流的三大核心模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E7%9B%A3%E6%8E%A7%E4%BB%BB%E5%8B%99%E9%80%B2%E5%BA%A6%EF%BC%9Aupdates-%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">三、 監控任務進度：updates 模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E6%A5%B5%E8%87%B4%E9%AB%94%E9%A9%97%EF%BC%9Amessages-%E6%A8%A1%E5%BC%8F%E8%88%87-Token-%E4%B8%B2%E6%B5%81"><span class="toc-number">5.</span> <span class="toc-text">四、 極致體驗：messages 模式與 Token 串流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E8%87%AA%E5%AE%9A%E7%BE%A9%E4%B8%B2%E6%B5%81%EF%BC%9Aget-stream-writer"><span class="toc-number">6.</span> <span class="toc-text">五、 自定義串流：get_stream_writer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E9%80%B2%E9%9A%8E%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%A4%9A%E6%A8%A1%E5%BC%8F%E4%B8%A6%E8%A1%8C%E8%88%87%E5%A4%9A-Agent-%E5%8D%94%E4%BD%9C"><span class="toc-number">7.</span> <span class="toc-text">六、 進階模式：多模式並行與多 Agent 協作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%99%95%E7%90%86%E5%AD%90-Agent-Sub-agents"><span class="toc-number">7.1.</span> <span class="toc-text">1. 處理子 Agent (Sub-agents)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BA%BA%E6%A9%9F%E4%BA%92%E5%8B%95-Human-in-the-loop"><span class="toc-number">7.2.</span> <span class="toc-text">2. 人機互動 (Human-in-the-loop)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81-%E5%81%9C%E7%94%A8%E4%B8%B2%E6%B5%81%E7%9A%84%E6%99%82%E6%A9%9F"><span class="toc-number">8.</span> <span class="toc-text">七、 停用串流的時機</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AB%E3%80%81-%E6%8A%80%E8%A1%93%E7%B8%BD%E7%B5%90"><span class="toc-number">9.</span> <span class="toc-text">八、 技術總結</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9D%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">10.</span> <span class="toc-text">九、 結語</span></a></li></ol>
       </div>
     
   </span>
@@ -161,73 +161,81 @@
 <p>本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。</p>
 </blockquote>
 <hr>
-<h3 id="零、-前言"><a href="#零、-前言" class="headerlink" title="零、 前言"></a>零、 前言</h3><p>在上一篇我們討論了 <strong>Tools</strong>，讓 AI 可以執行動作。但你有沒有發現，當 AI 在調用工具、查資料、思考複雜邏輯時，使用者往往對著一個閃爍的游標發呆？</p>
-<p>在 LLM 的時代，「延遲（Latency）」是開發者的天敵。由於模型是逐個 Token 產生的，如果等到 500 個 Token 全部生完才顯示，使用者可能已經以為網頁當機了。這就是為什麼我們需要 **Streaming (串流)**。這不只是為了視覺效果，更是為了提升「感知速度」。</p>
+<h3 id="零、-前言"><a href="#零、-前言" class="headerlink" title="零、 前言"></a>零、 前言</h3><p>接續上次關於 <strong>Tools</strong> 的討論，當我們賦予了 Agent 雙手去執行任務後，下一個面臨的問題就是「等待」。LLM 生成回應需要時間，尤其是當任務涉及多個工具調用時，漫長的空白等待會毀掉使用者體驗。因此，本篇要來聊聊 LangChain 的 <strong>Streaming (串流)</strong> 系統，這是提升應用程式響應速度與使用者體驗 (UX) 的核心技術。</p>
+<h3 id="一、-為什麼需要串流？"><a href="#一、-為什麼需要串流？" class="headerlink" title="一、 為什麼需要串流？"></a>一、 為什麼需要串流？</h3><p>在 LLM 的應用中，延遲 (Latency) 是不可避免的。串流技術允許我們在完整回應準備好之前，就先將中間過程與部分內容「流」回前端。這不僅能讓使用者感覺系統在即時運作，也能即時顯示 Agent 的思考過程，讓整體互動更加透明、流暢。</p>
 <hr>
-<h3 id="一、-串流的底層邏輯：逐字吐露"><a href="#一、-串流的底層邏輯：逐字吐露" class="headerlink" title="一、 串流的底層邏輯：逐字吐露"></a>一、 串流的底層邏輯：逐字吐露</h3><p>為什麼 LLM 可以串流？因為自回歸模型（Autoregressive Models）本質上就是根據前文預測下一個字。</p>
-<p>當模型算出 時，我們其實不需要等它算出 ，就可以先把第一個字送到前端。</p>
-<hr>
-<h3 id="二、-LangChain-的三種串流姿勢"><a href="#二、-LangChain-的三種串流姿勢" class="headerlink" title="二、 LangChain 的三種串流姿勢"></a>二、 LangChain 的三種串流姿勢</h3><p>在 LangChain 中，串流的實作經歷了幾次演進，現在主要有以下幾種方式：</p>
-<h4 id="1-最基礎的-stream"><a href="#1-最基礎的-stream" class="headerlink" title="1. 最基礎的 .stream()"></a>1. 最基礎的 <code>.stream()</code></h4><p>這是同步（Sync）環境下最簡單的方式，它會回傳一個 Generator（生成器）。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"></span><br><span class="line">model = ChatOpenAI(model=<span class="string">&quot;gpt-4o&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 .stream() 獲取迭代器</span></span><br><span class="line">chunks = []</span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> model.stream(<span class="string">&quot;請寫一首關於 Python 的小詩&quot;</span>):</span><br><span class="line">    chunks.append(chunk)</span><br><span class="line">    <span class="built_in">print</span>(chunk.content, end=<span class="string">&quot;|&quot;</span>, flush=<span class="literal">True</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-非同步的-astream"><a href="#2-非同步的-astream" class="headerlink" title="2. 非同步的 .astream()"></a>2. 非同步的 <code>.astream()</code></h4><p>在現代的 Web 框架（如 FastAPI）中，我們通常使用非同步方式來處理併發請求。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">for</span> chunk <span class="keyword">in</span> model.astream(<span class="string">&quot;Hello, how are you?&quot;</span>):</span><br><span class="line">    <span class="built_in">print</span>(chunk.content, end=<span class="string">&quot;|&quot;</span>, flush=<span class="literal">True</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="3-終極方案：-astream-events"><a href="#3-終極方案：-astream-events" class="headerlink" title="3. 終極方案：.astream_events()"></a>3. 終極方案：<code>.astream_events()</code></h4><p>這是目前 LangChain 最強大也最推薦的方式。為什麼？因為 <code>.stream()</code> 只能拿到最終的文字，但如果你使用了 <strong>Chain</strong> 或 <strong>Agent</strong>，你可能想知道：</p>
-<ul>
-<li>現在是不是正在呼叫工具？</li>
-<li>哪一個步驟正在檢索資料庫？</li>
-<li>中間層的思考過程是什麼？</li>
-</ul>
-<p><code>astream_events</code> 允許你訂閱整個鏈路中的所有事件。</p>
-<hr>
-<h3 id="三、-實戰範例：監聽-Agent-的呼吸"><a href="#三、-實戰範例：監聽-Agent-的呼吸" class="headerlink" title="三、 實戰範例：監聽 Agent 的呼吸"></a>三、 實戰範例：監聽 Agent 的呼吸</h3><p>想像一個情境：AI 正在幫你搜尋資料並整理報告。我們希望前端能即時顯示：「正在搜尋…」、「找到 3 篇文章…」、「正在總結…」。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> HumanMessage</span><br><span class="line"></span><br><span class="line"><span class="comment"># V2 版本是目前的主流</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">for</span> event <span class="keyword">in</span> agent_executor.astream_events(</span><br><span class="line">    &#123;<span class="string">&quot;input&quot;</span>: <span class="string">&quot;幫我查一下 2025 年聖誕節的天氣&quot;</span>&#125;,</span><br><span class="line">    version=<span class="string">&quot;v2&quot;</span></span><br><span class="line">):</span><br><span class="line">    kind = event[<span class="string">&quot;event&quot;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> kind == <span class="string">&quot;on_chat_model_stream&quot;</span>:</span><br><span class="line">        <span class="comment"># 這是模型輸出的內容片段</span></span><br><span class="line">        content = event[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;chunk&quot;</span>].content</span><br><span class="line">        <span class="keyword">if</span> content:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Token: <span class="subst">&#123;content&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">elif</span> kind == <span class="string">&quot;on_tool_start&quot;</span>:</span><br><span class="line">        <span class="comment"># 當模型開始調用工具時</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;\n[系統訊息] 正在啟動工具: <span class="subst">&#123;event[<span class="string">&#x27;name&#x27;</span>]&#125;</span>...&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">elif</span> kind == <span class="string">&quot;on_tool_end&quot;</span>:</span><br><span class="line">        <span class="comment"># 工具執行完畢</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;\n[系統訊息] 工具執行結束，結果已取得。&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="四、-串流中的常見挑戰"><a href="#四、-串流中的常見挑戰" class="headerlink" title="四、 串流中的常見挑戰"></a>四、 串流中的常見挑戰</h3><p>雖然串流看起來很美好，但實作時有幾個「坑」：</p>
-<ol>
-<li><strong>JSON 格式崩潰</strong>：如果你在要求模型輸出 <code>Structured Output</code>（JSON），串流出來的片段在還沒傳完之前，都不是合法的 JSON。這會導致前端 <code>JSON.parse()</code> 報錯。</li>
-</ol>
-<ul>
-<li>_對策_：使用 <code>Partial JSON Parser</code> 或是在後端聚合完整後再輸出。</li>
-</ul>
-<ol start="2">
-<li>**聚合 (Aggregating Chunks)**：LangChain 的 <code>AIMessageChunk</code> 支持相加。</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">full_message = chunk1 + chunk2 + chunk3</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>這在背後會自動幫你處理 <code>tool_calls</code> 的合併，非常方便。 3. <strong>Token 計費</strong>：在串流模式下，有些 Provider 可能不會回傳完整的 Token 使用統計。</p>
-<hr>
-<h3 id="五、-前端如何接收？（SSE-協定）"><a href="#五、-前端如何接收？（SSE-協定）" class="headerlink" title="五、 前端如何接收？（SSE 協定）"></a>五、 前端如何接收？（SSE 協定）</h3><p>串流數據通常不建議用純 WebSocket（除非有雙向通訊需求），最標準的做法是使用 **Server-Sent Events (SSE)**。</p>
+<h3 id="二、-LangChain-串流的三大核心模式"><a href="#二、-LangChain-串流的三大核心模式" class="headerlink" title="二、 LangChain 串流的三大核心模式"></a>二、 LangChain 串流的三大核心模式</h3><p>LangChain 提供了一個靈活的串流系統，主要透過 <code>stream</code> 或 <code>astream</code> 方法並配合 <code>stream_mode</code> 參數來實現：</p>
 <table>
 <thead>
 <tr>
-<th>特性</th>
-<th>REST API (JSON)</th>
-<th>SSE (Streaming)</th>
+<th>模式 (<code>mode</code>)</th>
+<th>描述</th>
+<th>應用場景</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>等待感</strong></td>
-<td>高 (等到全部結束)</td>
-<td>低 (即時回饋)</td>
+<td><strong><code>updates</code></strong></td>
+<td>每個 Agent 步驟結束後串流狀態更新。</td>
+<td>顯示 Agent 目前跑到了哪個節點（如：模型、工具）。</td>
 </tr>
 <tr>
-<td><strong>連線方式</strong></td>
-<td>短連線</td>
-<td>長連線</td>
+<td><strong><code>messages</code></strong></td>
+<td>串流 LLM 生成的每一個 Token 與其元數據。</td>
+<td>實現「打字機」效果或串流工具調用參數。</td>
 </tr>
 <tr>
-<td><strong>資料格式</strong></td>
-<td>單一物件</td>
-<td>數據流 (text&#x2F;event-stream)</td>
+<td><strong><code>custom</code></strong></td>
+<td>透過 <code>stream_writer</code> 從節點內部發送自定義訊號。</td>
+<td>顯示「正在查詢資料庫 (10&#x2F;100)…」等進度訊息。</td>
 </tr>
 </tbody></table>
 <hr>
-<h3 id="六、-結語"><a href="#六、-結語" class="headerlink" title="六、 結語"></a>六、 結語</h3><p>串流不只是技術上的實現，更是一種 <strong>UX 哲學</strong>。在 AI 回應緩慢的現實下，透過逐字顯示，我們給予了使用者一種「AI 正在努力思考並與你對話」的臨場感。</p>
-<p>當你學會了 Tools（手）與 Streaming（呼吸），你的 AI Agent 就不再是一個死板的 API，而是一個鮮活的、有節奏感的對話夥伴。</p>
+<h3 id="三、-監控任務進度：updates-模式"><a href="#三、-監控任務進度：updates-模式" class="headerlink" title="三、 監控任務進度：updates 模式"></a>三、 監控任務進度：<code>updates</code> 模式</h3><p>如果你想監控 Agent 的整體執行流程，<code>updates</code> 是最直觀的模式。它會在每個節點（Node）執行完畢後，噴出該步驟產生的狀態變化。</p>
+<p>一個典型的工具調用流程在 <code>updates</code> 模式下會長這樣：</p>
+<ol>
+<li><strong>Model Node</strong>: 噴出 <code>AIMessage</code>，內含工具調用請求 (Tool Calls)。</li>
+<li><strong>Tool Node</strong>: 噴出 <code>ToolMessage</code>，包含工具執行結果。</li>
+<li><strong>Model Node</strong>: 根據結果產生最終的 AI 回應。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 updates 模式監控步驟</span></span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> agent.stream(</span><br><span class="line">    &#123;<span class="string">&quot;messages&quot;</span>: [&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;台北天氣如何？&quot;</span>&#125;]&#125;,</span><br><span class="line">    stream_mode=<span class="string">&quot;updates&quot;</span>,</span><br><span class="line">):</span><br><span class="line">    <span class="keyword">for</span> step, data <span class="keyword">in</span> chunk.items():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;目前步驟: <span class="subst">&#123;step&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="comment"># data 內包含該步驟更新的訊息</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="四、-極致體驗：messages-模式與-Token-串流"><a href="#四、-極致體驗：messages-模式與-Token-串流" class="headerlink" title="四、 極致體驗：messages 模式與 Token 串流"></a>四、 極致體驗：<code>messages</code> 模式與 Token 串流</h3><p>這是我們最熟悉的場景：AI 一個字一個字吐出來。在 LangChain 中，這不僅限於最終文字，連 <strong>工具調用的參數 (Arguments)</strong> 也可以被串流。</p>
+<p>在 <code>messages</code> 模式下，你會收到 <code>(token, metadata)</code>。如果是工具調用，你會看到 <code>tool_call_chunk</code> 裡面逐漸拼湊出 JSON 格式的參數：</p>
+<ul>
+<li><strong>優點</strong>：即使 AI 在思考複雜的工具參數，使用者也能即時看到進度。</li>
+<li><strong>技術細節</strong>：可以透過 <code>chunk_position == &quot;last&quot;</code> 來判斷訊息是否生成完畢。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 串流 Token 與工具調用參數</span></span><br><span class="line"><span class="keyword">for</span> token, metadata <span class="keyword">in</span> agent.stream(</span><br><span class="line">    input_data, stream_mode=<span class="string">&quot;messages&quot;</span></span><br><span class="line">):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;來自節點: <span class="subst">&#123;metadata[<span class="string">&#x27;langgraph_node&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;內容片段: <span class="subst">&#123;token.content_blocks&#125;</span>&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="五、-自定義串流：get-stream-writer"><a href="#五、-自定義串流：get-stream-writer" class="headerlink" title="五、 自定義串流：get_stream_writer"></a>五、 自定義串流：<code>get_stream_writer</code></h3><p>有時候，內建的模式不夠用。例如你在一個耗時的工具內部，想要每秒更新一次進度，這時就可以用 <code>get_stream_writer</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.config <span class="keyword">import</span> get_stream_writer</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">long_task_tool</span>(<span class="params">param: <span class="built_in">str</span></span>):</span><br><span class="line">    writer = get_stream_writer()</span><br><span class="line">    writer(<span class="string">&quot;正在連線到遠端伺服器...&quot;</span>)</span><br><span class="line">    <span class="comment"># ... 執行任務 ...</span></span><br><span class="line">    writer(<span class="string">&quot;連線成功，正在抓取數據...&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;任務完成&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><em>注意：如果在工具內使用了 <code>get_stream_writer</code>，該工具就必須在 LangGraph 的執行環境下才能運作。</em></p>
+<hr>
+<h3 id="六、-進階模式：多模式並行與多-Agent-協作"><a href="#六、-進階模式：多模式並行與多-Agent-協作" class="headerlink" title="六、 進階模式：多模式並行與多 Agent 協作"></a>六、 進階模式：多模式並行與多 Agent 協作</h3><p>LangChain 支援同時傳入多個模式，例如 <code>stream_mode=[&quot;updates&quot;, &quot;custom&quot;]</code>。回傳的資料會變成 <code>(mode, chunk)</code> 的元組，讓你根據不同的模式進行不同的 UI 處理。</p>
+<h4 id="1-處理子-Agent-Sub-agents"><a href="#1-處理子-Agent-Sub-agents" class="headerlink" title="1. 處理子 Agent (Sub-agents)"></a>1. 處理子 Agent (Sub-agents)</h4><p>在多 Agent 系統中，訊息來源會變得很混亂。為了分辨是誰在說話，我們可以：</p>
+<ul>
+<li>在初始化模型時加入 <code>tags=[&quot;supervisor&quot;]</code> 或 <code>tags=[&quot;worker&quot;]</code>。</li>
+<li>在串流時設置 <code>subgraphs=True</code> 以獲取子圖的輸出。</li>
+<li>透過 <code>metadata.get(&quot;tags&quot;)</code> 來過濾並標示目前是哪個 Agent 正在發言。</li>
+</ul>
+<h4 id="2-人機互動-Human-in-the-loop"><a href="#2-人機互動-Human-in-the-loop" class="headerlink" title="2. 人機互動 (Human-in-the-loop)"></a>2. 人機互動 (Human-in-the-loop)</h4><p>當串流過程中遇到需要人工審核的步驟時，串流會噴出一個 <code>__interrupt__</code> 事件。這時系統會暫停，直到接收到 <code>Command(resume=...)</code> 才會繼續。</p>
+<hr>
+<h3 id="七、-停用串流的時機"><a href="#七、-停用串流的時機" class="headerlink" title="七、 停用串流的時機"></a>七、 停用串流的時機</h3><p>雖然串流很酷，但並非所有情況都適合。在以下場景，你可能需要設置 <code>streaming=False</code>：</p>
+<ul>
+<li><strong>多 Agent 路由</strong>：某些負責決策的內部 Agent 不需要對外展示。</li>
+<li><strong>LangSmith 佈署</strong>：防止特定的模型輸出被洩露到用戶端。</li>
+<li><strong>模型限制</strong>：某些舊型號或特定的 Chat Model 介面不支援串流參數（此時需改用 <code>disable_streaming=True</code>）。</li>
+</ul>
+<hr>
+<h3 id="八、-技術總結"><a href="#八、-技術總結" class="headerlink" title="八、 技術總結"></a>八、 技術總結</h3><p>串流不是選配，而是現代 AI 應用的標配。透過 <code>updates</code> 掌握骨幹流程，透過 <code>messages</code> 呈現細節質感，再配合 <code>custom</code> 補充業務進度。</p>
+<p>在 1.5 度的崩潰視角下，串流就像是 AI 的「生命徵象圖」。我們不僅是在看它給出的答案，更是在看它如何思考、如何掙扎、如何呼叫工具，最後才把結果呈現給我們。掌握了這套系統，你的 Agent 才算真正地活在即時的世界裡。</p>
+<hr>
+<h3 id="九、-結語"><a href="#九、-結語" class="headerlink" title="九、 結語"></a>九、 結語</h3><p><strong>「回應的快慢是效能問題，但回應的即時感是設計問題。」</strong></p>
+<p>串流不只是技術上的實現，更是一種 <strong>UX 哲學</strong>。在 AI 回應緩慢的現實下，透過逐字顯示，我們給予了使用者一種「AI 正在努力思考並與你對話」的臨場感。</p>
+<p>下次當你看到 AI 停在那邊思考太久時，別忘了把串流開起來，給使用者一點「它還活著」的證據吧！</p>
 
   </div>
 </article>
@@ -253,7 +261,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E3%80%81-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E4%B8%B2%E6%B5%81%E7%9A%84%E5%BA%95%E5%B1%A4%E9%82%8F%E8%BC%AF%EF%BC%9A%E9%80%90%E5%AD%97%E5%90%90%E9%9C%B2"><span class="toc-number">2.</span> <span class="toc-text">一、 串流的底層邏輯：逐字吐露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-LangChain-%E7%9A%84%E4%B8%89%E7%A8%AE%E4%B8%B2%E6%B5%81%E5%A7%BF%E5%8B%A2"><span class="toc-number">3.</span> <span class="toc-text">二、 LangChain 的三種串流姿勢</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9C%80%E5%9F%BA%E7%A4%8E%E7%9A%84-stream"><span class="toc-number">3.1.</span> <span class="toc-text">1. 最基礎的 .stream()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%9D%9E%E5%90%8C%E6%AD%A5%E7%9A%84-astream"><span class="toc-number">3.2.</span> <span class="toc-text">2. 非同步的 .astream()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E7%B5%82%E6%A5%B5%E6%96%B9%E6%A1%88%EF%BC%9A-astream-events"><span class="toc-number">3.3.</span> <span class="toc-text">3. 終極方案：.astream_events()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E5%AF%A6%E6%88%B0%E7%AF%84%E4%BE%8B%EF%BC%9A%E7%9B%A3%E8%81%BD-Agent-%E7%9A%84%E5%91%BC%E5%90%B8"><span class="toc-number">4.</span> <span class="toc-text">三、 實戰範例：監聽 Agent 的呼吸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E4%B8%B2%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A6%8B%E6%8C%91%E6%88%B0"><span class="toc-number">5.</span> <span class="toc-text">四、 串流中的常見挑戰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E6%8E%A5%E6%94%B6%EF%BC%9F%EF%BC%88SSE-%E5%8D%94%E5%AE%9A%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">五、 前端如何接收？（SSE 協定）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">7.</span> <span class="toc-text">六、 結語</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E3%80%81-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E7%82%BA%E4%BB%80%E9%BA%BC%E9%9C%80%E8%A6%81%E4%B8%B2%E6%B5%81%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">一、 為什麼需要串流？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-LangChain-%E4%B8%B2%E6%B5%81%E7%9A%84%E4%B8%89%E5%A4%A7%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">二、 LangChain 串流的三大核心模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E7%9B%A3%E6%8E%A7%E4%BB%BB%E5%8B%99%E9%80%B2%E5%BA%A6%EF%BC%9Aupdates-%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">三、 監控任務進度：updates 模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E6%A5%B5%E8%87%B4%E9%AB%94%E9%A9%97%EF%BC%9Amessages-%E6%A8%A1%E5%BC%8F%E8%88%87-Token-%E4%B8%B2%E6%B5%81"><span class="toc-number">5.</span> <span class="toc-text">四、 極致體驗：messages 模式與 Token 串流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E8%87%AA%E5%AE%9A%E7%BE%A9%E4%B8%B2%E6%B5%81%EF%BC%9Aget-stream-writer"><span class="toc-number">6.</span> <span class="toc-text">五、 自定義串流：get_stream_writer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E9%80%B2%E9%9A%8E%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%A4%9A%E6%A8%A1%E5%BC%8F%E4%B8%A6%E8%A1%8C%E8%88%87%E5%A4%9A-Agent-%E5%8D%94%E4%BD%9C"><span class="toc-number">7.</span> <span class="toc-text">六、 進階模式：多模式並行與多 Agent 協作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%99%95%E7%90%86%E5%AD%90-Agent-Sub-agents"><span class="toc-number">7.1.</span> <span class="toc-text">1. 處理子 Agent (Sub-agents)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BA%BA%E6%A9%9F%E4%BA%92%E5%8B%95-Human-in-the-loop"><span class="toc-number">7.2.</span> <span class="toc-text">2. 人機互動 (Human-in-the-loop)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81-%E5%81%9C%E7%94%A8%E4%B8%B2%E6%B5%81%E7%9A%84%E6%99%82%E6%A9%9F"><span class="toc-number">8.</span> <span class="toc-text">七、 停用串流的時機</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AB%E3%80%81-%E6%8A%80%E8%A1%93%E7%B8%BD%E7%B5%90"><span class="toc-number">9.</span> <span class="toc-text">八、 技術總結</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9D%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">10.</span> <span class="toc-text">九、 結語</span></a></li></ol>
       </div>
     
 

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言接續上次我們聊到的 Streaming，串流讓 AI 有了「呼吸感」，但當 AI 的「手」（Tools）伸向一些敏感區域時，光有呼吸是不夠的。 想像一下：如果你讓 AI 幫你管理資料庫，它突然決定執行一條 DELETE FR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」">
+<meta property="og:url" content="http://example.com/2025/10/18/Temp1.5/EP5/index.html">
+<meta property="og:site_name" content="Aura&#39;s Space">
+<meta property="og:description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言接續上次我們聊到的 Streaming，串流讓 AI 有了「呼吸感」，但當 AI 的「手」（Tools）伸向一些敏感區域時，光有呼吸是不夠的。 想像一下：如果你讓 AI 幫你管理資料庫，它突然決定執行一條 DELETE FR">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-21T13:02:05.478Z">
+<meta property="article:author" content="Aura">
+<meta property="article:tag" content="LangChain">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+      
+    
+    <!-- title -->
+    <title>【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2025/10/26/APCS/APCS-2021-11/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2025/10/17/Temp1.5/EP4/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/10/18/Temp1.5/EP5/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/10/18/Temp1.5/EP5/&text=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/10/18/Temp1.5/EP5/&is_video=false&description=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」&body=Check out this article: http://example.com/2025/10/18/Temp1.5/EP5/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/10/18/Temp1.5/EP5/&name=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/10/18/Temp1.5/EP5/&t=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E3%80%81-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E4%BB%80%E9%BA%BC%E6%98%AF-Human-in-the-Loop%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">一、 什麼是 Human-in-the-Loop？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-HITL-%E7%9A%84%E6%A0%B8%E5%BF%83%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="toc-number">3.</span> <span class="toc-text">二、 HITL 的核心三要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E4%B8%89%E7%A8%AE%E4%BA%BA%E9%A1%9E%E6%8A%89%E6%93%87%EF%BC%9AApprove-Edit-Reject"><span class="toc-number">4.</span> <span class="toc-text">三、 三種人類抉擇：Approve, Edit, Reject</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE-HITL-%E4%B8%AD%E4%BB%8B%E8%BB%9F%E9%AB%94%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">四、 如何配置 HITL 中介軟體？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E5%9B%9E%E6%87%89%E4%B8%AD%E6%96%B7%EF%BC%9ACommand-%E7%9A%84%E8%97%9D%E8%A1%93"><span class="toc-number">6.</span> <span class="toc-text">五、 回應中斷：Command 的藝術</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AF%84%E4%BE%8B%EF%BC%9A%E6%89%B9%E5%87%86%E5%9F%B7%E8%A1%8C"><span class="toc-number">6.1.</span> <span class="toc-text">範例：批准執行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AF%84%E4%BE%8B%EF%BC%9A%E6%8B%92%E7%B5%95%E4%B8%A6%E7%B5%A6%E4%BA%88%E5%8F%8D%E9%A5%8B"><span class="toc-number">6.2.</span> <span class="toc-text">範例：拒絕並給予反饋</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E4%B8%B2%E6%B5%81%E8%88%87-HITL-%E7%9A%84%E7%B5%90%E5%90%88"><span class="toc-number">7.</span> <span class="toc-text">六、 串流與 HITL 的結合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">8.</span> <span class="toc-text">七、 結語</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Aura</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-10-17T16:00:00.000Z" class="dt-published" itemprop="datePublished">2025-10-18</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Temperature-1-5/">Temperature 1.5</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/LangChain/" rel="tag">LangChain</a>, <a class="p-category" href="/tags/Python/" rel="tag">Python</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <hr>
+<blockquote>
+<p>本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。</p>
+</blockquote>
+<hr>
+<h3 id="零、-前言"><a href="#零、-前言" class="headerlink" title="零、 前言"></a>零、 前言</h3><p>接續上次我們聊到的 <strong>Streaming</strong>，串流讓 AI 有了「呼吸感」，但當 AI 的「手」（Tools）伸向一些敏感區域時，光有呼吸是不夠的。</p>
+<p>想像一下：如果你讓 AI 幫你管理資料庫，它突然決定執行一條 <code>DELETE FROM records</code> 刪掉你過去 30 天的資料；或者它寫了一封語氣奇怪的信準備寄給你的大老闆。這時候，你需要的不是看著它「順暢地」把錯事做完，而是一個能讓它停下來、等你點頭的機制。這就是我們今天要聊的 **Human-in-the-Loop (HITL)**。</p>
+<hr>
+<h3 id="一、-什麼是-Human-in-the-Loop？"><a href="#一、-什麼是-Human-in-the-Loop？" class="headerlink" title="一、 什麼是 Human-in-the-Loop？"></a>一、 什麼是 Human-in-the-Loop？</h3><p><strong>Human-in-the-Loop (HITL)</strong> 是一種中介軟體（Middleware）機制。它在模型「提案」執行某個工具（Tool Call）與「實際執行」之間加了一道關卡。</p>
+<p>當模型提出一些可能有風險的操作（例如：寫入檔案、執行 SQL）時，中介軟體會根據預設的策略（Policy）攔截這個動作，將執行狀態「暫停」並保存起來，等待人類的最終決定。</p>
+<hr>
+<h3 id="二、-HITL-的核心三要素"><a href="#二、-HITL-的核心三要素" class="headerlink" title="二、 HITL 的核心三要素"></a>二、 HITL 的核心三要素</h3><p>要實作這套「人工審核」機制，LangChain 依賴以下三個核心組件：</p>
+<ol>
+<li>**Interrupt (中斷)**：當符合攔截條件時，系統發出信號停止執行。</li>
+<li>**Persistence (持久層)**：使用 LangGraph 的檢查點（Checkpointer）來保存當前的圖形狀態（Graph State）。這確保了程序可以在暫停後，即使重啟也能從原點恢復。</li>
+<li>**Configurable Policy (配置策略)**：定義哪些工具需要被監督。</li>
+</ol>
+<hr>
+<h3 id="三、-三種人類抉擇：Approve-Edit-Reject"><a href="#三、-三種人類抉擇：Approve-Edit-Reject" class="headerlink" title="三、 三種人類抉擇：Approve, Edit, Reject"></a>三、 三種人類抉擇：Approve, Edit, Reject</h3><p>當 AI 被攔截後，身為「主管」的你有三種處理方式：</p>
+<table>
+<thead>
+<tr>
+<th>決策類型</th>
+<th>說明</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✅ <strong><code>approve</code></strong></td>
+<td>原封不動核准執行。</td>
+<td>郵件草稿沒問題，直接寄出。</td>
+</tr>
+<tr>
+<td>✏️ <strong><code>edit</code></strong></td>
+<td>修改工具參數後再執行。</td>
+<td>將郵件的收件人從 A 改成 B 再寄出。</td>
+</tr>
+<tr>
+<td>❌ <strong><code>reject</code></strong></td>
+<td>拒絕執行，並給予 AI 反饋。</td>
+<td>拒絕刪除指令，並告訴 AI：「這太危險了，請改用查詢。」</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>注意</strong>：在使用 <code>edit</code> 修改參數時，建議進行保守的改動。劇烈的修改可能會導致模型重新評估其策略，進而引發非預期的後續行為。</p>
+</blockquote>
+<hr>
+<h3 id="四、-如何配置-HITL-中介軟體？"><a href="#四、-如何配置-HITL-中介軟體？" class="headerlink" title="四、 如何配置 HITL 中介軟體？"></a>四、 如何配置 HITL 中介軟體？</h3><p>在建立 Agent 時，我們可以透過 <code>HumanInTheLoopMiddleware</code> 來指定哪些工具需要被監視。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> create_agent</span><br><span class="line"><span class="keyword">from</span> langchain.agents.middleware <span class="keyword">import</span> HumanInTheLoopMiddleware</span><br><span class="line"><span class="keyword">from</span> langgraph.checkpoint.memory <span class="keyword">import</span> InMemorySaver</span><br><span class="line"></span><br><span class="line">agent = create_agent(</span><br><span class="line">    model=<span class="string">&quot;gpt-4o&quot;</span>,</span><br><span class="line">    tools=[write_file_tool, execute_sql_tool, read_data_tool],</span><br><span class="line">    middleware=[</span><br><span class="line">        HumanInTheLoopMiddleware(</span><br><span class="line">            interrupt_on=&#123;</span><br><span class="line">                <span class="string">&quot;write_file&quot;</span>: <span class="literal">True</span>,           <span class="comment"># 攔截並允許所有決策</span></span><br><span class="line">                <span class="string">&quot;execute_sql&quot;</span>: &#123;              <span class="comment"># 攔截但禁止編輯</span></span><br><span class="line">                    <span class="string">&quot;allowed_decisions&quot;</span>: [<span class="string">&quot;approve&quot;</span>, <span class="string">&quot;reject&quot;</span>]</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="string">&quot;read_data&quot;</span>: <span class="literal">False</span>,           <span class="comment"># 安全操作，不攔截</span></span><br><span class="line">            &#125;,</span><br><span class="line">            description_prefix=<span class="string">&quot;工具執行待審核&quot;</span>,</span><br><span class="line">        ),</span><br><span class="line">    ],</span><br><span class="line">    <span class="comment"># 必須配置檢查點以處理中斷與恢復</span></span><br><span class="line">    checkpointer=InMemorySaver(),</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="五、-回應中斷：Command-的藝術"><a href="#五、-回應中斷：Command-的藝術" class="headerlink" title="五、 回應中斷：Command 的藝術"></a>五、 回應中斷：Command 的藝術</h3><p>當 <code>agent.invoke()</code> 觸發中斷時，回傳結果會包含一個 <code>__interrupt__</code> 欄位，裡面詳列了待審核的動作清單。要恢復執行，我們需要使用 <code>Command(resume=...)</code>。</p>
+<h4 id="範例：批准執行"><a href="#範例：批准執行" class="headerlink" title="範例：批准執行"></a>範例：批准執行</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.types <span class="keyword">import</span> Command</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用相同的 thread_id 恢復對話</span></span><br><span class="line">agent.invoke(</span><br><span class="line">    Command(resume=&#123;<span class="string">&quot;decisions&quot;</span>: [&#123;<span class="string">&quot;type&quot;</span>: <span class="string">&quot;approve&quot;</span>&#125;]&#125;),</span><br><span class="line">    config=&#123;<span class="string">&quot;configurable&quot;</span>: &#123;<span class="string">&quot;thread_id&quot;</span>: <span class="string">&quot;user_001&quot;</span>&#125;&#125;</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="範例：拒絕並給予反饋"><a href="#範例：拒絕並給予反饋" class="headerlink" title="範例：拒絕並給予反饋"></a>範例：拒絕並給予反饋</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">agent.invoke(</span><br><span class="line">    Command(resume=&#123;</span><br><span class="line">        <span class="string">&quot;decisions&quot;</span>: [&#123;</span><br><span class="line">            <span class="string">&quot;type&quot;</span>: <span class="string">&quot;reject&quot;</span>,</span><br><span class="line">            <span class="string">&quot;message&quot;</span>: <span class="string">&quot;我不允許刪除這份檔案，請先備份。&quot;</span></span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;),</span><br><span class="line">    config=config</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="六、-串流與-HITL-的結合"><a href="#六、-串流與-HITL-的結合" class="headerlink" title="六、 串流與 HITL 的結合"></a>六、 串流與 HITL 的結合</h3><p>如果你同時使用了 Streaming 與 HITL，你可以在 <code>stream()</code> 的循環中監控 <code>__interrupt__</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 stream_mode=[&#x27;updates&#x27;, &#x27;messages&#x27;]</span></span><br><span class="line"><span class="keyword">for</span> mode, chunk <span class="keyword">in</span> agent.stream(input_data, config=config, stream_mode=[<span class="string">&quot;updates&quot;</span>, <span class="string">&quot;messages&quot;</span>]):</span><br><span class="line">    <span class="keyword">if</span> mode == <span class="string">&quot;updates&quot;</span> <span class="keyword">and</span> <span class="string">&quot;__interrupt__&quot;</span> <span class="keyword">in</span> chunk:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;\n🛑 觸發人工審核：<span class="subst">&#123;chunk[<span class="string">&#x27;__interrupt__&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="comment"># 在此處等待使用者輸入...</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="七、-結語"><a href="#七、-結語" class="headerlink" title="七、 結語"></a>七、 結語</h3><p><strong>Human-in-the-Loop</strong> 為 AI Agent 補上了最後一塊「安全性」拼圖。它讓 AI 不再是一個不可控的黑盒，而是一個會適時停下來徵詢意見的助手。</p>
+<p>當 AI 具備了 <strong>Tools</strong>（手）、<strong>Streaming</strong>（呼吸）以及 <strong>HITL</strong>（安全剎車）後，它才能真正走進生產環境，處理那些具備法律、財務或資料風險的真實任務。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E3%80%81-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E4%BB%80%E9%BA%BC%E6%98%AF-Human-in-the-Loop%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">一、 什麼是 Human-in-the-Loop？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-HITL-%E7%9A%84%E6%A0%B8%E5%BF%83%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="toc-number">3.</span> <span class="toc-text">二、 HITL 的核心三要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E4%B8%89%E7%A8%AE%E4%BA%BA%E9%A1%9E%E6%8A%89%E6%93%87%EF%BC%9AApprove-Edit-Reject"><span class="toc-number">4.</span> <span class="toc-text">三、 三種人類抉擇：Approve, Edit, Reject</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE-HITL-%E4%B8%AD%E4%BB%8B%E8%BB%9F%E9%AB%94%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">四、 如何配置 HITL 中介軟體？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E5%9B%9E%E6%87%89%E4%B8%AD%E6%96%B7%EF%BC%9ACommand-%E7%9A%84%E8%97%9D%E8%A1%93"><span class="toc-number">6.</span> <span class="toc-text">五、 回應中斷：Command 的藝術</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AF%84%E4%BE%8B%EF%BC%9A%E6%89%B9%E5%87%86%E5%9F%B7%E8%A1%8C"><span class="toc-number">6.1.</span> <span class="toc-text">範例：批准執行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AF%84%E4%BE%8B%EF%BC%9A%E6%8B%92%E7%B5%95%E4%B8%A6%E7%B5%A6%E4%BA%88%E5%8F%8D%E9%A5%8B"><span class="toc-number">6.2.</span> <span class="toc-text">範例：拒絕並給予反饋</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E4%B8%B2%E6%B5%81%E8%88%87-HITL-%E7%9A%84%E7%B5%90%E5%90%88"><span class="toc-number">7.</span> <span class="toc-text">六、 串流與 HITL 的結合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">8.</span> <span class="toc-text">七、 結語</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/10/18/Temp1.5/EP5/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/10/18/Temp1.5/EP5/&text=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/10/18/Temp1.5/EP5/&is_video=false&description=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」&body=Check out this article: http://example.com/2025/10/18/Temp1.5/EP5/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/10/18/Temp1.5/EP5/&name=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/10/18/Temp1.5/EP5/&t=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2025
+    Aura
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
