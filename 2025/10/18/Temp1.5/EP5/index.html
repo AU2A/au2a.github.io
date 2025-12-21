@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言接續上次我們聊到的 Streaming，串流讓 AI 有了「呼吸感」，但當 AI 的「手」（Tools）伸向一些敏感區域時，光有呼吸是不夠的。 想像一下：如果你讓 AI 幫你管理資料庫，它突然決定執行一條 DELETE FR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」">
+<meta property="og:title" content="【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」">
 <meta property="og:url" content="http://example.com/2025/10/18/Temp1.5/EP5/index.html">
 <meta property="og:site_name" content="Aura&#39;s Space">
 <meta property="og:description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言接續上次我們聊到的 Streaming，串流讓 AI 有了「呼吸感」，但當 AI 的「手」（Tools）伸向一些敏感區域時，光有呼吸是不夠的。 想像一下：如果你讓 AI 幫你管理資料庫，它突然決定執行一條 DELETE FR">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-10-17T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-21T13:02:05.478Z">
+<meta property="article:modified_time" content="2025-12-21T13:03:01.299Z">
 <meta property="article:author" content="Aura">
 <meta property="article:tag" content="LangChain">
 <meta property="article:tag" content="Python">
@@ -30,7 +30,7 @@
       
     
     <!-- title -->
-    <title>【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」</title>
+    <title>【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -90,16 +90,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/10/18/Temp1.5/EP5/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/10/18/Temp1.5/EP5/&text=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/10/18/Temp1.5/EP5/&is_video=false&description=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」&body=Check out this article: http://example.com/2025/10/18/Temp1.5/EP5/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/10/18/Temp1.5/EP5/&name=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/10/18/Temp1.5/EP5/&t=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/10/18/Temp1.5/EP5/&text=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/10/18/Temp1.5/EP5/&is_video=false&description=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」&body=Check out this article: http://example.com/2025/10/18/Temp1.5/EP5/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/10/18/Temp1.5/EP5/&name=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/10/18/Temp1.5/EP5/&t=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -119,7 +119,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」
+        【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」
     </h1>
 
 
@@ -251,16 +251,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/10/18/Temp1.5/EP5/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/10/18/Temp1.5/EP5/&text=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/10/18/Temp1.5/EP5/&is_video=false&description=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」&body=Check out this article: http://example.com/2025/10/18/Temp1.5/EP5/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/10/18/Temp1.5/EP5/&name=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/10/18/Temp1.5/EP5/&t=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop，給 AI 的「緊急煞車」"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/10/18/Temp1.5/EP5/&text=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/10/18/Temp1.5/EP5/&is_video=false&description=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」&body=Check out this article: http://example.com/2025/10/18/Temp1.5/EP5/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/10/18/Temp1.5/EP5/&title=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/10/18/Temp1.5/EP5/&name=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/10/18/Temp1.5/EP5/&t=【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
