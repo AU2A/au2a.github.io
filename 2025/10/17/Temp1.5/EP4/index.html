@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言在上一篇我們討論了 Tools，讓 AI 可以執行動作。但你有沒有發現，當 AI 在調用工具、查資料、思考複雜邏輯時，使用者往往對著一個閃爍的游標發呆？ 在 LLM 的時代，「延遲（Latency）」是開發者的天敵。由於模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感">
+<meta property="og:url" content="http://example.com/2025/10/17/Temp1.5/EP4/index.html">
+<meta property="og:site_name" content="Aura&#39;s Space">
+<meta property="og:description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言在上一篇我們討論了 Tools，讓 AI 可以執行動作。但你有沒有發現，當 AI 在調用工具、查資料、思考複雜邏輯時，使用者往往對著一個閃爍的游標發呆？ 在 LLM 的時代，「延遲（Latency）」是開發者的天敵。由於模型">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-21T12:45:47.001Z">
+<meta property="article:author" content="Aura">
+<meta property="article:tag" content="LangChain">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+      
+    
+    <!-- title -->
+    <title>【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2025/10/26/APCS/APCS-2021-11/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2025/10/16/Temp1.5/EP3/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/10/17/Temp1.5/EP4/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/10/17/Temp1.5/EP4/&text=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/10/17/Temp1.5/EP4/&title=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/10/17/Temp1.5/EP4/&is_video=false&description=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感&body=Check out this article: http://example.com/2025/10/17/Temp1.5/EP4/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/10/17/Temp1.5/EP4/&title=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/10/17/Temp1.5/EP4/&title=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/10/17/Temp1.5/EP4/&title=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/10/17/Temp1.5/EP4/&title=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/10/17/Temp1.5/EP4/&name=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/10/17/Temp1.5/EP4/&t=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E3%80%81-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E4%B8%B2%E6%B5%81%E7%9A%84%E5%BA%95%E5%B1%A4%E9%82%8F%E8%BC%AF%EF%BC%9A%E9%80%90%E5%AD%97%E5%90%90%E9%9C%B2"><span class="toc-number">2.</span> <span class="toc-text">一、 串流的底層邏輯：逐字吐露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-LangChain-%E7%9A%84%E4%B8%89%E7%A8%AE%E4%B8%B2%E6%B5%81%E5%A7%BF%E5%8B%A2"><span class="toc-number">3.</span> <span class="toc-text">二、 LangChain 的三種串流姿勢</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9C%80%E5%9F%BA%E7%A4%8E%E7%9A%84-stream"><span class="toc-number">3.1.</span> <span class="toc-text">1. 最基礎的 .stream()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%9D%9E%E5%90%8C%E6%AD%A5%E7%9A%84-astream"><span class="toc-number">3.2.</span> <span class="toc-text">2. 非同步的 .astream()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E7%B5%82%E6%A5%B5%E6%96%B9%E6%A1%88%EF%BC%9A-astream-events"><span class="toc-number">3.3.</span> <span class="toc-text">3. 終極方案：.astream_events()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E5%AF%A6%E6%88%B0%E7%AF%84%E4%BE%8B%EF%BC%9A%E7%9B%A3%E8%81%BD-Agent-%E7%9A%84%E5%91%BC%E5%90%B8"><span class="toc-number">4.</span> <span class="toc-text">三、 實戰範例：監聽 Agent 的呼吸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E4%B8%B2%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A6%8B%E6%8C%91%E6%88%B0"><span class="toc-number">5.</span> <span class="toc-text">四、 串流中的常見挑戰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E6%8E%A5%E6%94%B6%EF%BC%9F%EF%BC%88SSE-%E5%8D%94%E5%AE%9A%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">五、 前端如何接收？（SSE 協定）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">7.</span> <span class="toc-text">六、 結語</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Aura</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-10-16T16:00:00.000Z" class="dt-published" itemprop="datePublished">2025-10-17</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Temperature-1-5/">Temperature 1.5</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/LangChain/" rel="tag">LangChain</a>, <a class="p-category" href="/tags/Python/" rel="tag">Python</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <hr>
+<blockquote>
+<p>本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。</p>
+</blockquote>
+<hr>
+<h3 id="零、-前言"><a href="#零、-前言" class="headerlink" title="零、 前言"></a>零、 前言</h3><p>在上一篇我們討論了 <strong>Tools</strong>，讓 AI 可以執行動作。但你有沒有發現，當 AI 在調用工具、查資料、思考複雜邏輯時，使用者往往對著一個閃爍的游標發呆？</p>
+<p>在 LLM 的時代，「延遲（Latency）」是開發者的天敵。由於模型是逐個 Token 產生的，如果等到 500 個 Token 全部生完才顯示，使用者可能已經以為網頁當機了。這就是為什麼我們需要 **Streaming (串流)**。這不只是為了視覺效果，更是為了提升「感知速度」。</p>
+<hr>
+<h3 id="一、-串流的底層邏輯：逐字吐露"><a href="#一、-串流的底層邏輯：逐字吐露" class="headerlink" title="一、 串流的底層邏輯：逐字吐露"></a>一、 串流的底層邏輯：逐字吐露</h3><p>為什麼 LLM 可以串流？因為自回歸模型（Autoregressive Models）本質上就是根據前文預測下一個字。</p>
+<p>當模型算出 時，我們其實不需要等它算出 ，就可以先把第一個字送到前端。</p>
+<hr>
+<h3 id="二、-LangChain-的三種串流姿勢"><a href="#二、-LangChain-的三種串流姿勢" class="headerlink" title="二、 LangChain 的三種串流姿勢"></a>二、 LangChain 的三種串流姿勢</h3><p>在 LangChain 中，串流的實作經歷了幾次演進，現在主要有以下幾種方式：</p>
+<h4 id="1-最基礎的-stream"><a href="#1-最基礎的-stream" class="headerlink" title="1. 最基礎的 .stream()"></a>1. 最基礎的 <code>.stream()</code></h4><p>這是同步（Sync）環境下最簡單的方式，它會回傳一個 Generator（生成器）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"></span><br><span class="line">model = ChatOpenAI(model=<span class="string">&quot;gpt-4o&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 .stream() 獲取迭代器</span></span><br><span class="line">chunks = []</span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> model.stream(<span class="string">&quot;請寫一首關於 Python 的小詩&quot;</span>):</span><br><span class="line">    chunks.append(chunk)</span><br><span class="line">    <span class="built_in">print</span>(chunk.content, end=<span class="string">&quot;|&quot;</span>, flush=<span class="literal">True</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-非同步的-astream"><a href="#2-非同步的-astream" class="headerlink" title="2. 非同步的 .astream()"></a>2. 非同步的 <code>.astream()</code></h4><p>在現代的 Web 框架（如 FastAPI）中，我們通常使用非同步方式來處理併發請求。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">for</span> chunk <span class="keyword">in</span> model.astream(<span class="string">&quot;Hello, how are you?&quot;</span>):</span><br><span class="line">    <span class="built_in">print</span>(chunk.content, end=<span class="string">&quot;|&quot;</span>, flush=<span class="literal">True</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-終極方案：-astream-events"><a href="#3-終極方案：-astream-events" class="headerlink" title="3. 終極方案：.astream_events()"></a>3. 終極方案：<code>.astream_events()</code></h4><p>這是目前 LangChain 最強大也最推薦的方式。為什麼？因為 <code>.stream()</code> 只能拿到最終的文字，但如果你使用了 <strong>Chain</strong> 或 <strong>Agent</strong>，你可能想知道：</p>
+<ul>
+<li>現在是不是正在呼叫工具？</li>
+<li>哪一個步驟正在檢索資料庫？</li>
+<li>中間層的思考過程是什麼？</li>
+</ul>
+<p><code>astream_events</code> 允許你訂閱整個鏈路中的所有事件。</p>
+<hr>
+<h3 id="三、-實戰範例：監聽-Agent-的呼吸"><a href="#三、-實戰範例：監聽-Agent-的呼吸" class="headerlink" title="三、 實戰範例：監聽 Agent 的呼吸"></a>三、 實戰範例：監聽 Agent 的呼吸</h3><p>想像一個情境：AI 正在幫你搜尋資料並整理報告。我們希望前端能即時顯示：「正在搜尋…」、「找到 3 篇文章…」、「正在總結…」。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> HumanMessage</span><br><span class="line"></span><br><span class="line"><span class="comment"># V2 版本是目前的主流</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">for</span> event <span class="keyword">in</span> agent_executor.astream_events(</span><br><span class="line">    &#123;<span class="string">&quot;input&quot;</span>: <span class="string">&quot;幫我查一下 2025 年聖誕節的天氣&quot;</span>&#125;,</span><br><span class="line">    version=<span class="string">&quot;v2&quot;</span></span><br><span class="line">):</span><br><span class="line">    kind = event[<span class="string">&quot;event&quot;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> kind == <span class="string">&quot;on_chat_model_stream&quot;</span>:</span><br><span class="line">        <span class="comment"># 這是模型輸出的內容片段</span></span><br><span class="line">        content = event[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;chunk&quot;</span>].content</span><br><span class="line">        <span class="keyword">if</span> content:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Token: <span class="subst">&#123;content&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">elif</span> kind == <span class="string">&quot;on_tool_start&quot;</span>:</span><br><span class="line">        <span class="comment"># 當模型開始調用工具時</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;\n[系統訊息] 正在啟動工具: <span class="subst">&#123;event[<span class="string">&#x27;name&#x27;</span>]&#125;</span>...&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">elif</span> kind == <span class="string">&quot;on_tool_end&quot;</span>:</span><br><span class="line">        <span class="comment"># 工具執行完畢</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;\n[系統訊息] 工具執行結束，結果已取得。&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="四、-串流中的常見挑戰"><a href="#四、-串流中的常見挑戰" class="headerlink" title="四、 串流中的常見挑戰"></a>四、 串流中的常見挑戰</h3><p>雖然串流看起來很美好，但實作時有幾個「坑」：</p>
+<ol>
+<li><strong>JSON 格式崩潰</strong>：如果你在要求模型輸出 <code>Structured Output</code>（JSON），串流出來的片段在還沒傳完之前，都不是合法的 JSON。這會導致前端 <code>JSON.parse()</code> 報錯。</li>
+</ol>
+<ul>
+<li>_對策_：使用 <code>Partial JSON Parser</code> 或是在後端聚合完整後再輸出。</li>
+</ul>
+<ol start="2">
+<li>**聚合 (Aggregating Chunks)**：LangChain 的 <code>AIMessageChunk</code> 支持相加。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">full_message = chunk1 + chunk2 + chunk3</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>這在背後會自動幫你處理 <code>tool_calls</code> 的合併，非常方便。 3. <strong>Token 計費</strong>：在串流模式下，有些 Provider 可能不會回傳完整的 Token 使用統計。</p>
+<hr>
+<h3 id="五、-前端如何接收？（SSE-協定）"><a href="#五、-前端如何接收？（SSE-協定）" class="headerlink" title="五、 前端如何接收？（SSE 協定）"></a>五、 前端如何接收？（SSE 協定）</h3><p>串流數據通常不建議用純 WebSocket（除非有雙向通訊需求），最標準的做法是使用 **Server-Sent Events (SSE)**。</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>REST API (JSON)</th>
+<th>SSE (Streaming)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>等待感</strong></td>
+<td>高 (等到全部結束)</td>
+<td>低 (即時回饋)</td>
+</tr>
+<tr>
+<td><strong>連線方式</strong></td>
+<td>短連線</td>
+<td>長連線</td>
+</tr>
+<tr>
+<td><strong>資料格式</strong></td>
+<td>單一物件</td>
+<td>數據流 (text&#x2F;event-stream)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="六、-結語"><a href="#六、-結語" class="headerlink" title="六、 結語"></a>六、 結語</h3><p>串流不只是技術上的實現，更是一種 <strong>UX 哲學</strong>。在 AI 回應緩慢的現實下，透過逐字顯示，我們給予了使用者一種「AI 正在努力思考並與你對話」的臨場感。</p>
+<p>當你學會了 Tools（手）與 Streaming（呼吸），你的 AI Agent 就不再是一個死板的 API，而是一個鮮活的、有節奏感的對話夥伴。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E3%80%81-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E4%B8%B2%E6%B5%81%E7%9A%84%E5%BA%95%E5%B1%A4%E9%82%8F%E8%BC%AF%EF%BC%9A%E9%80%90%E5%AD%97%E5%90%90%E9%9C%B2"><span class="toc-number">2.</span> <span class="toc-text">一、 串流的底層邏輯：逐字吐露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-LangChain-%E7%9A%84%E4%B8%89%E7%A8%AE%E4%B8%B2%E6%B5%81%E5%A7%BF%E5%8B%A2"><span class="toc-number">3.</span> <span class="toc-text">二、 LangChain 的三種串流姿勢</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9C%80%E5%9F%BA%E7%A4%8E%E7%9A%84-stream"><span class="toc-number">3.1.</span> <span class="toc-text">1. 最基礎的 .stream()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%9D%9E%E5%90%8C%E6%AD%A5%E7%9A%84-astream"><span class="toc-number">3.2.</span> <span class="toc-text">2. 非同步的 .astream()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E7%B5%82%E6%A5%B5%E6%96%B9%E6%A1%88%EF%BC%9A-astream-events"><span class="toc-number">3.3.</span> <span class="toc-text">3. 終極方案：.astream_events()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E5%AF%A6%E6%88%B0%E7%AF%84%E4%BE%8B%EF%BC%9A%E7%9B%A3%E8%81%BD-Agent-%E7%9A%84%E5%91%BC%E5%90%B8"><span class="toc-number">4.</span> <span class="toc-text">三、 實戰範例：監聽 Agent 的呼吸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E4%B8%B2%E6%B5%81%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A6%8B%E6%8C%91%E6%88%B0"><span class="toc-number">5.</span> <span class="toc-text">四、 串流中的常見挑戰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E6%8E%A5%E6%94%B6%EF%BC%9F%EF%BC%88SSE-%E5%8D%94%E5%AE%9A%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">五、 前端如何接收？（SSE 協定）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">7.</span> <span class="toc-text">六、 結語</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/10/17/Temp1.5/EP4/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/10/17/Temp1.5/EP4/&text=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/10/17/Temp1.5/EP4/&title=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/10/17/Temp1.5/EP4/&is_video=false&description=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感&body=Check out this article: http://example.com/2025/10/17/Temp1.5/EP4/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/10/17/Temp1.5/EP4/&title=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/10/17/Temp1.5/EP4/&title=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/10/17/Temp1.5/EP4/&title=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/10/17/Temp1.5/EP4/&title=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/10/17/Temp1.5/EP4/&name=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/10/17/Temp1.5/EP4/&t=【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2025
+    Aura
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
