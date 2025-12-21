@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，未必包含最前沿的技術資訊，可能對也可能不對，畢竟 Temperature 都是 1.5 了。   一、 核心背景：解決「生產力鴻溝」LangChain 從 v0.3 邁向 v1.0，本質上是從「實驗性工具」轉型為「企業級平台」。過去開發者常遇到的四大痛點在 v1.0 得到了正面回應：  依賴臃腫： 解決了過去單體式結構導致的依賴衝突。 API 不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Temperature 1.5 的日常】EP1 — LangChain v1.0">
+<meta property="og:url" content="http://example.com/2025/10/13/Diary/2025-10-13/index.html">
+<meta property="og:site_name" content="Aura&#39;s Space">
+<meta property="og:description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，未必包含最前沿的技術資訊，可能對也可能不對，畢竟 Temperature 都是 1.5 了。   一、 核心背景：解決「生產力鴻溝」LangChain 從 v0.3 邁向 v1.0，本質上是從「實驗性工具」轉型為「企業級平台」。過去開發者常遇到的四大痛點在 v1.0 得到了正面回應：  依賴臃腫： 解決了過去單體式結構導致的依賴衝突。 API 不">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-13T12:49:29.000Z">
+<meta property="article:modified_time" content="2025-12-21T02:02:03.520Z">
+<meta property="article:author" content="Aura">
+<meta property="article:tag" content="Aura&#39;s Space">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+      
+    
+    <!-- title -->
+    <title>【Temperature 1.5 的日常】EP1 — LangChain v1.0</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2025/10/26/APCS/APCS-2021-11/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2025/09/14/APCS/APCS-2022-01/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/10/13/Diary/2025-10-13/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/10/13/Diary/2025-10-13/&text=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/10/13/Diary/2025-10-13/&title=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/10/13/Diary/2025-10-13/&is_video=false&description=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【Temperature 1.5 的日常】EP1 — LangChain v1.0&body=Check out this article: http://example.com/2025/10/13/Diary/2025-10-13/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/10/13/Diary/2025-10-13/&title=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/10/13/Diary/2025-10-13/&title=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/10/13/Diary/2025-10-13/&title=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/10/13/Diary/2025-10-13/&title=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/10/13/Diary/2025-10-13/&name=【Temperature 1.5 的日常】EP1 — LangChain v1.0&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/10/13/Diary/2025-10-13/&t=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E6%A0%B8%E5%BF%83%E8%83%8C%E6%99%AF%EF%BC%9A%E8%A7%A3%E6%B1%BA%E3%80%8C%E7%94%9F%E7%94%A2%E5%8A%9B%E9%B4%BB%E6%BA%9D%E3%80%8D"><span class="toc-number">1.</span> <span class="toc-text">一、 核心背景：解決「生產力鴻溝」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E6%9E%B6%E6%A7%8B%E5%B1%A4%E7%B4%9A%E7%9A%84%E5%85%A8%E9%9D%A2%E9%87%8D%E6%A7%8B"><span class="toc-number">2.</span> <span class="toc-text">二、 架構層級的全面重構</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%96%B0%E7%9A%84-Agent-%E7%AF%84%E5%BC%8F%EF%BC%9Acreate-agent"><span class="toc-number">2.1.</span> <span class="toc-text">1. 新的 Agent 範式：create_agent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%A8%99%E6%BA%96%E5%8C%96%E9%80%9A%E8%A8%8A%E7%B5%90%E6%A7%8B%EF%BC%9A-content-blocks"><span class="toc-number">2.2.</span> <span class="toc-text">2. 標準化通訊結構：.content_blocks</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%A7%A3%E8%80%A6%E7%9A%84%E7%94%9F%E6%85%8B%E7%B3%BB%E7%B5%B1"><span class="toc-number">2.3.</span> <span class="toc-text">3. 解耦的生態系統</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E7%B5%84%E5%90%88%E7%AF%84%E5%BC%8F%E7%9A%84%E8%BD%89%E7%A7%BB%EF%BC%9A%E5%BE%9E-Chains-%E5%88%B0-LCEL"><span class="toc-number">3.</span> <span class="toc-text">三、 組合範式的轉移：從 Chains 到 LCEL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E5%AE%8C%E6%95%B4%E6%8A%80%E8%A1%93%E5%A0%86%E7%96%8A%EF%BC%9A%E4%B8%89%E4%BD%8D%E4%B8%80%E9%AB%94"><span class="toc-number">4.</span> <span class="toc-text">四、 完整技術堆疊：三位一體</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E9%81%B7%E7%A7%BB%E8%88%87%E5%AF%A6%E8%B8%90%E7%AD%96%E7%95%A5"><span class="toc-number">5.</span> <span class="toc-text">五、 遷移與實踐策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">6.</span> <span class="toc-text">六、 結語</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【Temperature 1.5 的日常】EP1 — LangChain v1.0
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Aura</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-10-13T12:49:29.000Z" class="dt-published" itemprop="datePublished">2025-10-13</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E3%80%90Temperature-1-5-%E7%9A%84%E6%97%A5%E5%B8%B8%E3%80%91/">【Temperature 1.5 的日常】</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <hr>
+<blockquote>
+<p>本文為個人學習筆記，記錄了學習過程中的一些知識，未必包含最前沿的技術資訊，可能對也可能不對，畢竟 Temperature 都是 1.5 了。</p>
+</blockquote>
+<hr>
+<h3 id="一、-核心背景：解決「生產力鴻溝」"><a href="#一、-核心背景：解決「生產力鴻溝」" class="headerlink" title="一、 核心背景：解決「生產力鴻溝」"></a>一、 核心背景：解決「生產力鴻溝」</h3><p>LangChain 從 v0.3 邁向 v1.0，本質上是從「實驗性工具」轉型為「企業級平台」。過去開發者常遇到的四大痛點在 v1.0 得到了正面回應：</p>
+<ul>
+<li><strong>依賴臃腫：</strong> 解決了過去單體式結構導致的依賴衝突。</li>
+<li><strong>API 不穩定：</strong> 正式採用「語義化版本控制 (Semantic Versioning)」，承諾重大變更僅在主版本發生。</li>
+<li><strong>黑盒子抽象：</strong> 淘汰了難以除錯的舊版 Chains，轉向透明的宣告式語法。</li>
+<li><strong>文件滯後：</strong> 透過架構標準化，大幅改善了開發文件的指導意義。</li>
+</ul>
+<hr>
+<h3 id="二、-架構層級的全面重構"><a href="#二、-架構層級的全面重構" class="headerlink" title="二、 架構層級的全面重構"></a>二、 架構層級的全面重構</h3><p>v1.0 重新定義了開發 Agent 的標準流程，主要體現在以下三個面向：</p>
+<h4 id="1-新的-Agent-範式：create-agent"><a href="#1-新的-Agent-範式：create-agent" class="headerlink" title="1. 新的 Agent 範式：create_agent"></a>1. 新的 Agent 範式：<code>create_agent</code></h4><ul>
+<li><strong>底層支撐：</strong> 全面改由 <strong>LangGraph</strong> 驅動，原生支援持久化與人機協作。</li>
+<li><strong>中介軟體 (Middleware)：</strong> 引入類似 Web 開發的 Hook 機制（如 <code>beforeModel</code>, <code>wrapToolCall</code>）。</li>
+<li><strong>情境工程：</strong> 允許開發者在不破壞核心邏輯的情況下，靈活插入 PII 脫敏或自動摘要等功能。</li>
+</ul>
+<h4 id="2-標準化通訊結構：-content-blocks"><a href="#2-標準化通訊結構：-content-blocks" class="headerlink" title="2. 標準化通訊結構：.content_blocks"></a>2. 標準化通訊結構：<code>.content_blocks</code></h4><ul>
+<li><strong>供應商無關：</strong> 統一了不同模型（OpenAI, Anthropic 等）的輸出格式。</li>
+<li><strong>多模態支援：</strong> 為未來視覺與檔案內容的處理提供了標準接口。</li>
+<li><strong>類型安全：</strong> 提供完整的 Type Hints，減少執行時錯誤。</li>
+</ul>
+<h4 id="3-解耦的生態系統"><a href="#3-解耦的生態系統" class="headerlink" title="3. 解耦的生態系統"></a>3. 解耦的生態系統</h4><ul>
+<li><code>langchain-core</code>: 穩定的基礎抽象（Runnable 接口）。</li>
+<li><code>langchain-community</code>: 獨立的版本控制，處理第三方整合。</li>
+<li><code>langchain-classic</code>: 專為舊版功能（如 LLMChain）提供的過渡包，確保升級不中斷。</li>
+</ul>
+<hr>
+<h3 id="三、-組合範式的轉移：從-Chains-到-LCEL"><a href="#三、-組合範式的轉移：從-Chains-到-LCEL" class="headerlink" title="三、 組合範式的轉移：從 Chains 到 LCEL"></a>三、 組合範式的轉移：從 Chains 到 LCEL</h3><p>這是 v1.0 最具影響力的技術變革，將「指令式」轉向「宣告式」：</p>
+<ul>
+<li><strong>LCEL (LangChain Expression Language)：</strong></li>
+<li>利用管道運算子 <code>|</code> 組合組件，結構如 <code>prompt | model | parser</code>。</li>
+<li><strong>透明度：</strong> 鏈條的每一步都清晰可見，不再是隱藏邏輯。</li>
+<li><strong>內建優勢：</strong> 自動獲得原生串流 (Streaming)、非同步支援 (Async) 以及並行執行能力。</li>
+<li><strong>可觀測性：</strong> 每一個步驟都會自動記錄到 LangSmith，極大簡化了除錯流程。</li>
+</ul>
+<hr>
+<h3 id="四、-完整技術堆疊：三位一體"><a href="#四、-完整技術堆疊：三位一體" class="headerlink" title="四、 完整技術堆疊：三位一體"></a>四、 完整技術堆疊：三位一體</h3><p>v1.0 時代的 LangChain 不再只是一個 library，而是一個垂直整合的技術平台：</p>
+<table>
+<thead>
+<tr>
+<th>層級</th>
+<th>組件</th>
+<th>角色</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>應用層</strong></td>
+<td><code>langchain</code></td>
+<td>提供高階入口，快速構建 Agent。</td>
+</tr>
+<tr>
+<td><strong>編排層</strong></td>
+<td><code>langgraph</code></td>
+<td>處理複雜的循環邏輯、狀態管理與人機互動。</td>
+</tr>
+<tr>
+<td><strong>運營層</strong></td>
+<td><code>langsmith</code></td>
+<td>負責全生命週期的追蹤、評估、監控與部署。</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="五、-遷移與實踐策略"><a href="#五、-遷移與實踐策略" class="headerlink" title="五、 遷移與實踐策略"></a>五、 遷移與實踐策略</h3><p>針對現有專案與未來開發的建議：</p>
+<ol>
+<li><strong>環境要求：</strong> 需升級至 Python 3.10+，並注意 Pydantic v2 的兼容性。</li>
+<li><strong>遷移路徑：</strong> 先安裝 <code>langchain-classic</code> 修正導入語句以維持運行。</li>
+</ol>
+<ul>
+<li>逐步將核心邏輯重構為 LCEL 語法，以獲取性能優勢。</li>
+</ul>
+<ol start="3">
+<li><strong>開發心態：</strong></li>
+</ol>
+<ul>
+<li>簡單任務：使用 <code>create_agent</code> 快速開發。</li>
+<li>複雜任務：深入 <code>langgraph</code> 進行精細控制。</li>
+<li>品質保障：全程掛載 <code>langsmith</code> 進行觀測。</li>
+</ul>
+<hr>
+<h3 id="六、-結語"><a href="#六、-結語" class="headerlink" title="六、 結語"></a>六、 結語</h3><p>LangChain v1.0 代表了 AI 應用開發進入了「工程化」階段。透過 <strong>解耦架構</strong>、<strong>宣告式語法</strong> 以及 <strong>垂直整合的運營工具</strong>，它為開發者提供了一個從原型設計到生產部署的可靠路徑。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E6%A0%B8%E5%BF%83%E8%83%8C%E6%99%AF%EF%BC%9A%E8%A7%A3%E6%B1%BA%E3%80%8C%E7%94%9F%E7%94%A2%E5%8A%9B%E9%B4%BB%E6%BA%9D%E3%80%8D"><span class="toc-number">1.</span> <span class="toc-text">一、 核心背景：解決「生產力鴻溝」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E6%9E%B6%E6%A7%8B%E5%B1%A4%E7%B4%9A%E7%9A%84%E5%85%A8%E9%9D%A2%E9%87%8D%E6%A7%8B"><span class="toc-number">2.</span> <span class="toc-text">二、 架構層級的全面重構</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%96%B0%E7%9A%84-Agent-%E7%AF%84%E5%BC%8F%EF%BC%9Acreate-agent"><span class="toc-number">2.1.</span> <span class="toc-text">1. 新的 Agent 範式：create_agent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%A8%99%E6%BA%96%E5%8C%96%E9%80%9A%E8%A8%8A%E7%B5%90%E6%A7%8B%EF%BC%9A-content-blocks"><span class="toc-number">2.2.</span> <span class="toc-text">2. 標準化通訊結構：.content_blocks</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%A7%A3%E8%80%A6%E7%9A%84%E7%94%9F%E6%85%8B%E7%B3%BB%E7%B5%B1"><span class="toc-number">2.3.</span> <span class="toc-text">3. 解耦的生態系統</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E7%B5%84%E5%90%88%E7%AF%84%E5%BC%8F%E7%9A%84%E8%BD%89%E7%A7%BB%EF%BC%9A%E5%BE%9E-Chains-%E5%88%B0-LCEL"><span class="toc-number">3.</span> <span class="toc-text">三、 組合範式的轉移：從 Chains 到 LCEL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E5%AE%8C%E6%95%B4%E6%8A%80%E8%A1%93%E5%A0%86%E7%96%8A%EF%BC%9A%E4%B8%89%E4%BD%8D%E4%B8%80%E9%AB%94"><span class="toc-number">4.</span> <span class="toc-text">四、 完整技術堆疊：三位一體</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E9%81%B7%E7%A7%BB%E8%88%87%E5%AF%A6%E8%B8%90%E7%AD%96%E7%95%A5"><span class="toc-number">5.</span> <span class="toc-text">五、 遷移與實踐策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">6.</span> <span class="toc-text">六、 結語</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/10/13/Diary/2025-10-13/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/10/13/Diary/2025-10-13/&text=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/10/13/Diary/2025-10-13/&title=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/10/13/Diary/2025-10-13/&is_video=false&description=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【Temperature 1.5 的日常】EP1 — LangChain v1.0&body=Check out this article: http://example.com/2025/10/13/Diary/2025-10-13/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/10/13/Diary/2025-10-13/&title=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/10/13/Diary/2025-10-13/&title=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/10/13/Diary/2025-10-13/&title=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/10/13/Diary/2025-10-13/&title=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/10/13/Diary/2025-10-13/&name=【Temperature 1.5 的日常】EP1 — LangChain v1.0&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/10/13/Diary/2025-10-13/&t=【Temperature 1.5 的日常】EP1 — LangChain v1.0"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2025
+    Aura
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
