@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言繼上篇我們聊過 LangChain v1.0 的架構重組後，本篇將深入探討開發者在實作中最核心的痛點：如何讓「不按牌理出牌」的 LLM 乖乖吐出結構化資料。 一、 核心背景：從「猜心術」到「工程接口」在 LLM 開發的早期，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術">
+<meta property="og:url" content="http://example.com/2025/10/14/Diary/EP2/index.html">
+<meta property="og:site_name" content="Aura&#39;s Space">
+<meta property="og:description" content="本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。   零、 前言繼上篇我們聊過 LangChain v1.0 的架構重組後，本篇將深入探討開發者在實作中最核心的痛點：如何讓「不按牌理出牌」的 LLM 乖乖吐出結構化資料。 一、 核心背景：從「猜心術」到「工程接口」在 LLM 開發的早期，">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-14T14:57:21.000Z">
+<meta property="article:modified_time" content="2025-12-21T12:34:50.106Z">
+<meta property="article:author" content="Aura">
+<meta property="article:tag" content="Aura&#39;s Space">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+      
+    
+    <!-- title -->
+    <title>【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2025/10/26/APCS/APCS-2021-11/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2025/10/13/Diary/EP1/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/10/14/Diary/EP2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/10/14/Diary/EP2/&text=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/10/14/Diary/EP2/&title=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/10/14/Diary/EP2/&is_video=false&description=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術&body=Check out this article: http://example.com/2025/10/14/Diary/EP2/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/10/14/Diary/EP2/&title=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/10/14/Diary/EP2/&title=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/10/14/Diary/EP2/&title=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/10/14/Diary/EP2/&title=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/10/14/Diary/EP2/&name=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/10/14/Diary/EP2/&t=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E3%80%81-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E6%A0%B8%E5%BF%83%E8%83%8C%E6%99%AF%EF%BC%9A%E5%BE%9E%E3%80%8C%E7%8C%9C%E5%BF%83%E8%A1%93%E3%80%8D%E5%88%B0%E3%80%8C%E5%B7%A5%E7%A8%8B%E6%8E%A5%E5%8F%A3%E3%80%8D"><span class="toc-number">2.</span> <span class="toc-text">一、 核心背景：從「猜心術」到「工程接口」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E6%A0%B8%E5%BF%83%E8%AA%9E%E6%B3%95%EF%BC%9A-with-structured-output"><span class="toc-number">3.</span> <span class="toc-text">二、 核心語法：.with_structured_output()</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AE%9A%E7%BE%A9%E7%B5%90%E6%A7%8B%E7%9A%84%E5%B7%A5%E5%85%B7%EF%BC%9APydantic"><span class="toc-number">3.1.</span> <span class="toc-text">1. 定義結構的工具：Pydantic</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%8F%88%E6%8E%A5%E6%A8%A1%E5%9E%8B-The-Chain"><span class="toc-number">3.2.</span> <span class="toc-text">2. 鏈接模型 (The Chain)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E5%AF%A6%E7%8F%BE%E6%A9%9F%E5%88%B6%EF%BC%9A%E5%BA%95%E5%B1%A4%E7%99%BC%E7%94%9F%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">三、 實現機制：底層發生了什麼？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E5%AF%A6%E6%88%B0%E6%87%89%E7%94%A8%E5%A0%B4%E6%99%AF"><span class="toc-number">5.</span> <span class="toc-text">四、 實戰應用場景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%87%AA%E5%8B%95%E5%8C%96%E6%8F%90%E5%8F%96-Information-Extraction"><span class="toc-number">5.1.</span> <span class="toc-text">1. 自動化提取 (Information Extraction)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%8B%95%E6%85%8B%E8%B7%AF%E7%94%B1-Routing"><span class="toc-number">5.2.</span> <span class="toc-text">2. 動態路由 (Routing)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%95%B8%E6%93%9A%E5%90%88%E6%88%90-Synthetic-Data"><span class="toc-number">5.3.</span> <span class="toc-text">3. 數據合成 (Synthetic Data)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E9%80%B2%E9%9A%8E%E6%8A%80%E5%B7%A7%E8%88%87%E9%98%B2%E7%A6%A6%E6%80%A7%E7%B7%A8%E7%A8%8B"><span class="toc-number">6.</span> <span class="toc-text">五、 進階技巧與防禦性編程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%B7%A2%E7%8B%80%E7%B5%90%E6%A7%8B-Nested-Models"><span class="toc-number">6.1.</span> <span class="toc-text">1. 巢狀結構 (Nested Models)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%8C%AF%E8%AA%A4%E9%87%8D%E8%A9%A6%E8%88%87%E5%9B%9E%E9%80%80-Retries-amp-Fallbacks"><span class="toc-number">6.2.</span> <span class="toc-text">2. 錯誤重試與回退 (Retries &amp; Fallbacks)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8F%8F%E8%BF%B0-Descriptions-%E6%98%AF%E9%97%9C%E9%8D%B5"><span class="toc-number">6.3.</span> <span class="toc-text">3. 描述 (Descriptions) 是關鍵</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E8%88%87-LangGraph-%E7%9A%84%E8%81%AF%E5%8B%95"><span class="toc-number">7.</span> <span class="toc-text">六、 與 LangGraph 的聯動</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">8.</span> <span class="toc-text">七、 結語</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Aura</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-10-14T14:57:21.000Z" class="dt-published" itemprop="datePublished">2025-10-14</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Temperature-1-5/">Temperature 1.5</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <hr>
+<blockquote>
+<p>本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。</p>
+</blockquote>
+<hr>
+<h3 id="零、-前言"><a href="#零、-前言" class="headerlink" title="零、 前言"></a>零、 前言</h3><p>繼上篇我們聊過 LangChain v1.0 的架構重組後，本篇將深入探討開發者在實作中最核心的痛點：如何讓「不按牌理出牌」的 LLM 乖乖吐出結構化資料。</p>
+<h3 id="一、-核心背景：從「猜心術」到「工程接口」"><a href="#一、-核心背景：從「猜心術」到「工程接口」" class="headerlink" title="一、 核心背景：從「猜心術」到「工程接口」"></a>一、 核心背景：從「猜心術」到「工程接口」</h3><p>在 LLM 開發的早期，我們最痛苦的莫過於處理模型回傳的「碎碎念」。即便你在 Prompt 裡寫了十遍「請只回傳 JSON」，模型偶爾還是會貼心地補上一句：「好的，這是你要的結果：」。</p>
+<p><strong>Structured Output</strong> 的出現，本質上是將非結構化的自然語言，強制約束進預定義的數據結構中。這是將 AI 整合進現有軟體系統（API、資料庫、前端介面）的最後一哩路。</p>
+<ul>
+<li><strong>過去 (Parsing)：</strong> 使用 Regex 或 <code>OutputParser</code> 硬啃字串。穩定性差，報錯率高。</li>
+<li><strong>現在 (Native Support)：</strong> 透過模型原生的「Tool Calling」或「JSON Mode」能力，由底層保證格式。</li>
+</ul>
+<hr>
+<h3 id="二、-核心語法：-with-structured-output"><a href="#二、-核心語法：-with-structured-output" class="headerlink" title="二、 核心語法：.with_structured_output()"></a>二、 核心語法：<code>.with_structured_output()</code></h3><p>在 LangChain v0.1+ 之後，這成為了實現結構化輸出的標準 API。它不再需要開發者手寫複雜的 Parsing 邏輯，而是將「定義結構」與「調用模型」合而為一。</p>
+<h4 id="1-定義結構的工具：Pydantic"><a href="#1-定義結構的工具：Pydantic" class="headerlink" title="1. 定義結構的工具：Pydantic"></a>1. 定義結構的工具：Pydantic</h4><p>Pydantic 是 LangChain 推薦的首選方式，因為它提供了強大的類型檢查與驗證功能。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel, Field</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AnalysisResult</span>(<span class="title class_ inherited__">BaseModel</span>):</span><br><span class="line">    sentiment: <span class="built_in">str</span> = Field(description=<span class="string">&quot;情緒分析，值為 positive 或 negative&quot;</span>)</span><br><span class="line">    score: <span class="built_in">int</span> = Field(description=<span class="string">&quot;情緒分數，1-10分&quot;</span>)</span><br><span class="line">    summary: <span class="built_in">str</span> = Field(description=<span class="string">&quot;一段話總結用戶意圖&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-鏈接模型-The-Chain"><a href="#2-鏈接模型-The-Chain" class="headerlink" title="2. 鏈接模型 (The Chain)"></a>2. 鏈接模型 (The Chain)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">structured_llm = llm.with_structured_output(AnalysisResult)</span><br><span class="line">result = structured_llm.invoke(<span class="string">&quot;這家餐廳的服務真的太棒了，雖然貴了點。&quot;</span>)</span><br><span class="line"><span class="comment"># 回傳不再是字串，而是一個 Pydantic 對象</span></span><br><span class="line"><span class="comment"># result.sentiment -&gt; &#x27;positive&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="三、-實現機制：底層發生了什麼？"><a href="#三、-實現機制：底層發生了什麼？" class="headerlink" title="三、 實現機制：底層發生了什麼？"></a>三、 實現機制：底層發生了什麼？</h3><p>當你呼叫 <code>.with_structured_output()</code> 時，LangChain 會根據模型的能力自動選擇最佳路徑：</p>
+<table>
+<thead>
+<tr>
+<th>機制</th>
+<th>描述</th>
+<th>優點</th>
+<th>缺點</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Tool Calling</strong></td>
+<td>將 Schema 轉換為類似 Function Call 的參數</td>
+<td>最穩定，主流模型（OpenAI, Anthropic）皆支援</td>
+<td>需要模型具備工具調用能力</td>
+</tr>
+<tr>
+<td><strong>JSON Mode</strong></td>
+<td>強制模型輸出 JSON 字串</td>
+<td>適合不支援工具調用的模型</td>
+<td>偶爾會漏掉欄位或格式錯誤</td>
+</tr>
+<tr>
+<td><strong>Raw Prompting</strong></td>
+<td>在 Prompt 中注入指令並手動解析</td>
+<td>最後的保險方案</td>
+<td>最不穩定，容易崩潰</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="四、-實戰應用場景"><a href="#四、-實戰應用場景" class="headerlink" title="四、 實戰應用場景"></a>四、 實戰應用場景</h3><p>結構化輸出不只是為了「格式好看」，它解決了以下具體的工程問題：</p>
+<h4 id="1-自動化提取-Information-Extraction"><a href="#1-自動化提取-Information-Extraction" class="headerlink" title="1. 自動化提取 (Information Extraction)"></a>1. 自動化提取 (Information Extraction)</h4><p>從冗長的合約或非結構化的會議記錄中，提取出關鍵的時間、地點、人物，並直接存入資料庫。</p>
+<h4 id="2-動態路由-Routing"><a href="#2-動態路由-Routing" class="headerlink" title="2. 動態路由 (Routing)"></a>2. 動態路由 (Routing)</h4><p>根據用戶問題的類型（技術支援、業務諮詢、閒聊），回傳一個 <code>Route</code> 枚舉值，讓代碼邏輯決定下一步走哪個 Branch。</p>
+<h4 id="3-數據合成-Synthetic-Data"><a href="#3-數據合成-Synthetic-Data" class="headerlink" title="3. 數據合成 (Synthetic Data)"></a>3. 數據合成 (Synthetic Data)</h4><p>生成測試數據時，確保每一條資料都符合數據庫的 Schema 規範。</p>
+<hr>
+<h3 id="五、-進階技巧與防禦性編程"><a href="#五、-進階技巧與防禦性編程" class="headerlink" title="五、 進階技巧與防禦性編程"></a>五、 進階技巧與防禦性編程</h3><p>即便有了結構化輸出，AI 仍有出錯的可能。以下是提升穩定性的三個建議：</p>
+<h4 id="1-巢狀結構-Nested-Models"><a href="#1-巢狀結構-Nested-Models" class="headerlink" title="1. 巢狀結構 (Nested Models)"></a>1. 巢狀結構 (Nested Models)</h4><p>對於複雜的邏輯，不要試圖在一個層級解決。利用 Pydantic 的巢狀特性，可以讓模型更好地理解關係。</p>
+<h4 id="2-錯誤重試與回退-Retries-amp-Fallbacks"><a href="#2-錯誤重試與回退-Retries-amp-Fallbacks" class="headerlink" title="2. 錯誤重試與回退 (Retries &amp; Fallbacks)"></a>2. 錯誤重試與回退 (Retries &amp; Fallbacks)</h4><p>當模型輸出的 JSON 格式不正確時，利用 LangChain 的 <code>.with_fallbacks()</code> 機制，自動切換到更強大的模型（如從 GPT-4o-mini 切換到 GPT-4o）再試一次。</p>
+<h4 id="3-描述-Descriptions-是關鍵"><a href="#3-描述-Descriptions-是關鍵" class="headerlink" title="3. 描述 (Descriptions) 是關鍵"></a>3. 描述 (Descriptions) 是關鍵</h4><p><code>Field(description=&quot;...&quot;)</code> 內部的文字會被傳遞給模型。這不是註解，而是 <strong>Prompt Engineering</strong> 的一部分。寫得越清楚，模型輸出的準確度越高。</p>
+<hr>
+<h3 id="六、-與-LangGraph-的聯動"><a href="#六、-與-LangGraph-的聯動" class="headerlink" title="六、 與 LangGraph 的聯動"></a>六、 與 LangGraph 的聯動</h3><p>在複雜的 Agent 流程中，結構化輸出是「狀態轉移」的基礎。</p>
+<ul>
+<li><strong>State Management:</strong> LangGraph 的 State 通常是 TypedDict。</li>
+<li><strong>Checkpointing:</strong> 只有結構化的數據才能被輕鬆序列化並存儲在持久化層，實現「暫停與恢復」的功能。</li>
+</ul>
+<hr>
+<h3 id="七、-結語"><a href="#七、-結語" class="headerlink" title="七、 結語"></a>七、 結語</h3><p><strong>「如果不能轉化為數據，AI 就只能是玩具。」</strong></p>
+<p>Structured Output 將 AI 從一個「會說話的鸚鵡」變成了一個「能產出標準格式數據的組件」。這不僅簡化了後端的 Regex 代碼，更重要的是，它讓 AI 真正具備了與現有軟體世界通訊的能力。</p>
+<p>下次當你發現自己還在寫 <code>if &quot;JSON&quot; in response.content:</code> 時，請記得 LangChain 已經為你準備好了更優雅的工具。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E3%80%81-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">零、 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E6%A0%B8%E5%BF%83%E8%83%8C%E6%99%AF%EF%BC%9A%E5%BE%9E%E3%80%8C%E7%8C%9C%E5%BF%83%E8%A1%93%E3%80%8D%E5%88%B0%E3%80%8C%E5%B7%A5%E7%A8%8B%E6%8E%A5%E5%8F%A3%E3%80%8D"><span class="toc-number">2.</span> <span class="toc-text">一、 核心背景：從「猜心術」到「工程接口」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E6%A0%B8%E5%BF%83%E8%AA%9E%E6%B3%95%EF%BC%9A-with-structured-output"><span class="toc-number">3.</span> <span class="toc-text">二、 核心語法：.with_structured_output()</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AE%9A%E7%BE%A9%E7%B5%90%E6%A7%8B%E7%9A%84%E5%B7%A5%E5%85%B7%EF%BC%9APydantic"><span class="toc-number">3.1.</span> <span class="toc-text">1. 定義結構的工具：Pydantic</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%8F%88%E6%8E%A5%E6%A8%A1%E5%9E%8B-The-Chain"><span class="toc-number">3.2.</span> <span class="toc-text">2. 鏈接模型 (The Chain)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E5%AF%A6%E7%8F%BE%E6%A9%9F%E5%88%B6%EF%BC%9A%E5%BA%95%E5%B1%A4%E7%99%BC%E7%94%9F%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">三、 實現機制：底層發生了什麼？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E5%AF%A6%E6%88%B0%E6%87%89%E7%94%A8%E5%A0%B4%E6%99%AF"><span class="toc-number">5.</span> <span class="toc-text">四、 實戰應用場景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%87%AA%E5%8B%95%E5%8C%96%E6%8F%90%E5%8F%96-Information-Extraction"><span class="toc-number">5.1.</span> <span class="toc-text">1. 自動化提取 (Information Extraction)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%8B%95%E6%85%8B%E8%B7%AF%E7%94%B1-Routing"><span class="toc-number">5.2.</span> <span class="toc-text">2. 動態路由 (Routing)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%95%B8%E6%93%9A%E5%90%88%E6%88%90-Synthetic-Data"><span class="toc-number">5.3.</span> <span class="toc-text">3. 數據合成 (Synthetic Data)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E9%80%B2%E9%9A%8E%E6%8A%80%E5%B7%A7%E8%88%87%E9%98%B2%E7%A6%A6%E6%80%A7%E7%B7%A8%E7%A8%8B"><span class="toc-number">6.</span> <span class="toc-text">五、 進階技巧與防禦性編程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%B7%A2%E7%8B%80%E7%B5%90%E6%A7%8B-Nested-Models"><span class="toc-number">6.1.</span> <span class="toc-text">1. 巢狀結構 (Nested Models)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%8C%AF%E8%AA%A4%E9%87%8D%E8%A9%A6%E8%88%87%E5%9B%9E%E9%80%80-Retries-amp-Fallbacks"><span class="toc-number">6.2.</span> <span class="toc-text">2. 錯誤重試與回退 (Retries &amp; Fallbacks)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8F%8F%E8%BF%B0-Descriptions-%E6%98%AF%E9%97%9C%E9%8D%B5"><span class="toc-number">6.3.</span> <span class="toc-text">3. 描述 (Descriptions) 是關鍵</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E8%88%87-LangGraph-%E7%9A%84%E8%81%AF%E5%8B%95"><span class="toc-number">7.</span> <span class="toc-text">六、 與 LangGraph 的聯動</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81-%E7%B5%90%E8%AA%9E"><span class="toc-number">8.</span> <span class="toc-text">七、 結語</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2025/10/14/Diary/EP2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2025/10/14/Diary/EP2/&text=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2025/10/14/Diary/EP2/&title=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2025/10/14/Diary/EP2/&is_video=false&description=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術&body=Check out this article: http://example.com/2025/10/14/Diary/EP2/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2025/10/14/Diary/EP2/&title=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2025/10/14/Diary/EP2/&title=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2025/10/14/Diary/EP2/&title=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2025/10/14/Diary/EP2/&title=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2025/10/14/Diary/EP2/&name=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2025/10/14/Diary/EP2/&t=【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2025
+    Aura
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
