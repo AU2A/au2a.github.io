@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>C&#43;&#43; on Aura&#39;s Space</title>
-    <link>http://localhost:1313/tags/c&#43;&#43;/</link>
+    <link>https://aura.codex.tw/tags/c&#43;&#43;/</link>
     <description>Recent content in C&#43;&#43; on Aura&#39;s Space</description>
     <generator>Hugo -- 0.153.2</generator>
     <language>en</language>
     <lastBuildDate>Sun, 30 Nov 2025 21:07:48 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://aura.codex.tw/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>APCS-2021-09</title>
-      <link>http://localhost:1313/posts/apcs/apcs-2021-09/</link>
+      <link>https://aura.codex.tw/posts/apcs/apcs-2021-09/</link>
       <pubDate>Sun, 30 Nov 2025 21:07:48 +0000</pubDate>
-      <guid>http://localhost:1313/posts/apcs/apcs-2021-09/</guid>
+      <guid>https://aura.codex.tw/posts/apcs/apcs-2021-09/</guid>
       <description>&lt;h1 id=&#34;1-七言對聯&#34;&gt;1. 七言對聯&lt;/h1&gt;
 &lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
 &lt;ol&gt;
@@ -55,9 +55,9 @@
     </item>
     <item>
       <title>APCS-2021-11</title>
-      <link>http://localhost:1313/posts/apcs/apcs-2021-11/</link>
+      <link>https://aura.codex.tw/posts/apcs/apcs-2021-11/</link>
       <pubDate>Sun, 26 Oct 2025 20:22:55 +0000</pubDate>
-      <guid>http://localhost:1313/posts/apcs/apcs-2021-11/</guid>
+      <guid>https://aura.codex.tw/posts/apcs/apcs-2021-11/</guid>
       <description>&lt;h1 id=&#34;1-修補圍籬&#34;&gt;1. 修補圍籬&lt;/h1&gt;
 &lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
 &lt;ol&gt;
@@ -108,9 +108,9 @@
     </item>
     <item>
       <title>APCS-2022-01</title>
-      <link>http://localhost:1313/posts/apcs/apcs-2022-01/</link>
+      <link>https://aura.codex.tw/posts/apcs/apcs-2022-01/</link>
       <pubDate>Sun, 14 Sep 2025 14:03:14 +0000</pubDate>
-      <guid>http://localhost:1313/posts/apcs/apcs-2022-01/</guid>
+      <guid>https://aura.codex.tw/posts/apcs/apcs-2022-01/</guid>
       <description>&lt;h1 id=&#34;1-程式交易&#34;&gt;1. 程式交易&lt;/h1&gt;
 &lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
 &lt;ol&gt;
@@ -166,9 +166,9 @@
     </item>
     <item>
       <title>APCS-2022-06</title>
-      <link>http://localhost:1313/posts/apcs/apcs-2022-06/</link>
+      <link>https://aura.codex.tw/posts/apcs/apcs-2022-06/</link>
       <pubDate>Sun, 07 Sep 2025 20:13:34 +0000</pubDate>
-      <guid>http://localhost:1313/posts/apcs/apcs-2022-06/</guid>
+      <guid>https://aura.codex.tw/posts/apcs/apcs-2022-06/</guid>
       <description>&lt;h1 id=&#34;1-數字遊戲&#34;&gt;1. 數字遊戲&lt;/h1&gt;
 &lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
 &lt;ol&gt;
@@ -205,9 +205,9 @@
     </item>
     <item>
       <title>APCS-2022-10</title>
-      <link>http://localhost:1313/posts/apcs/apcs-2022-10/</link>
+      <link>https://aura.codex.tw/posts/apcs/apcs-2022-10/</link>
       <pubDate>Sun, 17 Aug 2025 20:24:42 +0000</pubDate>
-      <guid>http://localhost:1313/posts/apcs/apcs-2022-10/</guid>
+      <guid>https://aura.codex.tw/posts/apcs/apcs-2022-10/</guid>
       <description>&lt;h1 id=&#34;1-巴士站牌&#34;&gt;1. 巴士站牌&lt;/h1&gt;
 &lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
 &lt;ol&gt;
@@ -250,9 +250,9 @@
     </item>
     <item>
       <title>APCS-2023-01</title>
-      <link>http://localhost:1313/posts/apcs/apcs-2023-01/</link>
+      <link>https://aura.codex.tw/posts/apcs/apcs-2023-01/</link>
       <pubDate>Sun, 10 Aug 2025 20:16:58 +0000</pubDate>
-      <guid>http://localhost:1313/posts/apcs/apcs-2023-01/</guid>
+      <guid>https://aura.codex.tw/posts/apcs/apcs-2023-01/</guid>
       <description>&lt;h1 id=&#34;1-程式考試&#34;&gt;1. 程式考試&lt;/h1&gt;
 &lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
 &lt;ol&gt;
@@ -286,9 +286,9 @@
     </item>
     <item>
       <title>APCS-2023-06</title>
-      <link>http://localhost:1313/posts/apcs/apcs-2023-06/</link>
+      <link>https://aura.codex.tw/posts/apcs/apcs-2023-06/</link>
       <pubDate>Sun, 03 Aug 2025 20:24:09 +0000</pubDate>
-      <guid>http://localhost:1313/posts/apcs/apcs-2023-06/</guid>
+      <guid>https://aura.codex.tw/posts/apcs/apcs-2023-06/</guid>
       <description>&lt;h1 id=&#34;1-路徑偵測&#34;&gt;1. 路徑偵測&lt;/h1&gt;
 &lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
 &lt;ol&gt;
@@ -334,9 +334,9 @@
     </item>
     <item>
       <title>APCS-2023-10</title>
-      <link>http://localhost:1313/posts/apcs/apcs-2023-10/</link>
+      <link>https://aura.codex.tw/posts/apcs/apcs-2023-10/</link>
       <pubDate>Sun, 06 Jul 2025 20:27:11 +0000</pubDate>
-      <guid>http://localhost:1313/posts/apcs/apcs-2023-10/</guid>
+      <guid>https://aura.codex.tw/posts/apcs/apcs-2023-10/</guid>
       <description>&lt;h1 id=&#34;1-機械鼠&#34;&gt;1. 機械鼠&lt;/h1&gt;
 &lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
 &lt;ol&gt;
@@ -384,9 +384,9 @@
     </item>
     <item>
       <title>APCS-2024-01</title>
-      <link>http://localhost:1313/posts/apcs/apcs-2024-01/</link>
+      <link>https://aura.codex.tw/posts/apcs/apcs-2024-01/</link>
       <pubDate>Sun, 22 Jun 2025 20:28:41 +0000</pubDate>
-      <guid>http://localhost:1313/posts/apcs/apcs-2024-01/</guid>
+      <guid>https://aura.codex.tw/posts/apcs/apcs-2024-01/</guid>
       <description>&lt;h1 id=&#34;1-遊戲選角&#34;&gt;1. 遊戲選角&lt;/h1&gt;
 &lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
 &lt;ol&gt;
@@ -432,9 +432,9 @@
     </item>
     <item>
       <title>APCS-2025-06</title>
-      <link>http://localhost:1313/posts/apcs/apcs-2025-06/</link>
+      <link>https://aura.codex.tw/posts/apcs/apcs-2025-06/</link>
       <pubDate>Sun, 15 Jun 2025 22:17:41 +0000</pubDate>
-      <guid>http://localhost:1313/posts/apcs/apcs-2025-06/</guid>
+      <guid>https://aura.codex.tw/posts/apcs/apcs-2025-06/</guid>
       <description>&lt;h1 id=&#34;1-跳柵遊戲&#34;&gt;1. 跳柵遊戲&lt;/h1&gt;
 &lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
 &lt;ol&gt;
@@ -504,9 +504,9 @@
     </item>
     <item>
       <title>APCS-2024-06</title>
-      <link>http://localhost:1313/posts/apcs/apcs-2024-06/</link>
+      <link>https://aura.codex.tw/posts/apcs/apcs-2024-06/</link>
       <pubDate>Sun, 25 May 2025 20:13:56 +0000</pubDate>
-      <guid>http://localhost:1313/posts/apcs/apcs-2024-06/</guid>
+      <guid>https://aura.codex.tw/posts/apcs/apcs-2024-06/</guid>
       <description>&lt;h1 id=&#34;1-特技表演&#34;&gt;1. 特技表演&lt;/h1&gt;
 &lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
 &lt;ol&gt;
@@ -546,9 +546,9 @@
     </item>
     <item>
       <title>APCS-2024-10</title>
-      <link>http://localhost:1313/posts/apcs/apcs-2024-10/</link>
+      <link>https://aura.codex.tw/posts/apcs/apcs-2024-10/</link>
       <pubDate>Sun, 18 May 2025 20:22:23 +0000</pubDate>
-      <guid>http://localhost:1313/posts/apcs/apcs-2024-10/</guid>
+      <guid>https://aura.codex.tw/posts/apcs/apcs-2024-10/</guid>
       <description>&lt;h1 id=&#34;1-裝飲料&#34;&gt;1. 裝飲料&lt;/h1&gt;
 &lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
 &lt;ol&gt;
@@ -586,9 +586,9 @@
     </item>
     <item>
       <title>APCS-2025-01</title>
-      <link>http://localhost:1313/posts/apcs/apcs-2025-01/</link>
+      <link>https://aura.codex.tw/posts/apcs/apcs-2025-01/</link>
       <pubDate>Sun, 11 May 2025 22:17:41 +0000</pubDate>
-      <guid>http://localhost:1313/posts/apcs/apcs-2025-01/</guid>
+      <guid>https://aura.codex.tw/posts/apcs/apcs-2025-01/</guid>
       <description>&lt;h1 id=&#34;1-等紅綠燈&#34;&gt;1. 等紅綠燈&lt;/h1&gt;
 &lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
 &lt;ol&gt;

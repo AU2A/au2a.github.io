@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Python on Aura&#39;s Space</title>
-    <link>http://localhost:1313/tags/python/</link>
+    <link>https://aura.codex.tw/tags/python/</link>
     <description>Recent content in Python on Aura&#39;s Space</description>
     <generator>Hugo -- 0.153.2</generator>
     <language>en</language>
     <lastBuildDate>Sun, 19 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://aura.codex.tw/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Temperature 1.5 的日常】EP6: Ollama - 讓 LLM 在家裡「乖乖坐好」的在地化秘訣</title>
-      <link>http://localhost:1313/posts/temp1.5/ep6/</link>
+      <link>https://aura.codex.tw/posts/temp1.5/ep6/</link>
       <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/temp1.5/ep6/</guid>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep6/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
@@ -61,9 +61,9 @@
     </item>
     <item>
       <title>【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」</title>
-      <link>http://localhost:1313/posts/temp1.5/ep5/</link>
+      <link>https://aura.codex.tw/posts/temp1.5/ep5/</link>
       <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/temp1.5/ep5/</guid>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep5/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
@@ -118,9 +118,9 @@
     </item>
     <item>
       <title>【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感</title>
-      <link>http://localhost:1313/posts/temp1.5/ep4/</link>
+      <link>https://aura.codex.tw/posts/temp1.5/ep4/</link>
       <pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/temp1.5/ep4/</guid>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep4/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
@@ -165,9 +165,9 @@
     </item>
     <item>
       <title>【Temperature 1.5 的日常】EP3: LangChain - Tools, 賦予 AI 雙手的魔法</title>
-      <link>http://localhost:1313/posts/temp1.5/ep3/</link>
+      <link>https://aura.codex.tw/posts/temp1.5/ep3/</link>
       <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/temp1.5/ep3/</guid>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep3/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
@@ -206,9 +206,9 @@
     </item>
     <item>
       <title>【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術</title>
-      <link>http://localhost:1313/posts/temp1.5/ep2/</link>
+      <link>https://aura.codex.tw/posts/temp1.5/ep2/</link>
       <pubDate>Tue, 14 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/temp1.5/ep2/</guid>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep2/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
@@ -234,9 +234,9 @@
     </item>
     <item>
       <title>【Temperature 1.5 的日常】EP1: LangChain - 認識 LangChain v1.0</title>
-      <link>http://localhost:1313/posts/temp1.5/ep1/</link>
+      <link>https://aura.codex.tw/posts/temp1.5/ep1/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/temp1.5/ep1/</guid>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep1/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
@@ -277,9 +277,9 @@
     </item>
     <item>
       <title>LeetCode-Writeup 2441. Largest Positive Integer That Exists With Its Negative</title>
-      <link>http://localhost:1313/posts/leetcode-writeup/leetcode-writeup-2441-largest-positive-integer-that-exists-with-its-negative/</link>
+      <link>https://aura.codex.tw/posts/leetcode-writeup/leetcode-writeup-2441-largest-positive-integer-that-exists-with-its-negative/</link>
       <pubDate>Thu, 02 May 2024 21:43:14 +0000</pubDate>
-      <guid>http://localhost:1313/posts/leetcode-writeup/leetcode-writeup-2441-largest-positive-integer-that-exists-with-its-negative/</guid>
+      <guid>https://aura.codex.tw/posts/leetcode-writeup/leetcode-writeup-2441-largest-positive-integer-that-exists-with-its-negative/</guid>
       <description>&lt;h1 id=&#34;2441-largest-positive-integer-that-exists-with-its-negative&#34;&gt;2441. &lt;a href=&#34;https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/description/&#34;&gt;Largest Positive Integer That Exists With Its Negative&lt;/a&gt;&lt;/h1&gt;
 &lt;h1 id=&#34;solution-1&#34;&gt;Solution 1&lt;/h1&gt;
 &lt;p&gt;檢查數值，如果是正數+1，如果是負數+2，當數值剛好為 3 時代表正數與負數都有出現，正數負數都只會加一次。&lt;/p&gt;
@@ -340,9 +340,9 @@
     </item>
     <item>
       <title>LeetCode-Writeup 2370. Longest Ideal Subsequence</title>
-      <link>http://localhost:1313/posts/leetcode-writeup/leetcode-writeup-2370-longest-ideal-subsequence/</link>
+      <link>https://aura.codex.tw/posts/leetcode-writeup/leetcode-writeup-2370-longest-ideal-subsequence/</link>
       <pubDate>Fri, 26 Apr 2024 11:07:12 +0000</pubDate>
-      <guid>http://localhost:1313/posts/leetcode-writeup/leetcode-writeup-2370-longest-ideal-subsequence/</guid>
+      <guid>https://aura.codex.tw/posts/leetcode-writeup/leetcode-writeup-2370-longest-ideal-subsequence/</guid>
       <description>&lt;h1 id=&#34;2370-longest-ideal-subsequence&#34;&gt;2370. &lt;a href=&#34;https://leetcode.com/problems/longest-ideal-subsequence/description/&#34;&gt;Longest Ideal Subsequence&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;這題是個基礎的 DP 題，很值得練習。&lt;/p&gt;
 &lt;h1 id=&#34;idea-1-tle&#34;&gt;Idea 1 TLE&lt;/h1&gt;
@@ -449,9 +449,9 @@
     </item>
     <item>
       <title>LeetCode-Writeup 310. Minimum Height Trees</title>
-      <link>http://localhost:1313/posts/leetcode-writeup/leetcode-writeup-310-minimum-height-trees/</link>
+      <link>https://aura.codex.tw/posts/leetcode-writeup/leetcode-writeup-310-minimum-height-trees/</link>
       <pubDate>Thu, 25 Apr 2024 09:48:49 +0000</pubDate>
-      <guid>http://localhost:1313/posts/leetcode-writeup/leetcode-writeup-310-minimum-height-trees/</guid>
+      <guid>https://aura.codex.tw/posts/leetcode-writeup/leetcode-writeup-310-minimum-height-trees/</guid>
       <description>&lt;h1 id=&#34;310-minimum-height-trees&#34;&gt;310. &lt;a href=&#34;https://leetcode.com/problems/minimum-height-trees/description/&#34;&gt;Minimum Height Trees&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;這題問題不難，難在要如何在時間內完成。&lt;/p&gt;
 &lt;h1 id=&#34;idea-1-tle-7071&#34;&gt;Idea 1 TLE 70/71&lt;/h1&gt;
@@ -535,9 +535,9 @@ depth 為當前節點所記錄的深度，ansDepth 為整體最短深度，當�
     </item>
     <item>
       <title>LeetCode-Writeup 319. Bulb Switcher</title>
-      <link>http://localhost:1313/posts/leetcode-writeup/leetcode-writeup-319-bulb-switcher/</link>
+      <link>https://aura.codex.tw/posts/leetcode-writeup/leetcode-writeup-319-bulb-switcher/</link>
       <pubDate>Tue, 23 Apr 2024 17:47:27 +0000</pubDate>
-      <guid>http://localhost:1313/posts/leetcode-writeup/leetcode-writeup-319-bulb-switcher/</guid>
+      <guid>https://aura.codex.tw/posts/leetcode-writeup/leetcode-writeup-319-bulb-switcher/</guid>
       <description>&lt;h1 id=&#34;319-bulb-switcher&#34;&gt;319. &lt;a href=&#34;https://leetcode.com/problems/bulb-switcher/description/&#34;&gt;Bulb Switcher&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;這題還蠻有趣的，有三個接續的概念，兩個可過的解法&lt;/p&gt;
 &lt;h1 id=&#34;idea-1-tle&#34;&gt;Idea 1 TLE&lt;/h1&gt;

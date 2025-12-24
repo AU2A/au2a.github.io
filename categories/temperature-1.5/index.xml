@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Temperature 1.5 on Aura&#39;s Space</title>
-    <link>http://localhost:1313/categories/temperature-1.5/</link>
+    <link>https://aura.codex.tw/categories/temperature-1.5/</link>
     <description>Recent content in Temperature 1.5 on Aura&#39;s Space</description>
     <generator>Hugo -- 0.153.2</generator>
     <language>en</language>
     <lastBuildDate>Sun, 19 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/temperature-1.5/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://aura.codex.tw/categories/temperature-1.5/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Temperature 1.5 的日常】EP6: Ollama - 讓 LLM 在家裡「乖乖坐好」的在地化秘訣</title>
-      <link>http://localhost:1313/posts/temp1.5/ep6/</link>
+      <link>https://aura.codex.tw/posts/temp1.5/ep6/</link>
       <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/temp1.5/ep6/</guid>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep6/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
@@ -61,9 +61,9 @@
     </item>
     <item>
       <title>【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」</title>
-      <link>http://localhost:1313/posts/temp1.5/ep5/</link>
+      <link>https://aura.codex.tw/posts/temp1.5/ep5/</link>
       <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/temp1.5/ep5/</guid>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep5/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
@@ -118,9 +118,9 @@
     </item>
     <item>
       <title>【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感</title>
-      <link>http://localhost:1313/posts/temp1.5/ep4/</link>
+      <link>https://aura.codex.tw/posts/temp1.5/ep4/</link>
       <pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/temp1.5/ep4/</guid>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep4/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
@@ -165,9 +165,9 @@
     </item>
     <item>
       <title>【Temperature 1.5 的日常】EP3: LangChain - Tools, 賦予 AI 雙手的魔法</title>
-      <link>http://localhost:1313/posts/temp1.5/ep3/</link>
+      <link>https://aura.codex.tw/posts/temp1.5/ep3/</link>
       <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/temp1.5/ep3/</guid>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep3/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
@@ -206,9 +206,9 @@
     </item>
     <item>
       <title>【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術</title>
-      <link>http://localhost:1313/posts/temp1.5/ep2/</link>
+      <link>https://aura.codex.tw/posts/temp1.5/ep2/</link>
       <pubDate>Tue, 14 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/temp1.5/ep2/</guid>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep2/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
@@ -234,9 +234,9 @@
     </item>
     <item>
       <title>【Temperature 1.5 的日常】EP1: LangChain - 認識 LangChain v1.0</title>
-      <link>http://localhost:1313/posts/temp1.5/ep1/</link>
+      <link>https://aura.codex.tw/posts/temp1.5/ep1/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/temp1.5/ep1/</guid>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep1/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
