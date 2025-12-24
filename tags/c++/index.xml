@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>C&#43;&#43; on Aura&#39;s Space</title>
+    <link>http://localhost:1313/tags/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on Aura&#39;s Space</description>
+    <generator>Hugo -- 0.153.2</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 30 Nov 2025 21:07:48 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>APCS-2021-09</title>
+      <link>http://localhost:1313/posts/apcs/apcs-2021-09/</link>
+      <pubDate>Sun, 30 Nov 2025 21:07:48 +0000</pubDate>
+      <guid>http://localhost:1313/posts/apcs/apcs-2021-09/</guid>
+      <description>&lt;h1 id=&#34;1-七言對聯&#34;&gt;1. 七言對聯&lt;/h1&gt;
+&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;讀取資料&lt;/strong&gt;: 首先讀取對聯的組數 &lt;code&gt;n&lt;/code&gt;，接著進入迴圈處理每一組對聯。在迴圈中，讀取第一句（存入陣列 &lt;code&gt;a&lt;/code&gt;）與第二句（存入陣列 &lt;code&gt;b&lt;/code&gt;）的平仄數據。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;建立違規紀錄變數&lt;/strong&gt;: 宣告一個空字串 &lt;code&gt;ans&lt;/code&gt;，用來串接違反的規則代號（A、B、C）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;檢查規則 A (二四不同二六同)&lt;/strong&gt;: 檢查每一句的第 2、4 字平仄是否&lt;strong&gt;相同&lt;/strong&gt;（違規），以及第 2、6 字平仄是否&lt;strong&gt;不同&lt;/strong&gt;（違規）。只要有一句違反，就將 &amp;lsquo;A&amp;rsquo; 加入 &lt;code&gt;ans&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;檢查規則 B (仄起平收)&lt;/strong&gt;: 檢查第一句結尾是否為平聲（0，違規），或第二句結尾是否為仄聲（1，違規）。若違反，將 &amp;lsquo;B&amp;rsquo; 加入 &lt;code&gt;ans&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;檢查規則 C (上下相對)&lt;/strong&gt;: 檢查上下兩句在第 2、4、6 位置的平仄是否&lt;strong&gt;相同&lt;/strong&gt;（違規）。若有任一位置相同，將 &amp;lsquo;C&amp;rsquo; 加入 &lt;code&gt;ans&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出結果&lt;/strong&gt;: 檢查 &lt;code&gt;ans&lt;/code&gt; 字串。若為空，代表完全符合規則，輸出 &amp;ldquo;None&amp;rdquo;；否則輸出累積的違規代號字串 &lt;code&gt;ans&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;分段步驟程式碼說明&#34;&gt;分段步驟程式碼說明&lt;/h2&gt;
+&lt;h3 id=&#34;1-讀取輸入與陣列初始化&#34;&gt;1. 讀取輸入與陣列初始化&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 宣告大小為 8 的陣列，以便使用 1-7 的直觀索引
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// 讀取第一句的 7 個平仄值
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// 讀取第二句的 7 個平仄值
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ans&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 用來儲存錯誤代碼的字串
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;說明&lt;/strong&gt;：
+這裡使用 &lt;code&gt;a[8]&lt;/code&gt; 和 &lt;code&gt;b[8]&lt;/code&gt; 是為了讓陣列索引值（index）能直接對應題目的第 1 到第 7 個字（忽略索引 0），這樣寫起來比較直觀，不容易搞混位置。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>APCS-2021-11</title>
+      <link>http://localhost:1313/posts/apcs/apcs-2021-11/</link>
+      <pubDate>Sun, 26 Oct 2025 20:22:55 +0000</pubDate>
+      <guid>http://localhost:1313/posts/apcs/apcs-2021-11/</guid>
+      <description>&lt;h1 id=&#34;1-修補圍籬&#34;&gt;1. 修補圍籬&lt;/h1&gt;
+&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;讀取圍籬數量和高度&lt;/strong&gt;：讀取圍籬的總數量 &lt;code&gt;n&lt;/code&gt;，接著使用迴圈讀取 &lt;code&gt;n&lt;/code&gt; 個圍籬各自的高度，並存入一個 &lt;code&gt;vector&lt;/code&gt;（或陣列）&lt;code&gt;fence&lt;/code&gt; 中。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;初始化成本變數&lt;/strong&gt;：宣告一個整數變數 &lt;code&gt;ans&lt;/code&gt; 並將其初始化為 0，用來累計修補圍籬所需的總成本。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;遍歷圍籬並判斷&lt;/strong&gt;：使用 &lt;code&gt;for&lt;/code&gt; 迴圈從頭到尾檢查每一個圍籬（索引 &lt;code&gt;i&lt;/code&gt; 從 &lt;code&gt;0&lt;/code&gt; 到 &lt;code&gt;n-1&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;檢查是否損壞&lt;/strong&gt;：在迴圈中，判斷 &lt;code&gt;fence[i]&lt;/code&gt; 是否等於 0。如果等於 0，表示這個位置的圍籬斷了，需要修補。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;處理邊界與中間情況&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;左邊界&lt;/strong&gt;：如果 &lt;code&gt;i == 0&lt;/code&gt;（第一個圍籬），則成本增加其右側鄰居 &lt;code&gt;fence[1]&lt;/code&gt; 的高度。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;右邊界&lt;/strong&gt;：如果 &lt;code&gt;i == n-1&lt;/code&gt;（最後一個圍籬），則成本增加其左側鄰居 &lt;code&gt;fence[n-2]&lt;/code&gt; 的高度。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中間&lt;/strong&gt;：如果不是邊界，則比較其左側 &lt;code&gt;fence[i-1]&lt;/code&gt; 和右側 &lt;code&gt;fence[i+1]&lt;/code&gt; 的高度，取&lt;strong&gt;較小&lt;/strong&gt;的那個高度加入總成本 &lt;code&gt;ans&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出最終成本&lt;/strong&gt;：迴圈結束後，&lt;code&gt;ans&lt;/code&gt; 中儲存的就是修補所有斷掉圍籬的總成本，將其輸出。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分段步驟程式碼&#34;&gt;分段步驟程式碼&lt;/h2&gt;
+&lt;h3 id=&#34;讀取圍籬數量和高度&#34;&gt;讀取圍籬數量和高度&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&amp;lt;iostream&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&amp;lt;vector&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;using&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;namespace&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//圍籬數量
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fence&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//圍籬高度
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fence&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼首先引入必要的函式庫，然後讀取圍籬數量 &lt;code&gt;n&lt;/code&gt;，並宣告一個大小為 &lt;code&gt;n&lt;/code&gt; 的 &lt;code&gt;vector&lt;/code&gt; 叫 &lt;code&gt;fence&lt;/code&gt;。接著，它使用一個 &lt;code&gt;for&lt;/code&gt; 迴圈來讀取 &lt;code&gt;n&lt;/code&gt; 次，將每個圍籬的高度存入 &lt;code&gt;vector&lt;/code&gt; 中。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>APCS-2022-01</title>
+      <link>http://localhost:1313/posts/apcs/apcs-2022-01/</link>
+      <pubDate>Sun, 14 Sep 2025 14:03:14 +0000</pubDate>
+      <guid>http://localhost:1313/posts/apcs/apcs-2022-01/</guid>
+      <description>&lt;h1 id=&#34;1-程式交易&#34;&gt;1. 程式交易&lt;/h1&gt;
+&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;讀取輸入資料&lt;/strong&gt;: 讀取股票天數 &lt;code&gt;n&lt;/code&gt;、價差 &lt;code&gt;D&lt;/code&gt;，以及 &lt;code&gt;n&lt;/code&gt; 天的每日價格。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;初始化交易狀態&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;設定總利潤 &lt;code&gt;ans&lt;/code&gt; 為 0。&lt;/li&gt;
+&lt;li&gt;根據規則 1，在時間點 1 (索引 0) 買進，設定目前持有股票的成本 &lt;code&gt;x&lt;/code&gt; 為 &lt;code&gt;a[0]&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;設定一個變數 &lt;code&gt;y&lt;/code&gt; 來記錄上一次的賣出價格。&lt;/li&gt;
+&lt;li&gt;我們將使用一個特殊值（例如 &lt;code&gt;-1&lt;/code&gt;）來表示 &lt;code&gt;x&lt;/code&gt;，代表當下未持有股票。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模擬交易過程&lt;/strong&gt;: 使用 for 迴圈從第二天 (索引 1) 開始遍歷到第 &lt;code&gt;n&lt;/code&gt; 天。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;判斷當前狀態 (持有/未持有)&lt;/strong&gt;: 在迴圈中，檢查 &lt;code&gt;x&lt;/code&gt; 是否為 &lt;code&gt;-1&lt;/code&gt;。
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;若持有股票 (&lt;code&gt;x != -1&lt;/code&gt;)&lt;/strong&gt;: 檢查是否滿足&lt;strong&gt;賣出條件&lt;/strong&gt; (規則 2)。如果 &lt;code&gt;a[i] &amp;gt;= x + D&lt;/code&gt;，則賣出：
+&lt;ul&gt;
+&lt;li&gt;將利潤 &lt;code&gt;a[i] - x&lt;/code&gt; 加入 &lt;code&gt;ans&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;更新狀態為未持有 (設定 &lt;code&gt;x = -1&lt;/code&gt;)。&lt;/li&gt;
+&lt;li&gt;記錄本次賣出價格 &lt;code&gt;y = a[i]&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;若未持有股票 (&lt;code&gt;x == -1&lt;/code&gt;)&lt;/strong&gt;: 檢查是否滿足&lt;strong&gt;買進條件&lt;/strong&gt; (規則 3)。如果 &lt;code&gt;a[i] &amp;lt;= y - D&lt;/code&gt;，則買進：
+&lt;ul&gt;
+&lt;li&gt;更新狀態為持有，並記錄買進成本 &lt;code&gt;x = a[i]&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出總利潤&lt;/strong&gt;: 迴圈結束後，&lt;code&gt;ans&lt;/code&gt; 即為總利潤，將其輸出。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分段步驟程式碼&#34;&gt;分段步驟程式碼&lt;/h2&gt;
+&lt;h3 id=&#34;讀取輸入資料&#34;&gt;讀取輸入資料&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;D&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;D&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼讀取 &lt;code&gt;n&lt;/code&gt; 和 &lt;code&gt;D&lt;/code&gt;，並使用一個 &lt;code&gt;vector&lt;/code&gt; 容器 &lt;code&gt;a&lt;/code&gt; 來儲存 &lt;code&gt;n&lt;/code&gt; 天的股票價格。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>APCS-2022-06</title>
+      <link>http://localhost:1313/posts/apcs/apcs-2022-06/</link>
+      <pubDate>Sun, 07 Sep 2025 20:13:34 +0000</pubDate>
+      <guid>http://localhost:1313/posts/apcs/apcs-2022-06/</guid>
+      <description>&lt;h1 id=&#34;1-數字遊戲&#34;&gt;1. 數字遊戲&lt;/h1&gt;
+&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;初始化變數&lt;/strong&gt;: 宣告一個大小為 9 的整數陣列 &lt;code&gt;cnt&lt;/code&gt; 用於計算 1 到 9 每個數字出現的次數，並將其全部初始化為 0。宣告一個整數 &lt;code&gt;max_cnt&lt;/code&gt; 用於儲存「出現最多次的次數」，並初始化為 0。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;讀取輸入與統計&lt;/strong&gt;: 使用 for 迴圈執行 3 次。在迴圈中：
+&lt;ul&gt;
+&lt;li&gt;讀取一個整數 &lt;code&gt;P&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;將 &lt;code&gt;cnt[P-1]&lt;/code&gt; 的值加 1（例如，讀到 6，就增加 &lt;code&gt;cnt[5]&lt;/code&gt; 的計數）。&lt;/li&gt;
+&lt;li&gt;檢查 &lt;code&gt;cnt[P-1]&lt;/code&gt; 是否大於 &lt;code&gt;max_cnt&lt;/code&gt;，如果是，則更新 &lt;code&gt;max_cnt = cnt[P-1]&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出最大次數&lt;/strong&gt;: 迴圈結束後，&lt;code&gt;max_cnt&lt;/code&gt; 儲存的就是出現最多次的數字的次數（即 $P$），將其輸出。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出不重複數字&lt;/strong&gt;: 使用
+一個 for 迴圈，從 9 遞減到 1 (變數 &lt;code&gt;i&lt;/code&gt; 從 9 到 1)。
+&lt;ul&gt;
+&lt;li&gt;在迴圈中，檢查 &lt;code&gt;cnt[i-1]&lt;/code&gt; 是否大於 0。&lt;/li&gt;
+&lt;li&gt;如果大於 0，表示數字 &lt;code&gt;i&lt;/code&gt; 在輸入中出現過，將 &lt;code&gt;i&lt;/code&gt; 輸出。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分段步驟程式碼&#34;&gt;分段步驟程式碼&lt;/h2&gt;
+&lt;h3 id=&#34;初始化變數與計數陣列&#34;&gt;初始化變數與計數陣列&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;max_cnt&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cnt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼宣告了用於讀取輸入的變數 &lt;code&gt;P&lt;/code&gt;、儲存最大次數的 &lt;code&gt;max_cnt&lt;/code&gt;，以及一個大小為 9 的陣列 &lt;code&gt;cnt&lt;/code&gt; 來儲存 1~9 的出現次數，並初始化所有值為 0。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>APCS-2022-10</title>
+      <link>http://localhost:1313/posts/apcs/apcs-2022-10/</link>
+      <pubDate>Sun, 17 Aug 2025 20:24:42 +0000</pubDate>
+      <guid>http://localhost:1313/posts/apcs/apcs-2022-10/</guid>
+      <description>&lt;h1 id=&#34;1-巴士站牌&#34;&gt;1. 巴士站牌&lt;/h1&gt;
+&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;讀取輸入並初始化&lt;/strong&gt;: 讀取站牌總數 &lt;code&gt;n&lt;/code&gt; 和第一個巴士站的座標 (&lt;code&gt;px&lt;/code&gt;, &lt;code&gt;py&lt;/code&gt;)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;初始化最大/最小值&lt;/strong&gt;: 初始化最大距離 &lt;code&gt;maxn&lt;/code&gt; 為 0（或一個極小值），最小距離 &lt;code&gt;minn&lt;/code&gt; 為一個極大值（例如 1000，根據題目範圍 400 已經足夠）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;迴圈處理剩餘站牌&lt;/strong&gt;: 使用 &lt;code&gt;for&lt;/code&gt; 迴圈，從 $i=1$ 迭代到 $n-1$，處理剩下的 $n-1$ 個巴士站（即從第 2 個站到第 $n$ 個站）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;讀取並計算距離&lt;/strong&gt;: 在迴圈中，讀取下一個巴士站的座標 (&lt;code&gt;x&lt;/code&gt;, &lt;code&gt;y&lt;/code&gt;)。接著計算目前站 (&lt;code&gt;x&lt;/code&gt;, &lt;code&gt;y&lt;/code&gt;) 與前一個站 (&lt;code&gt;px&lt;/code&gt;, &lt;code&gt;py&lt;/code&gt;) 之間的曼哈頓距離 &lt;code&gt;d&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;更新最大值和最小值&lt;/strong&gt;: 比較剛算出的距離 &lt;code&gt;d&lt;/code&gt; 與 &lt;code&gt;maxn&lt;/code&gt; 和 &lt;code&gt;minn&lt;/code&gt;。
+&lt;ul&gt;
+&lt;li&gt;如果 &lt;code&gt;d&lt;/code&gt; 大於 &lt;code&gt;maxn&lt;/code&gt;，則更新 &lt;code&gt;maxn = d&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;如果 &lt;code&gt;d&lt;/code&gt; 小於 &lt;code&gt;minn&lt;/code&gt;，則更新 &lt;code&gt;minn = d&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;更新前一站位置&lt;/strong&gt;: 在迴圈結束前，將目前的座標 (&lt;code&gt;x&lt;/code&gt;, &lt;code&gt;y&lt;/code&gt;) 存為 &amp;ldquo;前一個&amp;rdquo; 座標 (&lt;code&gt;px&lt;/code&gt;, &lt;code&gt;py&lt;/code&gt;)，供下次迴圈計算距離時使用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出結果&lt;/strong&gt;: 迴圈結束後，&lt;code&gt;maxn&lt;/code&gt; 和 &lt;code&gt;minn&lt;/code&gt; 即為所求的最大值和最小值，將它們依序輸出。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分段步驟程式碼&#34;&gt;分段步驟程式碼&lt;/h2&gt;
+&lt;h3 id=&#34;讀取輸入並初始化&#34;&gt;讀取輸入並初始化&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&amp;lt;iostream&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;using&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;namespace&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;py&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;maxn&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;minn&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;px&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;py&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼包含了必要的標頭檔和命名空間。在 &lt;code&gt;main&lt;/code&gt; 函式中，宣告所有需要的變數。&lt;code&gt;n&lt;/code&gt; 是總站數，&lt;code&gt;x&lt;/code&gt; 和 &lt;code&gt;y&lt;/code&gt; 用於儲存當前讀取的座標，&lt;code&gt;px&lt;/code&gt; 和 &lt;code&gt;py&lt;/code&gt; 用於儲存前一個站的座標，&lt;code&gt;maxn&lt;/code&gt; 和 &lt;code&gt;minn&lt;/code&gt; 初始化為 0 和 1000，&lt;code&gt;d&lt;/code&gt; 用於儲存距離。接著，讀取總站數 &lt;code&gt;n&lt;/code&gt; 以及第一個站的座標 &lt;code&gt;px&lt;/code&gt; 和 &lt;code&gt;py&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>APCS-2023-01</title>
+      <link>http://localhost:1313/posts/apcs/apcs-2023-01/</link>
+      <pubDate>Sun, 10 Aug 2025 20:16:58 +0000</pubDate>
+      <guid>http://localhost:1313/posts/apcs/apcs-2023-01/</guid>
+      <description>&lt;h1 id=&#34;1-程式考試&#34;&gt;1. 程式考試&lt;/h1&gt;
+&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;讀取提交次數與初始化變數&lt;/strong&gt;: 讀取總提交次數 &lt;code&gt;n&lt;/code&gt;。初始化 &lt;code&gt;maxScore&lt;/code&gt; (最高分) 為 -1 (確保任何 0 分以上的成績都能被正確記錄為初始最高分)，&lt;code&gt;maxtime&lt;/code&gt; (第一次達最高分的時間) 為 0，以及 &lt;code&gt;errors&lt;/code&gt; (嚴重錯誤次數) 為 0。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;迴圈處理提交紀錄&lt;/strong&gt;: 使用 &lt;code&gt;for&lt;/code&gt; 迴圈，執行 &lt;code&gt;n&lt;/code&gt; 次，代表 &lt;code&gt;n&lt;/code&gt; 筆提交紀錄。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;讀取單筆紀錄並更新狀態&lt;/strong&gt;: 在迴圈中，每次讀取時間 &lt;code&gt;t&lt;/code&gt; 和分數 &lt;code&gt;s&lt;/code&gt;。
+&lt;ul&gt;
+&lt;li&gt;如果 &lt;code&gt;s&lt;/code&gt; 為 -1，表示這是一次嚴重錯誤，將 &lt;code&gt;errors&lt;/code&gt; 計數加 1。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;否則&lt;/strong&gt; (&lt;code&gt;s&lt;/code&gt; 不是 -1)，檢查 &lt;code&gt;s&lt;/code&gt; 是否&lt;strong&gt;嚴格大於&lt;/strong&gt;目前的 &lt;code&gt;maxScore&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;如果是，表示找到了新的最高分，更新 &lt;code&gt;maxScore = s&lt;/code&gt; 和 &lt;code&gt;maxtime = t&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;如果 &lt;code&gt;s&lt;/code&gt; 等於 &lt;code&gt;maxScore&lt;/code&gt;，則不執行任何操作，以保留&lt;strong&gt;第一次&lt;/strong&gt;獲得最高分的時間。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;計算總分&lt;/strong&gt;: 迴圈結束後，根據公式 &lt;code&gt;maxScore - n - errors * 2&lt;/code&gt; 計算總分 &lt;code&gt;score&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;處理負分狀況&lt;/strong&gt;: 檢查 &lt;code&gt;score&lt;/code&gt; 是否小於 0。如果是，則將 &lt;code&gt;score&lt;/code&gt; 設為 0 (或直接輸出 0)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出結果&lt;/strong&gt;: 輸出最終分數 &lt;code&gt;score&lt;/code&gt;，接著輸出一個空格，最後輸出 &lt;code&gt;maxtime&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分段步驟程式碼&#34;&gt;分段步驟程式碼&lt;/h2&gt;
+&lt;h3 id=&#34;讀取提交次數與初始化變數&#34;&gt;讀取提交次數與初始化變數&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;maxtime&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;maxScore&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;errors&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼讀取總提交次數 &lt;code&gt;n&lt;/code&gt;。並初始化四個重要變數：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>APCS-2023-06</title>
+      <link>http://localhost:1313/posts/apcs/apcs-2023-06/</link>
+      <pubDate>Sun, 03 Aug 2025 20:24:09 +0000</pubDate>
+      <guid>http://localhost:1313/posts/apcs/apcs-2023-06/</guid>
+      <description>&lt;h1 id=&#34;1-路徑偵測&#34;&gt;1. 路徑偵測&lt;/h1&gt;
+&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;讀取輸入&lt;/strong&gt;: 讀取座標點的總數 &lt;code&gt;n&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;初始化狀態&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;定義 &lt;code&gt;d&lt;/code&gt; 來表示目前方向 (1=右, 2=上, 3=左, 4=下)。&lt;/li&gt;
+&lt;li&gt;根據題目，初始方向為向右，所以 &lt;code&gt;d = 1&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;初始化左轉 &lt;code&gt;l&lt;/code&gt;、右轉 &lt;code&gt;r&lt;/code&gt;、迴轉 &lt;code&gt;re&lt;/code&gt; 的計數器為 0。&lt;/li&gt;
+&lt;li&gt;讀取第一個點的座標 &lt;code&gt;(x, y)&lt;/code&gt;，這將作為我們路徑的起始位置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;迴圈處理路徑&lt;/strong&gt;: 使用 for 迴圈，從 &lt;code&gt;i=1&lt;/code&gt; 到 &lt;code&gt;n-1&lt;/code&gt;，讀取剩下的 &lt;code&gt;n-1&lt;/code&gt; 個點。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;讀取下一個點&lt;/strong&gt;: 在迴圈中，讀取下一個點的座標 &lt;code&gt;(nx, ny)&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;判斷轉向&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;使用 &lt;code&gt;if-else if&lt;/code&gt; 結構，根據&lt;strong&gt;目前方向 &lt;code&gt;d&lt;/code&gt;&lt;/strong&gt; 進行判斷。&lt;/li&gt;
+&lt;li&gt;在
+&lt;code&gt;d&lt;/code&gt; 的條件下，比較目前座標 &lt;code&gt;(x, y)&lt;/code&gt; 和下一個座標 &lt;code&gt;(nx, ny)&lt;/code&gt; 的相對位置。&lt;/li&gt;
+&lt;li&gt;例如：如果 &lt;code&gt;d=1&lt;/code&gt; (目前向右)，而 &lt;code&gt;ny &amp;gt; y&lt;/code&gt; (下一個點在上方)，這代表一次&lt;strong&gt;左轉&lt;/strong&gt;。此時 &lt;code&gt;l++&lt;/code&gt; 並更新 &lt;code&gt;d=2&lt;/code&gt; (新方向為上)。&lt;/li&gt;
+&lt;li&gt;如果 &lt;code&gt;d=1&lt;/code&gt; (目前向右)，而 &lt;code&gt;nx &amp;lt; x&lt;/code&gt; (下一個點在左方)，這代表一次&lt;strong&gt;迴轉&lt;/strong&gt;。此時 &lt;code&gt;re++&lt;/code&gt; 並更新 &lt;code&gt;d=3&lt;/code&gt; (新方向為左)。&lt;/li&gt;
+&lt;li&gt;依此類推，完成所有四個方向的判斷。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;更新目前位置&lt;/strong&gt;: 在判斷完轉向後，將 &lt;code&gt;x = nx&lt;/code&gt; 和 &lt;code&gt;y = ny&lt;/code&gt;，使下一個點成為新的目前位置，以供下一次迴圈判斷。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出結果&lt;/strong&gt;: 迴圈結束後，輸出 &lt;code&gt;l&lt;/code&gt;, &lt;code&gt;r&lt;/code&gt;, &lt;code&gt;re&lt;/code&gt; 的值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分段步驟程式碼&#34;&gt;分段步驟程式碼&lt;/h2&gt;
+&lt;h3 id=&#34;初始化狀態並讀取第一個點&#34;&gt;初始化狀態並讀取第一個點&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ny&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;re&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼讀取點的總數 &lt;code&gt;n&lt;/code&gt;。初始化目前方向 &lt;code&gt;d=1&lt;/code&gt; (向右)，左轉 &lt;code&gt;l&lt;/code&gt;、右轉 &lt;code&gt;r&lt;/code&gt;、迴轉 &lt;code&gt;re&lt;/code&gt; 計數器為 0。讀取第一個點的座標 &lt;code&gt;x&lt;/code&gt;, &lt;code&gt;y&lt;/code&gt;，這也確立了我們的初始位置。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>APCS-2023-10</title>
+      <link>http://localhost:1313/posts/apcs/apcs-2023-10/</link>
+      <pubDate>Sun, 06 Jul 2025 20:27:11 +0000</pubDate>
+      <guid>http://localhost:1313/posts/apcs/apcs-2023-10/</guid>
+      <description>&lt;h1 id=&#34;1-機械鼠&#34;&gt;1. 機械鼠&lt;/h1&gt;
+&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;讀取初始位置和食物數量&lt;/strong&gt;：讀取老鼠的初始位置 &lt;code&gt;x&lt;/code&gt; 和食物的總數 &lt;code&gt;n&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;初始化變數&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;min&lt;/code&gt;：用來儲存最左邊食物的位置，初始為一個極大值 (例如 101)。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;max&lt;/code&gt;：用來儲存最右邊食物的位置，初始為一個極小值 (例如 -101)。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;step&lt;/code&gt;：用來計算老鼠左邊的食物數量，初始為 0。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;now&lt;/code&gt;：用來暫存當前讀取的食物位置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;遍歷所有食物&lt;/strong&gt;：使用 &lt;code&gt;for&lt;/code&gt; 迴圈讀取 &lt;code&gt;n&lt;/code&gt; 個食物的位置。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分類食物位置&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;在迴圈中，檢查每個食物的位置 &lt;code&gt;now&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;如果 &lt;code&gt;now &amp;lt; x&lt;/code&gt;，表示食物在老鼠左邊。將左邊食物計數 &lt;code&gt;step&lt;/code&gt; 加 1，並更新 &lt;code&gt;min&lt;/code&gt; (如果 &lt;code&gt;now&lt;/code&gt; 比當前的 &lt;code&gt;min&lt;/code&gt; 更小)。&lt;/li&gt;
+&lt;li&gt;如果 &lt;code&gt;now &amp;gt; x&lt;/code&gt;，表示食物在老鼠右邊。更新 &lt;code&gt;max&lt;/code&gt; (如果 &lt;code&gt;now&lt;/code&gt; 比當前的 &lt;code&gt;max&lt;/code&gt; 更大)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;計算右側食物數量&lt;/strong&gt;：迴圈結束後，右側食物的數量即為 &lt;code&gt;n - step&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;比較並輸出&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;比較左側食物數量 &lt;code&gt;step&lt;/code&gt; 和右側食物數量 &lt;code&gt;n - step&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;如果 &lt;code&gt;step&lt;/code&gt; 比較大，表示往左走能吃到更多食物。輸出 &lt;code&gt;step&lt;/code&gt; 和最左邊的位置 &lt;code&gt;min&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;否則 (右側數量大於或等於左側數量)，表示往右走能吃到更多或相等數量的食物。輸出 &lt;code&gt;n - step&lt;/code&gt; 和最右邊的位置 &lt;code&gt;max&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分段步驟程式碼&#34;&gt;分段步驟程式碼&lt;/h2&gt;
+&lt;h3 id=&#34;讀取輸入並初始化變數&#34;&gt;讀取輸入並初始化變數&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;min&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;101&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;max&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;101&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;step&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;now&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼讀取老鼠的初始位置 &lt;code&gt;x&lt;/code&gt; 和食物數量 &lt;code&gt;n&lt;/code&gt;。接著初始化四個變數：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>APCS-2024-01</title>
+      <link>http://localhost:1313/posts/apcs/apcs-2024-01/</link>
+      <pubDate>Sun, 22 Jun 2025 20:28:41 +0000</pubDate>
+      <guid>http://localhost:1313/posts/apcs/apcs-2024-01/</guid>
+      <description>&lt;h1 id=&#34;1-遊戲選角&#34;&gt;1. 遊戲選角&lt;/h1&gt;
+&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;讀取角色數量和資料&lt;/strong&gt;：讀取角色總數 &lt;code&gt;n&lt;/code&gt;。使用迴圈讀取 &lt;code&gt;n&lt;/code&gt; 次，每次讀取一個角色的攻擊力 &lt;code&gt;a&lt;/code&gt; 和防禦力 &lt;code&gt;d&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;儲存資料&lt;/strong&gt;：使用一個二維 &lt;code&gt;vector&lt;/code&gt; (或結構陣列) 來儲存每個角色的攻擊力和防禦力。&lt;code&gt;vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; s&lt;/code&gt; 中，&lt;code&gt;s[i][0]&lt;/code&gt; 儲存第 &lt;code&gt;i&lt;/code&gt; 個角色的攻擊力，&lt;code&gt;s[i][1]&lt;/code&gt; 儲存防禦力。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;定義比較函式&lt;/strong&gt;：要根據「能力值」（$攻擊力^2 + 防禦力^2$）來排序。我們需要自訂一個比較函式 &lt;code&gt;cmp&lt;/code&gt;，它接受兩個角色資料 (例如 &lt;code&gt;vector&amp;lt;int&amp;gt; a&lt;/code&gt; 和 &lt;code&gt;vector&amp;lt;int&amp;gt; b&lt;/code&gt;)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;實作比較邏輯&lt;/strong&gt;：在 &lt;code&gt;cmp&lt;/code&gt; 函式中，計算 &lt;code&gt;a&lt;/code&gt; 的能力值 (&lt;code&gt;a[0]*a[0]+a[1]*a[1]&lt;/code&gt;) 和 &lt;code&gt;b&lt;/code&gt; 的能力值 (&lt;code&gt;b[0]*b[0]+b[1]*b[1]&lt;/code&gt;)。為了得到&lt;strong&gt;第二大&lt;/strong&gt;的值，我們需要從大到小 (descending) 排序，所以函式應回傳 &lt;code&gt;a&lt;/code&gt; 的能力值是否&lt;strong&gt;大於&lt;/strong&gt; &lt;code&gt;b&lt;/code&gt; 的能力值。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;排序&lt;/strong&gt;：使用 &lt;code&gt;std::sort&lt;/code&gt; 函式，搭配自訂的 &lt;code&gt;cmp&lt;/code&gt; 比較函式，對儲存所有角色資料的 &lt;code&gt;vector&lt;/code&gt; 進行排序。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出結果&lt;/strong&gt;：排序後，&lt;code&gt;vector&lt;/code&gt; 中的第 0 個元素 ( &lt;code&gt;s[0]&lt;/code&gt; ) 具有最大的能力值。因此，第 1 個元素 ( &lt;code&gt;s[1]&lt;/code&gt; ) 具有&lt;strong&gt;第二大&lt;/strong&gt;的能力值。輸出 &lt;code&gt;s[1][0]&lt;/code&gt; (攻擊力) 和 &lt;code&gt;s[1][1]&lt;/code&gt; (防禦力)。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分段步驟程式碼&#34;&gt;分段步驟程式碼&lt;/h2&gt;
+&lt;h3 id=&#34;包含函式庫與自訂比較函式&#34;&gt;包含函式庫與自訂比較函式&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&amp;lt;iostream&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&amp;lt;vector&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&amp;lt;algorithm&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;using&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;namespace&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 自訂比較函式
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 根據能力值 (a*a + d*d) 由大到小排序
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;bool&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;cmp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼包含了必要的函式庫 (&lt;code&gt;iostream&lt;/code&gt;, &lt;code&gt;vector&lt;/code&gt;, &lt;code&gt;algorithm&lt;/code&gt;)。
+並定義了一個比較函式 &lt;code&gt;cmp&lt;/code&gt;，用於 &lt;code&gt;sort&lt;/code&gt;。它計算兩個輸入 &lt;code&gt;vector&lt;/code&gt; (分別代表兩個角色) 的能力值平方和，並回傳第一個是否大於第二個，以實現降冪排序。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>APCS-2025-06</title>
+      <link>http://localhost:1313/posts/apcs/apcs-2025-06/</link>
+      <pubDate>Sun, 15 Jun 2025 22:17:41 +0000</pubDate>
+      <guid>http://localhost:1313/posts/apcs/apcs-2025-06/</guid>
+      <description>&lt;h1 id=&#34;1-跳柵遊戲&#34;&gt;1. 跳柵遊戲&lt;/h1&gt;
+&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;讀取初始生命值和陷阱條件&lt;/strong&gt;: 讀取初始生命值 &lt;code&gt;k&lt;/code&gt;，以及兩個陷阱的條件 &lt;code&gt;x1&lt;/code&gt;、&lt;code&gt;y1&lt;/code&gt; 和 &lt;code&gt;x2&lt;/code&gt;、&lt;code&gt;y2&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;初始化位置和生命值&lt;/strong&gt;: 初始化位置 &lt;code&gt;p&lt;/code&gt; 為 0，生命值為 &lt;code&gt;k&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模擬遊戲過程&lt;/strong&gt;: 使用 while 迴圈模擬遊戲過程，直到生命值小於等於 0。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;更新位置和生命值&lt;/strong&gt;: 在每次迴圈中，根據當前生命值更新位置 &lt;code&gt;p&lt;/code&gt;，並根據 &lt;code&gt;p&lt;/code&gt; 是否為 &lt;code&gt;x1&lt;/code&gt; 或 &lt;code&gt;x2&lt;/code&gt; 的倍數計算生命值的損失。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出最終位置&lt;/strong&gt;: 當生命值小於等於 0 時，輸出當前位置 &lt;code&gt;p&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分段步驟程式碼&#34;&gt;分段步驟程式碼&lt;/h2&gt;
+&lt;h3 id=&#34;讀取初始生命值和陷阱條件&#34;&gt;讀取初始生命值和陷阱條件&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼讀取初始生命值 &lt;code&gt;k&lt;/code&gt;，以及兩個陷阱的條件 &lt;code&gt;x1&lt;/code&gt;、&lt;code&gt;y1&lt;/code&gt; 和 &lt;code&gt;x2&lt;/code&gt;、&lt;code&gt;y2&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;初始化位置和生命值&#34;&gt;初始化位置和生命值&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼初始化位置 &lt;code&gt;p&lt;/code&gt; 為 0。&lt;/p&gt;
+&lt;h3 id=&#34;模擬遊戲過程&#34;&gt;模擬遊戲過程&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;k&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dmg&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;dmg&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;dmg&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;k&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dmg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼模擬遊戲過程。在每次迴圈中，根據當前生命值 &lt;code&gt;k&lt;/code&gt; 更新位置 &lt;code&gt;p&lt;/code&gt;，並根據 &lt;code&gt;p&lt;/code&gt; 是否為 &lt;code&gt;x1&lt;/code&gt; 或 &lt;code&gt;x2&lt;/code&gt; 的倍數計算生命值的損失 &lt;code&gt;dmg&lt;/code&gt;。然後，更新生命值 &lt;code&gt;k&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>APCS-2024-06</title>
+      <link>http://localhost:1313/posts/apcs/apcs-2024-06/</link>
+      <pubDate>Sun, 25 May 2025 20:13:56 +0000</pubDate>
+      <guid>http://localhost:1313/posts/apcs/apcs-2024-06/</guid>
+      <description>&lt;h1 id=&#34;1-特技表演&#34;&gt;1. 特技表演&lt;/h1&gt;
+&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;讀取輸入資料&lt;/strong&gt;: 讀取大樓的總數 &lt;code&gt;n&lt;/code&gt;，接著使用一個 &lt;code&gt;for&lt;/code&gt; 迴圈讀取 &lt;code&gt;n&lt;/code&gt; 棟大樓分別的高度，並將它們儲存在一個陣列 &lt;code&gt;h&lt;/code&gt; 中。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;初始化變數&lt;/strong&gt;: 初始化兩個整數變數。&lt;code&gt;max_d&lt;/code&gt; 用來儲存找到的「最長」滑翔路徑長度，初始為 0。&lt;code&gt;d&lt;/code&gt; 用來儲存「當前」正在計算的連續滑翔路徑長度，初始為 1（因為任何一棟大樓本身都構成長度為 1 的路徑）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;遍歷大樓陣列&lt;/strong&gt;: 使用 &lt;code&gt;for&lt;/code&gt; 迴圈從第一棟大樓 (&lt;code&gt;i = 0&lt;/code&gt;) 檢查到倒數第二棟大樓 (&lt;code&gt;i &amp;lt; n-1&lt;/code&gt;)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;判斷路徑是否延伸&lt;/strong&gt;: 在迴圈中，比較目前大樓 &lt;code&gt;h[i]&lt;/code&gt; 和下一棟大樓 &lt;code&gt;h[i+1]&lt;/code&gt; 的高度。
+&lt;ul&gt;
+&lt;li&gt;如果 &lt;code&gt;h[i] &amp;gt; h[i+1]&lt;/code&gt;，表示符合「越來越低」的條件，滑翔路徑可以繼續，因此將當前路徑長度 &lt;code&gt;d&lt;/code&gt; 增加 1 (&lt;code&gt;d++&lt;/code&gt;)。&lt;/li&gt;
+&lt;li&gt;如果 &lt;code&gt;h[i] &amp;lt;= h[i+1]&lt;/code&gt;，表示路徑中斷（高度沒有變低），因此重置當前路徑長度 &lt;code&gt;d&lt;/code&gt; 為 1（從 &lt;code&gt;h[i+1]&lt;/code&gt; 重新開始計算）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;更新最長路徑&lt;/strong&gt;: 在每次判斷（或重置）&lt;code&gt;d&lt;/code&gt; 之後，都要檢查 &lt;code&gt;d&lt;/code&gt; 是否大於 &lt;code&gt;max_d&lt;/code&gt;。如果 &lt;code&gt;d&lt;/code&gt; 更大，就更新 &lt;code&gt;max_d = d&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出結果&lt;/strong&gt;: 迴圈結束後，&lt;code&gt;max_d&lt;/code&gt; 中儲存的就是整個過程中最長的路徑長度，將其輸出。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分段步驟程式碼&#34;&gt;分段步驟程式碼&lt;/h2&gt;
+&lt;h3 id=&#34;讀取輸入資料&#34;&gt;讀取輸入資料&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼首先讀取大樓的數量 &lt;code&gt;n&lt;/code&gt;，然後宣告一個大小為 &lt;code&gt;n&lt;/code&gt; 的陣列 &lt;code&gt;h&lt;/code&gt;，並使用迴圈讀取每棟大樓的高度。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>APCS-2024-10</title>
+      <link>http://localhost:1313/posts/apcs/apcs-2024-10/</link>
+      <pubDate>Sun, 18 May 2025 20:22:23 +0000</pubDate>
+      <guid>http://localhost:1313/posts/apcs/apcs-2024-10/</guid>
+      <description>&lt;h1 id=&#34;1-裝飲料&#34;&gt;1. 裝飲料&lt;/h1&gt;
+&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;讀取輸入資料&lt;/strong&gt;: 讀取倒飲料的次數 &lt;code&gt;n&lt;/code&gt;，以及杯子兩層的維度 &lt;code&gt;w1&lt;/code&gt;, &lt;code&gt;w2&lt;/code&gt;, &lt;code&gt;h1&lt;/code&gt;, &lt;code&gt;h2&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;計算容量並初始化&lt;/strong&gt;: 根據維度計算下層的容量 &lt;code&gt;low&lt;/code&gt; (即 $w_1 \times w_1 \times h_1$) 以及杯子的總容量 &lt;code&gt;high&lt;/code&gt; (即 &lt;code&gt;low&lt;/code&gt; + $w_2 \times w_2 \times h_2$)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;初始化狀態變數&lt;/strong&gt;: 初始化總裝入容量 &lt;code&gt;total&lt;/code&gt; 為 0，前一次的高度 &lt;code&gt;prev&lt;/code&gt; 為 0，以及答案 (最大高度變化) &lt;code&gt;ans&lt;/code&gt; 為 0。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模擬倒水過程&lt;/strong&gt;: 使用 for 迴圈執行 &lt;code&gt;n&lt;/code&gt; 次。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;更新總容量與當前高度&lt;/strong&gt;: 在迴圈中，讀取該次倒入的容量 &lt;code&gt;water&lt;/code&gt;，並將其加入 &lt;code&gt;total&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;判斷水位高度&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;如果 &lt;code&gt;total &amp;lt;= low&lt;/code&gt;，表示水位還在下層，&lt;code&gt;curr&lt;/code&gt; 高度為 &lt;code&gt;total / (w1*w1)&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;如果 &lt;code&gt;total &amp;lt;= high&lt;/code&gt;，表示水位已達上層，&lt;code&gt;curr&lt;/code&gt; 高度為 &lt;code&gt;h1 + (total - low) / (w2*w2)&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;如果 &lt;code&gt;total &amp;gt; high&lt;/code&gt;，表示水已裝滿，&lt;code&gt;curr&lt;/code&gt; 高度為 &lt;code&gt;h1 + h2&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;更新最大變化量&lt;/strong&gt;: 計算本次的高度變化 &lt;code&gt;curr - prev&lt;/code&gt;，如果這個值大於 &lt;code&gt;ans&lt;/code&gt;，則更新 &lt;code&gt;ans&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;更新前次高度&lt;/strong&gt;: 將 &lt;code&gt;prev&lt;/code&gt; 更新為 &lt;code&gt;curr&lt;/code&gt;，以供下次迴圈使用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出結果&lt;/strong&gt;: 迴圈結束後，輸出 &lt;code&gt;ans&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分段步驟程式碼&#34;&gt;分段步驟程式碼&lt;/h2&gt;
+&lt;h3 id=&#34;讀取輸入資料&#34;&gt;讀取輸入資料&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;w1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;w2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;h1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;h2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;water&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;w1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;w2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼讀取倒飲料的次數 &lt;code&gt;n&lt;/code&gt; 和杯子的四個維度參數。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>APCS-2025-01</title>
+      <link>http://localhost:1313/posts/apcs/apcs-2025-01/</link>
+      <pubDate>Sun, 11 May 2025 22:17:41 +0000</pubDate>
+      <guid>http://localhost:1313/posts/apcs/apcs-2025-01/</guid>
+      <description>&lt;h1 id=&#34;1-等紅綠燈&#34;&gt;1. 等紅綠燈&lt;/h1&gt;
+&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;讀取輸入&lt;/strong&gt;: 讀取綠燈秒數 &lt;code&gt;green&lt;/code&gt;、紅燈秒數 &lt;code&gt;red&lt;/code&gt;，以及小朋友的人數 &lt;code&gt;n&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;計算週期與初始化&lt;/strong&gt;: 計算一個完整的紅綠燈週期 &lt;code&gt;loop = green + red&lt;/code&gt;。初始化總等待時間 &lt;code&gt;delay&lt;/code&gt; 為 0。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;遍歷小朋友&lt;/strong&gt;: 使用 &lt;code&gt;for&lt;/code&gt; 迴圈，依序處理 &lt;code&gt;n&lt;/code&gt; 個小朋友。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;讀取騎車時間並計算抵達時刻&lt;/strong&gt;: 在迴圈中，讀取每個小朋友的騎車時間 &lt;code&gt;t&lt;/code&gt;。使用模數運算 (&lt;code&gt;%&lt;/code&gt;) 計算 &lt;code&gt;t % loop&lt;/code&gt;，這代表小朋友在一個週期中的哪個時間點抵達終點。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;判斷是否遇到紅燈&lt;/strong&gt;: 檢查抵達時間 &lt;code&gt;t % loop&lt;/code&gt; 是否大於等於綠燈時間 &lt;code&gt;green&lt;/code&gt;。如果是，表示小朋友在紅燈時段抵達。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;累計等待時間&lt;/strong&gt;: 如果在紅燈時段抵達，計算需要等待的時間（&lt;code&gt;loop - (t % loop)&lt;/code&gt;），並將其累加到總等待時間 &lt;code&gt;delay&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出總和&lt;/strong&gt;: 迴圈結束後，&lt;code&gt;delay&lt;/code&gt; 變數中儲存了所有小朋友的總等待時間，將其輸出。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分段步驟程式碼&#34;&gt;分段步驟程式碼&lt;/h2&gt;
+&lt;h3 id=&#34;讀取輸入與初始化&#34;&gt;讀取輸入與初始化&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;green&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;red&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;delay&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;green&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;red&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;loop&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;green&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;red&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼宣告所有需要的變數。&lt;code&gt;green&lt;/code&gt; 和 &lt;code&gt;red&lt;/code&gt; 分別儲存綠燈和紅燈的秒數，&lt;code&gt;n&lt;/code&gt; 為小朋友人數，&lt;code&gt;t&lt;/code&gt; 用於暫存每個小朋友的時間，&lt;code&gt;delay&lt;/code&gt; 用於累計總等待時間並初始化為 0。接著讀取 &lt;code&gt;green&lt;/code&gt;、&lt;code&gt;red&lt;/code&gt; 和 &lt;code&gt;n&lt;/code&gt;，並計算出完整的紅綠燈週期 &lt;code&gt;loop&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

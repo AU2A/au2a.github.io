@@ -1,0 +1,325 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Github Tutorial | Aura's Space</title><meta name=keywords content><meta name=description content='Basic
+Clone a repo
+
+
+1
+
+
+git clone {url.git}
+
+
+Add some files
+
+
+1
+
+
+git add {filename}
+
+
+Get commit history
+
+
+1
+
+
+git log
+
+
+Commit
+
+
+1
+
+
+git commit -m "text"
+
+
+Pull
+
+
+1
+
+
+git pull
+
+
+Push
+
+
+1
+
+
+git push {branch-name}
+
+
+Branch
+Get now branch and all branch list
+
+
+1
+
+
+git branch
+
+
+Create branch
+
+
+1
+
+
+git branch {branch-name}
+
+
+Branch Naming Example
+
+
+1
+2
+3
+4
+5
+6
+
+
+git branch feat/{id}-xxx   # add new feature
+git branch fix/{id}-xxx    # fix some bugs
+git branch refactor/{id}-xxx # Refactor the code
+git branch docs/{id}-xxx   # Update Files
+git branch style/{id}-xxx  # Coding style, formatter
+git branch chore/{id}-xxx  # Change working process, tools ...etc
+
+
+Switch branch
+
+
+1
+2
+
+
+git switch {branch-name}
+git switch -c {branch-name} # if branch not exist, auto create
+
+
+Merge branch
+
+
+1
+2
+3
+
+
+git switch {Target-branch-name}
+git merge {branch-name}
+git push origin {Target-branch-name}
+
+
+checkout
+check commit and files
+
+
+1
+2
+3
+
+
+git checkout {commit-id}
+git checkout {commit-id} -- {file-path}
+git checkout main
+
+
+With Docker
+Login ghcr.io with docker on terminal
+
+
+Get a &ldquo;personal access token (classic)&rdquo; from Developer Page'><meta name=author content="Aura"><link rel=canonical href=http://localhost:1313/posts/github-tutorial/><link crossorigin=anonymous href=/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css integrity="sha256-NDzEgLn/yPBMy+XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:1313/images/favicon.ico><link rel=icon type=image/png sizes=16x16 href=http://localhost:1313/images/favicon.ico><link rel=icon type=image/png sizes=32x32 href=http://localhost:1313/images/favicon.ico><link rel=apple-touch-icon href=http://localhost:1313/images/favicon.ico><link rel=mask-icon href=http://localhost:1313/images/favicon.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:1313/posts/github-tutorial/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}@media(prefers-color-scheme:light){.list::-webkit-scrollbar-thumb{border-color:var(--code-bg)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="http://localhost:1313/posts/github-tutorial/"><meta property="og:site_name" content="Aura's Space"><meta property="og:title" content="Github Tutorial"><meta property="og:description" content='Basic Clone a repo 1 git clone {url.git} Add some files 1 git add {filename} Get commit history 1 git log Commit 1 git commit -m "text" Pull 1 git pull Push 1 git push {branch-name} Branch Get now branch and all branch list 1 git branch Create branch 1 git branch {branch-name} Branch Naming Example 1 2 3 4 5 6 git branch feat/{id}-xxx # add new feature git branch fix/{id}-xxx # fix some bugs git branch refactor/{id}-xxx # Refactor the code git branch docs/{id}-xxx # Update Files git branch style/{id}-xxx # Coding style, formatter git branch chore/{id}-xxx # Change working process, tools ...etc Switch branch 1 2 git switch {branch-name} git switch -c {branch-name} # if branch not exist, auto create Merge branch 1 2 3 git switch {Target-branch-name} git merge {branch-name} git push origin {Target-branch-name} checkout check commit and files 1 2 3 git checkout {commit-id} git checkout {commit-id} -- {file-path} git checkout main With Docker Login ghcr.io with docker on terminal Get a “personal access token (classic)” from Developer Page'><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-12-02T22:30:10+00:00"><meta property="article:modified_time" content="2023-12-02T22:30:10+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Github Tutorial"><meta name=twitter:description content='Basic
+Clone a repo
+
+
+1
+
+
+git clone {url.git}
+
+
+Add some files
+
+
+1
+
+
+git add {filename}
+
+
+Get commit history
+
+
+1
+
+
+git log
+
+
+Commit
+
+
+1
+
+
+git commit -m "text"
+
+
+Pull
+
+
+1
+
+
+git pull
+
+
+Push
+
+
+1
+
+
+git push {branch-name}
+
+
+Branch
+Get now branch and all branch list
+
+
+1
+
+
+git branch
+
+
+Create branch
+
+
+1
+
+
+git branch {branch-name}
+
+
+Branch Naming Example
+
+
+1
+2
+3
+4
+5
+6
+
+
+git branch feat/{id}-xxx   # add new feature
+git branch fix/{id}-xxx    # fix some bugs
+git branch refactor/{id}-xxx # Refactor the code
+git branch docs/{id}-xxx   # Update Files
+git branch style/{id}-xxx  # Coding style, formatter
+git branch chore/{id}-xxx  # Change working process, tools ...etc
+
+
+Switch branch
+
+
+1
+2
+
+
+git switch {branch-name}
+git switch -c {branch-name} # if branch not exist, auto create
+
+
+Merge branch
+
+
+1
+2
+3
+
+
+git switch {Target-branch-name}
+git merge {branch-name}
+git push origin {Target-branch-name}
+
+
+checkout
+check commit and files
+
+
+1
+2
+3
+
+
+git checkout {commit-id}
+git checkout {commit-id} -- {file-path}
+git checkout main
+
+
+With Docker
+Login ghcr.io with docker on terminal
+
+
+Get a &ldquo;personal access token (classic)&rdquo; from Developer Page'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:1313/posts/"},{"@type":"ListItem","position":2,"name":"Github Tutorial","item":"http://localhost:1313/posts/github-tutorial/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Github Tutorial","name":"Github Tutorial","description":"Basic Clone a repo 1 git clone {url.git} Add some files 1 git add {filename} Get commit history 1 git log Commit 1 git commit -m \u0026#34;text\u0026#34; Pull 1 git pull Push 1 git push {branch-name} Branch Get now branch and all branch list 1 git branch Create branch 1 git branch {branch-name} Branch Naming Example 1 2 3 4 5 6 git branch feat/{id}-xxx # add new feature git branch fix/{id}-xxx # fix some bugs git branch refactor/{id}-xxx # Refactor the code git branch docs/{id}-xxx # Update Files git branch style/{id}-xxx # Coding style, formatter git branch chore/{id}-xxx # Change working process, tools ...etc Switch branch 1 2 git switch {branch-name} git switch -c {branch-name} # if branch not exist, auto create Merge branch 1 2 3 git switch {Target-branch-name} git merge {branch-name} git push origin {Target-branch-name} checkout check commit and files 1 2 3 git checkout {commit-id} git checkout {commit-id} -- {file-path} git checkout main With Docker Login ghcr.io with docker on terminal Get a \u0026ldquo;personal access token (classic)\u0026rdquo; from Developer Page\n","keywords":[],"articleBody":"Basic Clone a repo 1 git clone {url.git} Add some files 1 git add {filename} Get commit history 1 git log Commit 1 git commit -m \"text\" Pull 1 git pull Push 1 git push {branch-name} Branch Get now branch and all branch list 1 git branch Create branch 1 git branch {branch-name} Branch Naming Example 1 2 3 4 5 6 git branch feat/{id}-xxx # add new feature git branch fix/{id}-xxx # fix some bugs git branch refactor/{id}-xxx # Refactor the code git branch docs/{id}-xxx # Update Files git branch style/{id}-xxx # Coding style, formatter git branch chore/{id}-xxx # Change working process, tools ...etc Switch branch 1 2 git switch {branch-name} git switch -c {branch-name} # if branch not exist, auto create Merge branch 1 2 3 git switch {Target-branch-name} git merge {branch-name} git push origin {Target-branch-name} checkout check commit and files 1 2 3 git checkout {commit-id} git checkout {commit-id} -- {file-path} git checkout main With Docker Login ghcr.io with docker on terminal Get a “personal access token (classic)” from Developer Page\nlogin by terminal\n1 2 export CR_PAT=ghp_xxxxx echo $CR_PAT | docker login ghcr.io -u {Github ID} --password-stdin ","wordCount":"191","inLanguage":"en","datePublished":"2023-12-02T22:30:10Z","dateModified":"2023-12-02T22:30:10Z","author":{"@type":"Person","name":"Aura"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:1313/posts/github-tutorial/"},"publisher":{"@type":"Organization","name":"Aura's Space","logo":{"@type":"ImageObject","url":"http://localhost:1313/images/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><div class=logo><a href=http://localhost:1313/ accesskey=h title="Aura's Space (Alt + H)"><img src=http://localhost:1313/images/favicon.ico alt aria-label=logo height=35>Aura's Space</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:1313/archives/ title=Archives><span>Archives</span></a></li><li><a href=http://localhost:1313/categories/ title=Categories><span>Categories</span></a></li><li><a href=http://localhost:1313/tags/ title=Tags><span>Tags</span></a></li><li><a href=http://localhost:1313/about/ title=About><span>About</span></a></li><li><a href=http://localhost:1313/search/ title="🔍 (Alt + /)" accesskey=/><span>🔍</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=http://localhost:1313/>Home</a>&nbsp;»&nbsp;<a href=http://localhost:1313/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">Github Tutorial</h1><div class=post-meta><span title='2023-12-02 22:30:10 +0000 UTC'>December 2, 2023</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>Aura</span></div></header><ul class=post-tags></ul><div class=post-content><h1 id=basic>Basic<a hidden class=anchor aria-hidden=true href=#basic>#</a></h1><h2 id=clone-a-repo>Clone a repo<a hidden class=anchor aria-hidden=true href=#clone-a-repo>#</a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git clone <span class=o>{</span>url.git<span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=add-some-files>Add some files<a hidden class=anchor aria-hidden=true href=#add-some-files>#</a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git add <span class=o>{</span>filename<span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=get-commit-history>Get commit history<a hidden class=anchor aria-hidden=true href=#get-commit-history>#</a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git log
+</span></span></code></pre></td></tr></table></div></div><h2 id=commit>Commit<a hidden class=anchor aria-hidden=true href=#commit>#</a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git commit -m <span class=s2>&#34;text&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=pull>Pull<a hidden class=anchor aria-hidden=true href=#pull>#</a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git pull
+</span></span></code></pre></td></tr></table></div></div><h2 id=push>Push<a hidden class=anchor aria-hidden=true href=#push>#</a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git push <span class=o>{</span>branch-name<span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><h1 id=branch>Branch<a hidden class=anchor aria-hidden=true href=#branch>#</a></h1><h2 id=get-now-branch-and-all-branch-list>Get now branch and all branch list<a hidden class=anchor aria-hidden=true href=#get-now-branch-and-all-branch-list>#</a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git branch
+</span></span></code></pre></td></tr></table></div></div><h2 id=create-branch>Create branch<a hidden class=anchor aria-hidden=true href=#create-branch>#</a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git branch <span class=o>{</span>branch-name<span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=branch-naming-example>Branch Naming Example<a hidden class=anchor aria-hidden=true href=#branch-naming-example>#</a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git branch feat/<span class=o>{</span>id<span class=o>}</span>-xxx   <span class=c1># add new feature</span>
+</span></span><span class=line><span class=cl>git branch fix/<span class=o>{</span>id<span class=o>}</span>-xxx    <span class=c1># fix some bugs</span>
+</span></span><span class=line><span class=cl>git branch refactor/<span class=o>{</span>id<span class=o>}</span>-xxx <span class=c1># Refactor the code</span>
+</span></span><span class=line><span class=cl>git branch docs/<span class=o>{</span>id<span class=o>}</span>-xxx   <span class=c1># Update Files</span>
+</span></span><span class=line><span class=cl>git branch style/<span class=o>{</span>id<span class=o>}</span>-xxx  <span class=c1># Coding style, formatter</span>
+</span></span><span class=line><span class=cl>git branch chore/<span class=o>{</span>id<span class=o>}</span>-xxx  <span class=c1># Change working process, tools ...etc</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=switch-branch>Switch branch<a hidden class=anchor aria-hidden=true href=#switch-branch>#</a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git switch <span class=o>{</span>branch-name<span class=o>}</span>
+</span></span><span class=line><span class=cl>git switch -c <span class=o>{</span>branch-name<span class=o>}</span> <span class=c1># if branch not exist, auto create</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=merge-branch>Merge branch<a hidden class=anchor aria-hidden=true href=#merge-branch>#</a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git switch <span class=o>{</span>Target-branch-name<span class=o>}</span>
+</span></span><span class=line><span class=cl>git merge <span class=o>{</span>branch-name<span class=o>}</span>
+</span></span><span class=line><span class=cl>git push origin <span class=o>{</span>Target-branch-name<span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><h1 id=checkout>checkout<a hidden class=anchor aria-hidden=true href=#checkout>#</a></h1><h2 id=check-commit-and-files>check commit and files<a hidden class=anchor aria-hidden=true href=#check-commit-and-files>#</a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git checkout <span class=o>{</span>commit-id<span class=o>}</span>
+</span></span><span class=line><span class=cl>git checkout <span class=o>{</span>commit-id<span class=o>}</span> -- <span class=o>{</span>file-path<span class=o>}</span>
+</span></span><span class=line><span class=cl>git checkout main
+</span></span></code></pre></td></tr></table></div></div><h1 id=with-docker>With Docker<a hidden class=anchor aria-hidden=true href=#with-docker>#</a></h1><h2 id=login-ghcrio-with-docker-on-terminal>Login ghcr.io with docker on terminal<a hidden class=anchor aria-hidden=true href=#login-ghcrio-with-docker-on-terminal>#</a></h2><ol><li><p>Get a &ldquo;personal access token (classic)&rdquo; from <a href=https://github.com/settings/tokens>Developer Page</a></p></li><li><p>login by terminal</p></li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>export</span> <span class=nv>CR_PAT</span><span class=o>=</span>ghp_xxxxx
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=nv>$CR_PAT</span> <span class=p>|</span> docker login ghcr.io -u <span class=o>{</span>Github ID<span class=o>}</span> --password-stdin
+</span></span></code></pre></td></tr></table></div></div></div><footer class=post-footer></footer></article></main><footer class=footer><span>&copy; 2022~2025 <a href=http://localhost:1313/>Aura's Space</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

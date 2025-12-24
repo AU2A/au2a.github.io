@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Temperature 1.5 on Aura&#39;s Space</title>
+    <link>http://localhost:1313/categories/temperature-1.5/</link>
+    <description>Recent content in Temperature 1.5 on Aura&#39;s Space</description>
+    <generator>Hugo -- 0.153.2</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 19 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/temperature-1.5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【Temperature 1.5 的日常】EP6: Ollama - 讓 LLM 在家裡「乖乖坐好」的在地化秘訣</title>
+      <link>http://localhost:1313/posts/temp1.5/ep6/</link>
+      <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/temp1.5/ep6/</guid>
+      <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;零-前言&#34;&gt;零、 前言&lt;/h3&gt;
+&lt;p&gt;接續上次我們聊到的 &lt;strong&gt;Human-in-the-Loop&lt;/strong&gt;，我們學會了如何在 AI 衝過頭時踩煞車。但有個問題一直縈繞在心頭：如果我的資料超級敏感（比如公司的財務報表或是阿嬤的傳家食譜），我真的放心把這些東西往雲端送嗎？&lt;/p&gt;
+&lt;p&gt;這時候，我們需要一個能把 AI 「關在家裡」跑的方案。今天的主角就是 &lt;strong&gt;Ollama&lt;/strong&gt;。它讓你在本機環境就能跑起強大的開源模型，再搭配 &lt;strong&gt;LangChain&lt;/strong&gt; 的整合，簡直是隱私控的福音。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;一-為什麼是-ollama&#34;&gt;一、 為什麼是 Ollama？&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Ollama&lt;/strong&gt; 是一個能讓你輕鬆在個人電腦（Windows, macOS, Linux）執行開源大型語言模型（LLM）的工具。它的核心概念是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;打包（Bundling）&lt;/strong&gt;：它將模型權重、配置、資料全部打包成一個稱為 &lt;code&gt;Modelfile&lt;/code&gt; 的格式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;最佳化（Optimization）&lt;/strong&gt;：它會幫你處理好 GPU 使用率等底層設定，你不需要自己去跟 CUDA 驅動程式搏鬥。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;在地化（Local）&lt;/strong&gt;：所有的計算都在你的硬體上完成，資料不出門。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;二-快速上手把模型拖進來&#34;&gt;二、 快速上手：把模型「拖」進來&lt;/h3&gt;
+&lt;p&gt;在開始寫程式碼之前，我們得先讓 Ollama 在電腦裡跑起來。&lt;/p&gt;
+&lt;h4 id=&#34;1-安裝-ollama&#34;&gt;1. 安裝 Ollama&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;macOS&lt;/strong&gt;: 直接用 &lt;code&gt;brew install ollama&lt;/code&gt; 搞定。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Linux/WSL&lt;/strong&gt;: 官方有提供安裝指令。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Windows&lt;/strong&gt;: 至官網下載安裝檔。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-下載模型&#34;&gt;2. 下載模型&lt;/h4&gt;
+&lt;p&gt;你可以在終端機輸入指令來下載你想要玩的模型：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 抓取最新的 Llama 3.1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ollama pull llama3.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 如果想試試具備工具調用能力的 gpt-oss&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ollama pull gpt-oss:20b
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;筆記&lt;/strong&gt;：模型預設會存在 &lt;code&gt;~/.ollama/models&lt;/code&gt; (Mac) 或 &lt;code&gt;/usr/share/ollama/.ollama/models&lt;/code&gt; (Linux)。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」</title>
+      <link>http://localhost:1313/posts/temp1.5/ep5/</link>
+      <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/temp1.5/ep5/</guid>
+      <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;零-前言&#34;&gt;零、 前言&lt;/h3&gt;
+&lt;p&gt;接續上次我們聊到的 &lt;strong&gt;Streaming&lt;/strong&gt;，串流讓 AI 有了「呼吸感」，但當 AI 的「手」（Tools）伸向一些敏感區域時，光有呼吸是不夠的。&lt;/p&gt;
+&lt;p&gt;想像一下：如果你讓 AI 幫你管理資料庫，它突然決定執行一條 &lt;code&gt;DELETE FROM records&lt;/code&gt; 刪掉你過去 30 天的資料；或者它寫了一封語氣奇怪的信準備寄給你的大老闆。這時候，你需要的不是看著它「順暢地」把錯事做完，而是一個能讓它停下來、等你點頭的機制。這就是我們今天要聊的 &lt;strong&gt;Human-in-the-Loop (HITL)&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;一-什麼是-human-in-the-loop&#34;&gt;一、 什麼是 Human-in-the-Loop？&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Human-in-the-Loop (HITL)&lt;/strong&gt; 是一種中介軟體（Middleware）機制。它在模型「提案」執行某個工具（Tool Call）與「實際執行」之間加了一道關卡。&lt;/p&gt;
+&lt;p&gt;當模型提出一些可能有風險的操作（例如：寫入檔案、執行 SQL）時，中介軟體會根據預設的策略（Policy）攔截這個動作，將執行狀態「暫停」並保存起來，等待人類的最終決定。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;二-hitl-的核心三要素&#34;&gt;二、 HITL 的核心三要素&lt;/h3&gt;
+&lt;p&gt;要實作這套「人工審核」機制，LangChain 依賴以下三個核心組件：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Interrupt (中斷)&lt;/strong&gt;：當符合攔截條件時，系統發出信號停止執行。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Persistence (持久層)&lt;/strong&gt;：使用 LangGraph 的檢查點（Checkpointer）來保存當前的圖形狀態（Graph State）。這確保了程序可以在暫停後，即使重啟也能從原點恢復。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configurable Policy (配置策略)&lt;/strong&gt;：定義哪些工具需要被監督。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;三-三種人類抉擇approve-edit-reject&#34;&gt;三、 三種人類抉擇：Approve, Edit, Reject&lt;/h3&gt;
+&lt;p&gt;當 AI 被攔截後，身為「主管」的你有三種處理方式：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;決策類型&lt;/th&gt;
+          &lt;th&gt;說明&lt;/th&gt;
+          &lt;th&gt;範例&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;✅ &lt;strong&gt;&lt;code&gt;approve&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;原封不動核准執行。&lt;/td&gt;
+          &lt;td&gt;郵件草稿沒問題，直接寄出。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;✏️ &lt;strong&gt;&lt;code&gt;edit&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;修改工具參數後再執行。&lt;/td&gt;
+          &lt;td&gt;將郵件的收件人從 A 改成 B 再寄出。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;❌ &lt;strong&gt;&lt;code&gt;reject&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;拒絕執行，並給予 AI 反饋。&lt;/td&gt;
+          &lt;td&gt;拒絕刪除指令，並告訴 AI：「這太危險了，請改用查詢。」&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：在使用 &lt;code&gt;edit&lt;/code&gt; 修改參數時，建議進行保守的改動。劇烈的修改可能會導致模型重新評估其策略，進而引發非預期的後續行為。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感</title>
+      <link>http://localhost:1313/posts/temp1.5/ep4/</link>
+      <pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/temp1.5/ep4/</guid>
+      <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;零-前言&#34;&gt;零、 前言&lt;/h3&gt;
+&lt;p&gt;接續上次關於 &lt;strong&gt;Tools&lt;/strong&gt; 的討論，當我們賦予了 Agent 雙手去執行任務後，下一個面臨的問題就是「等待」。LLM 生成回應需要時間，尤其是當任務涉及多個工具調用時，漫長的空白等待會毀掉使用者體驗。因此，本篇要來聊聊 LangChain 的 &lt;strong&gt;Streaming (串流)&lt;/strong&gt; 系統，這是提升應用程式響應速度與使用者體驗 (UX) 的核心技術。&lt;/p&gt;
+&lt;h3 id=&#34;一-為什麼需要串流&#34;&gt;一、 為什麼需要串流？&lt;/h3&gt;
+&lt;p&gt;在 LLM 的應用中，延遲 (Latency) 是不可避免的。串流技術允許我們在完整回應準備好之前，就先將中間過程與部分內容「流」回前端。這不僅能讓使用者感覺系統在即時運作，也能即時顯示 Agent 的思考過程，讓整體互動更加透明、流暢。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;二-langchain-串流的三大核心模式&#34;&gt;二、 LangChain 串流的三大核心模式&lt;/h3&gt;
+&lt;p&gt;LangChain 提供了一個靈活的串流系統，主要透過 &lt;code&gt;stream&lt;/code&gt; 或 &lt;code&gt;astream&lt;/code&gt; 方法並配合 &lt;code&gt;stream_mode&lt;/code&gt; 參數來實現：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;模式 (&lt;code&gt;mode&lt;/code&gt;)&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+          &lt;th&gt;應用場景&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;&lt;code&gt;updates&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;每個 Agent 步驟結束後串流狀態更新。&lt;/td&gt;
+          &lt;td&gt;顯示 Agent 目前跑到了哪個節點（如：模型、工具）。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;&lt;code&gt;messages&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;串流 LLM 生成的每一個 Token 與其元數據。&lt;/td&gt;
+          &lt;td&gt;實現「打字機」效果或串流工具調用參數。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;&lt;code&gt;custom&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;透過 &lt;code&gt;stream_writer&lt;/code&gt; 從節點內部發送自定義訊號。&lt;/td&gt;
+          &lt;td&gt;顯示「正在查詢資料庫 (10/100)&amp;hellip;」等進度訊息。&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;三-監控任務進度updates-模式&#34;&gt;三、 監控任務進度：&lt;code&gt;updates&lt;/code&gt; 模式&lt;/h3&gt;
+&lt;p&gt;如果你想監控 Agent 的整體執行流程，&lt;code&gt;updates&lt;/code&gt; 是最直觀的模式。它會在每個節點（Node）執行完畢後，噴出該步驟產生的狀態變化。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Temperature 1.5 的日常】EP3: LangChain - Tools, 賦予 AI 雙手的魔法</title>
+      <link>http://localhost:1313/posts/temp1.5/ep3/</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/temp1.5/ep3/</guid>
+      <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;零-前言&#34;&gt;零、 前言&lt;/h3&gt;
+&lt;p&gt;接續上次關於 &lt;strong&gt;Structured Output&lt;/strong&gt; 的討論，當 Agent 能夠穩定輸出結構化數據後，下一步就是讓它具備「行動力」。在 LangChain 的世界裡，這被稱為 &lt;strong&gt;Tools (工具)&lt;/strong&gt;。工具不僅擴展了 Agent 的能力邊界——讓它能抓取即時數據、執行程式碼或查詢資料庫，更重要的是，它定義了模型如何與真實世界互動的標準介面。&lt;/p&gt;
+&lt;h3 id=&#34;一-工具的本質模型與現實的橋樑&#34;&gt;一、 工具的本質：模型與現實的橋樑&lt;/h3&gt;
+&lt;p&gt;在底層邏輯中，Tools 是具備明確 &lt;strong&gt;輸入 (Inputs)&lt;/strong&gt; 與 &lt;strong&gt;輸出 (Outputs)&lt;/strong&gt; 的可調用函數。&lt;/p&gt;
+&lt;p&gt;當我們將工具傳遞給 Chat Model 時，模型並不是真的「執行」了程式碼，而是根據對話上下文決定「何時」調用工具以及「提供什麼參數」。這種決策機制讓 Agent 能夠像人類操作儀表板一樣，有目的地選擇工具。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;二-快速上手定義工具的三重境界&#34;&gt;二、 快速上手：定義工具的三重境界&lt;/h3&gt;
+&lt;h4 id=&#34;1-基礎定義tool-裝飾器&#34;&gt;1. 基礎定義：&lt;code&gt;@tool&lt;/code&gt; 裝飾器&lt;/h4&gt;
+&lt;p&gt;這是最簡單的方式。LangChain 會自動將函數的 &lt;strong&gt;Docstring&lt;/strong&gt; 轉換為工具描述，將 &lt;strong&gt;Type Hints&lt;/strong&gt; 轉換為輸入 Schema。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;langchain.tools&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tool&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nd&#34;&gt;@tool&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;search_database&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;query&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;limit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&amp;#34;搜尋客戶資料庫中符合查詢條件的紀錄。&amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;找到 &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;limit&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; 筆關於 &amp;#39;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;query&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#39; 的結果&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;em&gt;註：Type Hints 是強制要求的，因為這是模型理解如何傳參的唯一依據。&lt;/em&gt;&lt;/p&gt;
+&lt;h4 id=&#34;2-自定義屬性&#34;&gt;2. 自定義屬性&lt;/h4&gt;
+&lt;p&gt;有時函數名稱不夠直觀，你可以手動覆蓋名稱與描述，以引導模型做出更準確的判斷：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術</title>
+      <link>http://localhost:1313/posts/temp1.5/ep2/</link>
+      <pubDate>Tue, 14 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/temp1.5/ep2/</guid>
+      <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;零-前言&#34;&gt;零、 前言&lt;/h3&gt;
+&lt;p&gt;接續上次關於 LangChain v1.0 架構重構的討論，本篇將深入探討其核心功能之一：&lt;strong&gt;結構化輸出 (Structured Output)&lt;/strong&gt;。在 Agent 的演進中，如何讓模型不再只是「吐出一段話」，而是「回傳一個物件」，是邁向自動化整合的關鍵一步。&lt;/p&gt;
+&lt;h3 id=&#34;一-從通靈到規格化為什麼需要結構化輸出&#34;&gt;一、 從「通靈」到「規格化」：為什麼需要結構化輸出？&lt;/h3&gt;
+&lt;p&gt;在早期的 LLM 開發中，獲取特定資訊（如從一段文字中提取姓名、電話）通常依賴於「提示詞工程 + 正則表達式」。這種方式在模型版本更迭或語氣變化時極其脆弱。&lt;/p&gt;
+&lt;p&gt;LangChain v1.0 透過 &lt;code&gt;create_agent&lt;/code&gt; 的 &lt;code&gt;response_format&lt;/code&gt; 參數，將此流程標準化。現在，Agent 不再回傳模糊的自然語言，而是直接回傳 &lt;strong&gt;JSON 物件&lt;/strong&gt;、&lt;strong&gt;Pydantic 模型&lt;/strong&gt; 或 &lt;strong&gt;Python Dataclasses&lt;/strong&gt;。這意味著你的程式碼可以直接存取屬性（如 &lt;code&gt;result.name&lt;/code&gt;），而不需要再寫 &lt;code&gt;if &amp;quot;Name:&amp;quot; in response&lt;/code&gt; 這種令人崩潰的邏輯。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;二-雙路徑策略provider-vs-tool-calling&#34;&gt;二、 雙路徑策略：Provider vs. Tool Calling&lt;/h3&gt;
+&lt;p&gt;LangChain 根據模型的能力，自動切換兩種不同的達成策略：&lt;/p&gt;
+&lt;h4 id=&#34;1-providerstrategy-原生支援&#34;&gt;1. ProviderStrategy (原生支援)&lt;/h4&gt;
+&lt;p&gt;當你使用的模型提供商（如 OpenAI, Anthropic, Gemini, Grok）原生支持結構化輸出時，這是最可靠的選擇。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;優勢：&lt;/strong&gt; 供應商在 API 層級強制執行 Schema，幻覺率最低。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;新特性：&lt;/strong&gt; 在 &lt;code&gt;langchain&amp;gt;=1.2&lt;/code&gt; 中支援 &lt;code&gt;strict&lt;/code&gt; 參數，強制模型 100% 遵守 Schema。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;自動觸發：&lt;/strong&gt; 只要模型支援，直接傳入 Pydantic 類別給 &lt;code&gt;response_format&lt;/code&gt; 即可。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-toolcallingstrategy-工具調用&#34;&gt;2. ToolCallingStrategy (工具調用)&lt;/h4&gt;
+&lt;p&gt;對於不支援原生輸出的模型，LangChain 會將「輸出規格」包裝成一個「虛擬工具」。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Temperature 1.5 的日常】EP1: LangChain - 認識 LangChain v1.0</title>
+      <link>http://localhost:1313/posts/temp1.5/ep1/</link>
+      <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/temp1.5/ep1/</guid>
+      <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;一-核心背景解決生產力鴻溝&#34;&gt;一、 核心背景：解決「生產力鴻溝」&lt;/h3&gt;
+&lt;p&gt;LangChain 從 v0.3 邁向 v1.0，本質上是從「實驗性工具」轉型為「企業級平台」。過去開發者常遇到的四大痛點在 v1.0 得到了正面回應：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;依賴臃腫：&lt;/strong&gt; 解決了過去單體式結構導致的依賴衝突。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API 不穩定：&lt;/strong&gt; 正式採用「語義化版本控制 (Semantic Versioning)」，承諾重大變更僅在主版本發生。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;黑盒子抽象：&lt;/strong&gt; 淘汰了難以除錯的舊版 Chains，轉向透明的宣告式語法。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文件滯後：&lt;/strong&gt; 透過架構標準化，大幅改善了開發文件的指導意義。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;二-架構層級的全面重構&#34;&gt;二、 架構層級的全面重構&lt;/h3&gt;
+&lt;p&gt;v1.0 重新定義了開發 Agent 的標準流程，主要體現在以下三個面向：&lt;/p&gt;
+&lt;h4 id=&#34;1-新的-agent-範式create_agent&#34;&gt;1. 新的 Agent 範式：&lt;code&gt;create_agent&lt;/code&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;底層支撐：&lt;/strong&gt; 全面改由 &lt;strong&gt;LangGraph&lt;/strong&gt; 驅動，原生支援持久化與人機協作。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中介軟體 (Middleware)：&lt;/strong&gt; 引入類似 Web 開發的 Hook 機制（如 &lt;code&gt;beforeModel&lt;/code&gt;, &lt;code&gt;wrapToolCall&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;情境工程：&lt;/strong&gt; 允許開發者在不破壞核心邏輯的情況下，靈活插入 PII 脫敏或自動摘要等功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-標準化通訊結構content_blocks&#34;&gt;2. 標準化通訊結構：&lt;code&gt;.content_blocks&lt;/code&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;供應商無關：&lt;/strong&gt; 統一了不同模型（OpenAI, Anthropic 等）的輸出格式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;多模態支援：&lt;/strong&gt; 為未來視覺與檔案內容的處理提供了標準接口。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;類型安全：&lt;/strong&gt; 提供完整的 Type Hints，減少執行時錯誤。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3-解耦的生態系統&#34;&gt;3. 解耦的生態系統&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;langchain-core&lt;/code&gt;: 穩定的基礎抽象（Runnable 接口）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;langchain-community&lt;/code&gt;: 獨立的版本控制，處理第三方整合。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;langchain-classic&lt;/code&gt;: 專為舊版功能（如 LLMChain）提供的過渡包，確保升級不中斷。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;三-組合範式的轉移從-chains-到-lcel&#34;&gt;三、 組合範式的轉移：從 Chains 到 LCEL&lt;/h3&gt;
+&lt;p&gt;這是 v1.0 最具影響力的技術變革，將「指令式」轉向「宣告式」：&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

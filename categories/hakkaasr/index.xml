@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>HakkaASR on Aura&#39;s Space</title>
+    <link>http://localhost:1313/categories/hakkaasr/</link>
+    <description>Recent content in HakkaASR on Aura&#39;s Space</description>
+    <generator>Hugo -- 0.153.2</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 28 Aug 2023 14:11:08 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/hakkaasr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Openai Whisper Fine-Tuning Script by FSR2023</title>
+      <link>http://localhost:1313/posts/openai-whisper-fine-tuning-script-by-fsr2023/</link>
+      <pubDate>Mon, 28 Aug 2023 14:11:08 +0000</pubDate>
+      <guid>http://localhost:1313/posts/openai-whisper-fine-tuning-script-by-fsr2023/</guid>
+      <description>&lt;h1 id=&#34;連結&#34;&gt;連結&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/yfliao/whisper-hakka&#34;&gt;Github&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;重點專案結構&#34;&gt;重點專案結構&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;whisper-hakka
+ ┗┳━ custom_data
+  ┃   ┗━ data_prep.py 資料檢查、產生binary檔案
+  ┣━ data-char 放字單位的文本
+  ┃   ┣━ dev
+  ┃   ┃   ┣━ audio_paths symbolic link to wav.scp
+  ┃   ┃   ┣━ spk2utt 語者ID與其語料ID
+  ┃   ┃   ┣━ text    語料ID與語料文本
+  ┃   ┃   ┣━ utt2spk 語料ID與其語者ID
+  ┃   ┃   ┗━ wav.scp 語料ID與語料路徑
+  ┃   ┣━ test
+  ┃   ┃   ┗━ 同(dev)
+  ┃   ┗━ train
+  ┃       ┗━ 同(dev)
+  ┣━ data-pinyin 放詞單位的文本
+  ┃   ┗━ 同(data-char)
+  ┣━ evaluate
+  ┃   ┗━ evaluate_on_custom_dataset.py 驗證腳本
+  ┣━ train
+  ┃   ┣━ fine-tune_on_custom_dataset.py 使用本地語料訓練腳本
+  ┃   ┗━ fine-tune_on_hf_dataset.py 使用huggingface語料訓練腳本
+  ┣━ requirements.txt library套件
+  ┗━ run.sh 所有會執行的指令
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;安裝虛擬環境&#34;&gt;安裝虛擬環境&lt;/h1&gt;
+&lt;p&gt;建議用虛擬環境 virtual environment 建置 python 環境，可以避免原始套件衝突。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Openai Whisper Fine-Tuning - Hakka</title>
+      <link>http://localhost:1313/posts/openai-whisper-fine-tuning-hakka/</link>
+      <pubDate>Tue, 04 Jul 2023 09:42:49 +0000</pubDate>
+      <guid>http://localhost:1313/posts/openai-whisper-fine-tuning-hakka/</guid>
+      <description>&lt;h1 id=&#34;連結&#34;&gt;連結&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/AU2A/whisper_finetuning&#34;&gt;Github&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;重點專案結構&#34;&gt;重點專案結構&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;whisper_hakka
+ ┗┳━ audio
+  ┃   ┣━ test
+  ┃   ┃   ┗━ test語料存放區
+  ┃   ┣━ train
+  ┃   ┃   ┗━ train語料存放區
+  ┃   ┗━ metadata.csv 檔案路徑與文本內容
+  ┣━ model
+  ┃   ┗━ 模型存放區
+  ┣━ fine_tune.ipynb jupyter訓練腳本
+  ┗━ huggingface_token huggingfacer金鑰
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;安裝-cuda&#34;&gt;安裝 cuda&lt;/h1&gt;
+&lt;h4 id=&#34;cuda&#34;&gt;cuda&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget https://developer.download.nvidia.com/compute/cuda/11.4.0/local_installers/cuda_11.4.0_470.42.01_linux.run
+sudo sh cuda_11.4.0_470.42.01_linux.run
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果要獨立裝 driver，就把 driver 取消&lt;/p&gt;
+&lt;h4 id=&#34;driver&#34;&gt;driver&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt-get install nvidia-driver-470
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;huggingface-金鑰申請&#34;&gt;Huggingface 金鑰申請&lt;/h1&gt;
+&lt;p&gt;請到&lt;a href=&#34;https://huggingface.co/&#34;&gt;huggingface 官網&lt;/a&gt;
+右上的選項 → &lt;code&gt;Settings&lt;/code&gt; → &lt;code&gt;Access Tokens&lt;/code&gt;
+點選&lt;code&gt;New token&lt;/code&gt;，&lt;code&gt;Name&lt;/code&gt;自訂，&lt;code&gt;Role&lt;/code&gt;選&lt;code&gt;write&lt;/code&gt;
+&lt;code&gt;Generate a token&lt;/code&gt;後，將產生的&lt;code&gt;token&lt;/code&gt;複製貼上到專案的&lt;code&gt;huggingface_token&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&#34;程式碼說明&#34;&gt;程式碼說明&lt;/h1&gt;
+&lt;h4 id=&#34;建立模型名稱&#34;&gt;建立模型名稱&lt;/h4&gt;
+&lt;p&gt;請輸入檔案名稱&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;model_name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;model name&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;登入-hugging-face&#34;&gt;登入 hugging face&lt;/h4&gt;
+&lt;p&gt;將訓練完成的模型上傳到存放在 huggingface，可以減少本地端空間占用。
+&lt;code&gt;Token&lt;/code&gt;請自行去 huggingface 申請&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HakkaASR Website</title>
+      <link>http://localhost:1313/posts/hakkaasr-website/</link>
+      <pubDate>Wed, 28 Jun 2023 12:11:34 +0000</pubDate>
+      <guid>http://localhost:1313/posts/hakkaasr-website/</guid>
+      <description>&lt;h1 id=&#34;連結&#34;&gt;連結&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://hub.docker.com/r/au2a/hakka-website&#34;&gt;Docker&lt;/a&gt;
+&lt;a href=&#34;https://github.com/AU2A/Hakka_Website&#34;&gt;Github&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;docker-執行&#34;&gt;Docker 執行&lt;/h1&gt;
+&lt;p&gt;使用 Docker 時，可以使用以下指令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -d -e &lt;span class=&#34;nv&#34;&gt;psw&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;a_string -e &lt;span class=&#34;nv&#34;&gt;domain&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;a_domain &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        -e &lt;span class=&#34;nv&#34;&gt;port1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;5001&lt;/span&gt; -e &lt;span class=&#34;nv&#34;&gt;port2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;5002&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        -p 5001:443 -p 5002:5002 au2a/hakka-website
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;psw&lt;/code&gt;為密碼，需要密碼才能執行，如需要請向我詢問。
+&lt;code&gt;domain&lt;/code&gt;為網址，設定網頁使用的網址
+&lt;code&gt;port1&lt;/code&gt;為外部的網頁 port
+&lt;code&gt;port2&lt;/code&gt;為外部的解碼用 port&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-p 443:443&lt;/code&gt;網頁使用的是&lt;code&gt;https&lt;/code&gt;通道
+&lt;code&gt;-p 5002:5002&lt;/code&gt;網頁解碼使用的通道&lt;/p&gt;
+&lt;h1 id=&#34;專案結構&#34;&gt;專案結構&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;files
+ ┗┳━ decode
+  ┃   ┗━ espnet解碼後的文本
+  ┣━ initFiles
+  ┃   ┗━ 密碼的md5較驗檔、需要初始化的檔案
+  ┣━ keys
+  ┃   ┗━ 安全憑證的密碼，和cert.pem, chain.pem, privkey.pem三個憑證檔案
+  ┣━ openai
+  ┃   ┣━ decode
+  ┃   ┃   ┗━openai whisper解碼後的文本
+  ┃   ┣━ model
+  ┃   ┃   ┗━openai whisper使用的model
+  ┃   ┣━ upload
+  ┃   ┃   ┗━上傳openai whisper解碼的音檔存放區
+  ┃   ┣━ delete.py 定期刪除存放太久的音檔語文本
+  ┃   ┣━ download.py 下載youtube檔案轉wav檔
+  ┃   ┗━ openai_whisper.py Openai whisper解碼主程式
+  ┣━ upload
+  ┃   ┗━ 上傳espnet解碼的音檔存放區
+  ┣━ views
+  ┃   ┗━ 網頁
+  ┣━ website
+  ┃   ┣━ demo
+  ┃   ┃   ┗━範例音檔與文本
+  ┃   ┣━ files
+  ┃   ┃   ┗━網頁主題、網頁JS程式碼
+  ┃   ┗━ server.js 伺服器主程式
+  ┣━ aidecodeList.txt 待whisper解碼清單
+  ┣━ decodeList.txt 待espnet解碼清單
+  ┣━ domainName 網址
+  ┣━ init.py 初始化
+  ┣━ run.sh docker用啟動執行檔
+  ┗━ test.sh 測試用啟動執行檔
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;執行&#34;&gt;執行&lt;/h1&gt;
+&lt;h2 id=&#34;全部執行&#34;&gt;全部執行&lt;/h2&gt;
+&lt;p&gt;如果要在本地端執行，請執行&lt;code&gt;test.sh&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

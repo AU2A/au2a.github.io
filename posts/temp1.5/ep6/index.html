@@ -1,0 +1,201 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>【Temperature 1.5 的日常】EP6: Ollama - 讓 LLM 在家裡「乖乖坐好」的在地化秘訣 | Aura's Space</title><meta name=keywords content="LangChain,Python"><meta name=description content="
+
+本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。
+
+
+零、 前言
+接續上次我們聊到的 Human-in-the-Loop，我們學會了如何在 AI 衝過頭時踩煞車。但有個問題一直縈繞在心頭：如果我的資料超級敏感（比如公司的財務報表或是阿嬤的傳家食譜），我真的放心把這些東西往雲端送嗎？
+這時候，我們需要一個能把 AI 「關在家裡」跑的方案。今天的主角就是 Ollama。它讓你在本機環境就能跑起強大的開源模型，再搭配 LangChain 的整合，簡直是隱私控的福音。
+
+一、 為什麼是 Ollama？
+Ollama 是一個能讓你輕鬆在個人電腦（Windows, macOS, Linux）執行開源大型語言模型（LLM）的工具。它的核心概念是：
+
+打包（Bundling）：它將模型權重、配置、資料全部打包成一個稱為 Modelfile 的格式。
+最佳化（Optimization）：它會幫你處理好 GPU 使用率等底層設定，你不需要自己去跟 CUDA 驅動程式搏鬥。
+在地化（Local）：所有的計算都在你的硬體上完成，資料不出門。
+
+
+二、 快速上手：把模型「拖」進來
+在開始寫程式碼之前，我們得先讓 Ollama 在電腦裡跑起來。
+1. 安裝 Ollama
+
+macOS: 直接用 brew install ollama 搞定。
+Linux/WSL: 官方有提供安裝指令。
+Windows: 至官網下載安裝檔。
+
+2. 下載模型
+你可以在終端機輸入指令來下載你想要玩的模型：
+
+
+1
+2
+3
+4
+5
+
+
+# 抓取最新的 Llama 3.1
+ollama pull llama3.1
+
+# 如果想試試具備工具調用能力的 gpt-oss
+ollama pull gpt-oss:20b
+
+
+
+筆記：模型預設會存在 ~/.ollama/models (Mac) 或 /usr/share/ollama/.ollama/models (Linux)。"><meta name=author content="Aura"><link rel=canonical href=http://localhost:1313/posts/temp1.5/ep6/><link crossorigin=anonymous href=/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css integrity="sha256-NDzEgLn/yPBMy+XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:1313/images/favicon.ico><link rel=icon type=image/png sizes=16x16 href=http://localhost:1313/images/favicon.ico><link rel=icon type=image/png sizes=32x32 href=http://localhost:1313/images/favicon.ico><link rel=apple-touch-icon href=http://localhost:1313/images/favicon.ico><link rel=mask-icon href=http://localhost:1313/images/favicon.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:1313/posts/temp1.5/ep6/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}@media(prefers-color-scheme:light){.list::-webkit-scrollbar-thumb{border-color:var(--code-bg)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="http://localhost:1313/posts/temp1.5/ep6/"><meta property="og:site_name" content="Aura's Space"><meta property="og:title" content="【Temperature 1.5 的日常】EP6: Ollama - 讓 LLM 在家裡「乖乖坐好」的在地化秘訣"><meta property="og:description" content=" 本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。
+零、 前言 接續上次我們聊到的 Human-in-the-Loop，我們學會了如何在 AI 衝過頭時踩煞車。但有個問題一直縈繞在心頭：如果我的資料超級敏感（比如公司的財務報表或是阿嬤的傳家食譜），我真的放心把這些東西往雲端送嗎？
+這時候，我們需要一個能把 AI 「關在家裡」跑的方案。今天的主角就是 Ollama。它讓你在本機環境就能跑起強大的開源模型，再搭配 LangChain 的整合，簡直是隱私控的福音。
+一、 為什麼是 Ollama？ Ollama 是一個能讓你輕鬆在個人電腦（Windows, macOS, Linux）執行開源大型語言模型（LLM）的工具。它的核心概念是：
+打包（Bundling）：它將模型權重、配置、資料全部打包成一個稱為 Modelfile 的格式。 最佳化（Optimization）：它會幫你處理好 GPU 使用率等底層設定，你不需要自己去跟 CUDA 驅動程式搏鬥。 在地化（Local）：所有的計算都在你的硬體上完成，資料不出門。 二、 快速上手：把模型「拖」進來 在開始寫程式碼之前，我們得先讓 Ollama 在電腦裡跑起來。
+1. 安裝 Ollama macOS: 直接用 brew install ollama 搞定。 Linux/WSL: 官方有提供安裝指令。 Windows: 至官網下載安裝檔。 2. 下載模型 你可以在終端機輸入指令來下載你想要玩的模型：
+1 2 3 4 5 # 抓取最新的 Llama 3.1 ollama pull llama3.1 # 如果想試試具備工具調用能力的 gpt-oss ollama pull gpt-oss:20b 筆記：模型預設會存在 ~/.ollama/models (Mac) 或 /usr/share/ollama/.ollama/models (Linux)。"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-10-19T00:00:00+00:00"><meta property="article:modified_time" content="2025-10-19T00:00:00+00:00"><meta property="article:tag" content="LangChain"><meta property="article:tag" content="Python"><meta name=twitter:card content="summary"><meta name=twitter:title content="【Temperature 1.5 的日常】EP6: Ollama - 讓 LLM 在家裡「乖乖坐好」的在地化秘訣"><meta name=twitter:description content="
+
+本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。
+
+
+零、 前言
+接續上次我們聊到的 Human-in-the-Loop，我們學會了如何在 AI 衝過頭時踩煞車。但有個問題一直縈繞在心頭：如果我的資料超級敏感（比如公司的財務報表或是阿嬤的傳家食譜），我真的放心把這些東西往雲端送嗎？
+這時候，我們需要一個能把 AI 「關在家裡」跑的方案。今天的主角就是 Ollama。它讓你在本機環境就能跑起強大的開源模型，再搭配 LangChain 的整合，簡直是隱私控的福音。
+
+一、 為什麼是 Ollama？
+Ollama 是一個能讓你輕鬆在個人電腦（Windows, macOS, Linux）執行開源大型語言模型（LLM）的工具。它的核心概念是：
+
+打包（Bundling）：它將模型權重、配置、資料全部打包成一個稱為 Modelfile 的格式。
+最佳化（Optimization）：它會幫你處理好 GPU 使用率等底層設定，你不需要自己去跟 CUDA 驅動程式搏鬥。
+在地化（Local）：所有的計算都在你的硬體上完成，資料不出門。
+
+
+二、 快速上手：把模型「拖」進來
+在開始寫程式碼之前，我們得先讓 Ollama 在電腦裡跑起來。
+1. 安裝 Ollama
+
+macOS: 直接用 brew install ollama 搞定。
+Linux/WSL: 官方有提供安裝指令。
+Windows: 至官網下載安裝檔。
+
+2. 下載模型
+你可以在終端機輸入指令來下載你想要玩的模型：
+
+
+1
+2
+3
+4
+5
+
+
+# 抓取最新的 Llama 3.1
+ollama pull llama3.1
+
+# 如果想試試具備工具調用能力的 gpt-oss
+ollama pull gpt-oss:20b
+
+
+
+筆記：模型預設會存在 ~/.ollama/models (Mac) 或 /usr/share/ollama/.ollama/models (Linux)。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:1313/posts/"},{"@type":"ListItem","position":2,"name":"【Temperature 1.5 的日常】EP6: Ollama - 讓 LLM 在家裡「乖乖坐好」的在地化秘訣","item":"http://localhost:1313/posts/temp1.5/ep6/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"【Temperature 1.5 的日常】EP6: Ollama - 讓 LLM 在家裡「乖乖坐好」的在地化秘訣","name":"【Temperature 1.5 的日常】EP6: Ollama - 讓 LLM 在家裡「乖乖坐好」的在地化秘訣","description":" 本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。\n零、 前言 接續上次我們聊到的 Human-in-the-Loop，我們學會了如何在 AI 衝過頭時踩煞車。但有個問題一直縈繞在心頭：如果我的資料超級敏感（比如公司的財務報表或是阿嬤的傳家食譜），我真的放心把這些東西往雲端送嗎？\n這時候，我們需要一個能把 AI 「關在家裡」跑的方案。今天的主角就是 Ollama。它讓你在本機環境就能跑起強大的開源模型，再搭配 LangChain 的整合，簡直是隱私控的福音。\n一、 為什麼是 Ollama？ Ollama 是一個能讓你輕鬆在個人電腦（Windows, macOS, Linux）執行開源大型語言模型（LLM）的工具。它的核心概念是：\n打包（Bundling）：它將模型權重、配置、資料全部打包成一個稱為 Modelfile 的格式。 最佳化（Optimization）：它會幫你處理好 GPU 使用率等底層設定，你不需要自己去跟 CUDA 驅動程式搏鬥。 在地化（Local）：所有的計算都在你的硬體上完成，資料不出門。 二、 快速上手：把模型「拖」進來 在開始寫程式碼之前，我們得先讓 Ollama 在電腦裡跑起來。\n1. 安裝 Ollama macOS: 直接用 brew install ollama 搞定。 Linux/WSL: 官方有提供安裝指令。 Windows: 至官網下載安裝檔。 2. 下載模型 你可以在終端機輸入指令來下載你想要玩的模型：\n1 2 3 4 5 # 抓取最新的 Llama 3.1 ollama pull llama3.1 # 如果想試試具備工具調用能力的 gpt-oss ollama pull gpt-oss:20b 筆記：模型預設會存在 ~/.ollama/models (Mac) 或 /usr/share/ollama/.ollama/models (Linux)。\n","keywords":["LangChain","Python"],"articleBody":" 本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。\n零、 前言 接續上次我們聊到的 Human-in-the-Loop，我們學會了如何在 AI 衝過頭時踩煞車。但有個問題一直縈繞在心頭：如果我的資料超級敏感（比如公司的財務報表或是阿嬤的傳家食譜），我真的放心把這些東西往雲端送嗎？\n這時候，我們需要一個能把 AI 「關在家裡」跑的方案。今天的主角就是 Ollama。它讓你在本機環境就能跑起強大的開源模型，再搭配 LangChain 的整合，簡直是隱私控的福音。\n一、 為什麼是 Ollama？ Ollama 是一個能讓你輕鬆在個人電腦（Windows, macOS, Linux）執行開源大型語言模型（LLM）的工具。它的核心概念是：\n打包（Bundling）：它將模型權重、配置、資料全部打包成一個稱為 Modelfile 的格式。 最佳化（Optimization）：它會幫你處理好 GPU 使用率等底層設定，你不需要自己去跟 CUDA 驅動程式搏鬥。 在地化（Local）：所有的計算都在你的硬體上完成，資料不出門。 二、 快速上手：把模型「拖」進來 在開始寫程式碼之前，我們得先讓 Ollama 在電腦裡跑起來。\n1. 安裝 Ollama macOS: 直接用 brew install ollama 搞定。 Linux/WSL: 官方有提供安裝指令。 Windows: 至官網下載安裝檔。 2. 下載模型 你可以在終端機輸入指令來下載你想要玩的模型：\n1 2 3 4 5 # 抓取最新的 Llama 3.1 ollama pull llama3.1 # 如果想試試具備工具調用能力的 gpt-oss ollama pull gpt-oss:20b 筆記：模型預設會存在 ~/.ollama/models (Mac) 或 /usr/share/ollama/.ollama/models (Linux)。\n三、 LangChain 與 Ollama 的強強聯手 要讓 LangChain 控制 Ollama，我們需要安裝專用的整合套件：\n1 pip install -qU langchain-ollama 實作：基本調用（Invocation） 我們來寫一個簡單的翻譯助手。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 from langchain_ollama import ChatOllama # 建立模型物件 llm = ChatOllama( model=\"llama3.1\", temperature=0, ) # 準備訊息 messages = [ (\"system\", \"你是一個專業的翻譯官，負責把英文翻譯成繁體中文。\"), (\"human\", \"I love programming with LangChain.\"), ] # 呼叫模型 ai_msg = llm.invoke(messages) print(ai_msg.content) 四、 進階功能：AI 不只是會聊天 Ollama 透過 ChatOllama 類別，其實支援了很多現代模型才有的特異功能：\n1. 工具調用（Tool Calling） 有些模型（如 gpt-oss）經過微調，可以精準地決定何時該「去查資料」或「呼叫函數」。\n功能 支援情況 備註 JSON Mode ✅ 強制輸出 JSON 格式 Token 流式輸出 ✅ 即問即答，不用乾等 原生非同步 ✅ 提升程式執行效率 多模態輸入 ✅ 支援圖片理解（如 bakllava） 2. 多模態範例（看圖說故事） 如果你使用的模型支援視覺（例如 bakllava 或 gemma3），你可以把圖片轉成 Base64 編碼塞進去。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 # 示意代碼：傳送圖片給模型 from langchain_ollama import ChatOllama from langchain.messages import HumanMessage llm = ChatOllama(model=\"bakllava\") # 構建包含圖片與文字的訊息 content = [ {\"type\": \"image_url\", \"image_url\": f\"data:image/jpeg;base64,{image_b64}\"}, {\"type\": \"text\", \"text\": \"這張圖表中的成長率是多少？\"} ] response = llm.invoke([HumanMessage(content=content)]) print(response.content) 五、 推理模型與自定義角色 最近很紅的「推理模型」（Reasoning Models），例如 IBM 的 Granite 3.2，支援一種特別的模式來展示它的「心路歷程」。\n在 ChatOllama 中，我們可以透過非標準的 ChatMessage 來啟動這個機制：\n1 2 3 4 5 6 7 8 9 10 11 12 13 from langchain_core.messages import ChatMessage from langchain_ollama import ChatOllama llm = ChatOllama(model=\"granite3.2:8b\") messages = [ # 設定控制角色為 'thinking' ChatMessage(role=\"control\", content=\"thinking\"), HumanMessage(\"為什麼 3^3 等於 27？\"), ] response = llm.invoke(messages) print(response.content) 這時候，你會發現模型輸出的內容會包含 Thought Process，讓你知道它是怎麼一步步算出來的，而不只是給一個冷冰冰的答案。\n六、 注意事項與踩坑筆記 版本更新：Ollama 進化非常快，建議時不時跑一下 pip install -U ollama 確保驅動層是最新的。 模型標籤：下載時若不指定 tag，預設通常是該模型最小、最精簡的版本。如果你的記憶體夠大，可以試著抓 70b 之類的巨獸。 效能瓶頸：在地化跑模型，電腦風扇狂轉是正常的，那是「AI 的心跳聲」。 七、 結語 Ollama 讓「私有化 AI」這件事從實驗室走向了每個人的桌面。當我們把 ChatOllama 放入 LangChain 的工作流中，我們就擁有了一個既安全、又強大，且完全由自己主宰的智慧大腦。\n下次如果你在深夜寫扣，不想讓雲端服務知道你在幹嘛，就把 Ollama 叫起來陪你吧！\n","wordCount":"312","inLanguage":"en","datePublished":"2025-10-19T00:00:00Z","dateModified":"2025-10-19T00:00:00Z","author":{"@type":"Person","name":"Aura"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:1313/posts/temp1.5/ep6/"},"publisher":{"@type":"Organization","name":"Aura's Space","logo":{"@type":"ImageObject","url":"http://localhost:1313/images/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><div class=logo><a href=http://localhost:1313/ accesskey=h title="Aura's Space (Alt + H)"><img src=http://localhost:1313/images/favicon.ico alt aria-label=logo height=35>Aura's Space</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:1313/archives/ title=Archives><span>Archives</span></a></li><li><a href=http://localhost:1313/categories/ title=Categories><span>Categories</span></a></li><li><a href=http://localhost:1313/tags/ title=Tags><span>Tags</span></a></li><li><a href=http://localhost:1313/about/ title=About><span>About</span></a></li><li><a href=http://localhost:1313/search/ title="🔍 (Alt + /)" accesskey=/><span>🔍</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=http://localhost:1313/>Home</a>&nbsp;»&nbsp;<a href=http://localhost:1313/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">【Temperature 1.5 的日常】EP6: Ollama - 讓 LLM 在家裡「乖乖坐好」的在地化秘訣</h1><div class=post-meta><span title='2025-10-19 00:00:00 +0000 UTC'>October 19, 2025</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Aura</span></div></header><ul class=post-tags><li><a href=http://localhost:1313/tags/langchain/>LangChain</a></li><li><a href=http://localhost:1313/tags/python/>Python</a></li></ul><div class=post-content><hr><blockquote><p>本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。</p></blockquote><hr><h3 id=零-前言>零、 前言<a hidden class=anchor aria-hidden=true href=#零-前言>#</a></h3><p>接續上次我們聊到的 <strong>Human-in-the-Loop</strong>，我們學會了如何在 AI 衝過頭時踩煞車。但有個問題一直縈繞在心頭：如果我的資料超級敏感（比如公司的財務報表或是阿嬤的傳家食譜），我真的放心把這些東西往雲端送嗎？</p><p>這時候，我們需要一個能把 AI 「關在家裡」跑的方案。今天的主角就是 <strong>Ollama</strong>。它讓你在本機環境就能跑起強大的開源模型，再搭配 <strong>LangChain</strong> 的整合，簡直是隱私控的福音。</p><hr><h3 id=一-為什麼是-ollama>一、 為什麼是 Ollama？<a hidden class=anchor aria-hidden=true href=#一-為什麼是-ollama>#</a></h3><p><strong>Ollama</strong> 是一個能讓你輕鬆在個人電腦（Windows, macOS, Linux）執行開源大型語言模型（LLM）的工具。它的核心概念是：</p><ol><li><strong>打包（Bundling）</strong>：它將模型權重、配置、資料全部打包成一個稱為 <code>Modelfile</code> 的格式。</li><li><strong>最佳化（Optimization）</strong>：它會幫你處理好 GPU 使用率等底層設定，你不需要自己去跟 CUDA 驅動程式搏鬥。</li><li><strong>在地化（Local）</strong>：所有的計算都在你的硬體上完成，資料不出門。</li></ol><hr><h3 id=二-快速上手把模型拖進來>二、 快速上手：把模型「拖」進來<a hidden class=anchor aria-hidden=true href=#二-快速上手把模型拖進來>#</a></h3><p>在開始寫程式碼之前，我們得先讓 Ollama 在電腦裡跑起來。</p><h4 id=1-安裝-ollama>1. 安裝 Ollama<a hidden class=anchor aria-hidden=true href=#1-安裝-ollama>#</a></h4><ul><li><strong>macOS</strong>: 直接用 <code>brew install ollama</code> 搞定。</li><li><strong>Linux/WSL</strong>: 官方有提供安裝指令。</li><li><strong>Windows</strong>: 至官網下載安裝檔。</li></ul><h4 id=2-下載模型>2. 下載模型<a hidden class=anchor aria-hidden=true href=#2-下載模型>#</a></h4><p>你可以在終端機輸入指令來下載你想要玩的模型：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 抓取最新的 Llama 3.1</span>
+</span></span><span class=line><span class=cl>ollama pull llama3.1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 如果想試試具備工具調用能力的 gpt-oss</span>
+</span></span><span class=line><span class=cl>ollama pull gpt-oss:20b
+</span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>筆記</strong>：模型預設會存在 <code>~/.ollama/models</code> (Mac) 或 <code>/usr/share/ollama/.ollama/models</code> (Linux)。</p></blockquote><hr><h3 id=三-langchain-與-ollama-的強強聯手>三、 LangChain 與 Ollama 的強強聯手<a hidden class=anchor aria-hidden=true href=#三-langchain-與-ollama-的強強聯手>#</a></h3><p>要讓 LangChain 控制 Ollama，我們需要安裝專用的整合套件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pip install -qU langchain-ollama
+</span></span></code></pre></td></tr></table></div></div><h4 id=實作基本調用invocation>實作：基本調用（Invocation）<a hidden class=anchor aria-hidden=true href=#實作基本調用invocation>#</a></h4><p>我們來寫一個簡單的翻譯助手。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>langchain_ollama</span> <span class=kn>import</span> <span class=n>ChatOllama</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 建立模型物件</span>
+</span></span><span class=line><span class=cl><span class=n>llm</span> <span class=o>=</span> <span class=n>ChatOllama</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>model</span><span class=o>=</span><span class=s2>&#34;llama3.1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>temperature</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 準備訊息</span>
+</span></span><span class=line><span class=cl><span class=n>messages</span> <span class=o>=</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>(</span><span class=s2>&#34;system&#34;</span><span class=p>,</span> <span class=s2>&#34;你是一個專業的翻譯官，負責把英文翻譯成繁體中文。&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=p>(</span><span class=s2>&#34;human&#34;</span><span class=p>,</span> <span class=s2>&#34;I love programming with LangChain.&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 呼叫模型</span>
+</span></span><span class=line><span class=cl><span class=n>ai_msg</span> <span class=o>=</span> <span class=n>llm</span><span class=o>.</span><span class=n>invoke</span><span class=p>(</span><span class=n>messages</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>ai_msg</span><span class=o>.</span><span class=n>content</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=四-進階功能ai-不只是會聊天>四、 進階功能：AI 不只是會聊天<a hidden class=anchor aria-hidden=true href=#四-進階功能ai-不只是會聊天>#</a></h3><p>Ollama 透過 <code>ChatOllama</code> 類別，其實支援了很多現代模型才有的特異功能：</p><h4 id=1-工具調用tool-calling>1. 工具調用（Tool Calling）<a hidden class=anchor aria-hidden=true href=#1-工具調用tool-calling>#</a></h4><p>有些模型（如 <code>gpt-oss</code>）經過微調，可以精準地決定何時該「去查資料」或「呼叫函數」。</p><table><thead><tr><th>功能</th><th>支援情況</th><th>備註</th></tr></thead><tbody><tr><td><strong>JSON Mode</strong></td><td>✅</td><td>強制輸出 JSON 格式</td></tr><tr><td><strong>Token 流式輸出</strong></td><td>✅</td><td>即問即答，不用乾等</td></tr><tr><td><strong>原生非同步</strong></td><td>✅</td><td>提升程式執行效率</td></tr><tr><td><strong>多模態輸入</strong></td><td>✅</td><td>支援圖片理解（如 <code>bakllava</code>）</td></tr></tbody></table><h4 id=2-多模態範例看圖說故事>2. 多模態範例（看圖說故事）<a hidden class=anchor aria-hidden=true href=#2-多模態範例看圖說故事>#</a></h4><p>如果你使用的模型支援視覺（例如 <code>bakllava</code> 或 <code>gemma3</code>），你可以把圖片轉成 Base64 編碼塞進去。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 示意代碼：傳送圖片給模型</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>langchain_ollama</span> <span class=kn>import</span> <span class=n>ChatOllama</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>langchain.messages</span> <span class=kn>import</span> <span class=n>HumanMessage</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>llm</span> <span class=o>=</span> <span class=n>ChatOllama</span><span class=p>(</span><span class=n>model</span><span class=o>=</span><span class=s2>&#34;bakllava&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 構建包含圖片與文字的訊息</span>
+</span></span><span class=line><span class=cl><span class=n>content</span> <span class=o>=</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span><span class=s2>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;image_url&#34;</span><span class=p>,</span> <span class=s2>&#34;image_url&#34;</span><span class=p>:</span> <span class=sa>f</span><span class=s2>&#34;data:image/jpeg;base64,</span><span class=si>{</span><span class=n>image_b64</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span><span class=s2>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;text&#34;</span><span class=p>,</span> <span class=s2>&#34;text&#34;</span><span class=p>:</span> <span class=s2>&#34;這張圖表中的成長率是多少？&#34;</span><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>response</span> <span class=o>=</span> <span class=n>llm</span><span class=o>.</span><span class=n>invoke</span><span class=p>([</span><span class=n>HumanMessage</span><span class=p>(</span><span class=n>content</span><span class=o>=</span><span class=n>content</span><span class=p>)])</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>response</span><span class=o>.</span><span class=n>content</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=五-推理模型與自定義角色>五、 推理模型與自定義角色<a hidden class=anchor aria-hidden=true href=#五-推理模型與自定義角色>#</a></h3><p>最近很紅的「推理模型」（Reasoning Models），例如 IBM 的 <code>Granite 3.2</code>，支援一種特別的模式來展示它的「心路歷程」。</p><p>在 <code>ChatOllama</code> 中，我們可以透過非標準的 <code>ChatMessage</code> 來啟動這個機制：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>langchain_core.messages</span> <span class=kn>import</span> <span class=n>ChatMessage</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>langchain_ollama</span> <span class=kn>import</span> <span class=n>ChatOllama</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>llm</span> <span class=o>=</span> <span class=n>ChatOllama</span><span class=p>(</span><span class=n>model</span><span class=o>=</span><span class=s2>&#34;granite3.2:8b&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>messages</span> <span class=o>=</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 設定控制角色為 &#39;thinking&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=n>ChatMessage</span><span class=p>(</span><span class=n>role</span><span class=o>=</span><span class=s2>&#34;control&#34;</span><span class=p>,</span> <span class=n>content</span><span class=o>=</span><span class=s2>&#34;thinking&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>HumanMessage</span><span class=p>(</span><span class=s2>&#34;為什麼 3^3 等於 27？&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>response</span> <span class=o>=</span> <span class=n>llm</span><span class=o>.</span><span class=n>invoke</span><span class=p>(</span><span class=n>messages</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>response</span><span class=o>.</span><span class=n>content</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>這時候，你會發現模型輸出的內容會包含 <strong>Thought Process</strong>，讓你知道它是怎麼一步步算出來的，而不只是給一個冷冰冰的答案。</p><hr><h3 id=六-注意事項與踩坑筆記>六、 注意事項與踩坑筆記<a hidden class=anchor aria-hidden=true href=#六-注意事項與踩坑筆記>#</a></h3><ol><li><strong>版本更新</strong>：Ollama 進化非常快，建議時不時跑一下 <code>pip install -U ollama</code> 確保驅動層是最新的。</li><li><strong>模型標籤</strong>：下載時若不指定 tag，預設通常是該模型最小、最精簡的版本。如果你的記憶體夠大，可以試著抓 <code>70b</code> 之類的巨獸。</li><li><strong>效能瓶頸</strong>：在地化跑模型，電腦風扇狂轉是正常的，那是「AI 的心跳聲」。</li></ol><hr><h3 id=七-結語>七、 結語<a hidden class=anchor aria-hidden=true href=#七-結語>#</a></h3><p><strong>Ollama</strong> 讓「私有化 AI」這件事從實驗室走向了每個人的桌面。當我們把 <strong>ChatOllama</strong> 放入 LangChain 的工作流中，我們就擁有了一個既安全、又強大，且完全由自己主宰的智慧大腦。</p><p>下次如果你在深夜寫扣，不想讓雲端服務知道你在幹嘛，就把 Ollama 叫起來陪你吧！</p></div><footer class=post-footer></footer></article></main><footer class=footer><span>&copy; 2022~2025 <a href=http://localhost:1313/>Aura's Space</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

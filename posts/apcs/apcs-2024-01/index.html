@@ -1,0 +1,449 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>APCS-2024-01 | Aura's Space</title><meta name=keywords content="C++"><meta name=description content="1. 遊戲選角
+解題步驟
+
+讀取角色數量和資料：讀取角色總數 n。使用迴圈讀取 n 次，每次讀取一個角色的攻擊力 a 和防禦力 d。
+儲存資料：使用一個二維 vector (或結構陣列) 來儲存每個角色的攻擊力和防禦力。vector<vector<int>> s 中，s[i][0] 儲存第 i 個角色的攻擊力，s[i][1] 儲存防禦力。
+定義比較函式：要根據「能力值」（$攻擊力^2 + 防禦力^2$）來排序。我們需要自訂一個比較函式 cmp，它接受兩個角色資料 (例如 vector<int> a 和 vector<int> b)。
+實作比較邏輯：在 cmp 函式中，計算 a 的能力值 (a[0]*a[0]+a[1]*a[1]) 和 b 的能力值 (b[0]*b[0]+b[1]*b[1])。為了得到第二大的值，我們需要從大到小 (descending) 排序，所以函式應回傳 a 的能力值是否大於 b 的能力值。
+排序：使用 std::sort 函式，搭配自訂的 cmp 比較函式，對儲存所有角色資料的 vector 進行排序。
+輸出結果：排序後，vector 中的第 0 個元素 ( s[0] ) 具有最大的能力值。因此，第 1 個元素 ( s[1] ) 具有第二大的能力值。輸出 s[1][0] (攻擊力) 和 s[1][1] (防禦力)。
+
+分段步驟程式碼
+包含函式庫與自訂比較函式
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+
+
+#include<iostream>
+#include<vector>
+#include<algorithm>
+
+using namespace std;
+
+// 自訂比較函式
+// 根據能力值 (a*a + d*d) 由大到小排序
+bool cmp(vector<int> a, vector<int> b){
+    return a[0]*a[0]+a[1]*a[1] > b[0]*b[0]+b[1]*b[1];
+}
+
+
+這段程式碼包含了必要的函式庫 (iostream, vector, algorithm)。
+並定義了一個比較函式 cmp，用於 sort。它計算兩個輸入 vector (分別代表兩個角色) 的能力值平方和，並回傳第一個是否大於第二個，以實現降冪排序。"><meta name=author content="Aura"><link rel=canonical href=http://localhost:1313/posts/apcs/apcs-2024-01/><link crossorigin=anonymous href=/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css integrity="sha256-NDzEgLn/yPBMy+XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:1313/images/favicon.ico><link rel=icon type=image/png sizes=16x16 href=http://localhost:1313/images/favicon.ico><link rel=icon type=image/png sizes=32x32 href=http://localhost:1313/images/favicon.ico><link rel=apple-touch-icon href=http://localhost:1313/images/favicon.ico><link rel=mask-icon href=http://localhost:1313/images/favicon.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:1313/posts/apcs/apcs-2024-01/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}@media(prefers-color-scheme:light){.list::-webkit-scrollbar-thumb{border-color:var(--code-bg)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="http://localhost:1313/posts/apcs/apcs-2024-01/"><meta property="og:site_name" content="Aura's Space"><meta property="og:title" content="APCS-2024-01"><meta property="og:description" content="1. 遊戲選角 解題步驟 讀取角色數量和資料：讀取角色總數 n。使用迴圈讀取 n 次，每次讀取一個角色的攻擊力 a 和防禦力 d。 儲存資料：使用一個二維 vector (或結構陣列) 來儲存每個角色的攻擊力和防禦力。vector<vector<int>> s 中，s[i][0] 儲存第 i 個角色的攻擊力，s[i][1] 儲存防禦力。 定義比較函式：要根據「能力值」（$攻擊力^2 + 防禦力^2$）來排序。我們需要自訂一個比較函式 cmp，它接受兩個角色資料 (例如 vector<int> a 和 vector<int> b)。 實作比較邏輯：在 cmp 函式中，計算 a 的能力值 (a[0]*a[0]+a[1]*a[1]) 和 b 的能力值 (b[0]*b[0]+b[1]*b[1])。為了得到第二大的值，我們需要從大到小 (descending) 排序，所以函式應回傳 a 的能力值是否大於 b 的能力值。 排序：使用 std::sort 函式，搭配自訂的 cmp 比較函式，對儲存所有角色資料的 vector 進行排序。 輸出結果：排序後，vector 中的第 0 個元素 ( s[0] ) 具有最大的能力值。因此，第 1 個元素 ( s[1] ) 具有第二大的能力值。輸出 s[1][0] (攻擊力) 和 s[1][1] (防禦力)。 分段步驟程式碼 包含函式庫與自訂比較函式 1 2 3 4 5 6 7 8 9 10 11 #include<iostream> #include<vector> #include<algorithm> using namespace std; // 自訂比較函式 // 根據能力值 (a*a + d*d) 由大到小排序 bool cmp(vector<int> a, vector<int> b){ return a[0]*a[0]+a[1]*a[1] > b[0]*b[0]+b[1]*b[1]; } 這段程式碼包含了必要的函式庫 (iostream, vector, algorithm)。 並定義了一個比較函式 cmp，用於 sort。它計算兩個輸入 vector (分別代表兩個角色) 的能力值平方和，並回傳第一個是否大於第二個，以實現降冪排序。"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-06-22T20:28:41+00:00"><meta property="article:modified_time" content="2025-06-22T20:28:41+00:00"><meta property="article:tag" content="C++"><meta name=twitter:card content="summary"><meta name=twitter:title content="APCS-2024-01"><meta name=twitter:description content="1. 遊戲選角
+解題步驟
+
+讀取角色數量和資料：讀取角色總數 n。使用迴圈讀取 n 次，每次讀取一個角色的攻擊力 a 和防禦力 d。
+儲存資料：使用一個二維 vector (或結構陣列) 來儲存每個角色的攻擊力和防禦力。vector<vector<int>> s 中，s[i][0] 儲存第 i 個角色的攻擊力，s[i][1] 儲存防禦力。
+定義比較函式：要根據「能力值」（$攻擊力^2 + 防禦力^2$）來排序。我們需要自訂一個比較函式 cmp，它接受兩個角色資料 (例如 vector<int> a 和 vector<int> b)。
+實作比較邏輯：在 cmp 函式中，計算 a 的能力值 (a[0]*a[0]+a[1]*a[1]) 和 b 的能力值 (b[0]*b[0]+b[1]*b[1])。為了得到第二大的值，我們需要從大到小 (descending) 排序，所以函式應回傳 a 的能力值是否大於 b 的能力值。
+排序：使用 std::sort 函式，搭配自訂的 cmp 比較函式，對儲存所有角色資料的 vector 進行排序。
+輸出結果：排序後，vector 中的第 0 個元素 ( s[0] ) 具有最大的能力值。因此，第 1 個元素 ( s[1] ) 具有第二大的能力值。輸出 s[1][0] (攻擊力) 和 s[1][1] (防禦力)。
+
+分段步驟程式碼
+包含函式庫與自訂比較函式
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+
+
+#include<iostream>
+#include<vector>
+#include<algorithm>
+
+using namespace std;
+
+// 自訂比較函式
+// 根據能力值 (a*a + d*d) 由大到小排序
+bool cmp(vector<int> a, vector<int> b){
+    return a[0]*a[0]+a[1]*a[1] > b[0]*b[0]+b[1]*b[1];
+}
+
+
+這段程式碼包含了必要的函式庫 (iostream, vector, algorithm)。
+並定義了一個比較函式 cmp，用於 sort。它計算兩個輸入 vector (分別代表兩個角色) 的能力值平方和，並回傳第一個是否大於第二個，以實現降冪排序。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:1313/posts/"},{"@type":"ListItem","position":2,"name":"APCS-2024-01","item":"http://localhost:1313/posts/apcs/apcs-2024-01/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"APCS-2024-01","name":"APCS-2024-01","description":"1. 遊戲選角 解題步驟 讀取角色數量和資料：讀取角色總數 n。使用迴圈讀取 n 次，每次讀取一個角色的攻擊力 a 和防禦力 d。 儲存資料：使用一個二維 vector (或結構陣列) 來儲存每個角色的攻擊力和防禦力。vector\u0026lt;vector\u0026lt;int\u0026gt;\u0026gt; s 中，s[i][0] 儲存第 i 個角色的攻擊力，s[i][1] 儲存防禦力。 定義比較函式：要根據「能力值」（$攻擊力^2 + 防禦力^2$）來排序。我們需要自訂一個比較函式 cmp，它接受兩個角色資料 (例如 vector\u0026lt;int\u0026gt; a 和 vector\u0026lt;int\u0026gt; b)。 實作比較邏輯：在 cmp 函式中，計算 a 的能力值 (a[0]*a[0]+a[1]*a[1]) 和 b 的能力值 (b[0]*b[0]+b[1]*b[1])。為了得到第二大的值，我們需要從大到小 (descending) 排序，所以函式應回傳 a 的能力值是否大於 b 的能力值。 排序：使用 std::sort 函式，搭配自訂的 cmp 比較函式，對儲存所有角色資料的 vector 進行排序。 輸出結果：排序後，vector 中的第 0 個元素 ( s[0] ) 具有最大的能力值。因此，第 1 個元素 ( s[1] ) 具有第二大的能力值。輸出 s[1][0] (攻擊力) 和 s[1][1] (防禦力)。 分段步驟程式碼 包含函式庫與自訂比較函式 1 2 3 4 5 6 7 8 9 10 11 #include\u0026lt;iostream\u0026gt; #include\u0026lt;vector\u0026gt; #include\u0026lt;algorithm\u0026gt; using namespace std; // 自訂比較函式 // 根據能力值 (a*a + d*d) 由大到小排序 bool cmp(vector\u0026lt;int\u0026gt; a, vector\u0026lt;int\u0026gt; b){ return a[0]*a[0]+a[1]*a[1] \u0026gt; b[0]*b[0]+b[1]*b[1]; } 這段程式碼包含了必要的函式庫 (iostream, vector, algorithm)。 並定義了一個比較函式 cmp，用於 sort。它計算兩個輸入 vector (分別代表兩個角色) 的能力值平方和，並回傳第一個是否大於第二個，以實現降冪排序。\n","keywords":["C++"],"articleBody":"1. 遊戲選角 解題步驟 讀取角色數量和資料：讀取角色總數 n。使用迴圈讀取 n 次，每次讀取一個角色的攻擊力 a 和防禦力 d。 儲存資料：使用一個二維 vector (或結構陣列) 來儲存每個角色的攻擊力和防禦力。vector","wordCount":"897","inLanguage":"en","datePublished":"2025-06-22T20:28:41Z","dateModified":"2025-06-22T20:28:41Z","author":{"@type":"Person","name":"Aura"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:1313/posts/apcs/apcs-2024-01/"},"publisher":{"@type":"Organization","name":"Aura's Space","logo":{"@type":"ImageObject","url":"http://localhost:1313/images/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><div class=logo><a href=http://localhost:1313/ accesskey=h title="Aura's Space (Alt + H)"><img src=http://localhost:1313/images/favicon.ico alt aria-label=logo height=35>Aura's Space</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:1313/archives/ title=Archives><span>Archives</span></a></li><li><a href=http://localhost:1313/categories/ title=Categories><span>Categories</span></a></li><li><a href=http://localhost:1313/tags/ title=Tags><span>Tags</span></a></li><li><a href=http://localhost:1313/about/ title=About><span>About</span></a></li><li><a href=http://localhost:1313/search/ title="🔍 (Alt + /)" accesskey=/><span>🔍</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=http://localhost:1313/>Home</a>&nbsp;»&nbsp;<a href=http://localhost:1313/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">APCS-2024-01</h1><div class=post-meta><span title='2025-06-22 20:28:41 +0000 UTC'>June 22, 2025</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>Aura</span></div></header><ul class=post-tags><li><a href=http://localhost:1313/tags/c++/>C++</a></li></ul><div class=post-content><h1 id=1-遊戲選角>1. 遊戲選角<a hidden class=anchor aria-hidden=true href=#1-遊戲選角>#</a></h1><h2 id=解題步驟>解題步驟<a hidden class=anchor aria-hidden=true href=#解題步驟>#</a></h2><ol><li><strong>讀取角色數量和資料</strong>：讀取角色總數 <code>n</code>。使用迴圈讀取 <code>n</code> 次，每次讀取一個角色的攻擊力 <code>a</code> 和防禦力 <code>d</code>。</li><li><strong>儲存資料</strong>：使用一個二維 <code>vector</code> (或結構陣列) 來儲存每個角色的攻擊力和防禦力。<code>vector&lt;vector&lt;int>> s</code> 中，<code>s[i][0]</code> 儲存第 <code>i</code> 個角色的攻擊力，<code>s[i][1]</code> 儲存防禦力。</li><li><strong>定義比較函式</strong>：要根據「能力值」（$攻擊力^2 + 防禦力^2$）來排序。我們需要自訂一個比較函式 <code>cmp</code>，它接受兩個角色資料 (例如 <code>vector&lt;int> a</code> 和 <code>vector&lt;int> b</code>)。</li><li><strong>實作比較邏輯</strong>：在 <code>cmp</code> 函式中，計算 <code>a</code> 的能力值 (<code>a[0]*a[0]+a[1]*a[1]</code>) 和 <code>b</code> 的能力值 (<code>b[0]*b[0]+b[1]*b[1]</code>)。為了得到<strong>第二大</strong>的值，我們需要從大到小 (descending) 排序，所以函式應回傳 <code>a</code> 的能力值是否<strong>大於</strong> <code>b</code> 的能力值。</li><li><strong>排序</strong>：使用 <code>std::sort</code> 函式，搭配自訂的 <code>cmp</code> 比較函式，對儲存所有角色資料的 <code>vector</code> 進行排序。</li><li><strong>輸出結果</strong>：排序後，<code>vector</code> 中的第 0 個元素 ( <code>s[0]</code> ) 具有最大的能力值。因此，第 1 個元素 ( <code>s[1]</code> ) 具有<strong>第二大</strong>的能力值。輸出 <code>s[1][0]</code> (攻擊力) 和 <code>s[1][1]</code> (防禦力)。</li></ol><h2 id=分段步驟程式碼>分段步驟程式碼<a hidden class=anchor aria-hidden=true href=#分段步驟程式碼>#</a></h2><h3 id=包含函式庫與自訂比較函式>包含函式庫與自訂比較函式<a hidden class=anchor aria-hidden=true href=#包含函式庫與自訂比較函式>#</a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include&lt;iostream&gt;
+</span></span></span><span class=line><span class=cl><span class=cp>#include&lt;vector&gt;
+</span></span></span><span class=line><span class=cl><span class=cp>#include&lt;algorithm&gt;
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 自訂比較函式
+</span></span></span><span class=line><span class=cl><span class=c1>// 根據能力值 (a*a + d*d) 由大到小排序
+</span></span></span><span class=line><span class=cl><span class=kt>bool</span> <span class=nf>cmp</span><span class=p>(</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span> <span class=n>a</span><span class=p>,</span> <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span> <span class=n>b</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>a</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>*</span><span class=n>a</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>+</span><span class=n>a</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=o>*</span><span class=n>a</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>&gt;</span> <span class=n>b</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>*</span><span class=n>b</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>+</span><span class=n>b</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=o>*</span><span class=n>b</span><span class=p>[</span><span class=mi>1</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>這段程式碼包含了必要的函式庫 (<code>iostream</code>, <code>vector</code>, <code>algorithm</code>)。
+並定義了一個比較函式 <code>cmp</code>，用於 <code>sort</code>。它計算兩個輸入 <code>vector</code> (分別代表兩個角色) 的能力值平方和，並回傳第一個是否大於第二個，以實現降冪排序。</p><h3 id=讀取輸入並儲存>讀取輸入並儲存<a hidden class=anchor aria-hidden=true href=#讀取輸入並儲存>#</a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>n</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>cin</span> <span class=o>&gt;&gt;</span> <span class=n>n</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 宣告一個 n x 2 的二維 vector 來儲存 n 個角色的攻擊力和防禦力
+</span></span></span><span class=line><span class=cl>    <span class=n>vector</span><span class=o>&lt;</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&gt;</span> <span class=n>s</span><span class=p>(</span><span class=n>n</span><span class=p>,</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span><span class=p>(</span><span class=mi>2</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span><span class=n>i</span><span class=o>&lt;</span><span class=n>n</span><span class=p>;</span><span class=n>i</span><span class=o>++</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=n>cin</span> <span class=o>&gt;&gt;</span> <span class=n>s</span><span class=p>[</span><span class=n>i</span><span class=p>][</span><span class=mi>0</span><span class=p>]</span> <span class=o>&gt;&gt;</span> <span class=n>s</span><span class=p>[</span><span class=n>i</span><span class=p>][</span><span class=mi>1</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// ...
+</span></span></span></code></pre></td></tr></table></div></div><p>在 <code>main</code> 函式中，首先讀取角色數量 <code>n</code>。然後，宣告一個名為 <code>s</code> 的二維 <code>vector</code>，它有 <code>n</code> 列，每列有 2 個元素。接著，使用迴圈讀取 <code>n</code> 行輸入，將攻擊力和防禦力分別存入 <code>s[i][0]</code> 和 <code>s[i][1]</code>。</p><h3 id=排序與輸出>排序與輸出<a hidden class=anchor aria-hidden=true href=#排序與輸出>#</a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl>    <span class=c1>// ...
+</span></span></span><span class=line><span class=cl>    <span class=c1>// 使用 std::sort 並傳入自訂的 cmp 函式來排序
+</span></span></span><span class=line><span class=cl>    <span class=n>sort</span><span class=p>(</span><span class=n>s</span><span class=p>.</span><span class=n>begin</span><span class=p>(),</span><span class=n>s</span><span class=p>.</span><span class=n>end</span><span class=p>(),</span><span class=n>cmp</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 排序後，s[0] 是能力值最大的，s[1] 是第二大的
+</span></span></span><span class=line><span class=cl>    <span class=c1>// 輸出 s[1] 的攻擊力和防禦力
+</span></span></span><span class=line><span class=cl>    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>s</span><span class=p>[</span><span class=mi>1</span><span class=p>][</span><span class=mi>0</span><span class=p>]</span> <span class=o>&lt;&lt;</span> <span class=sc>&#39; &#39;</span> <span class=o>&lt;&lt;</span> <span class=n>s</span><span class=p>[</span><span class=mi>1</span><span class=p>][</span><span class=mi>1</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>這段程式碼呼叫 <code>std::sort</code>，對 <code>s</code> 向量從頭到尾 (<code>s.begin()</code> 到 <code>s.end()</code>) 進行排序，並使用 <code>cmp</code> 函式作為排序的標準。
+排序完成後，<code>s[1]</code> 中儲存的就是能力值第二大的角色資料。最後，輸出 <code>s[1][0]</code> (攻擊力) 和 <code>s[1][1]</code> (防禦力)，並以空格分隔。</p><h2 id=完整程式碼>完整程式碼<a hidden class=anchor aria-hidden=true href=#完整程式碼>#</a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include&lt;iostream&gt;
+</span></span></span><span class=line><span class=cl><span class=cp>#include&lt;vector&gt;
+</span></span></span><span class=line><span class=cl><span class=cp>#include&lt;algorithm&gt;
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 自訂比較函式
+</span></span></span><span class=line><span class=cl><span class=c1>// 比較兩個角色 (a, b) 的能力值
+</span></span></span><span class=line><span class=cl><span class=c1>// 能力值 = 攻擊力^2 + 防禦力^2
+</span></span></span><span class=line><span class=cl><span class=c1>// 回傳 true 表示 a 應該排在 b 前面 (降冪排序)
+</span></span></span><span class=line><span class=cl><span class=kt>bool</span> <span class=nf>cmp</span><span class=p>(</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span> <span class=n>a</span><span class=p>,</span> <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span> <span class=n>b</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>a</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>*</span><span class=n>a</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>+</span><span class=n>a</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=o>*</span><span class=n>a</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>&gt;</span> <span class=n>b</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>*</span><span class=n>b</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>+</span><span class=n>b</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=o>*</span><span class=n>b</span><span class=p>[</span><span class=mi>1</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>n</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>cin</span> <span class=o>&gt;&gt;</span> <span class=n>n</span> <span class=p>;</span> <span class=c1>// 讀取角色數量
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 宣告 n x 2 的二維 vector 儲存資料
+</span></span></span><span class=line><span class=cl>    <span class=n>vector</span><span class=o>&lt;</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&gt;</span> <span class=n>s</span><span class=p>(</span><span class=n>n</span><span class=p>,</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span><span class=p>(</span><span class=mi>2</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 迴圈讀取 n 個角色的攻擊力 (s[i][0]) 和防禦力 (s[i][1])
+</span></span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span><span class=n>i</span><span class=o>&lt;</span><span class=n>n</span><span class=p>;</span><span class=n>i</span><span class=o>++</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=n>cin</span> <span class=o>&gt;&gt;</span> <span class=n>s</span><span class=p>[</span><span class=n>i</span><span class=p>][</span><span class=mi>0</span><span class=p>]</span> <span class=o>&gt;&gt;</span> <span class=n>s</span><span class=p>[</span><span class=n>i</span><span class=p>][</span><span class=mi>1</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 使用 std::sort 和自訂的 cmp 函式對角色
+</span></span></span><span class=line><span class=cl>    <span class=c1>// 根據能力值進行降冪排序
+</span></span></span><span class=line><span class=cl>    <span class=n>sort</span><span class=p>(</span><span class=n>s</span><span class=p>.</span><span class=n>begin</span><span class=p>(),</span><span class=n>s</span><span class=p>.</span><span class=n>end</span><span class=p>(),</span><span class=n>cmp</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 排序後，s[0] 是第一名，s[1] 是第二名
+</span></span></span><span class=line><span class=cl>    <span class=c1>// 輸出第二名角色的攻擊力和防禦力
+</span></span></span><span class=line><span class=cl>    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>s</span><span class=p>[</span><span class=mi>1</span><span class=p>][</span><span class=mi>0</span><span class=p>]</span> <span class=o>&lt;&lt;</span> <span class=sc>&#39; &#39;</span> <span class=o>&lt;&lt;</span> <span class=n>s</span><span class=p>[</span><span class=mi>1</span><span class=p>][</span><span class=mi>1</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h1 id=2-蜜蜂觀察>2. 蜜蜂觀察<a hidden class=anchor aria-hidden=true href=#2-蜜蜂觀察>#</a></h1><h2 id=解題步驟-1>解題步驟<a hidden class=anchor aria-hidden=true href=#解題步驟-1>#</a></h2><ol><li><strong>讀取輸入</strong>: 讀取蜂巢大小 $m$、$n$ 以及總步數 $k$。</li><li><strong>儲存蜂巢地圖</strong>: 建立一個 $m \times n$ 的二維資料結構（例如 <code>vector&lt;string></code>），並讀取 $m$ 行字串來儲存蜂巢上每個格子的字母。</li><li><strong>初始化狀態</strong>:<ul><li>設定 Bob 的起始位置 <code>(x, y)</code> 在左下角，即 <code>(m-1, 0)</code>。</li><li>建立一個大小為 52 的整數陣列 <code>abc</code> 並全部初始化為 0，用來分別統計 26 個大寫字母和 26 個小寫字母出現的次數。</li></ul></li><li><strong>模擬移動過程</strong>:<ul><li>使用一個 for 迴圈執行 $k$ 次，代表 Bob 的 $k$ 步移動。</li><li>在迴圈中，首先讀取該步驟的移動方向 <code>step</code>。</li><li><strong>檢查邊界並移動</strong>: 根據 <code>step</code> 的值 (0-5)，判斷移動後的
+新位置是否會超出蜂巢邊界（撞牆）。<ul><li>如果不會超出邊界，則更新 <code>x</code> 和 <code>y</code> 座標。</li><li>如果會超出邊界，<code>x</code> 和 <code>y</code> 座標保持不變（停在原地）。</li></ul></li><li><strong>記錄路徑與字元</strong>:<ul><li>輸出當前位置 <code>(x, y)</code> 上的字元 <code>comb[x][y]</code>。</li><li>將 <code>abc</code> 陣列中對應的字元計數加 1。需區分大小寫，例如 &lsquo;A&rsquo;-&lsquo;Z&rsquo; 對應 0-25，&lsquo;a&rsquo;-&lsquo;z&rsquo; 對應 26-51。</li></ul></li></ul></li><li><strong>計算並輸出字元種類數</strong>:<ul><li>迴圈結束後，宣告一個變數 <code>diff</code> 來計算種類數。</li><li>遍歷 <code>abc</code> 陣列 (0 到 51)，如果 <code>abc[i] > 0</code>（表示該字元至少出現過一次），則將 <code>diff</code> 加 1。</li><li>最後，換行並輸出 <code>diff</code> 的值。</li></ul></li></ol><h2 id=分段步驟程式碼-1>分段步驟程式碼<a hidden class=anchor aria-hidden=true href=#分段步驟程式碼-1>#</a></h2><h3 id=讀取輸入與儲存蜂巢地圖>讀取輸入與儲存蜂巢地圖<a hidden class=anchor aria-hidden=true href=#讀取輸入與儲存蜂巢地圖>#</a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>int</span> <span class=n>m</span><span class=p>,</span><span class=n>n</span><span class=p>,</span><span class=n>k</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=n>cin</span> <span class=o>&gt;&gt;</span> <span class=n>m</span> <span class=o>&gt;&gt;</span> <span class=n>n</span> <span class=o>&gt;&gt;</span> <span class=n>k</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=n>vector</span><span class=o>&lt;</span><span class=n>string</span><span class=o>&gt;</span> <span class=n>comb</span><span class=p>(</span><span class=n>m</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span><span class=n>i</span><span class=o>&lt;</span><span class=n>m</span><span class=p>;</span><span class=n>i</span><span class=o>++</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>    <span class=n>cin</span> <span class=o>&gt;&gt;</span> <span class=n>comb</span><span class=p>[</span><span class=n>i</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>這段程式碼讀取蜂巢大小 $m$、$n$ 和步數 $k$。然後使用 <code>vector&lt;string></code> 讀取並儲存 $m \times n$ 的蜂巢地圖。</p><h3 id=初始化狀態>初始化狀態<a hidden class=anchor aria-hidden=true href=#初始化狀態>#</a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>int</span> <span class=n>x</span><span class=o>=</span><span class=n>m</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=n>y</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span> <span class=n>step</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=n>abc</span><span class=p>[</span><span class=mi>52</span><span class=p>]</span> <span class=o>=</span> <span class=p>{};</span>
+</span></span></code></pre></td></tr></table></div></div><p>這段程式碼初始化 Bob 的起始位置 <code>x=m-1</code>、<code>y=0</code>（左下角）。並初始化一個大小為 52 的計數陣列 <code>abc</code> 為全 0，用來統計 52 種（大小寫相異）字母的出現次數。</p><h3 id=模擬移動過程-迴圈與移動邏輯>模擬移動過程 (迴圈與移動邏輯)<a hidden class=anchor aria-hidden=true href=#模擬移動過程-迴圈與移動邏輯>#</a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span><span class=n>i</span><span class=o>&lt;</span><span class=n>k</span><span class=p>;</span><span class=n>i</span><span class=o>++</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>    <span class=n>cin</span> <span class=o>&gt;&gt;</span> <span class=n>step</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>step</span><span class=o>==</span><span class=mi>0</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>x</span><span class=o>-</span><span class=mi>1</span><span class=o>&gt;=</span><span class=mi>0</span><span class=p>){</span> <span class=c1>// 往上 (Up)
+</span></span></span><span class=line><span class=cl>            <span class=n>x</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span> <span class=nf>if</span><span class=p>(</span><span class=n>step</span><span class=o>==</span><span class=mi>1</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>y</span><span class=o>+</span><span class=mi>1</span><span class=o>&lt;</span><span class=n>n</span><span class=p>){</span> <span class=c1>// 往右 (Right)
+</span></span></span><span class=line><span class=cl>            <span class=n>y</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span> <span class=nf>if</span><span class=p>(</span><span class=n>step</span><span class=o>==</span><span class=mi>2</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>x</span><span class=o>+</span><span class=mi>1</span><span class=o>&lt;</span><span class=n>m</span> <span class=o>&amp;&amp;</span> <span class=n>y</span><span class=o>+</span><span class=mi>1</span><span class=o>&lt;</span><span class=n>n</span><span class=p>){</span> <span class=c1>// 往右下 (Down-Right)
+</span></span></span><span class=line><span class=cl>            <span class=n>x</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>y</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span> <span class=nf>if</span><span class=p>(</span><span class=n>step</span><span class=o>==</span><span class=mi>3</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>x</span><span class=o>+</span><span class=mi>1</span><span class=o>&lt;</span><span class=n>m</span><span class=p>){</span> <span class=c1>// 往下 (Down)
+</span></span></span><span class=line><span class=cl>            <span class=n>x</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span> <span class=nf>if</span><span class=p>(</span><span class=n>step</span><span class=o>==</span><span class=mi>4</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>y</span><span class=o>-</span><span class=mi>1</span><span class=o>&gt;=</span><span class=mi>0</span><span class=p>){</span> <span class=c1>// 往左 (Left)
+</span></span></span><span class=line><span class=cl>            <span class=n>y</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span> <span class=nf>if</span><span class=p>(</span><span class=n>step</span><span class=o>==</span><span class=mi>5</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>x</span><span class=o>-</span><span class=mi>1</span><span class=o>&gt;=</span><span class=mi>0</span> <span class=o>&amp;&amp;</span> <span class=n>y</span><span class=o>-</span><span class=mi>1</span><span class=o>&gt;=</span><span class=mi>0</span><span class=p>){</span> <span class=c1>// 往左上 (Up-Left)
+</span></span></span><span class=line><span class=cl>            <span class=n>x</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=n>y</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// ... (記錄路徑與字元)
+</span></span></span></code></pre></td></tr></table></div></div><p>這段程式碼是 <code>k</code> 步移動的主迴圈。</p><ol><li>讀取每一步的方向 <code>step</code>。</li><li>使用 <code>if-else if</code> 結構判斷 6 種方向。</li><li>在更新座標 <code>x</code> 和 <code>y</code> 之前，先檢查新位置是否仍在 $m \times n$ 的範圍內。如果超出範圍（撞牆），則不更新座標，Bob 停在原地。</li></ol><h3 id=記錄路徑與字元-在迴圈內>記錄路徑與字元 (在迴圈內)<a hidden class=anchor aria-hidden=true href=#記錄路徑與字元-在迴圈內>#</a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl>    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>comb</span><span class=p>[</span><span class=n>x</span><span class=p>][</span><span class=n>y</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>comb</span><span class=p>[</span><span class=n>x</span><span class=p>][</span><span class=n>y</span><span class=p>]</span> <span class=o>&gt;=</span> <span class=sc>&#39;a&#39;</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=n>abc</span><span class=p>[</span><span class=n>comb</span><span class=p>[</span><span class=n>x</span><span class=p>][</span><span class=n>y</span><span class=p>]</span><span class=o>-</span><span class=sc>&#39;a&#39;</span><span class=o>+</span><span class=mi>26</span><span class=p>]</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>abc</span><span class=p>[</span><span class=n>comb</span><span class=p>[</span><span class=n>x</span><span class=p>][</span><span class=n>y</span><span class=p>]</span><span class=o>-</span><span class=sc>&#39;A&#39;</span><span class=p>]</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span> <span class=c1>// for 迴圈結束
+</span></span></span></code></pre></td></tr></table></div></div><p>這段程式碼在 <code>for</code> 迴圈內，緊接在移動邏輯之後。</p><ol><li><code>cout &lt;&lt; comb[x][y];</code> 輸出當前（移動後或停在原地）位置的字元，累加成路徑字串。</li><li><code>if-else</code> 判斷當前字元是小寫還大寫：<ul><li>大寫：&lsquo;A&rsquo; 對應 <code>abc[0]</code>，&lsquo;B&rsquo; 對應 <code>abc[1]</code> &mldr;</li><li>小寫：&lsquo;a&rsquo; 對應 <code>abc[26]</code>，&lsquo;b&rsquo; 對應 <code>abc[27]</code> &mldr;
+並將對應的計數器加 1。</li></ul></li></ol><h3 id=計算並輸出字元種類數>計算並輸出字元種類數<a hidden class=anchor aria-hidden=true href=#計算並輸出字元種類數>#</a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>int</span> <span class=n>diff</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span><span class=n>i</span><span class=o>&lt;</span><span class=mi>52</span><span class=p>;</span><span class=n>i</span><span class=o>++</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>    <span class=n>diff</span> <span class=o>+=</span> <span class=n>abc</span><span class=p>[</span><span class=n>i</span><span class=p>]</span><span class=o>&gt;</span><span class=mi>0</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=n>cout</span><span class=o>&lt;&lt;</span><span class=n>endl</span><span class=o>&lt;&lt;</span><span class=n>diff</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>這段程式碼在 <code>for</code> 迴圈結束後執行。</p><ol><li>初始化種類數 <code>diff</code> 為 0。</li><li>遍歷 <code>abc</code> 陣列，<code>abc[i] > 0</code> 這個布林表達式在 C++ 中會被轉為 1 (true) 或 0 (false)。</li><li>因此，<code>diff</code> 只會累加那些至少出現過一次 (計數 > 0) 的字元種類。</li><li>最後，<code>cout &lt;&lt; endl;</code> 換行，並輸出總種類數 <code>diff</code>。</li></ol><h2 id=完整程式碼-1>完整程式碼<a hidden class=anchor aria-hidden=true href=#完整程式碼-1>#</a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include&lt;iostream&gt;
+</span></span></span><span class=line><span class=cl><span class=cp>#include&lt;vector&gt;
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>m</span><span class=p>,</span><span class=n>n</span><span class=p>,</span><span class=n>k</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>cin</span> <span class=o>&gt;&gt;</span> <span class=n>m</span> <span class=o>&gt;&gt;</span> <span class=n>n</span> <span class=o>&gt;&gt;</span> <span class=n>k</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>vector</span><span class=o>&lt;</span><span class=n>string</span><span class=o>&gt;</span> <span class=n>comb</span><span class=p>(</span><span class=n>m</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span><span class=n>i</span><span class=o>&lt;</span><span class=n>m</span><span class=p>;</span><span class=n>i</span><span class=o>++</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=n>cin</span> <span class=o>&gt;&gt;</span> <span class=n>comb</span><span class=p>[</span><span class=n>i</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>x</span><span class=o>=</span><span class=n>m</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=n>y</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span> <span class=n>step</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>abc</span><span class=p>[</span><span class=mi>52</span><span class=p>]</span> <span class=o>=</span> <span class=p>{};</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span><span class=n>i</span><span class=o>&lt;</span><span class=n>k</span><span class=p>;</span><span class=n>i</span><span class=o>++</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=n>cin</span> <span class=o>&gt;&gt;</span> <span class=n>step</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>step</span><span class=o>==</span><span class=mi>0</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span><span class=p>(</span><span class=n>x</span><span class=o>-</span><span class=mi>1</span><span class=o>&gt;=</span><span class=mi>0</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>                <span class=n>x</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>step</span><span class=o>==</span><span class=mi>1</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span><span class=p>(</span><span class=n>y</span><span class=o>+</span><span class=mi>1</span><span class=o>&lt;</span><span class=n>n</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>                <span class=n>y</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>step</span><span class=o>==</span><span class=mi>2</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span><span class=p>(</span><span class=n>x</span><span class=o>+</span><span class=mi>1</span><span class=o>&lt;</span><span class=n>m</span> <span class=o>&amp;&amp;</span> <span class=n>y</span><span class=o>+</span><span class=mi>1</span><span class=o>&lt;</span><span class=n>n</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>                <span class=n>x</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>                <span class=n>y</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>step</span><span class=o>==</span><span class=mi>3</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span><span class=p>(</span><span class=n>x</span><span class=o>+</span><span class=mi>1</span><span class=o>&lt;</span><span class=n>m</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>                <span class=n>x</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>step</span><span class=o>==</span><span class=mi>4</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span><span class=p>(</span><span class=n>y</span><span class=o>-</span><span class=mi>1</span><span class=o>&gt;=</span><span class=mi>0</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>                <span class=n>y</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>step</span><span class=o>==</span><span class=mi>5</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span><span class=p>(</span><span class=n>x</span><span class=o>-</span><span class=mi>1</span><span class=o>&gt;=</span><span class=mi>0</span> <span class=o>&amp;&amp;</span> <span class=n>y</span><span class=o>-</span><span class=mi>1</span><span class=o>&gt;=</span><span class=mi>0</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>                <span class=n>x</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>                <span class=n>y</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>comb</span><span class=p>[</span><span class=n>x</span><span class=p>][</span><span class=n>y</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=n>comb</span><span class=p>[</span><span class=n>x</span><span class=p>][</span><span class=n>y</span><span class=p>]</span> <span class=o>&gt;=</span> <span class=sc>&#39;a&#39;</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>            <span class=n>abc</span><span class=p>[</span><span class=n>comb</span><span class=p>[</span><span class=n>x</span><span class=p>][</span><span class=n>y</span><span class=p>]</span><span class=o>-</span><span class=sc>&#39;a&#39;</span><span class=o>+</span><span class=mi>26</span><span class=p>]</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>abc</span><span class=p>[</span><span class=n>comb</span><span class=p>[</span><span class=n>x</span><span class=p>][</span><span class=n>y</span><span class=p>]</span><span class=o>-</span><span class=sc>&#39;A&#39;</span><span class=p>]</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>diff</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span><span class=n>i</span><span class=o>&lt;</span><span class=mi>52</span><span class=p>;</span><span class=n>i</span><span class=o>++</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=n>diff</span> <span class=o>+=</span> <span class=n>abc</span><span class=p>[</span><span class=n>i</span><span class=p>]</span><span class=o>&gt;</span><span class=mi>0</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=n>cout</span><span class=o>&lt;&lt;</span><span class=n>endl</span><span class=o>&lt;&lt;</span><span class=n>diff</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div></div><footer class=post-footer></footer></article></main><footer class=footer><span>&copy; 2022~2025 <a href=http://localhost:1313/>Aura's Space</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
