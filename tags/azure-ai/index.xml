@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Azure AI on Aura&#39;s Space</title>
+    <link>https://aura.codex.tw/tags/azure-ai/</link>
+    <description>Recent content in Azure AI on Aura&#39;s Space</description>
+    <generator>Hugo -- 0.153.2</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 22 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://aura.codex.tw/tags/azure-ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【Temperature 1.5 的日常】EP8: 當 Structured Output 遇上評價指標 - 打造自動化的 LLM 裁判員</title>
+      <link>https://aura.codex.tw/posts/temp1.5/ep8/</link>
+      <pubDate>Wed, 22 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep8/</guid>
+      <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;零-前言&#34;&gt;零、 前言&lt;/h3&gt;
+&lt;p&gt;接續上次我們聊到的 &lt;strong&gt;自定義中介軟體 (Custom Middleware)&lt;/strong&gt;，我們掌握了攔截與修改 Agent 執行路徑的能力。但在 AI 應用落地時，最讓開發者頭痛的往往不是「怎麼跑」，而是「跑得好不好」。我們該如何量化一個 RAG（檢索增強生成）系統的表現？&lt;/p&gt;
+&lt;p&gt;今天我們要將 &lt;strong&gt;EP2 提到的結構化輸出 (Structured Output)&lt;/strong&gt; 與 &lt;strong&gt;Azure AI 評價定義&lt;/strong&gt; 結合。透過定義嚴謹的 Schema 與提示詞，讓 LLM 化身為公正的裁判，為每一次的對話進行精確打分。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;一-評價的三大支柱azure-ai-評分定義&#34;&gt;一、 評價的三大支柱：Azure AI 評分定義&lt;/h3&gt;
+&lt;p&gt;在 RAG 場景中，要衡量一個系統的品質，通常會參考以下三項關鍵指標。這些定義在 Azure AI 的評分框架中非常完整，我們可以將其直接注入到 Prompt 中：&lt;/p&gt;
+&lt;h4 id=&#34;1-groundedness-誠實度接地性&#34;&gt;1. Groundedness (誠實度/接地性)&lt;/h4&gt;
+&lt;p&gt;評估 RESPONSE 是否完全基於提供的 CONTEXT。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;核心準則&lt;/strong&gt;：Context 是唯一的真理。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;評分級別&lt;/strong&gt;：&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;1 分&lt;/strong&gt;：完全無關。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;2 分&lt;/strong&gt;：嘗試回應但包含錯誤資訊。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;3 分&lt;/strong&gt;：正確但語意模糊（太過通泛）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;4 分&lt;/strong&gt;：大部分正確，僅有輕微錯誤。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;5 分&lt;/strong&gt;：完整且精確（包含所有相關細節）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-relevance-相關性&#34;&gt;2. Relevance (相關性)&lt;/h4&gt;
+&lt;p&gt;評估 RESPONSE 是否直接解決了使用者的 QUERY。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;核心準則&lt;/strong&gt;：是否回答了問題？有無洞察力？&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;評分級別&lt;/strong&gt;：&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;1 分&lt;/strong&gt;：離題、毫無關聯。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;2 分&lt;/strong&gt;：部分相關但未回答核心問題。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;3 分&lt;/strong&gt;：部分相關但資訊不足。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;4 分&lt;/strong&gt;：高度相關但缺乏深度。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;5 分&lt;/strong&gt;：全面且具備延伸見解。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3-retrieval-檢索品質&#34;&gt;3. Retrieval (檢索品質)&lt;/h4&gt;
+&lt;p&gt;評估被檢索出的 CONTEXT 塊是否真的對回答問題有幫助。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
