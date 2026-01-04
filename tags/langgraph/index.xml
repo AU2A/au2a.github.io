@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>LangGraph on Aura&#39;s Space</title>
+    <link>https://aura.codex.tw/tags/langgraph/</link>
+    <description>Recent content in LangGraph on Aura&#39;s Space</description>
+    <generator>Hugo -- 0.153.2</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 10 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://aura.codex.tw/tags/langgraph/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【Temperature 1.5 的日常】EP11: 穿越時空的記憶 - LangChain Long-term Memory 與 Store 實戰</title>
+      <link>https://aura.codex.tw/posts/temp1.5/ep11/</link>
+      <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep11/</guid>
+      <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;零-前言&#34;&gt;零、 前言&lt;/h3&gt;
+&lt;p&gt;接續上次我們聊到的 &lt;strong&gt;Short-term Memory (短期記憶)&lt;/strong&gt;，我們透過 Checkpointer 讓 Agent 能夠在同一個 Thread (對話串) 中記住上下文，解決了「金魚腦」的問題。&lt;/p&gt;
+&lt;p&gt;但問題來了，如果使用者關掉視窗，明天開啟一個&lt;strong&gt;新的對話串 (New Thread)&lt;/strong&gt; 呢？
+在預設情況下，Agent 會把昨天的事忘得一乾二淨。這就像你每天去同一家咖啡廳，店員卻每天都問你：「先生貴姓？喝什麼？」這體驗肯定不好。&lt;/p&gt;
+&lt;p&gt;為了讓 Agent 能夠跨越對話串，記住使用者的偏好（例如：只講中文、喜歡簡短回答），我們需要引入 &lt;strong&gt;Long-term Memory (長期記憶)&lt;/strong&gt;。今天就來看看 LangChain 文件中提到的 &lt;strong&gt;LangGraph Store&lt;/strong&gt; 機制。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;一-長期記憶的本質store-與-json&#34;&gt;一、 長期記憶的本質：Store 與 JSON&lt;/h3&gt;
+&lt;p&gt;不同於短期記憶是把對話歷史 (Messages) 存起來，LangChain 定義的長期記憶更像是一個資料庫。&lt;/p&gt;
+&lt;p&gt;根據文件，LangGraph 使用 &lt;strong&gt;Store&lt;/strong&gt; 來保存這些記憶，格式是 &lt;strong&gt;JSON Documents&lt;/strong&gt;。這讓記憶不僅僅是文字，而是結構化的資料。&lt;/p&gt;
+&lt;h4 id=&#34;核心結構namespace-與-key&#34;&gt;核心結構：Namespace 與 Key&lt;/h4&gt;
+&lt;p&gt;為了不讓記憶變成一團亂麻，LangGraph 採用了類似檔案系統的結構：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Namespace (命名空間)&lt;/strong&gt;：
+這就像是「資料夾」。通常會包含使用者 ID、組織 ID 或其他標籤。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;格式範例：&lt;code&gt;(user_id, application_context)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;這讓我們可以輕鬆區分不同使用者的記憶，甚至支援階層式的組織。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Key (鍵)&lt;/strong&gt;：
+這就像是「檔名」。在同一個 Namespace 下，Key 必須是唯一的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;這種結構的強大之處在於，它支援 &lt;strong&gt;跨 Namespace 搜尋&lt;/strong&gt;。你可以透過 Content Filters (內容過濾) 來查找特定條件的記憶。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Temperature 1.5 的日常】EP10: 拒絕金魚腦 - 深入解析 LangChain 的 Short-term Memory 與狀態管理</title>
+      <link>https://aura.codex.tw/posts/temp1.5/ep10/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep10/</guid>
+      <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;零-前言&#34;&gt;零、 前言&lt;/h3&gt;
+&lt;p&gt;接續上次我們聊到的 &lt;strong&gt;MCP (Model Context Protocol)&lt;/strong&gt;，我們讓 Agent 能夠透過通用標準連接各式各樣的工具與資源。但如果你的 Agent 連接了全世界，卻轉頭就忘記你是誰，那也是白搭。&lt;/p&gt;
+&lt;p&gt;在複雜的對話任務中，記憶 (Memory) 是核心。今天我們要來探討 LangChain 文件中關於 &lt;strong&gt;Short-term memory (短期記憶)&lt;/strong&gt; 的實作機制。如何在有限的 Context Window 內，讓 Agent 既能記得之前的互動，又不會因為資訊過載而「分心」或變慢？讓我們看下去。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;一-什麼是短期記憶與-thread&#34;&gt;一、 什麼是短期記憶與 Thread？&lt;/h3&gt;
+&lt;p&gt;在 LangChain 的定義裡，短期記憶主要指的是 &lt;strong&gt;Thread-level persistence&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;這概念很像 Email 的群組信件或是 Slack 的討論串。一個 &lt;strong&gt;Thread&lt;/strong&gt; 組織了單一會話中的所有互動。這對於 Agent 至關重要，因為它需要：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;記住之前的互動（Context）。&lt;/li&gt;
+&lt;li&gt;從回饋中學習。&lt;/li&gt;
+&lt;li&gt;適應使用者的偏好。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;然而，挑戰在於 LLM 的 &lt;strong&gt;Context Window (上下文視窗)&lt;/strong&gt; 是有限的。即便模型支援超長文本，塞入過多舊資訊會導致模型「分心 (distracted)」，反應變慢且成本變高。因此，我們需要一套機制來管理這些訊息流。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;二-啟用記憶checkpointer-是關鍵&#34;&gt;二、 啟用記憶：Checkpointer 是關鍵&lt;/h3&gt;
+&lt;p&gt;要讓 Agent 擁有記憶，你不能只是把它跑起來，你需要在建立 Agent 時指定一個 &lt;strong&gt;&lt;code&gt;checkpointer&lt;/code&gt;&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;LangChain 的 Agent 將記憶視為 &lt;strong&gt;State (狀態)&lt;/strong&gt; 的一部分。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

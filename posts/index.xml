@@ -54,62 +54,109 @@
 這裡使用 &lt;code&gt;a[8]&lt;/code&gt; 和 &lt;code&gt;b[8]&lt;/code&gt; 是為了讓陣列索引值（index）能直接對應題目的第 1 到第 7 個字（忽略索引 0），這樣寫起來比較直觀，不容易搞混位置。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>APCS-2021-11</title>
-      <link>https://aura.codex.tw/posts/apcs/apcs-2021-11/</link>
-      <pubDate>Sun, 26 Oct 2025 20:22:55 +0000</pubDate>
-      <guid>https://aura.codex.tw/posts/apcs/apcs-2021-11/</guid>
-      <description>&lt;h1 id=&#34;1-修補圍籬&#34;&gt;1. 修補圍籬&lt;/h1&gt;
-&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+      <title>【Temperature 1.5 的日常】EP11: 穿越時空的記憶 - LangChain Long-term Memory 與 Store 實戰</title>
+      <link>https://aura.codex.tw/posts/temp1.5/ep11/</link>
+      <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep11/</guid>
+      <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;零-前言&#34;&gt;零、 前言&lt;/h3&gt;
+&lt;p&gt;接續上次我們聊到的 &lt;strong&gt;Short-term Memory (短期記憶)&lt;/strong&gt;，我們透過 Checkpointer 讓 Agent 能夠在同一個 Thread (對話串) 中記住上下文，解決了「金魚腦」的問題。&lt;/p&gt;
+&lt;p&gt;但問題來了，如果使用者關掉視窗，明天開啟一個&lt;strong&gt;新的對話串 (New Thread)&lt;/strong&gt; 呢？
+在預設情況下，Agent 會把昨天的事忘得一乾二淨。這就像你每天去同一家咖啡廳，店員卻每天都問你：「先生貴姓？喝什麼？」這體驗肯定不好。&lt;/p&gt;
+&lt;p&gt;為了讓 Agent 能夠跨越對話串，記住使用者的偏好（例如：只講中文、喜歡簡短回答），我們需要引入 &lt;strong&gt;Long-term Memory (長期記憶)&lt;/strong&gt;。今天就來看看 LangChain 文件中提到的 &lt;strong&gt;LangGraph Store&lt;/strong&gt; 機制。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;一-長期記憶的本質store-與-json&#34;&gt;一、 長期記憶的本質：Store 與 JSON&lt;/h3&gt;
+&lt;p&gt;不同於短期記憶是把對話歷史 (Messages) 存起來，LangChain 定義的長期記憶更像是一個資料庫。&lt;/p&gt;
+&lt;p&gt;根據文件，LangGraph 使用 &lt;strong&gt;Store&lt;/strong&gt; 來保存這些記憶，格式是 &lt;strong&gt;JSON Documents&lt;/strong&gt;。這讓記憶不僅僅是文字，而是結構化的資料。&lt;/p&gt;
+&lt;h4 id=&#34;核心結構namespace-與-key&#34;&gt;核心結構：Namespace 與 Key&lt;/h4&gt;
+&lt;p&gt;為了不讓記憶變成一團亂麻，LangGraph 採用了類似檔案系統的結構：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;讀取圍籬數量和高度&lt;/strong&gt;：讀取圍籬的總數量 &lt;code&gt;n&lt;/code&gt;，接著使用迴圈讀取 &lt;code&gt;n&lt;/code&gt; 個圍籬各自的高度，並存入一個 &lt;code&gt;vector&lt;/code&gt;（或陣列）&lt;code&gt;fence&lt;/code&gt; 中。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;初始化成本變數&lt;/strong&gt;：宣告一個整數變數 &lt;code&gt;ans&lt;/code&gt; 並將其初始化為 0，用來累計修補圍籬所需的總成本。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;遍歷圍籬並判斷&lt;/strong&gt;：使用 &lt;code&gt;for&lt;/code&gt; 迴圈從頭到尾檢查每一個圍籬（索引 &lt;code&gt;i&lt;/code&gt; 從 &lt;code&gt;0&lt;/code&gt; 到 &lt;code&gt;n-1&lt;/code&gt;）。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;檢查是否損壞&lt;/strong&gt;：在迴圈中，判斷 &lt;code&gt;fence[i]&lt;/code&gt; 是否等於 0。如果等於 0，表示這個位置的圍籬斷了，需要修補。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;處理邊界與中間情況&lt;/strong&gt;：
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Namespace (命名空間)&lt;/strong&gt;：
+這就像是「資料夾」。通常會包含使用者 ID、組織 ID 或其他標籤。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;左邊界&lt;/strong&gt;：如果 &lt;code&gt;i == 0&lt;/code&gt;（第一個圍籬），則成本增加其右側鄰居 &lt;code&gt;fence[1]&lt;/code&gt; 的高度。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;右邊界&lt;/strong&gt;：如果 &lt;code&gt;i == n-1&lt;/code&gt;（最後一個圍籬），則成本增加其左側鄰居 &lt;code&gt;fence[n-2]&lt;/code&gt; 的高度。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;中間&lt;/strong&gt;：如果不是邊界，則比較其左側 &lt;code&gt;fence[i-1]&lt;/code&gt; 和右側 &lt;code&gt;fence[i+1]&lt;/code&gt; 的高度，取&lt;strong&gt;較小&lt;/strong&gt;的那個高度加入總成本 &lt;code&gt;ans&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;格式範例：&lt;code&gt;(user_id, application_context)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;這讓我們可以輕鬆區分不同使用者的記憶，甚至支援階層式的組織。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;輸出最終成本&lt;/strong&gt;：迴圈結束後，&lt;code&gt;ans&lt;/code&gt; 中儲存的就是修補所有斷掉圍籬的總成本，將其輸出。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Key (鍵)&lt;/strong&gt;：
+這就像是「檔名」。在同一個 Namespace 下，Key 必須是唯一的。&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;分段步驟程式碼&#34;&gt;分段步驟程式碼&lt;/h2&gt;
-&lt;h3 id=&#34;讀取圍籬數量和高度&#34;&gt;讀取圍籬數量和高度&lt;/h3&gt;
+&lt;p&gt;這種結構的強大之處在於，它支援 &lt;strong&gt;跨 Namespace 搜尋&lt;/strong&gt;。你可以透過 Content Filters (內容過濾) 來查找特定條件的記憶。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Temperature 1.5 的日常】EP10: 拒絕金魚腦 - 深入解析 LangChain 的 Short-term Memory 與狀態管理</title>
+      <link>https://aura.codex.tw/posts/temp1.5/ep10/</link>
+      <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep10/</guid>
+      <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;零-前言&#34;&gt;零、 前言&lt;/h3&gt;
+&lt;p&gt;接續上次我們聊到的 &lt;strong&gt;MCP (Model Context Protocol)&lt;/strong&gt;，我們讓 Agent 能夠透過通用標準連接各式各樣的工具與資源。但如果你的 Agent 連接了全世界，卻轉頭就忘記你是誰，那也是白搭。&lt;/p&gt;
+&lt;p&gt;在複雜的對話任務中，記憶 (Memory) 是核心。今天我們要來探討 LangChain 文件中關於 &lt;strong&gt;Short-term memory (短期記憶)&lt;/strong&gt; 的實作機制。如何在有限的 Context Window 內，讓 Agent 既能記得之前的互動，又不會因為資訊過載而「分心」或變慢？讓我們看下去。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;一-什麼是短期記憶與-thread&#34;&gt;一、 什麼是短期記憶與 Thread？&lt;/h3&gt;
+&lt;p&gt;在 LangChain 的定義裡，短期記憶主要指的是 &lt;strong&gt;Thread-level persistence&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;這概念很像 Email 的群組信件或是 Slack 的討論串。一個 &lt;strong&gt;Thread&lt;/strong&gt; 組織了單一會話中的所有互動。這對於 Agent 至關重要，因為它需要：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;記住之前的互動（Context）。&lt;/li&gt;
+&lt;li&gt;從回饋中學習。&lt;/li&gt;
+&lt;li&gt;適應使用者的偏好。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;然而，挑戰在於 LLM 的 &lt;strong&gt;Context Window (上下文視窗)&lt;/strong&gt; 是有限的。即便模型支援超長文本，塞入過多舊資訊會導致模型「分心 (distracted)」，反應變慢且成本變高。因此，我們需要一套機制來管理這些訊息流。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;二-啟用記憶checkpointer-是關鍵&#34;&gt;二、 啟用記憶：Checkpointer 是關鍵&lt;/h3&gt;
+&lt;p&gt;要讓 Agent 擁有記憶，你不能只是把它跑起來，你需要在建立 Agent 時指定一個 &lt;strong&gt;&lt;code&gt;checkpointer&lt;/code&gt;&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;LangChain 的 Agent 將記憶視為 &lt;strong&gt;State (狀態)&lt;/strong&gt; 的一部分。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Temperature 1.5 的日常】EP9: 當 Agent 遇上通用標準 - Model Context Protocol (MCP) 與 LangChain 的整合之道</title>
+      <link>https://aura.codex.tw/posts/temp1.5/ep9/</link>
+      <pubDate>Wed, 05 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep9/</guid>
+      <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;零-前言&#34;&gt;零、 前言&lt;/h3&gt;
+&lt;p&gt;接續上次我們聊到的 &lt;strong&gt;自動化評價裁判 (Automated Evaluators)&lt;/strong&gt;，我們確保了 Agent 的輸出品質。但在解決了「好不好」的問題後，我們馬上遇到了「通不通」的問題。隨著 Agent 生態系的爆炸，每個工具、每個資料庫都有自己的 API 接口，讓 Agent 與外部世界溝通變得像是在蓋巴別塔。&lt;/p&gt;
+&lt;p&gt;今天我們要來聊聊 &lt;strong&gt;Model Context Protocol (MCP)&lt;/strong&gt;，這是一個試圖標準化應用程式如何向 LLM 提供工具與 Context 的開放協議。而在 LangChain 中，透過 &lt;code&gt;langchain-mcp-adapters&lt;/code&gt;，我們能輕鬆地讓 Agent 連接上這個日益龐大的生態系。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;一-什麼是-mcp為什麼我們需要它&#34;&gt;一、 什麼是 MCP？為什麼我們需要它？&lt;/h3&gt;
+&lt;p&gt;簡單來說，MCP 就像是 AI 時代的 USB Type-C。它定義了一套標準，讓開發者只需寫一次 Server，就能被所有支援 MCP 的 Client（如 Claude Desktop 或你的 LangChain Agent）讀取。&lt;/p&gt;
+&lt;p&gt;在 LangChain 中，我們主要透過 &lt;code&gt;langchain-mcp-adapters&lt;/code&gt; 這個函式庫來實現對接。它最大的賣點是 &lt;strong&gt;&lt;code&gt;MultiServerMCPClient&lt;/code&gt;&lt;/strong&gt;，這個客戶端允許你的 Agent 同時連接多個 MCP 伺服器，無論是本地的還是遠端的。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&amp;lt;iostream&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&amp;lt;vector&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;using&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;namespace&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//圍籬數量
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fence&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//圍籬高度
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fence&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 安裝適配器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install langchain-mcp-adapters
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 或者使用 uv&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uv add langchain-mcp-adapters
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;這段程式碼首先引入必要的函式庫，然後讀取圍籬數量 &lt;code&gt;n&lt;/code&gt;，並宣告一個大小為 &lt;code&gt;n&lt;/code&gt; 的 &lt;code&gt;vector&lt;/code&gt; 叫 &lt;code&gt;fence&lt;/code&gt;。接著，它使用一個 &lt;code&gt;for&lt;/code&gt; 迴圈來讀取 &lt;code&gt;n&lt;/code&gt; 次，將每個圍籬的高度存入 &lt;code&gt;vector&lt;/code&gt; 中。&lt;/p&gt;</description>
+&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;二-連接世界transports-與-multiservermcpclient&#34;&gt;二、 連接世界：Transports 與 MultiServerMCPClient&lt;/h3&gt;
+&lt;p&gt;MCP 支援不同的傳輸方式 (Transports)，LangChain 的適配器完美支援了這兩種主流模式：&lt;/p&gt;</description>
     </item>
     <item>
       <title>【Temperature 1.5 的日常】EP8: 當 Structured Output 遇上評價指標 - 打造自動化的 LLM 裁判員</title>
       <link>https://aura.codex.tw/posts/temp1.5/ep8/</link>
-      <pubDate>Wed, 22 Oct 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://aura.codex.tw/posts/temp1.5/ep8/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
@@ -122,7 +169,7 @@
 &lt;hr&gt;
 &lt;h3 id=&#34;一-評價的三大支柱azure-ai-評分定義&#34;&gt;一、 評價的三大支柱：Azure AI 評分定義&lt;/h3&gt;
 &lt;p&gt;在 RAG 場景中，要衡量一個系統的品質，通常會參考以下三項關鍵指標。這些定義在 Azure AI 的評分框架中非常完整，我們可以將其直接注入到 Prompt 中：&lt;/p&gt;
-&lt;h4 id=&#34;1-groundedness-誠實度接地性&#34;&gt;1. Groundedness (誠實度/接地性)&lt;/h4&gt;
+&lt;h4 id=&#34;1-groundedness-誠實度接地性-link&#34;&gt;1. Groundedness (誠實度/接地性) &lt;a href=&#34;https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/evaluation/azure-ai-evaluation/azure/ai/evaluation/_evaluators/_groundedness/groundedness_without_query.prompty&#34;&gt;LINK&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;評估 RESPONSE 是否完全基於提供的 CONTEXT。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;核心準則&lt;/strong&gt;：Context 是唯一的真理。&lt;/li&gt;
@@ -133,7 +180,7 @@
 &lt;li&gt;&lt;strong&gt;4 分&lt;/strong&gt;：大部分正確，僅有輕微錯誤。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;5 分&lt;/strong&gt;：完整且精確（包含所有相關細節）。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;2-relevance-相關性&#34;&gt;2. Relevance (相關性)&lt;/h4&gt;
+&lt;h4 id=&#34;2-relevance-相關性-link&#34;&gt;2. Relevance (相關性) &lt;a href=&#34;https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/evaluation/azure-ai-evaluation/azure/ai/evaluation/_evaluators/_relevance/relevance.prompty&#34;&gt;LINK&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;評估 RESPONSE 是否直接解決了使用者的 QUERY。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;核心準則&lt;/strong&gt;：是否回答了問題？有無洞察力？&lt;/li&gt;
@@ -144,13 +191,13 @@
 &lt;li&gt;&lt;strong&gt;4 分&lt;/strong&gt;：高度相關但缺乏深度。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;5 分&lt;/strong&gt;：全面且具備延伸見解。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;3-retrieval-檢索品質&#34;&gt;3. Retrieval (檢索品質)&lt;/h4&gt;
+&lt;h4 id=&#34;3-retrieval-檢索品質-link&#34;&gt;3. Retrieval (檢索品質) &lt;a href=&#34;https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/evaluation/azure-ai-evaluation/azure/ai/evaluation/_evaluators/_retrieval/retrieval.prompty&#34;&gt;LINK&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;評估被檢索出的 CONTEXT 塊是否真的對回答問題有幫助。&lt;/p&gt;</description>
     </item>
     <item>
       <title>【Temperature 1.5 的日常】EP7: LangChain - Custom Middleware, 打造量身定制的 Agent 攔截器</title>
       <link>https://aura.codex.tw/posts/temp1.5/ep7/</link>
-      <pubDate>Tue, 21 Oct 2025 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 30 Oct 2025 00:00:00 +0000</pubDate>
       <guid>https://aura.codex.tw/posts/temp1.5/ep7/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
@@ -200,7 +247,7 @@
     <item>
       <title>【Temperature 1.5 的日常】EP6: LangChain - Built-in Middleware, 打造 AI 的全能工具箱</title>
       <link>https://aura.codex.tw/posts/temp1.5/ep6/</link>
-      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate>
       <guid>https://aura.codex.tw/posts/temp1.5/ep6/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
@@ -259,9 +306,62 @@
 &lt;p&gt;當對話變長時，這個中介軟體會自動觸發。它會保留最近的幾則訊息，並將更早之前的對話壓縮成一段摘要。&lt;/p&gt;</description>
     </item>
     <item>
+      <title>APCS-2021-11</title>
+      <link>https://aura.codex.tw/posts/apcs/apcs-2021-11/</link>
+      <pubDate>Sun, 26 Oct 2025 20:22:55 +0000</pubDate>
+      <guid>https://aura.codex.tw/posts/apcs/apcs-2021-11/</guid>
+      <description>&lt;h1 id=&#34;1-修補圍籬&#34;&gt;1. 修補圍籬&lt;/h1&gt;
+&lt;h2 id=&#34;解題步驟&#34;&gt;解題步驟&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;讀取圍籬數量和高度&lt;/strong&gt;：讀取圍籬的總數量 &lt;code&gt;n&lt;/code&gt;，接著使用迴圈讀取 &lt;code&gt;n&lt;/code&gt; 個圍籬各自的高度，並存入一個 &lt;code&gt;vector&lt;/code&gt;（或陣列）&lt;code&gt;fence&lt;/code&gt; 中。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;初始化成本變數&lt;/strong&gt;：宣告一個整數變數 &lt;code&gt;ans&lt;/code&gt; 並將其初始化為 0，用來累計修補圍籬所需的總成本。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;遍歷圍籬並判斷&lt;/strong&gt;：使用 &lt;code&gt;for&lt;/code&gt; 迴圈從頭到尾檢查每一個圍籬（索引 &lt;code&gt;i&lt;/code&gt; 從 &lt;code&gt;0&lt;/code&gt; 到 &lt;code&gt;n-1&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;檢查是否損壞&lt;/strong&gt;：在迴圈中，判斷 &lt;code&gt;fence[i]&lt;/code&gt; 是否等於 0。如果等於 0，表示這個位置的圍籬斷了，需要修補。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;處理邊界與中間情況&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;左邊界&lt;/strong&gt;：如果 &lt;code&gt;i == 0&lt;/code&gt;（第一個圍籬），則成本增加其右側鄰居 &lt;code&gt;fence[1]&lt;/code&gt; 的高度。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;右邊界&lt;/strong&gt;：如果 &lt;code&gt;i == n-1&lt;/code&gt;（最後一個圍籬），則成本增加其左側鄰居 &lt;code&gt;fence[n-2]&lt;/code&gt; 的高度。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中間&lt;/strong&gt;：如果不是邊界，則比較其左側 &lt;code&gt;fence[i-1]&lt;/code&gt; 和右側 &lt;code&gt;fence[i+1]&lt;/code&gt; 的高度，取&lt;strong&gt;較小&lt;/strong&gt;的那個高度加入總成本 &lt;code&gt;ans&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;輸出最終成本&lt;/strong&gt;：迴圈結束後，&lt;code&gt;ans&lt;/code&gt; 中儲存的就是修補所有斷掉圍籬的總成本，將其輸出。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分段步驟程式碼&#34;&gt;分段步驟程式碼&lt;/h2&gt;
+&lt;h3 id=&#34;讀取圍籬數量和高度&#34;&gt;讀取圍籬數量和高度&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&amp;lt;iostream&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&amp;lt;vector&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;using&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;namespace&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//圍籬數量
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fence&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//圍籬高度
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fence&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這段程式碼首先引入必要的函式庫，然後讀取圍籬數量 &lt;code&gt;n&lt;/code&gt;，並宣告一個大小為 &lt;code&gt;n&lt;/code&gt; 的 &lt;code&gt;vector&lt;/code&gt; 叫 &lt;code&gt;fence&lt;/code&gt;。接著，它使用一個 &lt;code&gt;for&lt;/code&gt; 迴圈來讀取 &lt;code&gt;n&lt;/code&gt; 次，將每個圍籬的高度存入 &lt;code&gt;vector&lt;/code&gt; 中。&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>【Temperature 1.5 的日常】EP5: LangChain - Human-in-the-Loop, 給 AI 的「緊急煞車」</title>
       <link>https://aura.codex.tw/posts/temp1.5/ep5/</link>
-      <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 25 Oct 2025 00:00:00 +0000</pubDate>
       <guid>https://aura.codex.tw/posts/temp1.5/ep5/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
@@ -318,7 +418,7 @@
     <item>
       <title>【Temperature 1.5 的日常】EP4: LangChain - Streaming, 打破沈默的呼吸感</title>
       <link>https://aura.codex.tw/posts/temp1.5/ep4/</link>
-      <pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 21 Oct 2025 00:00:00 +0000</pubDate>
       <guid>https://aura.codex.tw/posts/temp1.5/ep4/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
@@ -365,7 +465,7 @@
     <item>
       <title>【Temperature 1.5 的日常】EP3: LangChain - Tools, 賦予 AI 雙手的魔法</title>
       <link>https://aura.codex.tw/posts/temp1.5/ep3/</link>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
       <guid>https://aura.codex.tw/posts/temp1.5/ep3/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
@@ -406,7 +506,7 @@
     <item>
       <title>【Temperature 1.5 的日常】EP2: LangChain - Structured Output 結構化輸出的藝術</title>
       <link>https://aura.codex.tw/posts/temp1.5/ep2/</link>
-      <pubDate>Tue, 14 Oct 2025 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
       <guid>https://aura.codex.tw/posts/temp1.5/ep2/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;

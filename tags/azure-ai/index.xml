@@ -6,12 +6,12 @@
     <description>Recent content in Azure AI on Aura&#39;s Space</description>
     <generator>Hugo -- 0.153.2</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 22 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 01 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://aura.codex.tw/tags/azure-ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Temperature 1.5 的日常】EP8: 當 Structured Output 遇上評價指標 - 打造自動化的 LLM 裁判員</title>
       <link>https://aura.codex.tw/posts/temp1.5/ep8/</link>
-      <pubDate>Wed, 22 Oct 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://aura.codex.tw/posts/temp1.5/ep8/</guid>
       <description>&lt;hr&gt;
 &lt;blockquote&gt;
@@ -24,7 +24,7 @@
 &lt;hr&gt;
 &lt;h3 id=&#34;一-評價的三大支柱azure-ai-評分定義&#34;&gt;一、 評價的三大支柱：Azure AI 評分定義&lt;/h3&gt;
 &lt;p&gt;在 RAG 場景中，要衡量一個系統的品質，通常會參考以下三項關鍵指標。這些定義在 Azure AI 的評分框架中非常完整，我們可以將其直接注入到 Prompt 中：&lt;/p&gt;
-&lt;h4 id=&#34;1-groundedness-誠實度接地性&#34;&gt;1. Groundedness (誠實度/接地性)&lt;/h4&gt;
+&lt;h4 id=&#34;1-groundedness-誠實度接地性-link&#34;&gt;1. Groundedness (誠實度/接地性) &lt;a href=&#34;https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/evaluation/azure-ai-evaluation/azure/ai/evaluation/_evaluators/_groundedness/groundedness_without_query.prompty&#34;&gt;LINK&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;評估 RESPONSE 是否完全基於提供的 CONTEXT。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;核心準則&lt;/strong&gt;：Context 是唯一的真理。&lt;/li&gt;
@@ -35,7 +35,7 @@
 &lt;li&gt;&lt;strong&gt;4 分&lt;/strong&gt;：大部分正確，僅有輕微錯誤。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;5 分&lt;/strong&gt;：完整且精確（包含所有相關細節）。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;2-relevance-相關性&#34;&gt;2. Relevance (相關性)&lt;/h4&gt;
+&lt;h4 id=&#34;2-relevance-相關性-link&#34;&gt;2. Relevance (相關性) &lt;a href=&#34;https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/evaluation/azure-ai-evaluation/azure/ai/evaluation/_evaluators/_relevance/relevance.prompty&#34;&gt;LINK&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;評估 RESPONSE 是否直接解決了使用者的 QUERY。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;核心準則&lt;/strong&gt;：是否回答了問題？有無洞察力？&lt;/li&gt;
@@ -46,7 +46,7 @@
 &lt;li&gt;&lt;strong&gt;4 分&lt;/strong&gt;：高度相關但缺乏深度。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;5 分&lt;/strong&gt;：全面且具備延伸見解。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;3-retrieval-檢索品質&#34;&gt;3. Retrieval (檢索品質)&lt;/h4&gt;
+&lt;h4 id=&#34;3-retrieval-檢索品質-link&#34;&gt;3. Retrieval (檢索品質) &lt;a href=&#34;https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/evaluation/azure-ai-evaluation/azure/ai/evaluation/_evaluators/_retrieval/retrieval.prompty&#34;&gt;LINK&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;評估被檢索出的 CONTEXT 塊是否真的對回答問題有幫助。&lt;/p&gt;</description>
     </item>
   </channel>

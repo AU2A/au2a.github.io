@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>MCP on Aura&#39;s Space</title>
+    <link>https://aura.codex.tw/tags/mcp/</link>
+    <description>Recent content in MCP on Aura&#39;s Space</description>
+    <generator>Hugo -- 0.153.2</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 05 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://aura.codex.tw/tags/mcp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【Temperature 1.5 的日常】EP9: 當 Agent 遇上通用標準 - Model Context Protocol (MCP) 與 LangChain 的整合之道</title>
+      <link>https://aura.codex.tw/posts/temp1.5/ep9/</link>
+      <pubDate>Wed, 05 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://aura.codex.tw/posts/temp1.5/ep9/</guid>
+      <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文為個人學習筆記，記錄了學習過程中的一些知識，可參考，但不可認真，學習的過程可能有理解錯誤，資訊不一定正確，畢竟 Temperature 都 1.5 了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;零-前言&#34;&gt;零、 前言&lt;/h3&gt;
+&lt;p&gt;接續上次我們聊到的 &lt;strong&gt;自動化評價裁判 (Automated Evaluators)&lt;/strong&gt;，我們確保了 Agent 的輸出品質。但在解決了「好不好」的問題後，我們馬上遇到了「通不通」的問題。隨著 Agent 生態系的爆炸，每個工具、每個資料庫都有自己的 API 接口，讓 Agent 與外部世界溝通變得像是在蓋巴別塔。&lt;/p&gt;
+&lt;p&gt;今天我們要來聊聊 &lt;strong&gt;Model Context Protocol (MCP)&lt;/strong&gt;，這是一個試圖標準化應用程式如何向 LLM 提供工具與 Context 的開放協議。而在 LangChain 中，透過 &lt;code&gt;langchain-mcp-adapters&lt;/code&gt;，我們能輕鬆地讓 Agent 連接上這個日益龐大的生態系。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;一-什麼是-mcp為什麼我們需要它&#34;&gt;一、 什麼是 MCP？為什麼我們需要它？&lt;/h3&gt;
+&lt;p&gt;簡單來說，MCP 就像是 AI 時代的 USB Type-C。它定義了一套標準，讓開發者只需寫一次 Server，就能被所有支援 MCP 的 Client（如 Claude Desktop 或你的 LangChain Agent）讀取。&lt;/p&gt;
+&lt;p&gt;在 LangChain 中，我們主要透過 &lt;code&gt;langchain-mcp-adapters&lt;/code&gt; 這個函式庫來實現對接。它最大的賣點是 &lt;strong&gt;&lt;code&gt;MultiServerMCPClient&lt;/code&gt;&lt;/strong&gt;，這個客戶端允許你的 Agent 同時連接多個 MCP 伺服器，無論是本地的還是遠端的。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 安裝適配器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install langchain-mcp-adapters
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 或者使用 uv&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uv add langchain-mcp-adapters
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;二-連接世界transports-與-multiservermcpclient&#34;&gt;二、 連接世界：Transports 與 MultiServerMCPClient&lt;/h3&gt;
+&lt;p&gt;MCP 支援不同的傳輸方式 (Transports)，LangChain 的適配器完美支援了這兩種主流模式：&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
